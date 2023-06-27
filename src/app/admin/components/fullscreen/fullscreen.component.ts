@@ -8,14 +8,14 @@ const document: any = window.document;
     <button mat-icon-button class="full-screen">
         <mat-icon *ngIf="!toggle" #expand>fullscreen</mat-icon>
         <mat-icon *ngIf="toggle" #compress>fullscreen_exit</mat-icon>
-    </button> 
+    </button>
   `
 })
-export class FullScreenComponent { 
+export class FullScreenComponent {
     toggle:boolean = false;
     @ViewChild('expand') private expand:ElementRef;
-    @ViewChild('compress') private compress:ElementRef; 
-   
+    @ViewChild('compress') private compress:ElementRef;
+
     requestFullscreen(elem) {
         if (elem.requestFullscreen) {
             elem.requestFullscreen();
@@ -59,8 +59,8 @@ export class FullScreenComponent {
         if (fullscreenElement != null) {
             this.toggle = true;
         } else {
-            this.toggle = false;          
+            this.toggle = false;
         }
-    }   
+    }
 
 }

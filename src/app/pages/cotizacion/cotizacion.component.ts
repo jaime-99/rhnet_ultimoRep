@@ -3,6 +3,8 @@ import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { FormControl, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { filter, map, Subscription } from 'rxjs';
+//import axios from 'axios';
+
 
 import { AppService } from 'src/app/app.service';
 import { Cotizacion } from '../../app.models';
@@ -218,7 +220,77 @@ export class CotizacionComponent implements OnInit, OnDestroy {
     this.appService.AddCotizacion(cotizacion, this.appService.Data.cartList).subscribe((res) => {
       this.numcotizacion = res.id;
 
+
     });
+
+    // aqui coloco lo de la add ventaEmpleado
+
+
+
+    // const ventaEmpleado = {
+    //   RhUsuarioId: 1,
+    //   Fecha: '2023-06-15',
+    //   Total: 100.0
+    // };
+
+    // this.appService.agregarVentaEmpleado(ventaEmpleado);
+
+    // console.log(ventaEmpleado);
+
+
+// coloco lo nuevo de ventaEmpleado
+
+    // async function agregarVentaEmpleado() {
+    //   try {
+    //     // Realizar la solicitud POST a la API para agregar la venta de empleado
+    //     const response = await axios.post('https://www.dikeninternational.com/dikenecommerce/api/ventas/addventaEmpleado.php?', {
+    //       RhUsuarioId: 1, // Reemplaza con el valor correcto
+    //       Fecha: '2023-06-16', // Reemplaza con el valor correcto
+    //       Total: 100.0, // Reemplaza con el valor correcto
+    //       Detalles: [
+    //         {
+    //           ProductoId: 1, // Reemplaza con el valor correcto
+    //           Precio: 10.0, // Reemplaza con el valor correcto
+    //           Cantidad: 2, // Reemplaza con el valor correcto
+    //         },
+    //         // Agrega más detalles si es necesario
+    //       ],
+    //     });
+
+    //     // Obtener la respuesta de la API
+    //     const data = response.data;
+    //     if (data.ok) {
+    //       console.log('La venta de empleado se agregó correctamente');
+    //       console.log('ID de venta: ', data.id);
+    //       console.log('Mensaje: ', data.message);
+    //       // Realizar acciones adicionales si es necesario
+    //     } else {
+    //       console.log('Error al agregar la venta de empleado');
+    //       console.log('Mensaje: ', data.message);
+    //     }
+    //   } catch (error) {
+    //     console.error('Error en la solicitud HTTP: ', error.message);
+    //   }
+    // }
+
+    // // Llamar a la función para agregar la venta de empleado
+    // agregarVentaEmpleado();
+
+
+// Aqui se termina
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //this.horizontalStepper._steps.forEach(step => step.editable = false);
     this.appService.Data.cartList.length = 0;

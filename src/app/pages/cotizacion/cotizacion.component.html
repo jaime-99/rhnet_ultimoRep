@@ -7,7 +7,7 @@
           <mat-form-field appearance="outline" class="w-100">
               <mat-label>Clave Clientee</mat-label>
               <input matInput placeholder="ClaveCliente"  formControlName="ClaveCliente" type="text" [value]="billingForm.controls.ClaveCliente.value" (keyup.enter)="onFocusOutEventCliente($event)"  required id ="claveCliente" >
-              <mat-error *ngIf="billingForm.controls.ClaveCliente.errors?.required">El nombre es requerido</mat-error>
+              <mat-error *ngIf="billingForm.controls.ClaveCliente.errors?.required">El nombre es requerido </mat-error>
           </mat-form-field>
         </div>
 

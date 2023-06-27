@@ -11,24 +11,24 @@ import { Usuario } from './mesaayuda-interfaces/IUsuario.interfaces';
 @Injectable({
     providedIn: 'root'
   })
-  
+
   export class MaService {
    //private baseUrl: string = "https://www.dikeninternational.com/APImesadeayuda/API";
    private baseUrl: string = "https://www.dikeninternational.com/APImesadeayuda_____sbx/API";
     // public _departamento: IDepartamento[];
-  
+
     // get departamento() {
     //   return { ...this._departamento };
     // }
-  
+
     public _usuario: autloginResponse|any;
-  
+
     get usuario() {
       return { ...this._usuario };
     }
-  
+
     constructor( private http: HttpClient ) { }
-  
+
 /////Categorias
 
 
@@ -81,7 +81,7 @@ UpdateCategory(CategoriaId:string,DepartamentoId:string,Categoria:string,Activo 
 }
 GetAllCriticidad():Observable<ICriticidad[]>{
   const url=`${ this.baseUrl }/Criticidad/GetCriticality.php`;
- 
+
  return this.http.get<any[]>(url);
 
 }
@@ -94,7 +94,7 @@ GetAllCriticidad():Observable<ICriticidad[]>{
     //     return this.http.get<any[]>(url);
     // }
 
-  
+
 
   GetAllDepartment(): Observable<IDepartamento[]> {
 
@@ -120,7 +120,7 @@ return this.http.get<Usuario>(url,{params});
 }
 GetAllsubCategory():Observable<ISubCategoria[]>{
   const url=`${ this.baseUrl }/Subcategoria/GetSubCategory.php`;
- 
+
  return this.http.get<any[]>(url);
 
 }
@@ -141,11 +141,11 @@ return this.http.get<any[]>(url,{params});
 AddSubCategory(CategoriaId:string,SubCategoria:string,CriticidadId:string,ResponsableId:string,TiempoEstimado:string)
 {
   const url=`${ this.baseUrl }/Subcategoria/AddSubCategory.php`;
-  
+
   const body={CategoriaId,SubCategoria,CriticidadId,ResponsableId,TiempoEstimado};
- 
+
   return this.http.post<any>( url, body ).pipe(share());
-  
+
 }
 UpdateSubCategory(CategoriaId:string,SubCategoriaId:string,SubCategoria:string,Activo :string,CriticidadId:string,ResponsableId:string,TiempoEstimado:string)
 {
@@ -156,12 +156,12 @@ UpdateSubCategory(CategoriaId:string,SubCategoriaId:string,SubCategoria:string,A
     return this.http.put<any>( url, body );
 
 }
-  
-  //tiket services 
+
+  //tiket services
 
   GetAllTiket():Observable<ITiket[]>{
     const url=`${ this.baseUrl }/Tiket/GetTiket.php`;
-   
+
    return this.http.get<any[]>(url);
 
   }
@@ -169,11 +169,11 @@ UpdateSubCategory(CategoriaId:string,SubCategoriaId:string,SubCategoria:string,A
   {
 
     const url=`${ this.baseUrl }/EstatusTiket/GetStatusTiket.php`;
-   
+
    return this.http.get<any[]>(url);
   }
 
- 
+
 
   GetTiket(id:any):Observable<ITiket[]>{
       const url=`${ this.baseUrl }/Tiket/GetTiket.php`;
@@ -227,7 +227,7 @@ return this.http.get<any[]>(url,{params});
    return this.http.get<any[]>(url,{params});
 
   }
-  
+
   GetTiketUserEstatus(id:any,ResponsableId:any,isopen:any):Observable<ITiket[]>{
     const url=`${ this.baseUrl }/Tiket/GetTiketsUserEstatus.php`;
     const params=new HttpParams().set("id",id,)
@@ -241,22 +241,22 @@ postfiles(formData:any):Observable<any>
 {
   const url=`${ this.baseUrl }/tools/fileupload.php`;
  return this.http.post<any>(url, formData);
- 
+
 
 }
 GetLoginAuth2(Correo:string,contrasenia:string)
 {
   const url=`https://www.dikeninternational.com/dikenecommerce/api/Usuario/GetAuthUser.php`;
-  
+
   const body={Correo,contrasenia};
   let headers=new HttpHeaders();
 
 
   headers.append('Content-Type' , 'application/json');
- 
+
   return this.http.post<autloginResponse>( url, body,{headers:headers} )
   .pipe(
-    
+
     map(resp=>{
       resp.ok;
       this._usuario={
@@ -281,12 +281,12 @@ GetLoginAuth2(Correo:string,contrasenia:string)
 GetLoginAuth(Correo:string,contrasenia:string)
 {
   const url=`${ this.baseUrl }/Usuario/GetAuthUser.php`;
-  
+
   const body={Correo,contrasenia};
- 
+
   return this.http.post<autloginResponse>( url, body )
   .pipe(
-    
+
     map(resp=>{
       resp.ok;
       this._usuario={
@@ -312,12 +312,10 @@ GetLoginAuth(Correo:string,contrasenia:string)
  AddBitacoraTiket(TiketId:string,UsuarioId:string,Mensaje:string,EstatusTiketId:string)
  {
   const url=`${ this.baseUrl }/Tiket/AddBitacotaTiket.php`;
-    
-    const body={TiketId,UsuarioId,Mensaje,EstatusTiketId};
-   
-    return this.http.post<any>( url, body );
-    
 
+    const body={TiketId,UsuarioId,Mensaje,EstatusTiketId};
+
+    return this.http.post<any>( url, body );
  }
 
 
@@ -325,11 +323,11 @@ GetLoginAuth(Correo:string,contrasenia:string)
   AddTiket(UsuarioId:string,SubCategoriaId:string,ResponsableId :string,Detalle:string,ContactoTelefonico:string):Observable<any>
   {
     const url=`${ this.baseUrl }/Tiket/AddTiket.php`;
-    
+
     const body={UsuarioId,SubCategoriaId,ResponsableId,Detalle,ContactoTelefonico};
-   
+
     return this.http.post<any>( url, body );
-    
+
   }
   sendmail(TiketId:string,Categoria:string,SubCategoria:string,Criticidad:string,Usuario:string,Responsable:string,Detalle:string,File:string,ContactoTelefonico:string):Observable<any>
   {
@@ -352,27 +350,27 @@ GetLoginAuth(Correo:string,contrasenia:string)
 {
 
   const url=`${ this.baseUrl }/Tiket/UpdateTiket.php`;
-    
+
     const body={TiketId,SubCategoriaId,EstatusTiketId,ResponsableId,Detalle,Respuesta,Reasignado,ContactoTelefonico,EsPropio};
-   
+
     return this.http.put<any>( url, body );
 
 
 }
-  
+
 
   /// fin tiket services
-   
 
-  
-    
-  
-    
-    
-  
+
+
+
+
+
+
+
     logout() {
       localStorage.clear();
     }
-  
-  
+
+
   }

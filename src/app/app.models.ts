@@ -1,6 +1,6 @@
 export class Category {
-  constructor(public id: number, 
-              public name:string, 
+  constructor(public id: number,
+              public name:string,
               public hasSubCategory: boolean,
               public parentId: number){ }
 }
@@ -66,4 +66,13 @@ export class Product {
               public FamiliaId:number,
               public SubFamiliaId:number
               ){ }
+}
+
+export class empleadoVentas{
+  public $VentaEmpeladoId:number;
+  public $RhUsuarioId:number;
+  public $Fecha: string;
+  public $Total:number;
+
+
 }

@@ -39,7 +39,7 @@ export class AppService {
         [], // categories
         [], // compareList
         [],  // wishList
-        [],  // cartList
+        [],  //
         null, //totalPrice,
         0, //totalCartCount
         ''
@@ -172,7 +172,7 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         return this.http.get<SubFamilia[]>(apiurl,{params});
 
     }
-    //Cotizacion apartado
+    //Cotizacion apartado  // como funciona la api addCotizacion
     AddCotizacion(cotizacion:any,detallecotizacion:any)
         {
         const url=`${ this.baseUrl }/ventas/addcotizacion.php`;
@@ -182,6 +182,26 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         return this.http.post<any>( url, body );
 
         }
+        //jaime
+        AddVentaEmpleado(ventaEmpleado:any,detalles:any)
+        {
+        const url=`${ this.baseUrl }/ventas/addventaempleados.php`;
+        const body={ventaEmpleado,detalles}
+        return this.http.post<any>( url, body );
+        }
+
+        // termina ejemplo de addVentaEmpleado -- jaime
+
+        // ejemplo de api sendemailVentaEmpelado -- jaime
+
+        sendemailVentaEmpleado(NumeroDeEmpleado:string,Fecha:Date,Total:number,detalles, Nombre:String,numVenta:number){
+
+          const url=`${ this.baseUrl }/tools/sendmailVentaEmpleado.php`;
+          const body={NumeroDeEmpleado,Fecha,Total,detalles,Nombre,numVenta}
+          return this.http.post<any>( url, body );
+        }
+
+
 
         public GetCotizacionesPorUsuarioId(usuarioId:any){
 
@@ -585,5 +605,32 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
             { value: 'express', name: 'Express Delivery', desc: '$29.99 / Delivery in 1 business Days' }
         ]
     }
+
+// aqui empiezo a editar (jaime)
+
+    // public agregarVentaEmpleado(ventaEmpleado: any) {
+    //   const url = 'https://www.dikeninternational.com/dikenecommerce/api/ventas/addventaEmpleado.php?'; // Reemplaza con la URL de tu API
+
+    //   this.http.post(url, ventaEmpleado).subscribe(
+    //     (response: any) => {
+    //       // La venta se agregó correctamente
+    //       console.log(response.message);
+    //     },
+    //     (error: any) => {
+    //       // Error al agregar la venta
+    //       console.error(error.message);
+    //     }
+    //   );
+    // }
+
+
+
+
+
+
+
+
+
+
 
 }
