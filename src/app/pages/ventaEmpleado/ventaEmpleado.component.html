@@ -6,7 +6,8 @@
       <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
         <mat-form-field>
           <mat-label>Usuario ID</mat-label>
-          <input matInput id="RhUsuarioId"  [value]="ventaForm.get('RhUsuarioId').value" type="text" formControlName="RhUsuarioId" required>
+          <input matInput id="RhUsuarioId" [value]="ventaForm.get('RhUsuarioId').value" type="text"
+            formControlName="RhUsuarioId" required>
         </mat-form-field>
       </div>
 
@@ -15,19 +16,21 @@
       <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
         <mat-form-field>
           <mat-label>Fecha</mat-label>
-          <input matInput id="Fecha" type="date" formControlName="Fecha"  [value]="getCurrentDate()"  required>
+          <input matInput id="Fecha" type="date" formControlName="Fecha" [value]="getCurrentDate()" required>
         </mat-form-field>
       </div>
 
       <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
         <mat-form-field>
           <mat-label>Total</mat-label>
-          <input matInput id="Total" type="number" formControlName="Total" required [readonly]="true" [value]="grandTotal">
+          <input matInput id="Total" type="number" formControlName="Total" required [readonly]="true"
+            [value]="grandTotal">
         </mat-form-field>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1">
-        <button mat-mini-fab matStepperNext color="primary" matTooltip="Next" matTooltipPosition="after"><mat-icon>navigate_next</mat-icon></button>
+        <button mat-mini-fab matStepperNext color="primary" matTooltip="Next"
+          matTooltipPosition="after"><mat-icon>navigate_next</mat-icon></button>
       </div>
     </form>
   </mat-step>
@@ -72,17 +75,18 @@
         <div class="mat-cell"> Nombre: {{Nombre}}</div>
         <div class="mat-cell"> ID:{{UsuarioId}}</div>
 
-        <!-- escribir mas detalles si necesitamos aqui -->
+        <!-- master  -->
 
       </div>
     </div>
 
-     <div fxLayout="row" fxLayoutAlign="center center" class="p-1">
-       <h2><span class="text-muted mr-1">Total:</span><span>${{grandTotal | number : '1.2-2'}}</span></h2>
+    <div fxLayout="row" fxLayoutAlign="center center" class="p-1">
+      <h2><span class="text-muted mr-1">Total:</span><span>${{grandTotal | number : '1.2-2'}}</span></h2>
     </div>
     <!-- Resto del contenido del paso -->
     <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1">
-      <button mat-raised-button matStepperPrevious color="primary" matTooltip="Regresar" matTooltipPosition="before" class="mr-1">
+      <button mat-raised-button matStepperPrevious color="primary" matTooltip="Regresar" matTooltipPosition="before"
+        class="mr-1">
         <mat-icon>navigate_before</mat-icon>
       </button>
       <button mat-raised-button matStepperNext color="primary" (click)="submitForm()">Guardar detalles</button>
@@ -104,7 +108,7 @@
 
     </div> -->
 
-    <!-- <div>
+  <!-- <div>
       <h3>Detalles de Venta</h3>
       <ul>
         <li *ngFor="let detalle of detalles.controls; let i=index">
@@ -117,7 +121,7 @@
       </ul>
     </div> -->
 
-    <!-- <div>
+  <!-- <div>
       <button mat-button color="primary" (click)="submitForm()">Guardar</button>
       <button mat-button matStepperPrevious>Volver</button>
     </div> -->
@@ -132,6 +136,5 @@
     <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1">
       <a [routerLink]="['/productos']" mat-raised-button color="primary">Inicio</a>
     </div>
-    </mat-step>
+  </mat-step>
 </mat-stepper>
-

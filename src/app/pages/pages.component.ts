@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild, Inject, PLATFORM_ID } from '@angular/core'; 
+import { Component, OnInit, HostListener, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Settings, AppSettings } from '../app.settings';
 import { AppService } from '../app.service';
@@ -13,22 +13,24 @@ import { isPlatformBrowser } from '@angular/common';
   providers: [ SidenavMenuService ]
 })
 export class PagesComponent implements OnInit {
-  public showBackToTop:boolean = false; 
+  public showBackToTop:boolean = false;
   public categories:Category[];
   public category:Category;
   public sidenavMenuItems:Array<any>;
   public stringsearh="";
   public searchText!: string;
+  public searchText1='';
+  public searchText2 ='';
   public viewsearchandcart=false;
   @ViewChild('sidenav', { static: true }) sidenav:any;
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, 
-              public appService:AppService, 
+  constructor(public appSettings:AppSettings,
+              public appService:AppService,
               public sidenavMenuService:SidenavMenuService,
               public router:Router,
-              @Inject(PLATFORM_ID) private platformId: Object) { 
-    this.settings = this.appSettings.settings; 
+              @Inject(PLATFORM_ID) private platformId: Object) {
+    this.settings = this.appSettings.settings;
   }
 
   ngOnInit() {
@@ -44,12 +46,12 @@ export class PagesComponent implements OnInit {
     this.getCategories();
     this.sidenavMenuItems = this.sidenavMenuService.getSidenavMenuItems();
     setTimeout(() => {
-      this.settings.theme = 'green'; 
+      this.settings.theme = 'green';
     });
     // alert("hi");
-  } 
+  }
 
-  public getCategories(){    
+  public getCategories(){
     this.appService.getCategories().subscribe(data => {
       this.categories = data;
       this.category = data[0];
@@ -63,7 +65,7 @@ export class PagesComponent implements OnInit {
     }
     if(window.innerWidth < 960){
       this.stopClickPropagate(event);
-    } 
+    }
   }
 
   public remove(product) {
@@ -73,7 +75,7 @@ export class PagesComponent implements OnInit {
           this.appService.Data.totalPrice = this.appService.Data.totalPrice - product.newPrice*product.cartCount;
           this.appService.Data.totalCartCount = this.appService.Data.totalCartCount - product.cartCount;
           this.appService.resetProductCartCount(product);
-      }        
+      }
   }
 
   public clear(){
@@ -84,14 +86,14 @@ export class PagesComponent implements OnInit {
     this.appService.Data.totalPrice = 0;
     this.appService.Data.totalCartCount = 0;
   }
- 
+
 
   public changeTheme(theme){
-    this.settings.theme = theme;       
+    this.settings.theme = theme;
   }
 
   public stopClickPropagate(event: any){
- 
+
     event.stopPropagation();
     event.preventDefault();
   }
@@ -115,7 +117,40 @@ export class PagesComponent implements OnInit {
     // }, 500);
   }
 
- 
+
+  // este metodo es para el boton para buscar,
+  search1(searchText: string): void {
+    this.searchText1 = searchText;
+    console.log(this.searchText1);
+    this.appService.search.next(this.searchText1);
+
+    let queryParams: any = {};
+    queryParams.textSearch = this.searchText1;
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/productos', this.searchText1], { queryParams: queryParams });
+
+    // alert("hola");
+  }
+
+
+  // esta funcione es para cuando se hace resposnive la barra de bsuqueda
+  search2(searchText: string): void {
+    this.searchText2 = searchText;
+    console.log(this.searchText2);
+    this.appService.search.next(this.searchText2);
+
+    let queryParams: any = {};
+    queryParams.textSearch = this.searchText2;
+    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate(['/productos', this.searchText2], { queryParams: queryParams });
+
+    // alert("hola");
+  }
+
+
+
   public scrollToTop(){
     var scrollDuration = 200;
     var scrollStep = -window.pageYOffset  / (scrollDuration / 20);
@@ -124,42 +159,42 @@ export class PagesComponent implements OnInit {
          window.scrollBy(0, scrollStep);
       }
       else{
-        clearInterval(scrollInterval); 
+        clearInterval(scrollInterval);
       }
     },10);
     if(window.innerWidth <= 768){
-      setTimeout(() => { 
+      setTimeout(() => {
         if (isPlatformBrowser(this.platformId)) {
           window.scrollTo(0,0);
-        }  
+        }
       });
     }
   }
   @HostListener('window:scroll', ['$event'])
   onWindowScroll($event) {
-    const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);   
-    let header_toolbar = document.getElementById('header-toolbar'); 
-    if(header_toolbar){ 
+    const scrollTop = Math.max(window.pageYOffset, document.documentElement.scrollTop, document.body.scrollTop);
+    let header_toolbar = document.getElementById('header-toolbar');
+    if(header_toolbar){
       if(scrollTop >= header_toolbar.clientHeight) {
         this.settings.mainToolbarFixed = true;
       }
       else{
         if(!document.documentElement.classList.contains('cdk-global-scrollblock')){
           this.settings.mainToolbarFixed = false;
-        }        
-      } 
-    } 
+        }
+      }
+    }
     else{
       this.settings.mainToolbarFixed = true;
-    }  
-    ($event.target.documentElement.scrollTop > 300) ? this.showBackToTop = true : this.showBackToTop = false;  
+    }
+    ($event.target.documentElement.scrollTop > 300) ? this.showBackToTop = true : this.showBackToTop = false;
   }
 
   ngAfterViewInit(){
     this.router.events.subscribe(event => {
-      if (event instanceof NavigationEnd) { 
-        this.sidenav.close(); 
-      }                
+      if (event instanceof NavigationEnd) {
+        this.sidenav.close();
+      }
     });
     this.sidenavMenuService.expandActiveSubMenu(this.sidenavMenuService.getSidenavMenuItems());
   }
@@ -167,7 +202,7 @@ export class PagesComponent implements OnInit {
   public closeSubMenus(){
     if(window.innerWidth < 960){
       this.sidenavMenuService.closeAllSubMenus();
-    }    
+    }
   }
 
 }

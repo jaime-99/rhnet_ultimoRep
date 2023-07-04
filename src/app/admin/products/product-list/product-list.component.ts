@@ -21,9 +21,9 @@ export class ProductListComponent implements OnInit {
     if(window.innerWidth < 1280){
       this.viewCol = 33.3;
     };
-    this.getAllProducts(); 
+    this.getAllProducts();
   }
-  public search(event:any){
+  public search(event:any){ // Aqui es donde se busca
 
 
     this.searchText = (event.target as HTMLInputElement).value;
@@ -41,41 +41,41 @@ export class ProductListComponent implements OnInit {
 
   public getAllProducts(){
     this.appService.getProductsApi(this.searchText).subscribe(data=>{
-      this.products = data; 
-      //for show more product  
+      this.products = data;
+      //for show more product
       // for (var index = 0; index < 3; index++) {
-      //   this.products = this.products.concat(this.products);        
+      //   this.products = this.products.concat(this.products);
       // }
     });
   }
 
   public onPageChanged(event){
-    this.page = event; 
-    window.scrollTo(0,0); 
+    this.page = event;
+    window.scrollTo(0,0);
   }
 
   @HostListener('window:resize')
-  public onWindowResize():void { 
+  public onWindowResize():void {
     (window.innerWidth < 1280) ? this.viewCol = 33.3 : this.viewCol = 25;
   }
- 
 
-  public remove(product:any){  
+
+  public remove(product:any){
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
       data: {
         title: "Confirm Action",
         message: "Are you sure you want delete this product?"
       }
-    }); 
-    dialogRef.afterClosed().subscribe(dialogResult => { 
+    });
+    dialogRef.afterClosed().subscribe(dialogResult => {
       if(dialogResult){
         const index: number = this.products.indexOf(product);
         if (index !== -1) {
-          this.products.splice(index, 1);  
-        } 
-      } 
-    }); 
+          this.products.splice(index, 1);
+        }
+      }
+    });
   }
 
 }

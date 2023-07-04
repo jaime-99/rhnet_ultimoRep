@@ -187,18 +187,22 @@ export class VentaEmpleadoComponent implements OnInit {
         //this.numVenta +=1;
 
         // Agregar algo sobre que ha sido exitoso
+
+        console.log(ventaEmpleado);
+
       });
 
 
     //enviar los datos al correo elctronico
 
-      this.appService.sendemailVentaEmpleado(ventaEmpleado.RhUsuarioId,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre,ventaEmpleado.numVenta).subscribe((res) => {
+      this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre,ventaEmpleado.numVenta).subscribe((res) => {
+
+        // const id = res.id;
+        // console.log('ID recibido:', id);
         // Agregar algo sobre que ha sido exitoso
       });
 
     }
-
-
   //     // saber el id
   //   onFocusOutEventCliente(value) {
   //     let clave = (value.target as HTMLInputElement).value;
@@ -207,10 +211,7 @@ export class VentaEmpleadoComponent implements OnInit {
   //       this.billingForm.controls['claveCliente'].setValue(res.ClaveCliente);
   //     })
 
-
-
   // }
-
 }
 
 

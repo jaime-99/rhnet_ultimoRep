@@ -16,4 +16,9 @@ export class OptionsComponent {
   public changeTheme(theme){
     this.settings.theme = theme;
   }
+
+  public saludo():void{
+
+    console.log("hola soy verde");
+  }
 }

@@ -216,6 +216,61 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         return this.http.get<Product[]>(this.url + type + '-products.json');
     }
 
+    // Aqui colocare para devolver las ventasEmpleado
+
+    // public GetVentasEmpleadoPorId(ventaEmpleadoId){
+
+    //   let apiurl='https://www.dikeninternational.com/dikenecommerce/api/ventas/GetVentaEmpleado.php?';
+    //   const params=new HttpParams().set("ventaEmpleadoId",ventaEmpleadoId);
+    //   return this.http.get<any[]>(apiurl,{params});
+
+    // }
+    // Aqui se termina
+
+    // este es el modificado par que solo trauga
+    //todo  solo traiga por los RhID
+
+    public GetVentasEmpleadoPorId(Id){
+
+      let apiurl='https://www.dikeninternational.com/dikenecommerce/api/ventas/GetVentaEmpleado.php?';
+      const params=new HttpParams().set("Id",Id);
+      return this.http.get<any[]>(apiurl,{params});
+
+    }
+    //todo jaime
+    // este sera el metodo de CancelarVentas del empleado
+
+
+    // CancelarVenta(ventaId:number)
+    //     {
+    //     const url=`${ this.baseUrl }/ventas/cancelarVenta.php`;
+    //     const params=new HttpParams().set("ventaId",ventaId);
+
+    //     return this.http.post<any>( url, params );
+    //     }
+
+        CancelarVenta(ventaId:string) {
+          const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+          const url = `${this.baseUrl}/ventas/cancelarVenta.php`;
+          const body = {ventaId};
+
+          return this.http.post<any>(url, body , { headers });
+        }
+
+        // Aqui se termina el de cancelar venta
+
+        //todo esta es la llamada de searchApi
+
+        getProductsApiEmpleado(type):Observable<Product[]>{
+          let apiurl='https://www.dikeninternational.com/dikenecommerce/api/ventas/getProductsApiEmpleado.php?';
+          const params=new HttpParams().set("TextSearch",type);
+          return this.http.get<Product[]>(apiurl,{params}   );
+        }
+
+        //Aqui se termina la llamada de searchApi
+
+
 
 
     public getProductsApi(type): Observable<Product[]>{

@@ -1,6 +1,6 @@
 @import "mixins";
 
-.app[dir="rtl"]{    
+.app[dir="rtl"]{
     .mat-icon.caret{
         width: auto;
     }
@@ -11,20 +11,20 @@
     .app-dropdown.account .mat-menu-content .user-info img{
         margin-right: 0;
         margin-left: 16px;
-    } 
-    .search-form{ 
-        input[type=text]{ 
+    }
+    .search-form{
+        input[type=text]{
             border-left: 0;
-            border-right: 1px solid #ccc;      
+            border-right: 1px solid #ccc;
         }
         .search-btn{
-            margin-left: 0; 
+            margin-left: 0;
             margin-right: -20px;
         }
     }
     .swiper-container{
         direction: ltr;
-    }    
+    }
     .swiper-slide{
         direction: rtl;
     }
@@ -34,14 +34,14 @@
     }
     .footer .contact-information .mat-icon{
         margin-right: 0;
-        margin-left: 10px;        
+        margin-left: 10px;
     }
 
     .cart-items-count{
         right: 24px;
         left: auto;
     }
-    .cart-dropdown.mat-menu-panel .mat-list .mat-list-item .mat-list-item-content img { 
+    .cart-dropdown.mat-menu-panel .mat-list .mat-list-item .mat-list-item-content img {
         margin-left: 0;
         margin-right: 10px;
     }
@@ -50,7 +50,7 @@
         margin-left: 0;
         margin-right: 12px;
     }
-    .details button { 
+    .details button {
         margin-left: 0;
         margin-right: 6px;
     }
@@ -62,7 +62,7 @@
     .account-content.p-left{
         padding-left: 2px;
         padding-right: 16px;
-    } 
+    }
     .sub-category button{
         padding-left: 0;
         padding-right: 30px;
@@ -87,11 +87,11 @@
     .ps__thumb-y{
         right: auto !important;
         left: 1px !important;
-    } 
+    }
 
     .menu-expand-icon {
         right: auto;
         left: 10px;
     }
-   
+
 }

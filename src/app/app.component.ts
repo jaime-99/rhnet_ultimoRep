@@ -12,19 +12,19 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   loading: boolean = false;
   public settings: Settings;
-  constructor(public appSettings: AppSettings, 
+  constructor(public appSettings: AppSettings,
               public router: Router,
               @Inject(PLATFORM_ID) private platformId: Object,
               public translate: TranslateService){
     this.settings = this.appSettings.settings;
-   
+
     translate.addLangs(['en','de','fr','ru','tr']);
-    translate.setDefaultLang('en'); 
+    translate.setDefaultLang('en');
     translate.use('en');
   }
 
   ngOnInit() {
-   // this.router.navigate(['']);  //redirect other pages to homepage on browser refresh    
+   // this.router.navigate(['']);  //redirect other pages to homepage on browser refresh
   }
 
   ngAfterViewInit(){
@@ -32,8 +32,8 @@ export class AppComponent {
       if (event instanceof NavigationEnd) {
         if (isPlatformBrowser(this.platformId)) {
           window.scrollTo(0,0);
-        } 
+        }
       }
-    })  
+    })
   }
 }

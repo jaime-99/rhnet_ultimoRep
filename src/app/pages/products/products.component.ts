@@ -15,6 +15,7 @@ import { isPlatformBrowser } from '@angular/common';
 export class ProductsComponent implements OnInit,OnChanges {
   @ViewChild('sidenav', { static: true }) sidenav: any;
   public sidenavOpen:boolean = true;
+  public searchtext1 = "jalador";
   private sub: any;
   public viewType: string = 'grid';
   public viewCol: number = 25;
@@ -60,37 +61,37 @@ export class ProductsComponent implements OnInit,OnChanges {
     { name: "17\"", selected: false },
     { name: "21\"", selected: false },
     { name: "23.4\"", selected: false }
-  ]; 
+  ];
   public page:any;
   public settings: Settings;
   public searchText: string="";
   public viewprice:boolean=false;
-  constructor(public appSettings:AppSettings, 
-              private activatedRoute: ActivatedRoute, 
-              public appService:AppService, 
-              public dialog: MatDialog, 
+  constructor(public appSettings:AppSettings,
+              private activatedRoute: ActivatedRoute,
+              public appService:AppService,
+              public dialog: MatDialog,
               private router: Router,
               private route: ActivatedRoute,
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;
     if (this.route.snapshot.queryParamMap.keys.length > 0) {
-  
-      if (this.route.snapshot.queryParamMap.has('textSearch')) 
-      { 
-     
+
+      if (this.route.snapshot.queryParamMap.has('textSearch'))
+      {
+
         this.searchText = (this.route.snapshot.queryParamMap.get('textSearch')
-        
-        ); 
-        
+
+        );
+
       }
-      
+
 
 
     }
 
   }
   ngOnChanges(changes: SimpleChanges): void {
-   
+
   }
 
   ngOnInit() {
@@ -104,10 +105,10 @@ export class ProductsComponent implements OnInit,OnChanges {
     this.count = this.counts[0];
     this.sort = this.sortings[0];
     this.sub = this.activatedRoute.params.subscribe(params => {
-  
+
     });
- 
- 
+
+
     if(window.innerWidth < 960){
       this.sidenavOpen = false;
     };
@@ -117,31 +118,35 @@ export class ProductsComponent implements OnInit,OnChanges {
 
     this.getCategories();
     this.getBrands();
-    this.getAllProducts();   
+   //this.getAllProducts(); // hace que muestre todos los productos
+    //this.getProductsEmpleado();
+    this.getProductsEmpleado();
   }
+
 
   public getAllProducts(){
 
     // this.appService.getProducts('featured').subscribe(data=>{
-    //     this.products = data; 
-     
-    //     //for show more product  
+    //     this.products = data;
+
+    //     //for show more product
     //     // for (var index = 0; index < 3; index++) {
-    //     //   this.products = this.products.concat(this.products);        
+    //     //   this.products = this.products.concat(this.products);
     //     // }
     //   });
     this.appService.getProductsApi(this.searchText).subscribe(data=>{
-      this.products = data; 
-   
-      //for show more product  
+      this.products = data;
+
+
+      //for show more product
       // for (var index = 0; index < 3; index++) {
-      //   this.products = this.products.concat(this.products);        
+      //   this.products = this.products.concat(this.products);
       // }
     });
   }
 
-  public getCategories(){  
-    if(this.appService.Data.categories.length == 0) { 
+  public getCategories(){
+    if(this.appService.Data.categories.length == 0) {
       this.appService.getCategories().subscribe(data => {
         this.categories = data;
         this.appService.Data.categories = data;
@@ -169,7 +174,7 @@ export class ProductsComponent implements OnInit,OnChanges {
 
   public changeCount(count){
     this.count = count;
-    this.getAllProducts(); 
+    this.getProductsEmpleado();
   }
 
   public changeSorting(sort){
@@ -181,7 +186,7 @@ export class ProductsComponent implements OnInit,OnChanges {
     this.viewCol = viewCol;
   }
 
-  public openProductDialog(product){   
+  public openProductDialog(product){
     let dialogRef = this.dialog.open(ProductDialogComponent, {
         data: product,
         panelClass: 'product-dialog',
@@ -189,27 +194,39 @@ export class ProductsComponent implements OnInit,OnChanges {
     });
     dialogRef.afterClosed().subscribe(product => {
       if(product){
-        this.router.navigate(['/products', product.id, product.name]); 
+        this.router.navigate(['/products', product.id, product.name]);
       }
     });
   }
 
   public onPageChanged(event){
     this.page = event;
-    this.getAllProducts(); 
+    this.getProductsEmpleado();
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0,0);
-    } 
+    }
   }
 
   public onChangeCategory(event){
     if(event.target){
-      this.router.navigate(['/productos', event.target.innerText.toLowerCase()]); 
+      this.router.navigate(['/productos', event.target.innerText.toLowerCase()]);
 
       this.searchText=event.target.innerText;
 
-      this.getAllProducts();
-    }   
+      this.getProductsEmpleado();
+    }
   }
 
-}
+  //para buscar en la barra y solo salgan los productos de empleados
+  public getProductsEmpleado(){
+
+      this.appService.getProductsApiEmpleado(this.searchText).subscribe(data=>{
+      this.products = data;
+
+    });
+  }
+
+
+  }
+
+

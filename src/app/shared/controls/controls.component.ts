@@ -16,14 +16,22 @@ export class ControlsComponent implements OnInit {
   public count:number = 1;
   public align = 'center center';
   constructor(public appService:AppService, public snackBar: MatSnackBar) { }
+  public Day: boolean;
+
 
   ngOnInit() {
     if(this.product){
       if(this.product.cartCount > 0){
         this.count = this.product.cartCount;
       }
-    }  
-    this.layoutAlign(); 
+    }
+    this.layoutAlign();
+
+    // Esto es para que el boton solo se vea lunes, miercoles y viernes
+    const Today = new Date().getDay();
+    this.Day = Today === 1 || Today === 3 || Today === 5;
+
+    // console.log(Today);
   }
 
   public layoutAlign(){
@@ -52,7 +60,7 @@ export class ControlsComponent implements OnInit {
     }
     else{
       this.snackBar.open('You can not choose more items than available. In stock ' + this.count + ' items.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
-    }    
+    }
   }
 
   public decrement(count){

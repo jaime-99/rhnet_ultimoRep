@@ -4,6 +4,7 @@ import { Routes, RouterModule, PreloadAllModules  } from '@angular/router';
 import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ValidarTokenGuard } from './guards/validarlogin.guard';
+import { misPedidosModule } from './pages/misPedidos/misPedidos.component.module';
 
 
 export const routes: Routes = [
@@ -40,7 +41,9 @@ export const routes: Routes = [
             { path: 'catalogosindustrial',loadChildren:()=>import('./pages/catalogosindustrial/catalogosindustrial.module').then(m=>m.CatalogosindustrialModule),data:{breadcrumb:'Catálogo Industrial'}},
             { path: 'quienessomos',loadChildren:()=>import('./pages/quienessomos/quienessomos.module').then(m=>m.QuienessomosModule),data:{breadcrumb:'Quienes somos'}},
             { path: 'sucursales',loadChildren:()=>import('./pages/sucursales/sucursales.module').then(m=>m.SucursalesModule),data:{breadcrumb:'Sucursales'}},
-             { path: 'ventas', loadChildren: () => import('./pages/ventaEmpleado/ventaEmpleado.module').then(m => m.VentaEmpleadoModule), data: { breadcrumb: 'Todos los Productos' } },
+             { path: 'ventas', loadChildren: () => import('./pages/ventaEmpleado/ventaEmpleado.module').then(m => m.VentaEmpleadoModule), data: { breadcrumb: 'ventas Empleado' } },
+             { path: 'misPedidos', loadChildren: () => import('./pages/misPedidos/misPedidos.component.module').then(m => misPedidosModule), data: { breadcrumb: 'Todos los Productos' } },
+
 
             { path: 'plataformas',loadChildren:()=>import('./pages/plataformas/plataformas.module').then(m=>m.PlataformasModule),
             canActivate: [ ValidarTokenGuard ],

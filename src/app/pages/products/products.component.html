@@ -1,6 +1,6 @@
 <mat-sidenav-container>
     <!-- <mat-sidenav #sidenav [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="filter-sidenav" perfectScrollbar>
-        
+
         <mat-accordion displayMode="flat" multi="true">
             <mat-expansion-panel expanded>
                 <mat-expansion-panel-header>
@@ -13,7 +13,7 @@
                 </div>
             </mat-expansion-panel>
 
-            
+
         </mat-accordion>
 
     </mat-sidenav> -->
@@ -54,6 +54,10 @@
                 <button mat-icon-button (click)="changeViewType('grid', 25)">
                     <mat-icon>view_comfy</mat-icon>
                 </button>
+                <!-- <button   (click)="getProductsEmpleado()">
+                    <mat-icon>view_comfy</mat-icon>
+                </button> -->
+
             </div>
         </div>
 
@@ -67,7 +71,7 @@
                         <img [src]="product.images[0].small" alt="">
                     </a>
                     <h5 class="category text-muted">{{product.CodigoDiken}}</h5>
-                    <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>                                                                     
+                    <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>
                     <a  matTooltip="{{product.name}}" [routerLink]="['/productos', product.id, product.name]" class="title text-truncate">
                         {{product.name}}
                     </a>
@@ -77,7 +81,7 @@
                             <p class="new-price" *ngIf="viewprice==true">${{product.newPrice | number : '1.2-2'}}</p>
                         </div>
                         <!-- <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating> -->
-                    </div>                            
+                    </div>
                     <div class="divider mt-2"></div>
                     <div class="icons">
                         <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
@@ -99,7 +103,7 @@
                             </a>
                         </div>
                         <div fxFlex="100" fxFlex.gt-xs="60" class="p-2">
-                            <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>                                                                     
+                            <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>
                             <a [routerLink]="['/productos', product.id, product.name]" class="title">
                                 {{product.name}}
                             </a>
@@ -110,7 +114,7 @@
                                     <p class="new-price"*ngIf="viewprice==true">${{product.newPrice | number : '1.2-2'}}</p>
                                 </div>
                                 <app-rating [ratingsCount]="product.ratingsCount" [ratingsValue]="product.ratingsValue" [direction]="'column'"></app-rating>
-                            </div>                            
+                            </div>
                             <div class="divider"></div>
                             <div class="icons">
                                 <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
@@ -122,12 +126,12 @@
         </div>
 
         <div *ngIf="products.length > 0" fxLayout="row wrap">
-            <div fxFlex="100"> 
-                <mat-card class="p-0 text-center">           
+            <div fxFlex="100">
+                <mat-card class="p-0 text-center">
                     <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
                 </mat-card>
             </div>
         </div>
-        
+
     </mat-sidenav-content>
 </mat-sidenav-container>
