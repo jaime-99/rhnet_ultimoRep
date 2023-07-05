@@ -141,6 +141,12 @@ export class VentaEmpleadoComponent implements OnInit {
     }
   }
 
+
+  clickDosBotones(){
+    this.submitForm();
+    this.clear();
+  }
+
   submitForm() {
    // const clave = this.ventaForm.get('RhUsuarioId').value;
 
@@ -201,6 +207,8 @@ export class VentaEmpleadoComponent implements OnInit {
 
 
 
+
+
       // });
 
       this.appService.AddVentaEmpleado(ventaEmpleado, detalles).subscribe((res) => {
@@ -211,9 +219,7 @@ export class VentaEmpleadoComponent implements OnInit {
         // Agregar algo sobre que ha sido exitoso
         console.log(this.numVenta);
 
-
     //enviar los datos al correo elctronico
-
       this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre,this.numVenta).subscribe((res) => {
 
         console.log(this.numVenta);
@@ -223,6 +229,9 @@ export class VentaEmpleadoComponent implements OnInit {
 
       });
       });
+
+
+
 
     }
   //     // saber el id
@@ -234,7 +243,20 @@ export class VentaEmpleadoComponent implements OnInit {
   //     })
 
   // }
+
+  //todo para limpiar carrito //
+  public clear(){
+    this.appService.Data.cartList.forEach(product=>{
+      this.appService.resetProductCartCount(product);
+    });
+    this.appService.Data.cartList.length = 0;
+    this.appService.Data.totalPrice = 0;
+    this.appService.Data.totalCartCount = 0;
+  }
+
+
 }
+
 
 
 

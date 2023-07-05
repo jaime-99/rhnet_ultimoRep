@@ -73,8 +73,6 @@
         <div class="mat-cell"> Nombre: {{Nombre}}</div>
         <div class="mat-cell"> ID:{{UsuarioId}}</div>
 
-        <!-- master  -->
-
       </div>
     </div>
 
@@ -87,7 +85,7 @@
         class="mr-1" [disabled]="Desabilitado">
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button mat-raised-button matStepperNext color="primary" (click)="submitForm()">Guardar detalles</button>
+      <button mat-raised-button matStepperNext color="primary" (click)="clickDosBotones()" >Guardar detalles</button>
     </div>
   </mat-step>
 
