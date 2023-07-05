@@ -68,7 +68,7 @@ export class Product {
               ){ }
 }
 
-export class empleadoVentas{
+export class EmpleadoVentas{
   public $VentaEmpeladoId:number;
   public $RhUsuarioId:number;
   public $Fecha: string;

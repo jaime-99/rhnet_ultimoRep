@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { Usuario } from 'src/app/auth/interfaces/iUsuario';
-import { Product } from 'src/app/app.models';
+import { EmpleadoVentas } from 'src/app/app.models';
+import { array } from '@amcharts/amcharts5';
+import { id } from '@swimlane/ngx-charts';
 
 
 @Component({
@@ -21,6 +23,12 @@ export class VentaEmpleadoComponent implements OnInit {
   maxPalabras = 60;
   Producto = "";
   NumeroEmpleado="";
+  numeroDeVentaNuevo = 0;
+  nuevoNumero =0;
+  Desabilitado: boolean = false;
+
+
+
 
   constructor(private formBuilder: FormBuilder, public appService: AppService) { }
 
@@ -28,6 +36,7 @@ export class VentaEmpleadoComponent implements OnInit {
 
 
   ngOnInit() {
+
 
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
@@ -134,6 +143,23 @@ export class VentaEmpleadoComponent implements OnInit {
 
   submitForm() {
    // const clave = this.ventaForm.get('RhUsuarioId').value;
+
+   this.Desabilitado = true;
+   // esto es para agregar ahora si bien el numero de la venta
+   let empleadoVentas = new EmpleadoVentas();
+
+   this.appService.AddVentaEmpleado(empleadoVentas, this.appService.Data.cartList).subscribe((res) => {
+    // Incrementar el valor de numeroDeVentaNuevo y asignarle el nuevo valor
+    this.numeroDeVentaNuevo++;
+
+    // Guardar el valor actualizado en el almacenamiento local del navegador
+    localStorage.setItem('numeroDeVenta', this.numeroDeVentaNuevo.toString());
+  });
+
+          let userauth = JSON.parse(localStorage.getItem('datalogin')!);
+
+
+
     if (this.ventaForm.valid) {
       console.log('Formulario válido');
 
@@ -147,9 +173,8 @@ export class VentaEmpleadoComponent implements OnInit {
         // de aqui para aca son los que agregue
         //Nombre:this.ventaForm.controls['RhusuarioId'].setValue(this.Nombre)
         Nombre: this.Nombre, // para que se vea el nombre
-        numVenta:this.numVenta = this.numVenta + 1, // para sumar cada venta , es una demo
-        NumeroDeEmpleado:this.NumeroEmpleado
-
+        //numVenta:this.numVenta = this.numVenta + 1, // para sumar cada venta , es una demo
+        NumeroDeEmpleado:this.NumeroEmpleado,
 
 
         //Total: 0  // Inicializamos el Total en 0
@@ -182,20 +207,20 @@ export class VentaEmpleadoComponent implements OnInit {
       // });
 
       this.appService.AddVentaEmpleado(ventaEmpleado, detalles).subscribe((res) => {
-
+        this.numVenta = res.id;
         this.Mensaje = 'se hizo la venta correctamente.';
         //this.numVenta +=1;
 
         // Agregar algo sobre que ha sido exitoso
 
-        console.log(ventaEmpleado);
+        console.log(this.numVenta);
 
       });
 
 
     //enviar los datos al correo elctronico
 
-      this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre,ventaEmpleado.numVenta).subscribe((res) => {
+      this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre).subscribe((res) => {
 
         // const id = res.id;
         // console.log('ID recibido:', id);
@@ -213,5 +238,6 @@ export class VentaEmpleadoComponent implements OnInit {
 
   // }
 }
+
 
 

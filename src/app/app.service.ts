@@ -194,13 +194,12 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         // ejemplo de api sendemailVentaEmpelado -- jaime
 
-        sendemailVentaEmpleado(NumeroDeEmpleado:string,Fecha:Date,Total:number,detalles, Nombre:String,numVenta:number){
+        sendemailVentaEmpleado(NumeroDeEmpleado:string,Fecha:Date,Total:number,detalles, Nombre:String){
 
           const url=`${ this.baseUrl }/tools/sendmailVentaEmpleado.php`;
-          const body={NumeroDeEmpleado,Fecha,Total,detalles,Nombre,numVenta}
+          const body={NumeroDeEmpleado,Fecha,Total,detalles,Nombre}
           return this.http.post<any>( url, body );
         }
-
 
 
         public GetCotizacionesPorUsuarioId(usuarioId:any){

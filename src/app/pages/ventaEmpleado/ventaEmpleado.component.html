@@ -1,6 +1,6 @@
 <mat-stepper>
-  <mat-step [stepControl]="ventaForm">
-    <ng-template matStepLabel>Datos de Venta</ng-template>
+  <mat-step [stepControl]="ventaForm" [editable]="false">
+    <ng-template  matStepLabel>Datos de Venta</ng-template>
 
     <form [formGroup]="ventaForm">
       <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
@@ -10,8 +10,6 @@
             formControlName="RhUsuarioId" required>
         </mat-form-field>
       </div>
-
-
 
       <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
         <mat-form-field>
@@ -30,7 +28,7 @@
 
       <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1">
         <button mat-mini-fab matStepperNext color="primary" matTooltip="Next"
-          matTooltipPosition="after"><mat-icon>navigate_next</mat-icon></button>
+            matTooltipPosition="after" [disabled]="Desabilitado" ><mat-icon>navigate_next</mat-icon></button>
       </div>
     </form>
   </mat-step>
@@ -39,8 +37,8 @@
 
 
 
-  <mat-step [stepControl]="detallesForm">
-    <ng-template matStepLabel>Detalles de Venta</ng-template>
+  <mat-step    [editable]="false"     [stepControl]="detallesForm "  >
+    <ng-template  matStepLabel>Detalles de Venta     </ng-template>
     <div class="divider"></div>
     <div fxLayout="row wrap">
       <div fxFlex="100" class="p-1">
@@ -86,7 +84,7 @@
     <!-- Resto del contenido del paso -->
     <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1">
       <button mat-raised-button matStepperPrevious color="primary" matTooltip="Regresar" matTooltipPosition="before"
-        class="mr-1">
+        class="mr-1" [disabled]="Desabilitado">
         <mat-icon>navigate_before</mat-icon>
       </button>
       <button mat-raised-button matStepperNext color="primary" (click)="submitForm()">Guardar detalles</button>
@@ -130,7 +128,7 @@
   <mat-step label="Confirmación">
     <div fxLayout="column" fxLayoutAlign="center center" class="p-2 text-center">
       <button mat-fab color="primary"><mat-icon>check</mat-icon></button>
-      <h2 class="py-2">Felicidades! La Venta Empleado {{numVenta}} se ha registrado de forma correcta</h2>
+      <h2 class="py-2">Felicidades! La Venta Empleado {{numeroDeVentaNuevo}} se ha registrado de forma correcta</h2>
       <!-- <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus dolor ante, ut luctus mi faucibus a. Ut eu tincidunt neque. Proin porttitor id ligula id placerat. Integer nec nulla varius, dapibus libero quis, semper eros. Aliquam erat volutpat. Proin volutpat tellus vel purus interdum euismod.</p> -->
     </div>
     <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1">
