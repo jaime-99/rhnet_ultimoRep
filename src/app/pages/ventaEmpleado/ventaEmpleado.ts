@@ -16,7 +16,7 @@ export class VentaEmpleadoComponent implements OnInit {
   ventaForm: FormGroup;
   detallesForm: FormGroup;
   grandTotal: number = 0;
-  numVenta:number= 0;
+   numVenta:number= 0;
   UsuarioId ="";
   Nombre ="";
   Mensaje=""; // solamente es una variable para ver mensaje en consola.log()
@@ -24,7 +24,7 @@ export class VentaEmpleadoComponent implements OnInit {
   Producto = "";
   NumeroEmpleado="";
   numeroDeVentaNuevo = 0;
-  nuevoNumero =0;
+
   Desabilitado: boolean = false;
 
 
@@ -148,13 +148,7 @@ export class VentaEmpleadoComponent implements OnInit {
    // esto es para agregar ahora si bien el numero de la venta
    let empleadoVentas = new EmpleadoVentas();
 
-   this.appService.AddVentaEmpleado(empleadoVentas, this.appService.Data.cartList).subscribe((res) => {
-    // Incrementar el valor de numeroDeVentaNuevo y asignarle el nuevo valor
-    this.numeroDeVentaNuevo++;
 
-    // Guardar el valor actualizado en el almacenamiento local del navegador
-    localStorage.setItem('numeroDeVenta', this.numeroDeVentaNuevo.toString());
-  });
 
           let userauth = JSON.parse(localStorage.getItem('datalogin')!);
 
@@ -176,8 +170,11 @@ export class VentaEmpleadoComponent implements OnInit {
         //numVenta:this.numVenta = this.numVenta + 1, // para sumar cada venta , es una demo
         NumeroDeEmpleado:this.NumeroEmpleado,
 
-
         //Total: 0  // Inicializamos el Total en 0
+         // hacemos algo con el numVenta
+
+
+
       };
 
       const detalles = this.appService.Data.cartList.map(product => ({
@@ -207,24 +204,24 @@ export class VentaEmpleadoComponent implements OnInit {
       // });
 
       this.appService.AddVentaEmpleado(ventaEmpleado, detalles).subscribe((res) => {
-        this.numVenta = res.id;
+         this.numVenta = res.id;
         this.Mensaje = 'se hizo la venta correctamente.';
         //this.numVenta +=1;
 
         // Agregar algo sobre que ha sido exitoso
-
         console.log(this.numVenta);
-
-      });
 
 
     //enviar los datos al correo elctronico
 
-      this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre).subscribe((res) => {
+      this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre,this.numVenta).subscribe((res) => {
 
+        console.log(this.numVenta);
         // const id = res.id;
         // console.log('ID recibido:', id);
         // Agregar algo sobre que ha sido exitoso
+
+      });
       });
 
     }
