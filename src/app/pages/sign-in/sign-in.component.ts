@@ -41,7 +41,7 @@ export class SignInComponent implements OnInit {
     this.authService.GetLoginAuth(email,this.Encriptpass(password)).subscribe(ok=>{
       if ( ok == true ) {
        this.errorlogin=false;
-        this.router.navigate(['/mesadeayuda/tablero']);
+        this.router.navigate(['/ventas']); // esto es para que me redireccione a ventas cuando inicio sesion
        // window.location.reload();
       }
       else {
@@ -75,4 +75,12 @@ export class SignInComponent implements OnInit {
 
  }
 
+
+ //Aqui va lo mio
+
+ recuperarContraseña(){
+  this.router.navigate(['/recuperarContraseña']);
+ }
+
 }
+

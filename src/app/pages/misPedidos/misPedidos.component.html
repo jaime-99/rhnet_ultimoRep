@@ -31,13 +31,13 @@
         <td>{{ NumeroEmpleado }}</td>
         <td>{{ Nombre }}</td>
         <td>{{ venta.Fecha | date }}</td>
-        <td>{{ venta.Total }}</td>
+        <td>${{venta.Total | number : '1.2-2'}}</td>
         <td class="estatus">
           <ng-container *ngIf="venta.IdEstatusVentaEmpleado === 1; else cancelado">
             <strong>Pendiente</strong>
           </ng-container>
           <ng-template #cancelado>
-            <strong>cancelado</strong>
+            <strong>Cancelado</strong>
           </ng-template>
 
         <td>

@@ -7,14 +7,15 @@ import { User } from './user.model';
 export class UsersService {
     public url = "api/users";
     constructor(public http:HttpClient) { }
-    
+
     getUsers(): Observable<User[]> {
         return this.http.get<User[]>(this.url);
     }
 
-    addUser(user:User){	    
+    addUser(user:User){
         return this.http.post(this.url, user);
     }
+
 
     updateUser(user:User){
         return this.http.put(this.url, user);
@@ -22,5 +23,5 @@ export class UsersService {
 
     deleteUser(id: number) {
         return this.http.delete(this.url + "/" + id);
-    } 
-} 
+    }
+}

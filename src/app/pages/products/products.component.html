@@ -22,7 +22,7 @@
             <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
                 <mat-icon>more_vert</mat-icon>
             </button>
-            <div>
+            <!-- <div>
                 <a mat-button [matMenuTriggerFor]="sortMenu" #sortMenuTrigger="matMenuTrigger">
                     {{sort}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
                 </a>
@@ -33,10 +33,10 @@
                         </button>
                     </span>
                 </mat-menu>
-            </div>
+            </div> -->
             <div>
                 <a mat-button [matMenuTriggerFor]="countsMenu" #countsMenuTrigger="matMenuTrigger">
-                    Show {{count}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
+                    Mostrar {{count}}<mat-icon class="mat-icon-sm caret">arrow_drop_down</mat-icon>
                 </a>
                 <mat-menu #countsMenu="matMenu" xPosition="before" class="app-dropdown" overlapTrigger="true">
                     <span (mouseleave)="countsMenuTrigger.closeMenu()">

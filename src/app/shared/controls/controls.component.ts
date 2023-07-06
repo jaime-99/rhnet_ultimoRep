@@ -29,7 +29,7 @@ export class ControlsComponent implements OnInit {
 
     // Esto es para que el boton solo se vea lunes, miercoles y viernes
     const Today = new Date().getDay();
-    this.Day = Today === 1 || Today === 3 || Today === 5;
+    this.Day = Today === 1 || Today === 3 || Today === 4;
 
     // console.log(Today);
   }
