@@ -5,6 +5,8 @@ import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ValidarTokenGuard } from './guards/validarlogin.guard';
 import { misPedidosModule } from './pages/misPedidos/misPedidos.component.module';
+import { modificarPass } from './pages/modificarPass/modificarPass.component';
+import { modificarPassModule } from './pages/modificarPass/modificarPass.module';
 
 
 export const routes: Routes = [
@@ -53,6 +55,8 @@ export const routes: Routes = [
             { path: 'unidiken',loadChildren:()=>import('./pages/unidiken/unidiken.module').then(m=>m.UnidikenModule),data:{breadcrumb:'Universidad Diken'}}
         ]
     },
+    { path: 'modificarPass', loadChildren: () => import('./pages/modificarPass/modificarPass.module').then(m => modificarPassModule)},
+
     { path:'sign-in',loadChildren:()=>import('./pages/sign-in/sign-in.module').then(m=>m.SignInModule)},
     { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },
     { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),

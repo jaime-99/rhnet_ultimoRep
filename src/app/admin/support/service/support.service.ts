@@ -219,6 +219,15 @@ GetLoginAuth(Correo:string,contrasenia:string)
   );
 }
 
+//todo creare mi metodo con la api para mandar correo
+
+  mandarCorreoRecuperacion(correo:string){
+      const url=`https://www.dikeninternational.com/dikenecommerce/api/tools/enviarCorreoRecuperacion.php`;
+      const body={correo};
+      return this.http.post<any>( url, body );
+
+  }
+
 
 
 

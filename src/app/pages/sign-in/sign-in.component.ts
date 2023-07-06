@@ -78,8 +78,8 @@ export class SignInComponent implements OnInit {
 
  //Aqui va lo mio
 
- recuperarContraseña(){
-  this.router.navigate(['/recuperarContraseña']);
+ recuperarPass(){
+  this.router.navigate(['/modificarPass']);
  }
 
 }

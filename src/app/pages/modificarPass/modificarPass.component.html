@@ -1,0 +1,15 @@
+<h2>Recuperacion de contraseña</h2>
+
+
+<form class="container">
+  <div class="form-field">
+    <mat-form-field appearance="fill">
+      <mat-label>Correo</mat-label>
+      <input class= matInput required  [(ngModel)]="correo" name="correo">
+    </mat-form-field>
+  </div>
+
+  <button (click)="recuperar()" mat-raised-button color="primary" type="submit">Mandar Correo </button>
+</form>
+
+
