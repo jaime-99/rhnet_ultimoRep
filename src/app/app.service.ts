@@ -271,10 +271,13 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         //todo aqui esta lo de cambiaf contraseña
 
-        cambiarContrasenia(formData){
+        cambiarContrasenia(formData:any){
 
+
+    //p_Usuario:
+   // p_Password
           const url=`https://www.dikeninternational.com/dikenecommerce/api/ventas/recuperarContraseña.php`;
-          const body={formData};
+          const body={p_UsuarioId:formData.p_UsuarioId,p_Usuario:formData.p_Usuario,p_Password:formData.p_Password};
           return this.http.post<any>( url, body );
 
         }
