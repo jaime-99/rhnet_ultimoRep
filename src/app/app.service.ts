@@ -269,6 +269,24 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         //Aqui se termina la llamada de searchApi
 
+        //todo aqui esta lo de cambiaf contraseña
+
+        cambiarContrasenia(formData){
+
+          const url=`https://www.dikeninternational.com/dikenecommerce/api/ventas/recuperarContraseña.php`;
+          const body={formData};
+          return this.http.post<any>( url, body );
+
+        }
+
+        // Aqui ser lo que le das tu correo y te muestra el id
+
+        verIdConCorreo(p_Correo: string) {
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerIdConCorreo.php?p_Correo=${p_Correo}`;
+          return this.http.get<any>(url);
+        }
+
+
 
 
 

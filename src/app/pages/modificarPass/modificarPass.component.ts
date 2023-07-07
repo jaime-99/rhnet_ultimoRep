@@ -1,29 +1,21 @@
 import { Component } from "@angular/core";
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatGridListModule } from '@angular/material/grid-list';
 import { HttpClient } from '@angular/common/http';
 import { SupportService } from "src/app/admin/support/service/support.service";
-
-
-
-
+import { FormControl, Validators } from "@angular/forms";
 
 
 
 @Component({
   selector: 'app-modificarPass',
   templateUrl: './modificarPass.component.html',
-  styleUrls: ['./modificarPass.scss']
+  styleUrls: ['./modificarPass.scss'],
 })
+
 
 
 export class modificarPass{
   constructor(private http: HttpClient , public authService:SupportService) {}
-
-correo:string="";
-
+  correo:string="";
 
   recuperar() {
     if (this.correo) {
@@ -37,9 +29,6 @@ correo:string="";
         // Manejo de errores
       }
     );
-
-
-
 
     }
 

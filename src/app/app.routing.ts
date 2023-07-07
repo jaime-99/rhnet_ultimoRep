@@ -7,6 +7,7 @@ import { ValidarTokenGuard } from './guards/validarlogin.guard';
 import { misPedidosModule } from './pages/misPedidos/misPedidos.component.module';
 import { modificarPass } from './pages/modificarPass/modificarPass.component';
 import { modificarPassModule } from './pages/modificarPass/modificarPass.module';
+import { formularioPassModule } from './pages/formularioPass/formularioPass.component.module';
 
 
 export const routes: Routes = [
@@ -56,6 +57,7 @@ export const routes: Routes = [
         ]
     },
     { path: 'modificarPass', loadChildren: () => import('./pages/modificarPass/modificarPass.module').then(m => modificarPassModule)},
+    { path: 'formularioPass', loadChildren: () => import('./pages/formularioPass/formularioPass.component.module').then(m => formularioPassModule)},
 
     { path:'sign-in',loadChildren:()=>import('./pages/sign-in/sign-in.module').then(m=>m.SignInModule)},
     { path: 'landing', loadChildren: () => import('./landing/landing.module').then(m => m.LandingModule) },

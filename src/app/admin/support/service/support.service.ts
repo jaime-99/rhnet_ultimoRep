@@ -228,6 +228,9 @@ GetLoginAuth(Correo:string,contrasenia:string)
 
   }
 
+  //Aqui seria lo de cambiar la contraseña
+  //todo prueba
+
 
 
 
