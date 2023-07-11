@@ -1,13 +1,13 @@
 <form class="centered-form">
 
-  <div>
+  <!-- <div>
     <label for="correo">Correo:</label>
     <input type="text" id="correo" name="correo" [(ngModel)]="CorreoFormato.p_Correo" required>
-  </div>
+  </div> -->
 
-  <div >
+  <div   [hidden]="true">
     <label for="P_UsuarioId">ID:</label>
-    <input type="text" id="P_UsuarioId" name="P_UsuarioId" [(ngModel)]="formData.p_UsuarioId" required>
+    <input  type="text" id="P_UsuarioId" name="P_UsuarioId" [(ngModel)]="formData.p_UsuarioId" required>
   </div>
 
   <div>
@@ -20,8 +20,11 @@
     <input type="password" id="P_Password" name="P_Password" [(ngModel)]="formData.p_Password" required>
   </div>
 
-  <button type="submit" (click)="submitForm()">Enviar</button>
+  <button type="submit" (click)="submitForm()">Cambiar Contraseña</button>
 
-  <button type="submit" (click)="verificarCorreo()">Verificar Correo</button>
+  <button  [hidden]="true" type="submit" (click)="verificarCorreo()">Verificar Correo</button>
+
+
+  <button type="submut" (click)="obtenerIdConToken(formData.usuarioId)"> ejemplo para ver el id</button>
 
 </form>

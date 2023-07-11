@@ -10,8 +10,8 @@ import { autloginResponse } from 'src/app/auth/interfaces/iUsuario';
   })
 
   export class SupportService {
-    //  private baseUrl: string = "https://www.dikeninternational.com/APImesadeayuda/API";
-private baseUrl: string = "https://www.dikeninternational.com/APImesadeayuda_____sbx/API";
+     private baseUrl: string = "https://www.dikeninternational.com/APImesadeayuda/API";
+// private baseUrl: string = "https://www.dikeninternational.com/APImesadeayuda_____sbx/API";
     // public _departamento: IDepartamento[];
 
     // get departamento() {
@@ -231,10 +231,12 @@ GetLoginAuth(Correo:string,contrasenia:string)
   //Aqui seria lo de cambiar la contraseña
   //todo prueba
 
+  //Aqui sera lo nuevo para mandar el correo cuando lo escribe
 
-
-
-
+  mandarCorreoToken(correo:string) {
+    const url = `https://www.dikeninternational.com/dikenecommerce/api/tools/Prueba_obtener_tokenId.php?correo=${correo}`;
+    return this.http.get<any>(url);
+  }
 
   AddTiket(UsuarioId:string,SubCategoriaId:string,ResponsableId :string,Detalle:string,ContactoTelefonico:string):Observable<any>
   {

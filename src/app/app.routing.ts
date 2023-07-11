@@ -14,7 +14,7 @@ export const routes: Routes = [
 
   {
     path: '',
-    redirectTo: 'ventas',  // es para que al inicio se coloque la pagina
+    redirectTo: 'sign-in',  // es para que al inicio se coloque la pagina
     pathMatch: 'full'
 },
     {

@@ -17,22 +17,29 @@ export class modificarPass{
   constructor(private http: HttpClient , public authService:SupportService) {}
   correo:string="";
 
-  recuperar() {
-    if (this.correo) {
-    this.authService.mandarCorreoRecuperacion(this.correo).subscribe(
-      response => {
-        console.log('Correo enviado correctamente');
-        // Otros pasos a seguir después de enviar el correo
-      },
-      error => {
-        console.error('Error al enviar el correo', error);
-        // Manejo de errores
-      }
-    );
+//   recuperar() {
+//     if (this.correo) {
+//     this.authService.mandarCorreoRecuperacion(this.correo).subscribe(
+//       response => {
+//         console.log('Correo enviado correctamente');
+//         // Otros pasos a seguir después de enviar el correo
+//       },
+//       error => {
+//         console.error('Error al enviar el correo', error);
+//         // Manejo de errores
+//       }
+//     );
 
-    }
+//     }
 
+// }
+
+
+mandarToken(){
+    this.authService.mandarCorreoToken(this.correo).subscribe((res) => {
+      // Manejo de errores
+      console.log(res)
+    });
 }
-
 }
 

@@ -3,6 +3,7 @@ import { AppService } from 'src/app/app.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MatFormField } from "@angular/material/form-field";
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -15,7 +16,7 @@ import { MatFormField } from "@angular/material/form-field";
   styleUrls: ['./formularioPass.scss']
 })
 
-export class formularioPass{
+export class formularioPass implements OnInit{
 
  // obtengo el correo y despues me da el id y ese se llena solo
   // ya cuando se llene solo el id solo cambiara el usuario y contra de ese id especifico
@@ -23,23 +24,52 @@ export class formularioPass{
   usuario:""
   nuevaContra:""
   botonId =true;
+  formData: any;
+
+
 // el correo  me lomdara automaticamente a cargar la pagina
 
+  constructor(public appService: AppService, public Bar: MatSnackBar,private activatedRoute: ActivatedRoute) { }
+
+
+  ngOnInit() {
+    this.activatedRoute.queryParamMap.subscribe(params => {
+      const tokenId = params.get('tokenid');
+      console.log(tokenId);
+
+
+      this.formData = {
+        usuarioId:tokenId,
+        p_UsuarioId: '',
+        p_Usuario: '',
+        p_Password: ''
+      };
+      // Utiliza el valor de tokenId como necesites
+
+      this.obtenerIdConToken(tokenId); // Llamar a la función con el TokenId como parámetro
 
 
 
-  constructor(public appService: AppService, public Bar: MatSnackBar) { }
+    });
+  }
 
 
-CorreoFormato = {
+  obtenerIdConToken(tokenId:string) {
+
+    this.appService.obtenerUsuarioIdConToken(tokenId).subscribe((res) => {
+
+      console.log(res);
+      this.formData.p_UsuarioId = res.UsuarioId; // Okey ya se asigna
+      console.log(this.formData.p_UsuarioId)
+      });
+    }
+
+
+
+
+  CorreoFormato = {
   p_Correo: ''
-}
-
-  formData = {
-    p_UsuarioId: '',
-    p_Usuario: '',
-    p_Password: ''
-  };
+  }
 
 
 
@@ -88,7 +118,14 @@ CorreoFormato = {
         });
       }
 
+      // obtenerIdConToken() {
 
+      // this.appService.obtenerUsuarioIdConToken().subscribe((res) => {
+
+      //   console.log(res);
+      //   });
+
+      // }
 
   }
 

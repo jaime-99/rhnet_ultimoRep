@@ -269,13 +269,10 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         //Aqui se termina la llamada de searchApi
 
-        //todo aqui esta lo de cambiaf contraseña
+        //todo aqui esta lo de cambiar contraseña
 
         cambiarContrasenia(formData:any){
 
-
-    //p_Usuario:
-   // p_Password
           const url=`https://www.dikeninternational.com/dikenecommerce/api/ventas/recuperarContraseña.php`;
           const body={p_UsuarioId:formData.p_UsuarioId,p_Usuario:formData.p_Usuario,p_Password:formData.p_Password};
           return this.http.post<any>( url, body );
@@ -285,9 +282,24 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         // Aqui ser lo que le das tu correo y te muestra el id
 
         verIdConCorreo(p_Correo: string) {
-          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerIdConCorreo.php?p_Correo=${p_Correo}`;
+          const url = ` https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerIdConCorreo.php?p_Correo=${p_Correo}`;
           return this.http.get<any>(url);
         }
+
+
+        // Aqui pondre el nuevo para poder cambiar el usuario y contra con el nueva api hecha el lunes 10 jul
+
+        //colocare un get para obtener el UsuarioId con el token
+
+        obtenerUsuarioIdConToken(token:string){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerIdToken.php?token=${token}`;
+          return this.http.get<any>(url)
+
+
+        }
+
+
 
 
 
