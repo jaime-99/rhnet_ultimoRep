@@ -295,9 +295,16 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
           const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerIdToken.php?token=${token}`;
           return this.http.get<any>(url)
+        }
 
+        cambiarContraseniaNuevo(formData:any){
+
+          const url=`https://www.dikeninternational.com/dikenecommerce/api/ventas/recuperarContraseñaNuevo.php`;
+          const body={p_UsuarioId:formData.p_UsuarioId,p_Password:formData.p_Password};
+          return this.http.post<any>( url, body );
 
         }
+
 
 
 
