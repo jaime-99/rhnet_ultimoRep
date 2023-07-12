@@ -33,7 +33,7 @@
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-    <mat-error *ngIf="formData.confirmPassword !== formData.p_Password || formData.p_Password !==formData.confirmPassword">
+    <mat-error *ngIf="formData.confirmPassword !== formData.p_Password && formData.confirmPassword !== ''">
       Las contraseñas no coinciden.
     </mat-error>
   </mat-form-field>

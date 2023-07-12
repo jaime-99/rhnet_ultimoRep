@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import {NgIf} from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
+import { Md5 } from 'ts-md5';
 
 
 
@@ -33,7 +34,7 @@ export class formularioPass implements OnInit {
   confirmPassword: string;
   confirmPasswordError: boolean = false;
   hide = true;
-
+  snackBar:string;
 
 
   // el correo  me lomdara automaticamente a cargar la pagina
@@ -127,11 +128,24 @@ export class formularioPass implements OnInit {
       this.formData.p_Password !== this.formData.confirmPassword) {
       return;
     }
-    // Realiza la llamada al servicio solo si la contraseña cumple con los requisitos
+    // Encriptar la contraseña utilizando MD5
+
+     // Encriptar la contraseña utilizando MD5
+      const hashedPassword = Md5.hashStr(this.formData.p_Password).toString();
+
+   // Actualizar el objeto formData con la contraseña encriptada
+      this.formData.p_Password = hashedPassword;
+
     this.appService.cambiarContraseniaNuevo(this.formData).subscribe((res) => {
       console.log(res);
     });
+
   }
+
+  Encriptpass(text:string):string {
+    const md5 = new Md5();
+    return md5.appendStr(text.toString().trim()).end().toString();
+ }
 
   openConfirmationDialog() {
     this.showConfirmation = true;

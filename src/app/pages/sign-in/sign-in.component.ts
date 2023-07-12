@@ -67,12 +67,8 @@ export class SignInComponent implements OnInit {
   }
 
   Encriptpass(text:string):string {
-
-
     const md5 = new Md5();
     return md5.appendStr(text.toString().trim()).end().toString();
-
-
  }
 
 

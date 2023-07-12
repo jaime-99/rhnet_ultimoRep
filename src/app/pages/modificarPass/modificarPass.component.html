@@ -1,6 +1,13 @@
 <h2>Recuperacion de contraseña</h2>
 
 
+<div class="containerAlert">
+  <div class="alert alert-success success-alert" role="alert"  *ngIf="correoEnviado">
+    <h4 class="alert-heading">Well done!</h4>
+    <p>Se ha enviado un correo a la direccion proporcionada</p>
+  </div>
+  </div>
+
 <form class="container">
     <mat-form-field appearance="fill" class="example-full-width">
       <mat-label>Correo</mat-label>

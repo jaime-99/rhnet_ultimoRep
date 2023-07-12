@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from "@angular/core";
 import { formularioPass } from "./formularioPass.component";
 import { FormsModule } from '@angular/forms';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 
 import {MatButtonModule} from '@angular/material/button';
@@ -12,6 +11,8 @@ import {MatInputModule} from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDialogModule } from "@angular/material/dialog";
 
 export const routes: Routes = [
   { path: '', component: formularioPass, pathMatch: 'full' }
@@ -30,6 +31,8 @@ export const routes: Routes = [
     MatInputModule,
     ReactiveFormsModule,
     MatIconModule,
+    MatDialogModule,
+
   ],
 
   declarations: [

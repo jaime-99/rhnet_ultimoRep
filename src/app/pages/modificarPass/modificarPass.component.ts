@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { SupportService } from "src/app/admin/support/service/support.service";
 import { FormControl, Validators } from "@angular/forms";
+import { Renderer2 } from '@angular/core';
 
 
 
@@ -13,9 +14,15 @@ import { FormControl, Validators } from "@angular/forms";
 
 
 
+
 export class modificarPass{
-  constructor(private http: HttpClient , public authService:SupportService) {}
+
+  constructor(private http: HttpClient ,
+  public authService:SupportService,
+  renderer: Renderer2) {}
   correo:string="";
+  correoEnviado = false;
+
 
 //   recuperar() {
 //     if (this.correo) {
@@ -34,12 +41,17 @@ export class modificarPass{
 
 // }
 
-
 mandarToken(){
     this.authService.mandarCorreoToken(this.correo).subscribe((res) => {
       // Manejo de errores
       console.log(res)
     });
+
+     // Actualiza la variable correoEnviado para activar el div
+     this.correoEnviado = true;
+    }
+
+
 }
-}
+
 
