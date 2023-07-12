@@ -4,6 +4,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MatFormField } from "@angular/material/form-field";
 import { ActivatedRoute } from '@angular/router';
+import {NgIf} from '@angular/common';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 
 
@@ -23,13 +25,24 @@ export class formularioPass implements OnInit {
   nuevaContra: "";
   botonId = true;
   formData: any;
+  value:string;
+  showConfirmation: boolean = false;
+
+  passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/;
+
+  confirmPassword: string;
+  confirmPasswordError: boolean = false;
+  hide = true;
+
+
 
   // el correo  me lomdara automaticamente a cargar la pagina
 
   constructor(
     public appService: AppService,
     public Bar: MatSnackBar,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -42,9 +55,10 @@ export class formularioPass implements OnInit {
         p_UsuarioId: "",
         p_Usuario: "",
         p_Password: "",
+        confirmPassword: ''
+
       };
       // Utiliza el valor de tokenId como necesites
-
 
       this.obtenerIdConToken(tokenId); // Llamar a la función con el TokenId como parámetro
     });
@@ -56,6 +70,10 @@ export class formularioPass implements OnInit {
       this.formData.p_UsuarioId = res.UsuarioId; // Okey ya se asigna
       console.log(this.formData.p_UsuarioId);
     });
+  }
+
+  clearPassword() {
+    this.value='';
   }
 
   CorreoFormato = {
@@ -104,10 +122,19 @@ export class formularioPass implements OnInit {
   }
 
   cambiarNuevaContra() {
-    //todo checar por que no me funciona
+    //todo ya funciona
+    if (this.formData.p_Password.length < 6 || this.formData.p_Password.length > 15 ||
+      this.formData.p_Password !== this.formData.confirmPassword) {
+      return;
+    }
+    // Realiza la llamada al servicio solo si la contraseña cumple con los requisitos
     this.appService.cambiarContraseniaNuevo(this.formData).subscribe((res) => {
       console.log(res);
     });
+  }
+
+  openConfirmationDialog() {
+    this.showConfirmation = true;
   }
 
   // obtenerIdConToken() {

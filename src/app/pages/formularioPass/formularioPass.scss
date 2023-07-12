@@ -1,11 +1,11 @@
+
 .centered-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top:100px;
 }
-
 .centered-form div {
   margin-bottom: 10px;
 }
@@ -15,8 +15,41 @@
   margin-bottom: 5px;
 }
 
-.centered-form input[type="text"],
-.centered-form input[type="email"],
-.centered-form input[type="password"] {
+.example-form-field {
   width: 200px;
+}
+
+.example-form-field2 {
+  width: 200px;
+  top:25px;
+}
+
+.titulo{
+  text-align: center;
+}
+.boton1{
+  top:25px;
+}
+
+// esto es para el mensaje de confirmacion
+
+.confirmation-dialog {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.confirmation-dialog p {
+  font-weight: bold;
+  color: #ff0000;
+  margin-bottom: 10px;
+
+
 }
