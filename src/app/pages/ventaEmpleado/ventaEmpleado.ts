@@ -25,6 +25,8 @@ export class VentaEmpleadoComponent implements OnInit {
   NumeroEmpleado="";
   numeroDeVentaNuevo = 0;
 
+  correoDestinatario='';
+
   Desabilitado: boolean = false;
 
 
@@ -40,13 +42,21 @@ export class VentaEmpleadoComponent implements OnInit {
 
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
-    this.UsuarioId = userauth.UsuarioId;  // con esto sacamos informacion del usuario
+
+    // this.UsuarioId = userauth.UsuarioId;  // con esto sacamos informacion del usuario
     this.Nombre = userauth.Nombre;
     this.NumeroEmpleado = userauth.data.Numero_Empleado;
      // este es para ver mejor que hayconsole.log(userauth);
+    this.UsuarioId = userauth.data.INUsuarioId;
+     console.log(this.UsuarioId);
+     console.log(this.NumeroEmpleado);
 
 
+     console.log(userauth);
 
+
+    this.correoDestinatario = userauth.data.Correo; // Obtén la dirección de correo electrónico del usuario
+    console.log(this.correoDestinatario);
 
 
 
@@ -176,10 +186,9 @@ export class VentaEmpleadoComponent implements OnInit {
         //numVenta:this.numVenta = this.numVenta + 1, // para sumar cada venta , es una demo
         NumeroDeEmpleado:this.NumeroEmpleado,
 
+        correoDestino:this.correoDestinatario,
         //Total: 0  // Inicializamos el Total en 0
          // hacemos algo con el numVenta
-
-
 
       };
 
@@ -220,7 +229,7 @@ export class VentaEmpleadoComponent implements OnInit {
         console.log(this.numVenta);
 
     //enviar los datos al correo elctronico
-      this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre,this.numVenta).subscribe((res) => {
+      this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre,this.numVenta,ventaEmpleado.correoDestino).subscribe((res) => {
 
         console.log(this.numVenta);
         // const id = res.id;

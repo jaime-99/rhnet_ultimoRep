@@ -44,15 +44,15 @@
       </div>
       <div *ngIf="viewsearchandcart" fxFlex fxShow="false" fxShow.gt-sm>
         <form method="get" class="search-form" fxLayout="row">
-          <button mat-raised-button [matMenuTriggerFor]="categoriesMenu" #categoriesMenuTrigger="matMenuTrigger"
+          <!-- <button mat-raised-button [matMenuTriggerFor]="categoriesMenu" #categoriesMenuTrigger="matMenuTrigger"
             type="button"
-            class="mat-elevation-z0 categories text-truncate text-muted">{{category?.name}}<mat-icon>arrow_drop_down</mat-icon></button>
-          <mat-menu #categoriesMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="categories-dropdown">
+            class="mat-elevation-z0 categories text-truncate text-muted">{{category?.name}}<mat-icon>arrow_drop_down</mat-icon></button> -->
+          <!-- <mat-menu #categoriesMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="categories-dropdown">
             <span (mouseleave)="categoriesMenuTrigger.closeMenu()">
               <app-category-list [categories]="categories" [categoryParentId]="0"
                 (change)="changeCategory($event)"></app-category-list>
             </span>
-          </mat-menu>
+          </mat-menu> -->
           <input type="text" placeholder="Buscar..." fxFlex name="searchText" [(ngModel)]="searchText1"
             (keyup.enter)="search($event)">
 
