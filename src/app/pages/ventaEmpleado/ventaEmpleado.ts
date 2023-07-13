@@ -43,13 +43,14 @@ export class VentaEmpleadoComponent implements OnInit {
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
 
-    // this.UsuarioId = userauth.UsuarioId;  // con esto sacamos informacion del usuario
+     this.UsuarioId = userauth.UsuarioId;  // con esto sacamos informacion del usuario
     this.Nombre = userauth.Nombre;
     this.NumeroEmpleado = userauth.data.Numero_Empleado;
      // este es para ver mejor que hayconsole.log(userauth);
-    this.UsuarioId = userauth.data.INUsuarioId;
-     console.log(this.UsuarioId);
-     console.log(this.NumeroEmpleado);
+    //this.UsuarioId = userauth.data.INUsuarioId;
+    // console.log(this.UsuarioId);
+    // console.log(this.NumeroEmpleado);
+
 
 
      console.log(userauth);
@@ -189,7 +190,6 @@ export class VentaEmpleadoComponent implements OnInit {
         correoDestino:this.correoDestinatario,
         //Total: 0  // Inicializamos el Total en 0
          // hacemos algo con el numVenta
-
       };
 
       const detalles = this.appService.Data.cartList.map(product => ({
@@ -214,10 +214,6 @@ export class VentaEmpleadoComponent implements OnInit {
         ventaEmpleado:ventaEmpleado,
       };
 
-
-
-
-
       // });
 
       this.appService.AddVentaEmpleado(ventaEmpleado, detalles).subscribe((res) => {
@@ -235,13 +231,8 @@ export class VentaEmpleadoComponent implements OnInit {
         // const id = res.id;
         // console.log('ID recibido:', id);
         // Agregar algo sobre que ha sido exitoso
-
       });
       });
-
-
-
-
     }
   //     // saber el id
   //   onFocusOutEventCliente(value) {
