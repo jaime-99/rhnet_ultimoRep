@@ -8,14 +8,21 @@
   </div>
   </div>
 
+  <main class="form-signin">
 <form class="container">
-    <mat-form-field appearance="fill" class="example-full-width">
-      <mat-label>Correo</mat-label>
-      <input   matInput placeholder="Ex. jaime@hotmail.com" value="correo"required [(ngModel)]="correo" name="correo">
-    </mat-form-field>
+  <img src="assets/images/flags/diken_azulL.png" alt="imagen Diken" width="200" height="60">
+  <h1 class="h3 mb-3 fw-normal text-center text-lg">Por favor introduce tu correo electronico</h1>
+    <div class="form-floating">
+      <input type="email" class="form-control input-long col-xs-12 col-md-8" id="floatingInput" placeholder="name@example.com"  [(ngModel)]="correo" name="correo">
+      <label for="floatingInput">Correo electrónico</label>
+      </div>
 
-  <button (click)="mandarToken()" mat-raised-button color="primary" type="submit">Mandar Correo </button>
+  <button type="button" class="btn btn-primary btn-bottom" (click)="mandarToken()">Mandar Correo</button>
+  <p class="mt-5 mb-3 text-muted ">© 2017–2023</p>
+
 </form>
+
+</main>
 
 
 
