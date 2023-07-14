@@ -137,18 +137,18 @@
             class="search-dropdown mat-elevation-z8">
             <ng-template matMenuContent>
               <form method="get" fxFlex class="search-form">
-                <button mat-raised-button [matMenuTriggerFor]="categories2Menu" #categories2MenuTrigger="matMenuTrigger"
+                <!-- <button mat-raised-button [matMenuTriggerFor]="categories2Menu" #categories2MenuTrigger="matMenuTrigger"
                   type="button" class="mat-elevation-z0 categories text-muted"
-                  (click)="stopClickPropagate($event)">{{category?.name}}<mat-icon>arrow_drop_down</mat-icon></button>
-                <mat-menu #categories2Menu="matMenu" [overlapTrigger]="false" xPosition="before"
-                  class="categories-dropdown">
-                  <ng-template matMenuContent>
+                  (click)="stopClickPropagate($event)">{{category?.name}}<mat-icon>arrow_drop_down</mat-icon></button> -->
+                <!-- <mat-menu #categories2Menu="matMenu" [overlapTrigger]="false" xPosition="before"
+                  class="categories-dropdown"> -->
+                  <!-- <ng-template matMenuContent>
                     <span (mouseleave)="categories2MenuTrigger.closeMenu()">
                       <app-category-list [categories]="categories" [categoryParentId]="0"
                         (change)="changeCategory($event)"></app-category-list>
                     </span>
-                  </ng-template>
-                </mat-menu>
+                  </ng-template> -->
+                <!-- </mat-menu> -->
                 <input type="text" name="searchText2" placeholder="Escribe para..." fxFlex [(ngModel)]="searchText2"
                   (click)="stopClickPropagate($event)">
                 <button mat-mini-fab (click)="search2(searchText2)" type="button"

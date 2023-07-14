@@ -90,10 +90,19 @@ export class misPedidos  implements OnInit{
       this.appService.CancelarVenta(id).subscribe((res) => {
 
         //location.reload();  // hace que la pagina se recargue automaticamente
+        this.actualizarDatosLocalmente(id);
 
       })
     }
 
+    actualizarDatosLocalmente(id: number): void {
+      // Realizar la lógica para actualizar los datos localmente en tu aplicación
+      // Por ejemplo, si tienes un arreglo de ventas en tu componente, puedes eliminar la venta correspondiente del arreglo
+      const index = this.Ventas.findIndex(venta => venta.id === id);
+      if (index !== -1) {
+        this.Ventas.splice(index, 1); // Eliminar la venta del arreglo
+      }
+    }
 
     mostrarMensajeAlerta(id):void{
       const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -111,14 +120,12 @@ export class misPedidos  implements OnInit{
             // Lógica después de cancelar la venta
             console.log(res); // Imprime la respuesta en la c
             location.reload();
+            //this.actualizarDatosLocalmente(id);
+
           })
       }});
     }
-
     }
-
-
-
 
 
 
