@@ -4,6 +4,11 @@ import { AppService } from 'src/app/app.service';
 import { Subscription } from 'rxjs';
 import { response } from 'express';
 
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+import { id } from '@swimlane/ngx-charts';
+
 
 
 
@@ -31,7 +36,8 @@ export class misPedidos  implements OnInit{
 
 
 
-  constructor(public appService: AppService) { }
+  constructor(public appService: AppService, private dialog: MatDialog,
+    ) { }
 
   ngOnInit()  {
 
@@ -83,11 +89,36 @@ export class misPedidos  implements OnInit{
 
       this.appService.CancelarVenta(id).subscribe((res) => {
 
+        //location.reload();  // hace que la pagina se recargue automaticamente
 
-        location.reload();  // hacee que la pagina se recargue automaticamente
       })
     }
-}
+
+
+    mostrarMensajeAlerta(id):void{
+      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+        maxWidth: "400px",
+        data: {
+          title: "Cancelar Pedido",
+          message: "Estas seguro que quieres cancelar el pedido?"
+        }
+
+      });
+      // cuando se cierra el dialogo
+      dialogRef.afterClosed().subscribe(result => {
+        if (result) {
+          this.appService.CancelarVenta(id).subscribe((res) => {
+            // Lógica después de cancelar la venta
+            console.log(res); // Imprime la respuesta en la c
+            location.reload();
+          })
+      }});
+    }
+
+    }
+
+
+
 
 
 

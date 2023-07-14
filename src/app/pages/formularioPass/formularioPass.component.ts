@@ -163,8 +163,6 @@ export class formularioPass implements OnInit {
     this.showConfirmation = true;
   }
 
-
-
   mostrarMensajeAlerta(){
   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
     maxWidth: "400px",
@@ -181,8 +179,6 @@ export class formularioPass implements OnInit {
     }
   });
 }
-
-
 }
   // obtenerIdConToken() {
 
