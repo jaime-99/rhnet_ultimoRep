@@ -41,15 +41,24 @@ export class modificarPass{
 
 // }
 
-mandarToken(){
+mandarToken() {
+  if (this.correo.endsWith('dikeninternational.com')) {
     this.authService.mandarCorreoToken(this.correo).subscribe((res) => {
-      // Manejo de errores
-      console.log(res)
+      if (res.success) {
+        alert(res.message); // Mostrar mensaje de éxito en una alerta
+        this.correoEnviado = true;
+      } else {
+        alert(res.message); // Mostrar mensaje de error en una alerta
+        this.correoEnviado=false;
+      }
     });
 
-     // Actualiza la variable correoEnviado para activar el div
-     this.correoEnviado = true;
-    }
+    // Actualiza la variable correoEnviado para activar el div
+
+  } else {
+    alert('La terminación del correo no es válida');
+  }
+}
 
 
 }

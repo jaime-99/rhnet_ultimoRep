@@ -3,7 +3,7 @@ import { AppService } from 'src/app/app.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { MatFormField } from "@angular/material/form-field";
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import {NgIf} from '@angular/common';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
@@ -43,7 +43,9 @@ export class formularioPass implements OnInit {
     public appService: AppService,
     public Bar: MatSnackBar,
     private activatedRoute: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    public router:Router,
+
   ) {}
 
   ngOnInit() {
@@ -138,6 +140,10 @@ export class formularioPass implements OnInit {
 
     this.appService.cambiarContraseniaNuevo(this.formData).subscribe((res) => {
       console.log(res);
+
+      this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
+
+
     });
 
   }
