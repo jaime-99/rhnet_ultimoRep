@@ -14,13 +14,14 @@ export class ConfirmDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onConfirm(): void { 
+
+
+  onConfirm(): void {
     this.dialogRef.close(true);
   }
 
-  onDismiss(): void { 
+  onDismiss(): void {
     this.dialogRef.close(false);
   }
 
 }
- 

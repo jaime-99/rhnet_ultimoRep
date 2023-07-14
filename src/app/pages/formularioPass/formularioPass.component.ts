@@ -9,6 +9,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 import { Md5 } from 'ts-md5';
 
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+
 
 
 
@@ -116,13 +118,17 @@ export class formularioPass implements OnInit {
     );
   }
 
-  private mostrarSnackBar(mensaje: string) {
+   mostrarSnackBar(mensaje: string) {
     this.Bar.open(mensaje, "Cerrar", {
       duration: 3000, // Duración en milisegundos
       verticalPosition: "top", // Posición vertical
       horizontalPosition: "center", // Posición horizontal
     });
   }
+
+
+
+
 
   cambiarNuevaContra() {
     //todo ya funciona
@@ -157,6 +163,27 @@ export class formularioPass implements OnInit {
     this.showConfirmation = true;
   }
 
+
+
+  mostrarMensajeAlerta(){
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    maxWidth: "400px",
+    data: {
+      title: "Cambiar Contraseña",
+      message: "Estas seguro que quieres cambiar la Contraseña?"
+    }
+
+  });
+  // cuando se cierra el dialogo
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.cambiarNuevaContra();
+    }
+  });
+}
+
+
+}
   // obtenerIdConToken() {
 
   // this.appService.obtenerUsuarioIdConToken().subscribe((res) => {
@@ -165,7 +192,7 @@ export class formularioPass implements OnInit {
   //   });
 
   // }
-}
+
 
 
 

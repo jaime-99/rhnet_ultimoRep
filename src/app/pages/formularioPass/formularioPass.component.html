@@ -38,7 +38,8 @@
     </mat-error>
   </mat-form-field>
 
-  <button class="boton1" mat-raised-button color="primary" (click)="openConfirmationDialog()" [disabled]="formData.p_Password?.length < 6 || formData.p_Password?.length > 15  || formData.confirmPassword !== formData.p_Password" > Cambiar Contraseña</button>
+  <button class="boton1" mat-raised-button color="primary" (click)="mostrarMensajeAlerta()" [disabled]="formData.p_Password?.length < 6 || formData.p_Password?.length > 15  || formData.confirmPassword !== formData.p_Password" > Cambiar Contraseña</button>
+
 
 
       <button [hidden]="true" type="submit" (click)="submitForm()">Cambiar Contraseña</button>

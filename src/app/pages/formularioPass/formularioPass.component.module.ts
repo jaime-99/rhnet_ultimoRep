@@ -13,6 +13,8 @@ import {MatIconModule} from '@angular/material/icon';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from "@angular/material/dialog";
+import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
+
 
 export const routes: Routes = [
   { path: '', component: formularioPass, pathMatch: 'full' }
@@ -33,10 +35,12 @@ export const routes: Routes = [
     MatIconModule,
     MatDialogModule,
 
+
   ],
 
+
   declarations: [
-    formularioPass
+    formularioPass,
   ],
   providers:[{ provide: MAT_DATE_LOCALE, useValue: 'es-MX', }]
 })

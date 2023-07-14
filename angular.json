@@ -19,7 +19,7 @@
         "@schematics/angular:guard": {
           "skipTests": true
         },
-     
+
         "@schematics/angular:pipe": {
           "skipTests": true
         },
@@ -28,8 +28,8 @@
         }
       },
       "root": "",
-      "sourceRoot": "src", 
-      "prefix": "app", 
+      "sourceRoot": "src",
+      "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -189,7 +189,7 @@
           }
         }
       }
-    } 
+    }
   },
   "cli": {
     "analytics": "07f78d9d-5fcd-4eaa-ba02-b3b91cd2a973"

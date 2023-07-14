@@ -32,20 +32,20 @@ export class CouponsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.coupons = coupons; 
+    this.coupons = coupons;
     this.getCategories();
   }
 
-  public getCategories(){   
+  public getCategories(){
     this.appService.getCategories().subscribe(data => {
-      this.categories = data; 
+      this.categories = data;
       this.categories.shift();
-    }); 
+    });
   }
 
   public onPageChanged(event){
-    this.page = event; 
-    window.scrollTo(0,0); 
+    this.page = event;
+    window.scrollTo(0,0);
   }
 
   public openCouponDialog(data:any){
@@ -60,37 +60,37 @@ export class CouponsComponent implements OnInit {
       autoFocus: false,
       direction: (this.settings.rtl) ? 'rtl' : 'ltr'
     });
-    dialogRef.afterClosed().subscribe(coupon => { 
-      if(coupon){    
+    dialogRef.afterClosed().subscribe(coupon => {
+      if(coupon){
         const index: number = this.coupons.findIndex(x => x.id == coupon.id);
         if(index !== -1){
           this.coupons[index] = coupon;
-        } 
-        else{ 
-          let last_coupon= this.coupons[this.coupons.length - 1]; 
+        }
+        else{
+          let last_coupon= this.coupons[this.coupons.length - 1];
           coupon.id = last_coupon.id + 1;
-          this.coupons.push(coupon);  
-        }          
+          this.coupons.push(coupon);
+        }
       }
     });
   }
 
-  public remove(coupon:any){  
+  public remove(coupon:any){
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
       data: {
         title: "Confirm Action",
         message: "Are you sure you want remove this coupon?"
       }
-    }); 
-    dialogRef.afterClosed().subscribe(dialogResult => { 
+    });
+    dialogRef.afterClosed().subscribe(dialogResult => {
       if(dialogResult){
         const index: number = this.coupons.indexOf(coupon);
         if (index !== -1) {
-          this.coupons.splice(index, 1);  
-        } 
-      } 
-    }); 
+          this.coupons.splice(index, 1);
+        }
+      }
+    });
   }
 
 }

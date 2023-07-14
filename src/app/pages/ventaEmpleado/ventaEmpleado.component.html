@@ -1,5 +1,5 @@
-<mat-stepper>
-  <mat-step [stepControl]="ventaForm" [editable]="false">
+<mat-stepper #stepper>
+  <!-- <mat-step  [stepControl]="ventaForm" [editable]="false" [completed]="true">
     <ng-template  matStepLabel>Datos de Venta</ng-template>
 
     <form [formGroup]="ventaForm">
@@ -31,13 +31,13 @@
             matTooltipPosition="after" [disabled]="Desabilitado" ><mat-icon>navigate_next</mat-icon></button>
       </div>
     </form>
-  </mat-step>
+  </mat-step> -->
 
 
 
 
 
-  <mat-step    [editable]="false"     [stepControl]="detallesForm "  >
+  <mat-step [editable]="false"  [stepControl]="detallesForm "  >
     <ng-template  matStepLabel>Detalles de Venta     </ng-template>
     <div class="divider"></div>
     <div fxLayout="row wrap">
