@@ -30,6 +30,9 @@
         height: 32px;
         cursor: pointer;
 
+        &.green{
+            background-color: #174386;
+        }
         &.blue{
             background-color: #1976d2;
         }
@@ -45,8 +48,5 @@
         &.grey{
             background-color: #455a64;
         }
-        &.green{
-          background-color: #2E7D32;
-      }
     }
 }
