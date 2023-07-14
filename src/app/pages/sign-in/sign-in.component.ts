@@ -41,7 +41,7 @@ export class SignInComponent implements OnInit {
     this.authService.GetLoginAuth(email,this.Encriptpass(password)).subscribe(ok=>{
       if ( ok == true ) {
        this.errorlogin=false;
-        this.router.navigate(['/misPedidos']); // esto es para que me redireccione a ventas cuando inicio sesion
+        this.router.navigate(['/productos']); // esto es para que me redireccione a ventas cuando inicio sesion
        // window.location.reload();
       }
       else {
