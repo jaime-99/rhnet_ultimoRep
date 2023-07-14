@@ -61,14 +61,10 @@ export class VentaEmpleadoComponent implements OnInit {
 
 
 
-    this.appService.Data.cartList.forEach(product => {
+    this.appService.Data.cartList.forEach((product) => {
       this.grandTotal += product.cartCount * product.newPrice;
       this.Producto = product.name;
-
     });
-
-
-
 
 
 
@@ -165,11 +161,7 @@ export class VentaEmpleadoComponent implements OnInit {
    // esto es para agregar ahora si bien el numero de la venta
    let empleadoVentas = new EmpleadoVentas();
 
-
-
           let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-
-
 
     if (this.ventaForm.valid) {
       console.log('Formulario válido');

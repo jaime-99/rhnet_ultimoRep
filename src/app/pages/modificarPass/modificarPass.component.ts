@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { SupportService } from "src/app/admin/support/service/support.service";
 import { FormControl, Validators } from "@angular/forms";
 import { Renderer2 } from '@angular/core';
+import { Router } from "@angular/router";
+
+declare var toastr: any;
 
 
 
@@ -19,6 +22,7 @@ export class modificarPass{
 
   constructor(private http: HttpClient ,
   public authService:SupportService,
+  public router:Router,
   renderer: Renderer2) {}
   correo:string="";
   correoEnviado = false;
@@ -41,24 +45,31 @@ export class modificarPass{
 
 // }
 
-mandarToken() {
+  mandarToken() {
   if (this.correo.endsWith('dikeninternational.com')) {
     this.authService.mandarCorreoToken(this.correo).subscribe((res) => {
       if (res.success) {
-        alert(res.message); // Mostrar mensaje de éxito en una alerta
+         // alert(res.message); // Mostrar mensaje de éxito en una alerta
         this.correoEnviado = true;
+
+
       } else {
         alert(res.message); // Mostrar mensaje de error en una alerta
         this.correoEnviado=false;
       }
     });
-
-    // Actualiza la variable correoEnviado para activar el div
-
   } else {
     alert('La terminación del correo no es válida');
+
+    //toastr.success('Mensaje de éxito');
   }
 }
+
+irASesion(){
+  this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
+
+}
+
 
 
 }

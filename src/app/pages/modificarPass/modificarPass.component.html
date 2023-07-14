@@ -17,8 +17,14 @@
       <label for="floatingInput">Correo electrónico</label>
       </div>
 
-  <button type="button" class="btn btn-primary btn-bottom" (click)="mandarToken()">Mandar Correo</button>
+  <button type="button" class="btn btn-primary btn-bottom" [disabled]="correoEnviado" (click)="mandarToken()" >Mandar Correo</button>
+
+  <hr>
+  <button mat-raised-button color="warn"   (click)="irASesion()" >Iniciar Sesion</button>
+
+
   <p class="mt-5 mb-3 text-muted ">© 2017–2023</p>
+
 
 </form>
 
