@@ -1,15 +1,15 @@
-
-
 .container {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 90vh;
+  margin-top: 10px;
   //width: 100%;
+  background-color: #e6f2ff; /* Color de fondo azul claro */
 }
 
-h2{
+h2 {
   text-align: center;
 }
 
@@ -21,3 +21,23 @@ h2{
   width: 300px; /* Ajusta el valor según sea necesario */
 }
 
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+}
+
+.pie {
+  margin-top: 10px; /* Ajusta el valor según sea necesario para aumentar el espacio entre el formulario y el div "pie" */
+  display: flex;
+}
+
+.container img {
+  margin-bottom: 20px; /* Ajusta el valor según sea necesario para posicionar la imagen más arriba */
+}

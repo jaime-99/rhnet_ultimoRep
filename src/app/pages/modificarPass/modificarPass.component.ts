@@ -4,6 +4,10 @@ import { SupportService } from "src/app/admin/support/service/support.service";
 import { FormControl, Validators } from "@angular/forms";
 import { Renderer2 } from '@angular/core';
 import { Router } from "@angular/router";
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
+import { AlertaComponent } from "../dialogoDeAlerta/alerta/alerta.component";
+import {MatButtonModule} from '@angular/material/button';
 
 declare var toastr: any;
 
@@ -23,9 +27,12 @@ export class modificarPass{
   constructor(private http: HttpClient ,
   public authService:SupportService,
   public router:Router,
+  private dialog: MatDialog,
   renderer: Renderer2) {}
   correo:string="";
   correoEnviado = false;
+  showConfirmation: boolean = false;
+  dialogo:boolean=false;
 
 
 //   recuperar() {
@@ -51,7 +58,7 @@ export class modificarPass{
       if (res.success) {
          // alert(res.message); // Mostrar mensaje de éxito en una alerta
         this.correoEnviado = true;
-
+        this.dialogoAbierto();
 
       } else {
         alert(res.message); // Mostrar mensaje de error en una alerta
@@ -69,9 +76,41 @@ irASesion(){
   this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
 
 }
+openConfirmationDialog() {
+  this.showConfirmation = true;
+}
+
+
+
+mostrarMensajeAlerta(){
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    maxWidth: "400px",
+    data: {
+      message: "Se ha enviado un correo electronico al correo proporcionado"
+    }
+
+  });
+  // cuando se cierra el dialogo
+  // dialogRef.afterClosed().subscribe(result => {
+  //   if (result) {
+  //     this.mandarToken();
+  //   }
+  // });
+}
+
+
+
+openDialog() {
+  this.dialog.open(ConfirmDialogComponent);
+
+}
+
+dialogoAbierto(){
+  this.dialog.open(AlertaComponent);
+}
+
+
 
 
 
 }
-
-

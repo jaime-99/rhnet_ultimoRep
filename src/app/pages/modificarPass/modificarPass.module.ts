@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { FormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -27,6 +28,8 @@ export const routes: Routes = [
     MatButtonModule,
     MatFormFieldModule,
     FormsModule,
+    MatProgressSpinnerModule,
+
 
 
 
@@ -34,6 +37,7 @@ export const routes: Routes = [
   declarations: [
     modificarPass
   ],
+
   providers:[{ provide: MAT_DATE_LOCALE, useValue: 'es-MX', }]
 })
   export class modificarPassModule {}

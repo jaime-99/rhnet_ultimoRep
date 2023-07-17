@@ -1,34 +1,34 @@
-<h2>Recuperacion de contraseña</h2>
 
+<h1 class="mat-h1 text-center text-lg font-weight-bold">Recuperación de contraseña</h1>
 
 <div class="containerAlert">
-  <div class="alert alert-success success-alert" role="alert"  *ngIf="correoEnviado">
-    <h4 class="alert-heading">Bien Hecho!</h4>
-    <p>Se ha enviado un correo a la direccion proporcionada</p>
+  <div class="mat-alert mat-alert-success success-alert" role="alert" *ngIf="correoEnviado">
+    <h4 class="mat-alert-title">¡Bien hecho!</h4>
+    <div class="mat-alert-subtitle">Se ha enviado un correo a la dirección proporcionada</div>
   </div>
-  </div>
+</div>
 
-  <main class="form-signin">
-<form class="container">
-  <img src="assets/images/flags/diken_azulL.png" alt="imagen Diken" width="200" height="60">
-  <h1 class="h3 mb-3 fw-normal text-center text-lg">Por favor introduce tu correo electronico</h1>
-    <div class="form-floating">
-      <input type="email" class="form-control input-long col-xs-12 col-md-8" id="floatingInput" placeholder="name@example.com"  [(ngModel)]="correo" name="correo">
-      <label for="floatingInput">Correo electrónico</label>
+<main class="form-signin">
+  <form class="container">
+    <img class="imagen" src="assets/images/flags/diken_azulL.png" alt="imagen Diken" width="200" height="60">
+    <h1 class="mat-h3 mb-3 fw-normal text-center text-lg">Por favor introduce tu correo electrónico</h1>
+    <mat-form-field appearance="fill" class="form-floating">
+      <mat-label>Correo electrónico</mat-label>
+      <input matInput type="email" placeholder="name@example.com" [(ngModel)]="correo" name="correo">
+    </mat-form-field>
+
+    <div class="button-group">
+      <div class="button-row">
+        <button mat-raised-button color="primary" [disabled]="correoEnviado" (click)="mandarToken()">Mandar Correo</button>
       </div>
 
-  <button type="button" class="btn btn-primary btn-bottom" [disabled]="correoEnviado" (click)="mandarToken()" >Mandar Correo</button>
+      <div class="button-row">
+        <button mat-raised-button color="warn" (click)="irASesion()">Iniciar Sesión</button>
+      </div>
+    <div class="pie">
+      <p class="mt-5 mb-3 text-muted">© 2017–2023</p>
+    </div>
+    </div>
 
-  <hr>
-  <button mat-raised-button color="warn"   (click)="irASesion()" >Iniciar Sesion</button>
-
-
-  <p class="mt-5 mb-3 text-muted ">© 2017–2023</p>
-
-
-</form>
-
+  </form>
 </main>
-
-
-
