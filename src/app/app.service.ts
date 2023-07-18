@@ -305,6 +305,15 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         }
 
+        // colocare para obtener admin de ventaEmpleados
+
+
+        obtenerAdmin() {
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerAdmin.php`; // Reemplaza con la URL de tu API
+
+          return this.http.get<any[]>(url);
+        }
+
 
 
 
