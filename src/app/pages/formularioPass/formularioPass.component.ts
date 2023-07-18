@@ -11,6 +11,8 @@ import { Md5 } from 'ts-md5';
 
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
+import { MensajeAlertaComponent } from '../mensajeAlerta/mensaje-alerta/mensaje-alerta.component';
+import { AlertaComponent } from '../dialogoDeAlerta/alerta/alerta.component';
 
 
 
@@ -147,7 +149,12 @@ export class formularioPass implements OnInit {
     this.appService.cambiarContraseniaNuevo(this.formData).subscribe((res) => {
       console.log(res);
 
-      this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
+      // todo se colocara un mensaje de que se ha enviado con un boton para que lo rediriga al inicio
+
+
+
+      //this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
+
 
 
     });
@@ -175,11 +182,40 @@ export class formularioPass implements OnInit {
   // cuando se cierra el dialogo
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
+      this.mensajeConfirmacion(); // se agrego esta linea
       this.cambiarNuevaContra();
     }
   });
 }
+
+
+// y estas dos ultimas lineas se agregaron hoy
+mensajeConfirmacion(){
+
+  const dialogRef = this.dialog.open(MensajeAlertaComponent, {
+    maxWidth: "400px",
+    data: {
+      title: "se cambio la contraseña",
+      message: "Se ha establecido la contraseña"
+    }
+
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.irAsesion();
+    }
+  });
 }
+
+
+irAsesion(){
+  this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
+}
+
+
+
+}
+
   // obtenerIdConToken() {
 
   // this.appService.obtenerUsuarioIdConToken().subscribe((res) => {

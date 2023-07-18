@@ -42,6 +42,12 @@ export const routes: Routes = [
   declarations: [
     formularioPass,
   ],
+
+  exports:[
+    MatDialogModule,
+    MatButtonModule,
+
+  ],
   providers:[{ provide: MAT_DATE_LOCALE, useValue: 'es-MX', }]
 })
   export class formularioPassModule {}
