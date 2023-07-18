@@ -45,7 +45,7 @@ export const routes: Routes = [
             { path: 'quienessomos',loadChildren:()=>import('./pages/quienessomos/quienessomos.module').then(m=>m.QuienessomosModule),data:{breadcrumb:'Quienes somos'}},
             { path: 'sucursales',loadChildren:()=>import('./pages/sucursales/sucursales.module').then(m=>m.SucursalesModule),data:{breadcrumb:'Sucursales'}},
              { path: 'ventas', loadChildren: () => import('./pages/ventaEmpleado/ventaEmpleado.module').then(m => m.VentaEmpleadoModule), data: { breadcrumb: 'ventas Empleado' } },
-             { path: 'misPedidos', loadChildren: () => import('./pages/misPedidos/misPedidos.component.module').then(m => misPedidosModule), data: { breadcrumb: 'Todos los Productos' } },
+             { path: 'misPedidos', loadChildren: () => import('./pages/misPedidos/misPedidos.component.module').then(m => misPedidosModule), data: { breadcrumb: 'Todos Mis Pedidos' } },
 
 
             { path: 'plataformas',loadChildren:()=>import('./pages/plataformas/plataformas.module').then(m=>m.PlataformasModule),

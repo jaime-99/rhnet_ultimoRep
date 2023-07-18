@@ -9,7 +9,7 @@
 
 
   <div class="table-container">
-  <table>
+  <table *ngIf="Ventas.length > 0">
     <thead>
       <tr>
 
@@ -49,6 +49,13 @@
     </tbody>
 
   </table>
+  </div>
+
+  <div *ngIf="Ventas.length === 0 ">
+
+    <p style="font-size: 24px; font-weight: bold; color: black;">No se han seleccionado pedidos.</p>
+
+
   </div>
 
 
