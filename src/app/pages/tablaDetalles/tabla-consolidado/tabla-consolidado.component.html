@@ -1,0 +1,32 @@
+
+<h2 mat-dialog-title>Detalles</h2>
+
+
+<div  mat-dialog-content>
+  <p>{{data?.message}}</p>
+  <p> Precio:{{data.precio}} </p>
+  <p> Codigo Diken:{{data.codigoDiken}} </p>
+  <p> Importe:{{data.importe}} </p>
+  <p> Producto:{{data.producto}} </p>
+  <p>Usuario:{{data.usuario}} </p>
+  <p>Cantidad:{{data.cantidad}} </p>
+
+
+
+
+
+
+
+  <!-- <p> {{data.Precio}} </p> -->
+
+
+
+</div>
+<div mat-dialog-actions>
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+      <button mat-raised-button color="warn" (click)="cerrar()">Cerrar</button>
+  </div>
+</div>
+
+
+

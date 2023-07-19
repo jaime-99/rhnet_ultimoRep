@@ -10,14 +10,23 @@
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+    <tr *ngFor="let consolidado of consolidados">
+      <td> {{consolidado.Empresa}} </td>
+      <td>{{consolidado.IdConsolidadoVentaEmpleado}} </td>
+      <td>{{consolidado.TotalConsolidado}} </td>
+      <td>{{consolidado.Fecha}} </td>
       <td>
         <!-- Acciones -->
+        <div class="separar">
+        <div class="boton1">
         <button mat-raised-button color="warn" >Eliminar</button>
+        </div>
+        <div class="boton2">
+        <button (click)="openDialog1()" mat-raised-button color="primary" >Detalles</button>
+        </div>
+        </div>
+
+
       </td>
     </tr>
   </tbody>

@@ -19,6 +19,14 @@ th, td {
   display: flex;
 }
 
+.separar{
+  display: flex;
+}
+
+.boton1{
+  margin-right: 2rem;
+}
+
 @media screen and (max-width: 768px) {
   .table-container {
     display: flex;
@@ -27,5 +35,12 @@ th, td {
     overflow-y: auto;
     max-height: 500px; /* Ajusta la altura máxima según tus necesidades */
   }
+
+/* Estilos para el contenido del diálogo */
+.mat-dialog-container {
+  padding: 0; /* Elimina el padding predeterminado para que el contenido ocupe todo el espacio */
+}
+
+
 }
 

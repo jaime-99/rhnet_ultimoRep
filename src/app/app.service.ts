@@ -314,7 +314,22 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.get<any[]>(url);
         }
 
+        // colocare para obtener los consolidados y los muestre
 
+        obtenerConsolidados(){
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerConsolidados.php`;
+          return this.http.get<any[]>(url);
+
+        }
+
+        // colcoare para obtener la tabla junta de los consolidados
+
+        obtenerTablaJunta(p_ConsolidadoId){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerTablaJunta.php?p_ConsolidadoId=${p_ConsolidadoId}`
+          return this.http.get<any>(url)
+
+        }
 
 
 
