@@ -1,26 +1,22 @@
 
-<h2 mat-dialog-title>Detalles</h2>
+<h2 mat-dialog-title>Detalles De Venta </h2>
 
 
 <div  mat-dialog-content>
+
   <p>{{data?.message}}</p>
-  <p> Precio:{{data.precio}} </p>
-  <p> Codigo Diken:{{data.codigoDiken}} </p>
-  <p> Importe:{{data.importe}} </p>
-  <p> Producto:{{data.producto}} </p>
-  <p>Usuario:{{data.usuario}} </p>
-  <p>Cantidad:{{data.cantidad}} </p>
-
-
-
+  <p><strong> Precio:</strong>  ${{ data.precio | number : '1.2-2'  }} </p>
+  <p> <strong>Codigo Diken:</strong> {{data.codigoDiken}} </p>
+  <p> <strong>Importe:</strong>  ${{data.importe | number : '1.2-2' }} </p>
+  <p> <strong>Producto:</strong>  {{data.producto}} </p>
+  <p><strong>Usuario:</strong>  {{data.usuario}} </p>
+  <p><strong>Cantidad:</strong>  {{data.cantidad }} </p>
+  <p><strong>Numero de Empleado:</strong>  {{data.empleado }} </p>
 
 
 
 
   <!-- <p> {{data.Precio}} </p> -->
-
-
-
 </div>
 <div mat-dialog-actions>
   <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">

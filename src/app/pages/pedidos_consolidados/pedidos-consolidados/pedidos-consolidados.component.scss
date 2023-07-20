@@ -23,7 +23,7 @@ th, td {
   display: flex;
 }
 
-.boton1{
+.boton1, .boton2{
   margin-right: 2rem;
 }
 
@@ -34,6 +34,7 @@ th, td {
     align-items: stretch;
     overflow-y: auto;
     max-height: 500px; /* Ajusta la altura máxima según tus necesidades */
+
   }
 
 /* Estilos para el contenido del diálogo */
@@ -41,6 +42,17 @@ th, td {
   padding: 0; /* Elimina el padding predeterminado para que el contenido ocupe todo el espacio */
 }
 
+.acciones-container{
+  flex-direction: column;
+}
+.boton1, .boton2{
+  margin-bottom: 0.5rem;
+}
 
 }
+.acciones-container {
+  display: flex;
+
+}
+
 

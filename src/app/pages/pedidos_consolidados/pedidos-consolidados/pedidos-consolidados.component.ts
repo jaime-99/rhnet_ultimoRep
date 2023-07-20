@@ -3,6 +3,7 @@ import { AppService } from 'src/app/app.service';
 import { TablaConsolidadoComponent } from '../../tablaDetalles/tabla-consolidado/tabla-consolidado.component';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pedidos-consolidados',
@@ -12,16 +13,23 @@ import { MatTableDataSource } from '@angular/material/table';
 
 
 export class PedidosConsolidadosComponent implements OnInit {
+  selectedConsolidadoId: number | null = null; // Variable para almacenar el IdConsolidadoVentaEmpleado seleccionado
 
   consolidados=[];
   consolidadoDetalles=1;
   numAdmin:number =0;
   dataSource: MatTableDataSource<any>;
+  detalleVentasArray=[];
   constructor(public dialog: MatDialog, public appService: AppService) { }
 
+  consolidadoIds: number[] = []; // Arreglo para almacenar los IdConsolidadoVentaEmpleado
+
+
+  private subscription: Subscription | undefined; // Almacena la suscripción
 
   precio: number;
   codigoDiken: string;
+  openTable = false;
 
   ngOnInit(): void {
 
@@ -29,6 +37,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
     console.log(userauth);
+
 
 
 
@@ -45,13 +54,24 @@ export class PedidosConsolidadosComponent implements OnInit {
       this.appService.obtenerConsolidados().subscribe((res)=>{
 
         this.consolidados = res.filter((consolidado) =>consolidado);
+        // obtener los id's
+        this.consolidadoIds = this.consolidados.map((consolidado) => consolidado.IdConsolidadoVentaEmpleado);
+
+
+
 
       console.log(res)
       console.log(this.consolidados);
+      console.log(this.consolidadoIds)
 
     })
 
   }
+
+  seleccionarConsolidado(consolidado: number) {
+    this.selectedConsolidadoId = consolidado;
+  }
+
 
 
  // obtener los detalles de consolidados
@@ -66,17 +86,6 @@ export class PedidosConsolidadosComponent implements OnInit {
 
   }
 
-
-
-  // openDialog() {
-  //   const dialogRef = this.dialog.open(TablaConsolidadoComponent);
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     console.log(`Dialog result: ${result}`);
-  //   });
-  // }
-
-
   openDialog() {
     const data = [
       "ola soy jaime"
@@ -89,19 +98,16 @@ export class PedidosConsolidadosComponent implements OnInit {
   }
 
   openDialog1() {
+    // el uno es el parametro que se pasara, hay que cambiarlo para obtener el id de consolidado al darle click a detalles
     this.appService.obtenerTablaJunta(1).subscribe((res) => {
       const data = res;
-      const precio = data[0].Precio;
-      const codigoDiken = data[0].CodigoDiken;
-      const importe = data[0].Importe;
-      const producto = data[0].Producto;
-      const usu = data[0].Usuario;
-      const cantidad = data[0].Cantidad;
-
-
-
-
-
+      const precio = data[2].Precio;
+      const codigoDiken = data[2].CodigoDiken;
+      const importe = data[2].Importe;
+      const producto = data[2].Producto;
+      const usu = data[2].Usuario;
+      const cantidad = data[2].Cantidad;
+      const empleado = data[2].Numero_Empleado;
 
 
       const detalleVenta = {
@@ -110,15 +116,14 @@ export class PedidosConsolidadosComponent implements OnInit {
         importe:importe,
         producto:producto,
         usuario:usu,
-        cantidad:cantidad
-
+        cantidad:cantidad,
+        empleado:empleado
       };
 
 
       this.dialog.open(TablaConsolidadoComponent, {
-        maxWidth: "900%",
-        // maxHeight: "90%",
-        // data: precio
+        maxWidth: "90%",
+        maxHeight: "90%",
         data: detalleVenta
 
       });
@@ -129,7 +134,52 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
 
+  abrirTabla(id):void{
+    // se abrira la tabla al seleccionar detalles
 
+    this.openTable = !this.openTable;
+
+    id=id;
+
+
+    this.detalleVentasArray = [];
+
+    if(this.openTable){
+
+   this.subscription= this.appService.obtenerTablaJunta(id).subscribe((res) => {
+
+
+    const data=res;
+    for (const detalle of data) {
+      const detalleVenta = {
+        precio: detalle.Precio,
+        codigoDiken: detalle.CodigoDiken,
+        importe: detalle.Importe,
+        producto: detalle.Producto,
+        usuario: detalle.Usuario,
+        cantidad: detalle.Cantidad,
+        empleado: detalle.Numero_Empleado,
+      };
+
+
+
+      this.detalleVentasArray.push(detalleVenta);
+    }
+  });
+
+
+    }else{
+        if (this.subscription){
+          this.subscription.unsubscribe();
+    }
+
+
+  }
+  }
 
 
 }
+
+
+
+

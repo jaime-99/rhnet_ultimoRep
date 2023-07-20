@@ -1,33 +1,70 @@
+<!-- Wrap the table with a container and apply Flexbox -->
+<div class="table-container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Empresa</th>
+        <th>#Pedidos</th>
+        <th>Total</th>
+        <th>Fecha Consolidado</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let consolidado of consolidados">
+        <td>{{ consolidado.Empresa }}</td>
+        <td>{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
+        <td>{{ consolidado.TotalConsolidado }}</td>
+        <td>{{ consolidado.Fecha }}</td>
+        <td>
+          <!-- Acciones -->
+          <div class="acciones-container">
+            <div class="boton1">
+              <button mat-raised-button color="warn">Eliminar</button>
+            </div>
+            <div class="boton2">
+              <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Detalles</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Empresa</th>
-      <th>#Pedidos</th>
-      <th>Total</th>
-      <th>Fecha Consolidado</th>
-      <th>Acciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let consolidado of consolidados">
-      <td> {{consolidado.Empresa}} </td>
-      <td>{{consolidado.IdConsolidadoVentaEmpleado}} </td>
-      <td>{{consolidado.TotalConsolidado}} </td>
-      <td>{{consolidado.Fecha}} </td>
-      <td>
-        <!-- Acciones -->
-        <div class="separar">
-        <div class="boton1">
-        <button mat-raised-button color="warn" >Eliminar</button>
-        </div>
-        <div class="boton2">
-        <button (click)="openDialog1()" mat-raised-button color="primary" >Detalles</button>
-        </div>
-        </div>
+<!-- segunda tabla de detalles -->
+<hr>
+<!-- <div *ngFor="let consolidado of consolidados"> -->
+<h2 *ngIf="openTable;">  Consolidado #{{id}}
+</h2>
+<!-- </div> -->
 
+<div   *ngIf="openTable"   class="table-container">
+   <table class="table">
+    <thead>
+      <tr>
+        <th>Precio</th>
+        <th>Código Diken</th>
+        <th>Importe</th>
+        <th>Producto</th>
+        <th>Usuario</th>
+        <th>Cantidad</th>
+        <th>Empleado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Replace 'data' with the array containing the new data for this table -->
 
-      </td>
-    </tr>
-  </tbody>
-</table>
+      <tr *ngFor="let detalleVenta of detalleVentasArray">
+        <td>${{ detalleVenta.precio | number : '1.2-2'  }}  </td>
+        <td> {{detalleVenta.codigoDiken}} </td>
+        <td>{{detalleVenta.importe | number : '1.2-2'}} </td>
+        <td>{{detalleVenta.producto}} </td>
+        <td>{{detalleVenta.usuario}} </td>
+        <td>{{detalleVenta.cantidad}} </td>
+        <td>{{detalleVenta.empleado}} </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>
