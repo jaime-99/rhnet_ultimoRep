@@ -13,7 +13,7 @@
     <tbody>
       <tr *ngFor="let consolidado of consolidados">
         <td>{{ consolidado.Empresa }}</td>
-        <td>{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
+        <td><strong>Pendiente</strong></td>
         <td>{{ consolidado.TotalConsolidado }}</td>
         <td>{{ consolidado.Fecha }}</td>
         <td>
@@ -33,9 +33,9 @@
 </div>
 
 <!-- segunda tabla de detalles -->
-<hr>
+<hr *ngIf="openTable">
 <!-- <div *ngFor="let consolidado of consolidados"> -->
-<h2 *ngIf="openTable;">  Consolidado #{{id}}
+<h2 class="titulo-consolidado" *ngIf="openTable;">  Consolidado #{{IdSeleccionado}}
 </h2>
 <!-- </div> -->
 

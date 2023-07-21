@@ -28,6 +28,7 @@ export const sidenavMenuItems = [
 
     new SidenavMenu (54, 'PRODUCTOS', '/productos', null, null, false, 0),
     new SidenavMenu (54, 'PEDIDOS', '/misPedidos', null, null, false, 0),
+    new SidenavMenu (54, 'CONSOLIDADOS', '/pedidosConsolidados', null, null, false, 0),
 
 
 

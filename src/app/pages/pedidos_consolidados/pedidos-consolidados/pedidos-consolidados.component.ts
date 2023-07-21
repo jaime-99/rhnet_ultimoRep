@@ -20,6 +20,7 @@ export class PedidosConsolidadosComponent implements OnInit {
   numAdmin:number =0;
   dataSource: MatTableDataSource<any>;
   detalleVentasArray=[];
+  IdSeleccionado=0;
   constructor(public dialog: MatDialog, public appService: AppService) { }
 
   consolidadoIds: number[] = []; // Arreglo para almacenar los IdConsolidadoVentaEmpleado
@@ -30,6 +31,7 @@ export class PedidosConsolidadosComponent implements OnInit {
   precio: number;
   codigoDiken: string;
   openTable = false;
+
 
   ngOnInit(): void {
 
@@ -139,7 +141,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
     this.openTable = !this.openTable;
 
-    id=id;
+    this.IdSeleccionado=id;
 
 
     this.detalleVentasArray = [];

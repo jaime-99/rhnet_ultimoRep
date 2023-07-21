@@ -17,6 +17,7 @@ th, td {
 
 .table-container {
   display: flex;
+  margin-bottom: 45px;
 }
 
 .separar{
@@ -25,6 +26,11 @@ th, td {
 
 .boton1, .boton2{
   margin-right: 2rem;
+}
+
+.titulo-consolidado{
+  text-align: center;
+  margin: 2rem;
 }
 
 @media screen and (max-width: 768px) {
