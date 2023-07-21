@@ -32,19 +32,20 @@
         <td>{{ Nombre }}</td>
         <td>{{ venta.Fecha | date }}</td>
         <td>${{venta.Total | number : '1.2-2'}}</td>
-        <td class="estatus">
-          <ng-container *ngIf="venta.IdEstatusVentaEmpleado === 1; else cancelado">
-            <strong>Pendiente</strong>
-          </ng-container>
-          <ng-template #cancelado>
-            <strong>Cancelado</strong>
-          </ng-template>
+        <td>{{venta.Estatus}} </td>
+        <!-- <td *ngIf="venta.IdEstatusVentaEmpleado === 1">Pendiente</td>
+        <td *ngIf="venta.IdEstatusVentaEmpleado === 4">caneclado</td>
+ -->
 
-        <td>
+
+
+
+
           <!-- Agrega el botón con estilo de Angular Material -->
+          <td>
           <button *ngIf="venta.IdEstatusVentaEmpleado === 1" mat-raised-button color="warn" (click)="mostrarMensajeAlerta(venta.VentaEmpleadoId)">Cancelar</button>
+            </td>
 
-        </td>
       </tr>
     </tbody>
 
