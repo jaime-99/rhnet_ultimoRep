@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
@@ -23,6 +23,8 @@ import { AlertaComponent } from '../dialogoDeAlerta/alerta/alerta.component';
   styleUrls: ["./formularioPass.scss"],
 })
 export class formularioPass implements OnInit {
+  @ViewChild('passwordField') passwordField!: ElementRef;
+  @ViewChild('confirmPasswordField') confirmPasswordField!: ElementRef;
   // obtengo el correo y despues me da el id y ese se llena solo
   // ya cuando se llene solo el id solo cambiara el usuario y contra de ese id especifico
   usuarioId: "";
@@ -32,7 +34,7 @@ export class formularioPass implements OnInit {
   formData: any;
   value:string;
   showConfirmation: boolean = false;
-
+  message="HOLA";
   passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$/;
 
   confirmPassword: string;
@@ -69,6 +71,8 @@ export class formularioPass implements OnInit {
 
       this.obtenerIdConToken(tokenId); // Llamar a la función con el TokenId como parámetro
     });
+
+
   }
 
   obtenerIdConToken(tokenId: string) {
@@ -152,11 +156,8 @@ export class formularioPass implements OnInit {
       // todo se colocara un mensaje de que se ha enviado con un boton para que lo rediriga al inicio
 
 
-
       //this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
-
-
-
+      this.resetPasswordFields();
     });
 
   }
@@ -193,7 +194,7 @@ export class formularioPass implements OnInit {
 mensajeConfirmacion(){
 
   const dialogRef = this.dialog.open(MensajeAlertaComponent, {
-    maxWidth: "400px",
+    maxWidth: "600px",
     data: {
       title: "se cambio la contraseña",
       message: "Se ha establecido la contraseña"
@@ -205,6 +206,7 @@ mensajeConfirmacion(){
       this.irAsesion();
     }
   });
+
 }
 
 
@@ -212,6 +214,13 @@ irAsesion(){
   this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
 }
 
+
+resetPasswordFields(): void {
+  // Establecer los campos de contraseña a una cadena vacía
+
+  this.passwordField.nativeElement.value = '';
+  this.confirmPasswordField.nativeElement.value = '';
+}
 
 
 }

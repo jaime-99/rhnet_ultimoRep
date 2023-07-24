@@ -17,8 +17,8 @@
 
   <mat-form-field class="example-form-field" appearance="fill">
     <mat-label>Contraseña</mat-label>
-    <input matInput [type]="hide ? 'password' : 'text'" alt="strongPass" required [(ngModel)]="formData.p_Password" name="password"
-      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$">
+    <input matInput  [type]="hide ? 'password' : 'text'" alt="strongPass" required [(ngModel)]="formData.p_Password" name="password"
+      pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$" #passwordField>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -29,7 +29,7 @@
 
   <mat-form-field class="example-form-field2" appearance="fill">
     <mat-label>Confirmar Contraseña</mat-label>
-    <input matInput  [type]="hide ? 'password' : 'text'"  required [(ngModel)]="formData.confirmPassword" name="confirmPassword">
+    <input matInput  [type]="hide ? 'password' : 'text'"  required [(ngModel)]="formData.confirmPassword" name="confirmPassword"  #confirmPasswordField>
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
@@ -40,10 +40,12 @@
 
   <button class="boton1" mat-raised-button color="primary" (click)="mostrarMensajeAlerta()" [disabled]="formData.p_Password?.length < 6 || formData.p_Password?.length > 15  || formData.confirmPassword !== formData.p_Password" > Cambiar Contraseña</button>
 
+  <!-- <button  type="submit" (click)="mostrarSnackBar(message)">Ver una alerta ejemplo</button> -->
 
 
       <button [hidden]="true" type="submit" (click)="submitForm()">Cambiar Contraseña</button>
       <button [hidden]="true" type="submit" (click)="verificarCorreo()">Verificar Correo</button>
+
       <button type="submit" [hidden]="true" (click)="obtenerIdConToken(formData.usuarioId)"> ejemplo para ver el id</button>
   </form>
 

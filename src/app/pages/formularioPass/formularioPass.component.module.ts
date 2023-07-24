@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from "@angular/material/dialog";
 import { ConfirmDialogComponent } from "src/app/shared/confirm-dialog/confirm-dialog.component";
+import { MensajeAlertaComponent } from "../mensajeAlerta/mensaje-alerta/mensaje-alerta.component";
 
 
 export const routes: Routes = [
@@ -41,6 +42,7 @@ export const routes: Routes = [
 
   declarations: [
     formularioPass,
+    MensajeAlertaComponent,
   ],
 
   exports:[

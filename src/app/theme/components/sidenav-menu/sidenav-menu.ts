@@ -1,7 +1,10 @@
 import { SidenavMenu } from './sidenav-menu.model';
 
 export const sidenavMenuItems = [
-    new SidenavMenu (1, 'Inicio', '/', null, null, false, 0),
+    // new SidenavMenu (1, 'Inicio', '/', null, null, false, 0),
+    new SidenavMenu (1, 'Inicio', '/productos', null, null, false, 0),
+
+
     //   new SidenavMenu (2, 'Divisiones de Negocio', null, null, null, true, 0),
     // //new SidenavMenu (10, 'Químicos', null, null, null, false, 2),
     // new SidenavMenu (21, 'Aliementos', '/aliementos', null, null, false, 2),
@@ -29,6 +32,7 @@ export const sidenavMenuItems = [
     new SidenavMenu (54, 'PRODUCTOS', '/productos', null, null, false, 0),
     new SidenavMenu (54, 'PEDIDOS', '/misPedidos', null, null, false, 0),
     new SidenavMenu (54, 'CONSOLIDADOS', '/pedidosConsolidados', null, null, false, 0),
+    new SidenavMenu (1, 'Cerrar Sesion', '/', null, null, false, 0),
 
 
 
@@ -51,4 +55,4 @@ export const sidenavMenuItems = [
     // new SidenavMenu (143, 'Level 4', null, null, null, true, 142),
     // new SidenavMenu (144, 'Level 5', null, 'http://themeseason.com', null, false, 143),
     // new SidenavMenu (200, 'NAV.EXTERNAL_LINK', null, 'http://themeseason.com', '_blank', false, 0)
-]
+  ]
