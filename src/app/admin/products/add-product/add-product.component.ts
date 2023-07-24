@@ -170,7 +170,7 @@ export class AddProductComponent implements OnInit {
       "FamiliaId":['',Validators.required],
       "SubFamiliaId":['',Validators.required],
       "CodigoDiken":['',Validators.required],
-     
+      "ParaVentaEmpleado":null,
       "availibilityCount": null, 
      
      
@@ -236,6 +236,7 @@ export class AddProductComponent implements OnInit {
       });
       this.htmlText=data.description;
       this.htmlTextCaracteristica=data.PrettyText;
+      
       this.form.patchValue(data); 
       this.selectedColors = data.color; 
 
@@ -278,7 +279,7 @@ export class AddProductComponent implements OnInit {
     const formDataM = new FormData();
     
     const formDataB = new FormData();
-    const {name,newPrice,TextSearch,ClaseId,FamiliaId,SubFamiliaId, images,imagesM,imagesB,CodigoDiken } = this.form.value;
+    const {name,newPrice,TextSearch,ClaseId,FamiliaId,SubFamiliaId, images,imagesM,imagesB,CodigoDiken,ParaVentaEmpleado } = this.form.value;
 if (this.form.invalid)
 {
   this.snackBar.open("Las imagenes son requeridas", '×', { panelClass: "error", verticalPosition: 'top', duration: 3000 })
@@ -290,7 +291,7 @@ if (this.form.invalid)
       
        this.prodservice.GetFamiliasDescription(SubFamiliaId).subscribe((famdes:any)=>{
         console.log(famdes);
-      this.prodservice.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica).subscribe();
+      this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado).subscribe();
     });
 
       this.prodservice.GetProductoImangeByProductoId(this.id).subscribe((res:ProductoImagen)=>{
@@ -338,7 +339,7 @@ if (this.form.invalid)
           else
           {big=res.big}
 
-          this.prodservice.UpdateProductoImagen(res.Id,this.id,small,medium,big,res.EsPrincipal).subscribe();
+          this.appService.UpdateProductoImagen(res.Id,this.id,small,medium,big,res.EsPrincipal).subscribe();
           
         
         }

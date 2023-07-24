@@ -356,6 +356,23 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         const params=new HttpParams().set("id",id);
         return this.http.get<Product>(apiurl,{params}   );
     }
+    UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clase:any,Familia:any,SubFamilia:any,TextSearch:any,CodigoDiken:any,PrettyText:any,ParaVentaEmpleado:any)
+    {
+      const url=`${ this.baseUrl }/producto/UpdateProducto.php`; 
+    
+    
+      const body={ProductoId,Producto,PrecioActual,Descripcion,Clase,Familia,SubFamilia,TextSearch,CodigoDiken,PrettyText,ParaVentaEmpleado}
+      return this.http.put<any>( url, body );
+    
+    }
+    UpdateProductoImagen(Id:any,ProductoId:any,small:any,medium:any,big:any,EsPrincipal:any)
+    {
+      const url=`${ this.baseUrl }/producto/UpdateProductoImagen.php`;  
+    
+      const body={Id,ProductoId,small,medium,big,EsPrincipal}
+      return this.http.put<any>( url, body );
+    
+    }
 
 
     public getProductById(id): Observable<Product>{
