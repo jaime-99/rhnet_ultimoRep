@@ -12,11 +12,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let consolidado of consolidados">
-        <td>{{ consolidado.Empresa }}</td>
-        <td>Pendiente </td>
-        <td>{{ consolidado.TotalConsolidado }}</td>
-        <td>{{ consolidado.Fecha }}</td>
-        <td>
+        <td class="td-1">{{ consolidado.Empresa }}</td>
+        <td class="td-1">Pendiente </td>
+        <td class="td-1">{{ consolidado.TotalConsolidado }}</td>
+        <td class="td-1">{{ consolidado.Fecha }}</td>
+        <td class="td-1">
           <!-- Acciones -->
           <div class="acciones-container">
             <div class="boton1">
@@ -40,7 +40,7 @@
 <!-- </div> -->
 
 <div   *ngIf="openTable"   class="table-container">
-   <table class="table">
+   <table class="table-2">
     <thead>
       <tr>
         <th>Código Diken</th>
@@ -54,16 +54,14 @@
     </thead>
     <tbody>
       <!-- Replace 'data' with the array containing the new data for this table -->
-
       <tr *ngFor="let detalleVenta of detalleVentasArray">
-        <td>${{ detalleVenta.precio | number : '1.2-2'  }}  </td>
-        <td> {{detalleVenta.codigoDiken}} </td>
-        <td>{{detalleVenta.importe | number : '1.2-2'}} </td>
-        <td>{{detalleVenta.producto}} </td>
-        <td>{{detalleVenta.usuario}} </td>
-        <td>{{detalleVenta.cantidad}} </td>
-        <td>{{detalleVenta.empleado}} </td>
-
+        <td  class="td-2"> {{detalleVenta.codigoDiken}} </td>
+        <td  class="td-2">{{detalleVenta.producto}} </td>
+        <td  class="td-2">${{ detalleVenta.precio | number : '1.2-2'  }} </td>
+        <td  class="td-2">{{detalleVenta.cantidad}} </td >
+        <td  class="td-2">{{detalleVenta.importe | number : '1.2-2'}} </td>
+        <td  class="td-2">{{detalleVenta.empleado}} </td>
+        <td  class="td-2">{{detalleVenta.usuario}} </td>
       </tr>
     </tbody>
   </table>

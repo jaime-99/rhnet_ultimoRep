@@ -33,20 +33,26 @@ th, td {
   margin: 2rem;
 }
 
-@media screen and (max-width: 768px) {
-  .table-container {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    overflow-y: auto;
-    max-height: 500px; /* Ajusta la altura máxima según tus necesidades */
-
-  }
-
-/* Estilos para el contenido del diálogo */
-.mat-dialog-container {
-  padding: 0; /* Elimina el padding predeterminado para que el contenido ocupe todo el espacio */
+.acciones-container{
+  flex-direction: column;
 }
+.boton1, .boton2{
+  margin-bottom: 0.5rem;
+}
+@media screen and (max-width: 768px) {
+//   .table-container {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: stretch;
+//     overflow-y: auto;
+//     max-height: 350px;
+
+//   }
+
+// /* Estilos para el contenido del diálogo */
+// .mat-dialog-container {
+//   padding: 0; /* Elimina el padding predeterminado para que el contenido ocupe todo el espacio */
+// }
 
 .acciones-container{
   flex-direction: column;
@@ -55,10 +61,97 @@ th, td {
   margin-bottom: 0.5rem;
 }
 
+// }
+// .acciones-container {
+//   display: flex;
+
+// }
+
+
+
+.table, thead, tbody, th, td, tr {
+  display: block;
 }
-.acciones-container {
-  display: flex;
+
+/* Hide table headers (but not display: none;, for accessibility) */
+thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+tr {
+  margin: 0 0 1rem 0;
+}
+
+tr:nth-child(odd) {
+  background: #ccc;
+}
+
+.td-1 {
+  /* Behave  like a "row" */
+  border: none;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 50%;
+}
+
+.td-2{
+  border:none;
+  border-bottom: 1px solid #eee;
+  position: relative;
+  padding-left: 50%;
+}
+
+.td-1:before {
+  /* Now like a table header */
+  position: absolute;
+  /* Top/left values mimic padding */
+  top: 0;
+  left: 6px;
+  width: 45%;
+  padding-right: 10px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+.td-2:before {
+  /* Now like a table header */
+  position: absolute;
+  /* Top/left values mimic padding */
+  top: 0;
+  left: 6px;
+  width: 45%;
+  padding-right: 10px;
+  white-space: nowrap;
+  font-weight: bold;
+}
+
+
+.td-1:nth-of-type(1):before { content: "Empresa"; }
+.td-1:nth-of-type(2):before { content: "# Pedidos"; }
+.td-1:nth-of-type(3):before { content: "Total"; }
+.td-1:nth-of-type(4):before { content: "Fecha de Coonsolidado"; }
+.td-1:nth-of-type(5):before { content: "Acciones"; }
+
+.td-2:nth-of-type(1):before { content: "Codigo Diken"; }
+.td-2:nth-of-type(2):before { content: "Producto"; }
+.td-2:nth-of-type(3):before { content: "Precio"; }
+.td-2:nth-of-type(4):before { content: "Cantidad"; }
+.td-2:nth-of-type(5):before { content: "Importe"; }
+.td-2:nth-of-type(6):before { content: "Empleado"; }
+.td-2:nth-of-type(7):before { content: "Usuario"; }
+
+
+
+
 
 }
+
+
+
+
+
+
 
 

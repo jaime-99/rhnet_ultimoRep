@@ -96,7 +96,7 @@ export class misPedidos  implements OnInit{
 
       this.appService.CancelarVenta(id).subscribe((res) => {
 
-        //location.reload();  // hace que la pagina se recargue automaticamente
+        location.reload();  // hace que la pagina se recargue automaticamente
         //this.actualizarDatosLocalmente(id);
 
       })

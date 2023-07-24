@@ -9,7 +9,7 @@
 
 
   <div class="table-container">
-  <table *ngIf="Ventas.length > 0">
+   <table *ngIf="Ventas.length > 0">
     <thead>
       <tr>
 
@@ -18,7 +18,7 @@
         <th>Nombre</th>
         <th>Fecha de venta</th>
         <th>Total</th>
-        <th><Em></Em>status de la venta</th>
+        <th>status de la venta</th>
         <th>Acciones</th>
 
       </tr>
@@ -33,24 +33,21 @@
         <td>{{ venta.Fecha | date }}</td>
         <td>${{venta.Total | number : '1.2-2'}}</td>
         <td>{{venta.Estatus}} </td>
-        <!-- <td *ngIf="venta.IdEstatusVentaEmpleado === 1">Pendiente</td>
-        <td *ngIf="venta.IdEstatusVentaEmpleado === 4">caneclado</td>
- -->
-
-
-
-
 
           <!-- Agrega el botón con estilo de Angular Material -->
-          <td>
-          <button *ngIf="venta.IdEstatusVentaEmpleado === 1" mat-raised-button color="warn" (click)="mostrarMensajeAlerta(venta.VentaEmpleadoId)">Cancelar</button>
-            </td>
-
-      </tr>
+        <td>
+            <button *ngIf="venta.IdEstatusVentaEmpleado === 1" mat-raised-button color="warn" (click)="mostrarMensajeAlerta(venta.VentaEmpleadoId)">Cancelar</button>
+          </td>
+       </tr>
     </tbody>
 
-  </table>
-  </div>
+     </table>
+  <!-- </div> -->
+
+
+
+
+
 
   <div *ngIf="Ventas.length === 0 ">
 
@@ -61,7 +58,7 @@
 
 
   <!-- <button (click)="BtnCancelar()">Cancelar</button> -->
-
+</div>
 
 </body>
 </html>
