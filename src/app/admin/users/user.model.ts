@@ -1,17 +1,22 @@
+// import { Usuario } from "../support/interfaces/iTiket";
+
 export class User {
   id: number;
   username: string;
-  password: string;  
+  password: string;
   profile: UserProfile;
   work: UserWork;
   contacts: UserContacts;
   social: UserSocial;
   settings: UserSettings;
+  usuario1:Usuario1;
+  usuario:Usuario;
 }
 
-export class UserProfile {  
+
+export class UserProfile {
   name: string;
-  surname: string;  
+  surname: string;
   birthday: Object;
   gender: string;
   image: string;
@@ -26,7 +31,7 @@ export class UserWork {
 export class UserContacts{
   email: string;
   phone: string;
-  address: string;  
+  address: string;
 }
 
 export class UserSocial {
@@ -41,3 +46,21 @@ export class UserSettings{
   registrationDate: Date;
   joinedDate: Date;
 }
+
+
+// todo jaime
+export class Usuario1{
+  nombre:string;
+  edad:number;
+  apellido:string;
+}
+
+
+
+export interface Usuario {
+  name: string;
+  number: string;
+  email:string;
+  apellidos:string;
+}
+

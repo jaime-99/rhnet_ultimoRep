@@ -15,6 +15,7 @@ export const routes: Routes = [
   { path: '', component: UsersComponent, pathMatch: 'full' }
 ];
 
+
 @NgModule({
   imports: [
     CommonModule,
@@ -25,11 +26,12 @@ export const routes: Routes = [
     InMemoryWebApiModule.forRoot(UsersData, { delay: 500 }),
     NgxPaginationModule,
     SharedModule,
-    PipesModule    
+    PipesModule
   ],
   declarations: [
     UsersComponent,
-    UserDialogComponent
-  ] 
+    UserDialogComponent,
+
+  ]
 })
 export class UsersModule { }

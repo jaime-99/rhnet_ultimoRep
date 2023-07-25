@@ -10,10 +10,11 @@ import { ProductSearchPipe } from './products-search.pipe';
 import { TiketSearchPipe } from './tiket-search.pipe';
 import { CategoriaSearchPipe } from './categoria-search.pipe';
 import { BgdClienteSearchPipe } from './BgdCliente-search.pipe';
+import { BuscarNombre } from './buscarNombre.pipe';
 
 @NgModule({
-    imports: [ 
-        CommonModule 
+    imports: [
+        CommonModule
     ],
     declarations: [
         FilterByIdPipe,
@@ -24,7 +25,8 @@ import { BgdClienteSearchPipe } from './BgdCliente-search.pipe';
         ProductSearchPipe,
         TiketSearchPipe,
         CategoriaSearchPipe,
-        BgdClienteSearchPipe
+        BgdClienteSearchPipe,
+        BuscarNombre,
     ],
     exports: [
         FilterByIdPipe,
@@ -35,7 +37,8 @@ import { BgdClienteSearchPipe } from './BgdCliente-search.pipe';
         ProductSearchPipe,
         TiketSearchPipe,
         CategoriaSearchPipe,
-        BgdClienteSearchPipe
+        BgdClienteSearchPipe,
+        BuscarNombre,
     ]
 })
 export class PipesModule { }
