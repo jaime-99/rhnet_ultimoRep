@@ -1,4 +1,4 @@
-<h1 mat-dialog-title><span >Add</span><span >Edit</span> user</h1>
+<h1 mat-dialog-title><span >Editar</span><span ></span> usuario</h1>
 <div mat-dialog-content>
     <form [formGroup]="form" class="user-form">
         <mat-tab-group class="vertical-tabs">
@@ -39,13 +39,19 @@
                         <mat-datepicker #birthday>< /mat-datepicker>
                     </mat-form-field> -->
                     <mat-form-field class="w-100">
-                    <input matInput [value]="telefono" placeholder="Telefono" formControlName="p_Telefono">
-                    <!-- <mat-error *ngIf="form.controls.p_Telefono.errors?.required">El telefono no debe exceder</mat-error> -->
-                  </mat-form-field>
-                    <mat-form-field class="w-100">
-                    <input matInput value="coloca la url" placeholder="imagen" formControlName="p_Imagen">
-                    <!-- <mat-error *ngIf="form.controls.p_Telefono.errors?.required">El telefono no debe exceder</mat-error> -->
-                  </mat-form-field>
+                        <input matInput [value]="telefono" placeholder="Telefono" formControlName="p_Telefono">
+                        <!-- <mat-error *ngIf="form.controls.p_Telefono.errors?.required">El telefono no debe exceder</mat-error> -->
+                      </mat-form-field>
+
+
+                      <div class="text-center">
+                        <p>Seleccionar una imagen  (opcional)</p>
+                          <input class="form-control" placeholder="Seleccionar Imagen" type="file">
+                      </div>
+
+
+
+
 
 
                 </div>

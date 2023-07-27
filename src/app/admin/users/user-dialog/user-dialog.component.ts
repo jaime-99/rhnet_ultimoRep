@@ -27,7 +27,7 @@ export class UserDialogComponent implements OnInit {
   contrasenia: any;
   nombre: any;
   nombreDeUsuario: any;
-  imagen: any;
+  imagen: File| null;
   num_Usuario: any;
   boton: TreeMapModule;
   token: any;
@@ -256,13 +256,27 @@ export class UserDialogComponent implements OnInit {
   // pasar el token para la contraseña
 
 
-  obtenerIdConToken(tokenId: string) {
-    this.appService.obtenerUsuarioIdConToken(tokenId).subscribe((res) => {
-      console.log(res);
-      this.data.p_UsuarioId = res.UsuarioId; // Okey ya se asigna
-      console.log(this.data.p_UsuarioId);
-    });
-  }
+  // obtenerIdConToken(tokenId: string) {
+  //   this.appService.obtenerUsuarioIdConToken(tokenId).subscribe((res) => {
+  //     console.log(res);
+  //     this.data.p_UsuarioId = res.UsuarioId; // Okey ya se asigna
+  //     console.log(this.data.p_UsuarioId);
+  //   });
+  // }
+
+  //todo obtener la imagen
+
+  selectedImage: File | null;
+
+onFileSelected(event: any) {
+  const file: File = event.target.files[0];
+  this.imagen = file;
+}
+
+
+
+
+
 }
 
 
