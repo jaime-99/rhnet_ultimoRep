@@ -62,5 +62,12 @@ export interface Usuario {
   number: string;
   email:string;
   apellidos:string;
+  direccion:string;
+  nombreUsuario:string;
+  contraseña:string;
+  IdDeUsuario:number;
+  imagen:string;
+  numEmpleado:number;
+  tokenId:number;
 }
 

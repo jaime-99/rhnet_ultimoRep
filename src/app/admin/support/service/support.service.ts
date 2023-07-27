@@ -248,6 +248,16 @@ GetLoginAuth(Correo:string,contrasenia:string)
     return this.http.get<any>(url)
   }
 
+  // modificar los datos de usuarios solo nombre, telefono y apellidos
+
+    modificarUsuarios(formData:any){
+      const url=`https://www.dikeninternational.com/dikenecommerce/api/ventas/modificarDatosUsuario.php`;
+      const body={p_UsuarioId:formData.p_UsuarioId,p_Nombre:formData.p_Nombre,p_Apellidos:formData.p_Apellidos,p_Telefono:formData.p_Telefono }
+      return this.http.post<any>( url, body );
+
+
+    }
+
 
 
   AddTiket(UsuarioId:string,SubCategoriaId:string,ResponsableId :string,Detalle:string,ContactoTelefonico:string):Observable<any>

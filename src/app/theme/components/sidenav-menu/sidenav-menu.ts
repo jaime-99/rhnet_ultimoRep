@@ -29,10 +29,12 @@ export const sidenavMenuItems = [
     // new SidenavMenu (53, 'Contacto', '/contact', null, null, false, 0),
     // new SidenavMenu (54, 'Intranet', '/plataformas', null, null, false, 0),
 
-    new SidenavMenu (54, 'PRODUCTOS', '/productos', null, null, false, 0),
+    // new SidenavMenu (54, 'PRODUCTOS', '/productos', null, null, false, 0),
     new SidenavMenu (54, 'PEDIDOS', '/misPedidos', null, null, false, 0),
     new SidenavMenu (54, 'CONSOLIDADOS', '/pedidosConsolidados', null, null, false, 0),
     new SidenavMenu (1, 'Cerrar Sesion', '/', null, null, false, 0),
+    new SidenavMenu (1, 'Administracion', '/admin', null, null, false, 0),
+
 
 
 

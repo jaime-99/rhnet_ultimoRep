@@ -50,28 +50,35 @@
             <div class="user-content" fxLayout="row" fxLayoutAlign="space-around center">
                 <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
                   <div class="user-img">
-                    <!-- <img *ngIf="name.imagen" [src]="user.profile.image" class="transition-2"> -->
-                    <!-- <img *ngIf="!user.profile.image" src="assets/img/users/default-user.jpg" class="transition-2" [class.blocked]="user.settings.isDeleted"> -->
-                    <img src="https://dikeninternational.com/rhnet/uploads/default.png" class="transition-2" >
-                </div>
+                    <!-- <img *ngIf="user.imagen" [src]="usuario.imagen" class="transition-2"> -->
+                    <img *ngIf="user.imagen == ''" src="https://dikeninternational.com/rhnet/uploads/default.png" class="transition-2">
+                    <img *ngIf="user.imagen" [src]="user.imagen" class="transition-2">
+
+                  </div>
                 </div>
                 <div fxFlex="70" fxLayout="column" class="user-details transition-2">
-                    <p fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon class="text-muted">card_membership</mat-icon>
-                        <span> Direccion </span>
-                    </p>
-                    <p fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon class="text-muted">mail_outline</mat-icon>
-                        <span> {{user.email}} </span>
-                    </p>
-                    <p fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon class="text-muted">call</mat-icon>
-                        <span>Telefono</span>
-                    </p>
-                    <p fxLayout="row" fxLayoutAlign="start center">
-                        <mat-icon class="text-muted">face</mat-icon>
-                        <span>No se (pendiente)</span>
-                    </p>
+                  <p fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="text-muted">face</mat-icon>
+                    <span> {{user.numEmpleado}} </span>
+                  </p>
+                  <p fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="text-muted">mail_outline</mat-icon>
+                    <span> {{user.email}} </span>
+
+                  </p>
+                  <p fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="text-muted">perm_identity</mat-icon>
+                    <span>{{user.nombreUsuario}}</span>
+
+                  </p>
+                  <p fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="text-muted">call</mat-icon>
+                    <span>{{user.number}} </span>
+                  </p>
+                  <p fxLayout="row" fxLayoutAlign="start center">
+                    <mat-icon class="text-muted">room</mat-icon>
+                    <span> {{user.direccion}} </span>
+                  </p>
                 </div>
             </div>
         </mat-card>

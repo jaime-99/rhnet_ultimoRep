@@ -73,7 +73,7 @@ export class UsersComponent implements OnInit {
             data: data,
 
         })
-        console.log(data.number);
+        console.log(data);
 
 
         dialogRef.afterClosed().subscribe(user => {
@@ -95,7 +95,15 @@ export class UsersComponent implements OnInit {
               name: user.Nombre,
               number: user.Telefono,
               email:user.Email,
-              apellidos:user.Apellidos
+              apellidos:user.Apellidos,
+              direccion:user.Direccion,
+              nombreUsuario:user.Usuario,
+              contraseña:user.Password,
+              IdDeUsuario:user.UsuarioId,
+              imagen:user.Imagen,
+              numEmpleado:user.Numero_Empleado,
+              tokenId:user.TokenId,
+
             };
             console.log(usuario); // Realizar un console.log con los datos de nombre y número de cada usuario
           return usuario;
