@@ -4,6 +4,7 @@ import { TablaConsolidadoComponent } from '../../tablaDetalles/tabla-consolidado
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
+import * as Papa from 'papaparse';
 
 @Component({
   selector: 'app-pedidos-consolidados',
@@ -35,7 +36,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.detallesConsolidado();
+  
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
     console.log(userauth);
@@ -62,9 +63,6 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
 
-      console.log(res)
-      console.log(this.consolidados);
-      console.log(this.consolidadoIds)
 
     })
 
@@ -77,16 +75,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
  // obtener los detalles de consolidados
-  detallesConsolidado(){
 
-    this.appService.obtenerTablaJunta(1).subscribe((res)=>{
-
-      this.consolidadoDetalles = res.filter((consolidadoD) =>consolidadoD);
-
-      console.log(res)
-    })
-
-  }
 
   openDialog() {
     const data = [
@@ -179,8 +168,32 @@ export class PedidosConsolidadosComponent implements OnInit {
   }
   }
 
+  descargarcsv(IdConsolidadoVentaEmpleado)
+  {
 
+    this.appService.obtenerTablaJunta(IdConsolidadoVentaEmpleado).subscribe((res) => {
+
+      const data=res;
+    
+    var csv = Papa.unparse(data, { encoding: "utf-8" });
+    this.downloadCSV(csv, 'csvconsolidadoventaempleado' + IdConsolidadoVentaEmpleado + '.csv');
+  });
+  }
+
+  private downloadCSV(csv: string, filename: string): void {
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.setAttribute('href', URL.createObjectURL(blob));
+    link.setAttribute('download', filename);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
 }
+
+
+
 
 
 
