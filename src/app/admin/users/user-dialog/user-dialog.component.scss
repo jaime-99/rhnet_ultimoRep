@@ -6,3 +6,10 @@
         margin-right: 12px;
     }
 }
+
+
+@media screen and (max-width: 600px) {
+  .mat-form-field {
+    width: 50%; /* Ajustar el ancho de los campos de entrada */
+  }
+}

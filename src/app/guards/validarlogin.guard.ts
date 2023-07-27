@@ -9,7 +9,7 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ValidarTokenGuard implements CanActivate, CanLoad {
-  
+
   constructor(
                private router: Router ){}
 

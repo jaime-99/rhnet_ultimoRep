@@ -99,7 +99,7 @@ export class UsersData implements InMemoryDbService {
                 isDeleted: false,
                 registrationDate: "2014-11-01T19:35:43.511Z",
                 joinedDate: "2017-06-28T15:25:43.511Z"
-            } 
+            }
         },
         {
             id: 4,
@@ -132,7 +132,7 @@ export class UsersData implements InMemoryDbService {
                 isDeleted: false,
                 registrationDate: "2015-12-06T11:10:20.511Z",
                 joinedDate: "2017-06-29T15:15:40.511Z"
-            } 
+            }
         },
         {
             id: 5,
@@ -165,7 +165,7 @@ export class UsersData implements InMemoryDbService {
                 isDeleted: true,
                 registrationDate: "2014-01-10T10:20:20.511Z",
                 joinedDate: "2017-06-28T12:20:40.511Z"
-            } 
+            }
         },
         {
             id: 6,
@@ -299,7 +299,7 @@ export class UsersData implements InMemoryDbService {
                 joinedDate: "2015-03-29T17:20:40.511Z"
             }
         }
-       
+
     ];
     return {users};
   }

@@ -93,5 +93,12 @@ GotoUniversidadDiken()
     });
   }
 
+  mostrarConfigurarion(){
+
+    let userauth = JSON.parse(localStorage.getItem('datalogin')!);
+    console.log(userauth);
+
+  }
+
 
 }

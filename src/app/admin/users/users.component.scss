@@ -17,10 +17,10 @@
         .mat-icon{
             position: absolute;
             top: -8px;
-            left: -8px;            
+            left: -8px;
             font-size: 96px;
             height: 96px;
-            width: 96px;            
+            width: 96px;
         }
     }
     .mat-slide-toggle{
@@ -34,11 +34,11 @@
         }
         .mat-icon{
             padding: 2px 10px;
-        } 
+        }
         &.blocked{
             opacity: 0.5;
         }
-    }    
+    }
 }
 
 .user-search{
@@ -48,7 +48,7 @@
     .mat-form-field{
         width: 100% !important;
         text-align: center !important;
-        height: 36px;        
+        height: 36px;
     }
     .mat-form-field-infix{
         padding: 5px;
