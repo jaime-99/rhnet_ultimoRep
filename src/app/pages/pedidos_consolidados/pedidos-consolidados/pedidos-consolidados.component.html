@@ -20,7 +20,7 @@
           <!-- Acciones -->
           <div class="acciones-container">
             <div class="boton1">
-              <button mat-raised-button color="warn">Eliminar</button>
+              <button mat-raised-button color="warn" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
             </div>
             <div class="boton2">
               <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Detalles</button>
