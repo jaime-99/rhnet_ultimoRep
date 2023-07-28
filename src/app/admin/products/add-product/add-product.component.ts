@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators, FormControl } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { Category, Clase, Familia, ProductoImagen, SubFamilia } from 'src/app/app.models';
-import { ActivatedRoute } from '@angular/router';
 import 'quill-mention';
 import 'quill-emoji';
 import { ThemePalette } from '@angular/material/core';
 import { MaService } from 'src/app/admin-mesadeayuda/ma.service';
 import { ProductserviceService } from '../productservice.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-add-product',
@@ -113,10 +114,10 @@ export class AddProductComponent implements OnInit {
   };
 
 
-  ////richtext end 
+  ////richtext end
   public form: UntypedFormGroup;
   public colors = ["#5C6BC0","#66BB6A","#EF5350","#BA68C8","#FF4081","#9575CD","#90CAF9","#B2DFDB","#DCE775","#FFD740","#00E676","#FBC02D","#FF7043","#F5F5F5","#696969"];
-  public sizes = ["S","M","L","XL","2XL","32", "36","38","46","52","13.3\"","15.4\"","17\"","21\"","23.4\""]; 
+  public sizes = ["S","M","L","XL","2XL","32", "36","38","46","52","13.3\"","15.4\"","17\"","21\"","23.4\""];
   public selectedColors:string;
   public categories:Category[];
   private sub: any;
@@ -124,6 +125,7 @@ export class AddProductComponent implements OnInit {
   public dataClase:Clase[];
   public dataFamilia:Familia[];
   public dataSubFamilia:SubFamilia[];
+  router: Router;
 
 
   constructor(public snackBar: MatSnackBar,public appService:AppService,public prodservice: ProductserviceService, public formBuilder: UntypedFormBuilder, private activatedRoute: ActivatedRoute ) { }
@@ -158,8 +160,8 @@ export class AddProductComponent implements OnInit {
   };
 
   ngOnInit(): void {
-   
-    this.form = this.formBuilder.group({ 
+
+    this.form = this.formBuilder.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
       'images': [null,Validators.required],
       'imagesM': [null,Validators.required],
@@ -171,74 +173,74 @@ export class AddProductComponent implements OnInit {
       "SubFamiliaId":['',Validators.required],
       "CodigoDiken":['',Validators.required],
       "ParaVentaEmpleado":null,
-      "availibilityCount": null, 
-     
-     
-    }); 
+      "availibilityCount": null,
+
+
+    });
 
     this.appService.GetClases().subscribe((res:any)=>{
       console.log(res);
       this.dataClase=res;
-      
+
     })
 
 
     this.getCategories();
-    this.sub = this.activatedRoute.params.subscribe(params => {  
+    this.sub = this.activatedRoute.params.subscribe(params => {
       if(params['id']){
         this.id = params['id'];
-        this.getProductById(); 
-      }  
-    }); 
+        this.getProductById();
+      }
+    });
   }
   changeClase(id:string)
   {
 
     this.appService.GetFamiliaByClass(id).subscribe((res:any)=>{
-     
+
       this.dataFamilia=res;
 
     });
-   
-    
+
+
 
   }
   changeFamilia(id:string)
   {
 
     this.appService.GetSubFamiliaByClassFam(id).subscribe((res:any)=>{
-     
+
       this.dataSubFamilia=res;
 
     });
-   
-    
+
+
   }
-  public getCategories(){   
+  public getCategories(){
     this.appService.getCategories().subscribe(data => {
-      this.categories = data; 
+      this.categories = data;
       this.categories.shift();
-    }); 
+    });
   }
 
   public getProductById(){
-    this.appService.getProductsByIdApi(this.id).subscribe((data:any)=>{ 
+    this.appService.getProductsByIdApi(this.id).subscribe((data:any)=>{
 
       this.appService.GetFamiliaByClass(data.ClaseId).subscribe((res:any)=>{
-     
+
         this.dataFamilia=res;
-  
+
       });
       this.appService.GetSubFamiliaByClassFam(data.FamiliaId).subscribe((res:any)=>{
-     
+
         this.dataSubFamilia=res;
-  
+
       });
       this.htmlText=data.description;
       this.htmlTextCaracteristica=data.PrettyText;
-      
-      this.form.patchValue(data); 
-      this.selectedColors = data.color; 
+
+      this.form.patchValue(data);
+      this.selectedColors = data.color;
 
       const images: any[] = [];
       data.images.forEach(item=>{
@@ -248,8 +250,8 @@ export class AddProductComponent implements OnInit {
         }
         images.push(image);
       })
-      
-      this.form.controls.images.setValue(images); 
+
+      this.form.controls.images.setValue(images);
       const images2: any[] = [];
       data.images.forEach(item=>{
         let image2 = {
@@ -275,9 +277,9 @@ export class AddProductComponent implements OnInit {
   public onSubmit(){
 
     const formData = new FormData();
-    
+
     const formDataM = new FormData();
-    
+
     const formDataB = new FormData();
     const {name,newPrice,TextSearch,ClaseId,FamiliaId,SubFamiliaId, images,imagesM,imagesB,CodigoDiken,ParaVentaEmpleado } = this.form.value;
 if (this.form.invalid)
@@ -287,24 +289,29 @@ if (this.form.invalid)
 }
 
 // return;
-    if (this.id!=undefined){
-      
-       this.prodservice.GetFamiliasDescription(SubFamiliaId).subscribe((famdes:any)=>{
-        console.log(famdes);
-      this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado).subscribe();
-    });
+if (this.id!=undefined){
 
-      this.prodservice.GetProductoImangeByProductoId(this.id).subscribe((res:ProductoImagen)=>{
-       
-        if(res!=undefined)
-        {
-          let small:string,medium:string,big:string;
-          if(images[0].hasOwnProperty('file'))
-          {
-            small=images[0].file.name;
-                 formData.append('file', images[0].file);
-                 formData.append('tmp_name', images[0].file.name);
-                 this.prodservice.postfiles(formData).subscribe((datosx:any) => {
+  this.prodservice.GetFamiliasDescription(SubFamiliaId).subscribe((famdes:any)=>{
+
+    console.log(famdes);
+    this.paginaProductos();
+    this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado).subscribe();
+    //todo ir a inicio
+
+
+  });
+
+  this.prodservice.GetProductoImangeByProductoId(this.id).subscribe((res:ProductoImagen)=>{
+
+    if(res!=undefined)
+    {
+      let small:string,medium:string,big:string;
+      if(images[0].hasOwnProperty('file'))
+      {
+        small=images[0].file.name;
+        formData.append('file', images[0].file);
+        formData.append('tmp_name', images[0].file.name);
+        this.prodservice.postfiles(formData).subscribe((datosx:any) => {
 
                 });
 
@@ -322,29 +329,30 @@ if (this.form.invalid)
 
                 });
 
-          }
-          else
-          {medium=res.medium}
+              }
+              else
+              {medium=res.medium}
 
           if(imagesB[0].hasOwnProperty('file'))
           {
             big=imagesB[0].file.name;
             formDataB.append('file', imagesB[0].file);
             formDataB.append('tmp_name', imagesB[0].file.name);
-                 this.prodservice.postfiles(formDataB).subscribe((datosx:any) => {
+            this.prodservice.postfiles(formDataB).subscribe((datosx:any) => {
 
                 });
 
-          }
-          else
-          {big=res.big}
+              }
+              else
+              {big=res.big}
 
-          this.appService.UpdateProductoImagen(res.Id,this.id,small,medium,big,res.EsPrincipal).subscribe();
-          
-        
-        }
-        else
-        {
+              this.appService.UpdateProductoImagen(res.Id,this.id,small,medium,big,res.EsPrincipal).subscribe();
+
+
+
+            }
+            else
+            {
           let small:string,medium:string,big:string;
 
           if(images[0].hasOwnProperty('file'))
@@ -355,7 +363,7 @@ if (this.form.invalid)
                  this.prodservice.postfiles(formData).subscribe((datosx:any) => {
 
                 });
-            
+
 
           }
           else
@@ -387,15 +395,16 @@ if (this.form.invalid)
           {big=undefined}
 
           this.prodservice.AddProductoImagen(this.id,small,medium,big,1).subscribe();
-          
+
         }
       })
-  
+
       return;
-     
+
+
      }
-  
-    
+
+
 
 
 
@@ -404,17 +413,24 @@ if (this.form.invalid)
 
 // });
 
-  
+
   }
 
-  public onColorSelectionChange(event:any){  
+  public onColorSelectionChange(event:any){
     if(event.value){
       this.selectedColors = event.value.join();
-    } 
-  }  
+    }
+  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  } 
+  }
+
+
+    paginaProductos(){
+      this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
+    }
+
+
 
 }

@@ -36,7 +36,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
   ngOnInit(): void {
 
-  
+
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
     console.log(userauth);
@@ -59,9 +59,6 @@ export class PedidosConsolidadosComponent implements OnInit {
         this.consolidados = res.filter((consolidado) =>consolidado);
         // obtener los id's
         this.consolidadoIds = this.consolidados.map((consolidado) => consolidado.IdConsolidadoVentaEmpleado);
-
-
-
 
 
     })
@@ -174,7 +171,7 @@ export class PedidosConsolidadosComponent implements OnInit {
     this.appService.obtenerTablaJunta(IdConsolidadoVentaEmpleado).subscribe((res) => {
 
       const data=res;
-    
+
     var csv = Papa.unparse(data, { encoding: "utf-8" });
     this.downloadCSV(csv, 'csvconsolidadoventaempleado' + IdConsolidadoVentaEmpleado + '.csv');
   });

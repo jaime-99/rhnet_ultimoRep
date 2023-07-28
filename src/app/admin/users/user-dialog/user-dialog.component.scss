@@ -7,9 +7,17 @@
     }
 }
 
+/* styles.css o styles.scss */
+.green-snackbar {
+  background-color: green;
+  color: white;
+}
+
 
 @media screen and (max-width: 600px) {
   .mat-form-field {
     width: 50%; /* Ajustar el ancho de los campos de entrada */
   }
 }
+
+

@@ -48,6 +48,7 @@ export const routes: Routes = [
   exports:[
     MatDialogModule,
     MatButtonModule,
+    RouterModule,
 
   ],
   providers:[{ provide: MAT_DATE_LOCALE, useValue: 'es-MX', }]

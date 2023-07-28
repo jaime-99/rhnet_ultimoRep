@@ -33,11 +33,6 @@
                           <input matInput placeholder="Apellidos" [value]="apellidos" formControlName="p_Apellidos">
                       </mat-form-field>
 
-                    <!-- <mat-form-field class="w-100">
-                        <input matInput [matDatepicker]="birthday" placeholder="Cumpleaños" formControlName="birthday">
-                        <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
-                        <mat-datepicker #birthday>< /mat-datepicker>
-                    </mat-form-field> -->
                     <mat-form-field class="w-100">
                         <input matInput [value]="telefono" placeholder="Telefono" formControlName="p_Telefono">
                         <!-- <mat-error *ngIf="form.controls.p_Telefono.errors?.required">El telefono no debe exceder</mat-error> -->
@@ -46,27 +41,41 @@
 
                       <div class="text-center">
                         <p>Seleccionar una imagen  (opcional)</p>
-                          <input class="form-control" placeholder="Seleccionar Imagen" type="file">
+                          <input class="imagen" placeholder="Seleccionar Imagen" type="file">
                       </div>
+                    </div>
+                  </mat-tab>
 
 
 
-
-
-
-                </div>
-            </mat-tab>
-
-            <mat-tab label="Cambiar Contraseña">
+            <mat-tab label="Cambiar Contraseña" formGroupName="contrasenia">
 
               <div fxLayout="column" class="form-field-outer">
-                <a   href="https://dikeninternational.com/ventaempleadosdiken/#/formularioPass?tokenid={{token}}"  mat-button color="primary"> Ir a cambiar contraseña</a>
-              </div>
+                <mat-form-field class="w-100">
+              <input matInput  placeholder="Id de Usuario" type="text" formControlName="p_UsuarioId" readonly>
+            </mat-form-field>
+                <mat-form-field class="w-100">
+              <input matInput  placeholder="Nueva Contraseña" requered type="password" formControlName="p_Password" >
+            </mat-form-field>
+                <mat-form-field class="w-100">
+              <input matInput  placeholder="Confirmar Contraseña" required type="password" formControlName="p_PassRepeat" >
+            </mat-form-field>
+            <div>
+
+
+              <div>
+            <button mat-raised-button color="primary" (click)="cambiarPass()" [disabled]=" !form.get('contrasenia.p_Password').value"  >Cambiar Contraseña </button>
+            </div>
+            </div>
+          </div>
+
+        </mat-tab>
 
 
 
 
-            </mat-tab>
+
+
 
 
 
@@ -121,13 +130,45 @@
             </mat-tab> -->
         </mat-tab-group>
     </form>
+
+    <!-- todo Aqui hare lo nuevo de cambiar contrasenia  -->
+
+
+
+
+
+
+
+
 </div>
+
+<!-- <div mat-dialog-content>
+
+<form [formGroup]="cambioContrasenia" class="user-form">
+  <mat-tab-group class="vertical-tabs">
+
+    <mat-tab label="Cambiar Contraseña">
+
+      <div fxLayout="column" class="form-field-outer">
+        <mat-form-field class="w-100">
+          <input placeholder="contraseña" formControlName="password">
+
+
+        </mat-form-field>
+        </div>
+    </mat-tab>
+
+  </mat-tab-group>
+
+</form>
+</div> -->
+
 <div mat-dialog-actions>
     <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
-        <button (click)="modificarUsuario()" mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]=" !form.get('usuario.p_Nombre').value || !form.get('usuario.p_Apellidos').value || !form.get('usuario.p_Telefono').value"
+        <button (click)="modificarUsuario()" mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]=" !form.get('usuario.p_Nombre').value || !form.get('usuario.p_Apellidos').value || !form.get('usuario.p_Telefono').value">
 
-        >
         <span>Actualizar</span> </button>
         <button mat-raised-button color="warn" (click)="close()">Cancelar</button>
+
     </div>
 </div>

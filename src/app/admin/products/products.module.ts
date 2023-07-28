@@ -20,14 +20,14 @@ import { QuillModule } from 'ngx-quill'
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
 
 
-export const routes: Routes = [ 
+export const routes: Routes = [
   { path: '', redirectTo: 'product-list', pathMatch: 'full'},
   { path: 'categories', component: CategoriesComponent, data: { breadcrumb: 'Categorías' } },
   { path: 'product-list', component: ProductListComponent, data: { breadcrumb: 'Productos' } },
   { path: 'product-detail', component: ProductDetailComponent, data: { breadcrumb: 'Producto Detalle' } },
-  { path: 'product-detail/:id', component: ProductDetailComponent, data: { breadcrumb: 'Producto Detalle' } }, 
+  { path: 'product-detail/:id', component: ProductDetailComponent, data: { breadcrumb: 'Producto Detalle' } },
   { path: 'add-product', component: AddProductComponent, data: { breadcrumb: 'Agregar Producto' } },
-  { path: 'add-product/:id', component: AddProductComponent, data: { breadcrumb: 'Editar Producto' } }, 
+  { path: 'add-product/:id', component: AddProductComponent, data: { breadcrumb: 'Editar Producto' } },
   {path:'productosrelacionados/:id',component:ProductosRelacionadosComponent,data:{breadcrumb:'Productos relacionados'}}
 ];
 
@@ -55,7 +55,11 @@ export const routes: Routes = [
     InputFileModule,
     QuillModule.forRoot(),
     NgxMatFileInputModule
-   
+
+  ],
+
+  exports:[
+    RouterModule,
   ]
 })
 export class ProductsModule { }

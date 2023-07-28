@@ -6,6 +6,9 @@ import { UsersComponent } from '../users.component';
 import { SupportService } from '../../support/service/support.service';
 import { TreeMapModule } from '@swimlane/ngx-charts';
 import { AppService } from 'src/app/app.service';
+import { Md5 } from 'ts-md5';
+import { MatSnackBar,MatSnackBarConfig } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: "app-user-dialog",
@@ -16,6 +19,7 @@ export class UserDialogComponent implements OnInit {
   profileForm: FormGroup;
 
   // ejemplo
+  cambioContrasenia:UntypedFormGroup
   nombreUsuario = "";
   public form: UntypedFormGroup;
   public usuarioForm: FormGroup;
@@ -31,7 +35,8 @@ export class UserDialogComponent implements OnInit {
   num_Usuario: any;
   boton: TreeMapModule;
   token: any;
-  constructor(
+  contra: any;
+  constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public fb: UntypedFormBuilder,
@@ -39,45 +44,8 @@ export class UserDialogComponent implements OnInit {
     public appService:AppService,
   ) {
     this.form = this.fb.group({
-      // id: null,
-      // username: [
-      //   null,
-      //   Validators.compose([Validators.required, Validators.minLength(5)]),
-      // ],
-      // password: [
-      //   null,
-      //   Validators.compose([Validators.required, Validators.minLength(6)]),
-      // ],
-      // profile: this.fb.group({
-      //   name: null,
-      //   surname: null,
-      //   birthday: null,
-      //   gender: null,
-      //   image: null,
-      // }),
-      // work: this.fb.group({
-      //   company: null,
-      //   position: null,
-      //   salary: null,
-      // }),
-      // contacts: this.fb.group({
-      //   email: null,
-      //   phone: null,
-      //   address: null,
-      // }),
-      // social: this.fb.group({
-      //   facebook: null,
-      //   twitter: null,
-      //   google: null,
-      // }),
-      // settings: this.fb.group({
-      //   isActive: null,
-      //   isDeleted: null,
-      //   registrationDate: null,
-      //   joinedDate: null,
-      // }),
 
-      usuario: this.fb.group({
+    usuario: this.fb.group({
         p_UsuarioId: data.IdDeUsuario,disabled: true,
         p_Nombre: [[''], Validators.compose([Validators.required, Validators.maxLength(25)]),],
         p_Apellidos: [[''], Validators.compose([Validators.required, Validators.maxLength(30)]),],
@@ -85,10 +53,21 @@ export class UserDialogComponent implements OnInit {
         p_Imagen:[''],
         // p_Correo:data.email,
       }),
+
+      contrasenia:this.fb.group({
+
+        p_UsuarioId:data.IdDeUsuario,disabled:true,
+        p_Password: [[''], Validators.compose([Validators.required, Validators.maxLength(15)]),],
+        p_PassRepeat:[[''], Validators.compose([Validators.required, Validators.maxLength(15)]),],
+        // p_repeatPass:['']
+      })
     });
   }
 
+
+
   ngOnInit() {
+
     this.usuarioForm = this.fb.group({
       name: [
         null,
@@ -98,6 +77,18 @@ export class UserDialogComponent implements OnInit {
       email: null,
       apellidos: null,
     });
+
+    //es el formgroup de cambiar contrasenia
+
+      this.cambioContrasenia = this.fb.group({
+          password: ['', Validators.required],
+          passwordRepeat: ['', Validators.required]
+      });
+
+      this.contra = this.form.get('contrasenia.p_UsuarioId').value
+      console.log(this.contra);
+
+
 
     // todo inicializar los datos predeterminados
 
@@ -273,11 +264,56 @@ onFileSelected(event: any) {
   this.imagen = file;
 }
 
+cambiarPass(){
+
+
+  const pass = this.form.get('contrasenia.p_Password').value;
+  const usu = this.form.get('contrasenia.p_UsuarioId').value;
+
+  const formData = {
+    p_UsuarioId: usu,
+    p_Password: pass
+  };
+
+//validaciones
+const passRepeat = this.form.get('contrasenia.p_PassRepeat').value; // Obtener el valor del campo de contraseña repetida
+
+if (pass !== passRepeat) {
+  console.log("Las contraseñas no coinciden");
+   const config: MatSnackBarConfig = {
+        panelClass: ['green-snackbar'],
+        duration: 4000
+      };
+  this.mostrarNotificacion("Las contraseñas no coinciden. Por favor, verifica tus contraseñas.",{ panelClass: ['mat-toolbar', 'mat-warn'],verticalPosition:'top' });
+  return;
+} else {
+  this.mostrarNotificacionVerde("se ha modificado tu contraseña",{ panelClass: [status] });
 
 
 
+  console.log("Las contraseñas son iguales");
+  console.log(formData);
 
+  // Aquí puedes continuar con el resto del código
+  // Encriptar la contraseña, llamar al servicio, etc.
 }
 
+ console.log(formData);
+  const hashedPassword = Md5.hashStr(formData.p_Password).toString();
+  //actualizar la contra con la encriptada
+  formData.p_Password = hashedPassword;
+
+  this.appService.cambiarContraseniaNuevo(formData).subscribe((res) => {
+    console.log(res);
+})
+}
+
+mostrarNotificacion(mensaje: string, config:MatSnackBarConfig) {
+  this._snackBar.open(mensaje, 'Cerrar', config,)
+}
+mostrarNotificacionVerde(mensaje: string, config:MatSnackBarConfig) {
+  this._snackBar.open(mensaje, 'Cerrar', config,)
+}
+}
 
 

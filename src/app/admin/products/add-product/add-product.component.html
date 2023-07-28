@@ -11,7 +11,7 @@
                             <mat-error *ngIf="form.controls.name.errors?.required">El Producto es requerido</mat-error>
                             <mat-error *ngIf="form.controls.name.hasError('minlength')">El nombre del producto debe tener almenos 4 caracteres</mat-error>
                         </mat-form-field>
-                    </div> 
+                    </div>
 
                     <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
                         <mat-form-field appearance="outline" class="w-100">
@@ -19,7 +19,7 @@
                             <input matInput formControlName="newPrice" required >
                             <mat-error *ngIf="form.controls.newPrice.errors?.required">El Precio es requerido</mat-error>
                         </mat-form-field>
-                    </div>   
+                    </div>
 
                     <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
                         <mat-form-field appearance="outline" class="w-100">
@@ -29,9 +29,9 @@
                                     <span>{{cat.Descripcion}}</span>
                                 </mat-option>
                             </mat-select>
-                           
+
                         </mat-form-field>
-                    </div> 
+                    </div>
                     <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Familia</mat-label>
@@ -42,7 +42,7 @@
                             </mat-select>
                             <mat-error *ngIf="form.controls.FamiliaId.errors?.required">La Familia es requireda</mat-error>
                         </mat-form-field>
-                    </div> 
+                    </div>
                     <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Sub Familia</mat-label>
@@ -53,48 +53,48 @@
                             </mat-select>
                             <mat-error *ngIf="form.controls.SubFamiliaId.errors?.required">Category is required</mat-error>
                         </mat-form-field>
-                    </div> 
-             
-                      
+                    </div>
+
+
                     <div fxFlex="100" fxFlex.gt-sm="50" class="px-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Codigo Diken</mat-label>
-                            <input matInput formControlName="CodigoDiken" type="text"> 
+                            <input matInput formControlName="CodigoDiken" type="text">
                         </mat-form-field>
-                    </div> 
-                  
-                    
+                    </div>
+
+
                     <div fxFlex="100" fxFlex.gt-sm="100" class="px-1">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Tags</mat-label>
-                            <input matInput formControlName="TextSearch"> 
+                            <input matInput formControlName="TextSearch">
                         </mat-form-field>
-                    </div> 
+                    </div>
 
                     <div fxFlex="100" fxFlex.gt-sm="100" class="px-1">
-                       
+
                             <mat-checkbox  formControlName="ParaVentaEmpleado" class="primary"  color= 'primary'>Habilitado para venta empleado</mat-checkbox>
-                      
-                    </div> 
 
-                    <div fxFlex="33.3" class="px-1"> 
-                        <p class="mt-1"><span class="uppercase fw-500">Pequeña</span><span class="text-muted px-1">(185X135)</span></p>  
-                        <input-file formControlName="images" fileLimit="1" fileAccept="image/*" required></input-file>  
-                    </div>
-                    <div fxFlex="33.3" class="px-1"> 
-                        <p class="mt-1"><span class="uppercase fw-500">Mediana</span><span class="text-muted px-1">(480X360)</span></p>  
-                        <input-file formControlName="imagesM" fileLimit="1" fileAccept="image/*" required></input-file>  
                     </div>
 
-                    <div fxFlex="33.3" class="px-1"> 
-                        <p class="mt-1"><span class="uppercase fw-500">Grande</span><span class="text-muted px-1">(960X720)</span></p>  
-                        <input-file formControlName="imagesB" fileLimit="1" fileAccept="image/*" required></input-file>  
+                    <div fxFlex="33.3" class="px-1">
+                        <p class="mt-1"><span class="uppercase fw-500">Pequeña</span><span class="text-muted px-1">(185X135)</span></p>
+                        <input-file formControlName="images" fileLimit="1" fileAccept="image/*" required></input-file>
+                    </div>
+                    <div fxFlex="33.3" class="px-1">
+                        <p class="mt-1"><span class="uppercase fw-500">Mediana</span><span class="text-muted px-1">(480X360)</span></p>
+                        <input-file formControlName="imagesM" fileLimit="1" fileAccept="image/*" required></input-file>
+                    </div>
+
+                    <div fxFlex="33.3" class="px-1">
+                        <p class="mt-1"><span class="uppercase fw-500">Grande</span><span class="text-muted px-1">(960X720)</span></p>
+                        <input-file formControlName="imagesB" fileLimit="1" fileAccept="image/*" required></input-file>
                     </div>
 
 
-                   
-                    
-                    
+
+
+
                 </div>
                 <br>
                 <!-- <div fxFlex="100" class="px-1">
@@ -105,12 +105,12 @@
                     (onSelectionChanged)="onSelectionChanged($event)"
                     (onContentChanged)="onContentChanged($event)"
                     ></quill-editor>
-            
+
                     <div [innerHTML]="htmlText"></div>
                 </div> -->
             </form>
             <div fxLayout="row wrap">
-            <div fxFlex="50" class="px-2"> 
+            <div fxFlex="50" class="px-2">
         <quill-editor
         [(ngModel)]="htmlText"
         placeholder="Escribir Descripción"
@@ -118,12 +118,12 @@
         (onSelectionChanged)="onSelectionChanged($event)"
         (onContentChanged)="onContentChanged($event)"
         ></quill-editor></div>
-        <div fxFlex="50" class="px-2"> 
+        <div fxFlex="50" class="px-2">
         <div [innerHTML]="htmlText"></div>
         </div>
     </div>
     <div fxLayout="row wrap">
-        <div fxFlex="50" class="px-2"> 
+        <div fxFlex="50" class="px-2">
     <quill-editor
     [(ngModel)]="htmlTextCaracteristica"
     placeholder="Ecribir las Caracteristicas"
@@ -131,7 +131,7 @@
     (onSelectionChanged)="onSelectionChanged($event)"
     (onContentChanged)="onContentChanged($event)"
     ></quill-editor></div>
-    <div fxFlex="50" class="px-2"> 
+    <div fxFlex="50" class="px-2">
     <div [innerHTML]="htmlTextCaracteristica"></div>
     </div>
 </div>
@@ -141,7 +141,7 @@
         </div>
         </div>
         </mat-card-content>
-        
+
 </mat-card>
 
 </div>
