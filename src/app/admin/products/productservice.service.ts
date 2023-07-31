@@ -9,7 +9,7 @@ import { ProductoImagen } from 'src/app/app.models';
 export class ProductserviceService {
   private baseUrl: string = "https://www.dikeninternational.com/dikenecommerce/api";
   constructor(private http: HttpClient) { }
- 
+
 
   postfiles(formData:any):Observable<any>
 {
@@ -19,7 +19,7 @@ export class ProductserviceService {
 }
 UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clase:any,Familia:any,SubFamilia:any,TextSearch:any,CodigoDiken:any,PrettyText:any)
 {
-  const url=`${ this.baseUrl }/producto/UpdateProducto.php`; 
+  const url=`${ this.baseUrl }/producto/UpdateProducto.php`;
 
 
   const body={ProductoId,Producto,PrecioActual,Descripcion,Clase,Familia,SubFamilia,TextSearch,CodigoDiken,PrettyText}
@@ -28,7 +28,7 @@ UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clas
 }
 UpdateProductoImagen(Id:any,ProductoId:any,small:any,medium:any,big:any,EsPrincipal:any)
 {
-  const url=`${ this.baseUrl }/producto/UpdateProductoImagen.php`;  
+  const url=`${ this.baseUrl }/producto/UpdateProductoImagen.php`;
 
   const body={Id,ProductoId,small,medium,big,EsPrincipal}
   return this.http.put<any>( url, body );
@@ -36,11 +36,10 @@ UpdateProductoImagen(Id:any,ProductoId:any,small:any,medium:any,big:any,EsPrinci
 }
 AddProductoImagen(ProductoId:any,small:any,medium:any,big:any,EsPrincipal:any)
 {
-  const url=`${ this.baseUrl }/producto/AddProductoImagen.php`;  
+  const url=`${ this.baseUrl }/producto/AddProductoImagen.php`;
 
   const body={ProductoId,small,medium,big,EsPrincipal}
   return this.http.post<any>( url, body );
-
 
 }
 

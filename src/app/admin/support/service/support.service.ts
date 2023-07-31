@@ -258,6 +258,17 @@ GetLoginAuth(Correo:string,contrasenia:string)
 
     }
 
+    //todo subir imagen a servidor general
+
+    subirImagen(image:any){
+      const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/cargarImagen.php`;
+      const formData = new FormData();
+      formData.append('image', image);
+      return this.http.post<string>(url, formData); // Es
+
+
+    }
+
 
 
   AddTiket(UsuarioId:string,SubCategoriaId:string,ResponsableId :string,Detalle:string,ContactoTelefonico:string):Observable<any>

@@ -36,6 +36,9 @@ export class UserDialogComponent implements OnInit {
   boton: TreeMapModule;
   token: any;
   contra: any;
+  selectedImage: File | null;
+  selectedFile: File | null;
+
   constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -255,16 +258,8 @@ export class UserDialogComponent implements OnInit {
   //   });
   // }
 
-  //todo obtener la imagen
 
-  selectedImage: File | null;
-
-onFileSelected(event: any) {
-  const file: File = event.target.files[0];
-  this.imagen = file;
-}
-
-cambiarPass(){
+  cambiarPass(){
 
 
   const pass = this.form.get('contrasenia.p_Password').value;
@@ -287,7 +282,9 @@ if (pass !== passRepeat) {
   this.mostrarNotificacion("Las contraseñas no coinciden. Por favor, verifica tus contraseñas.",{ panelClass: ['mat-toolbar', 'mat-warn'],verticalPosition:'top' });
   return;
 } else {
-  this.mostrarNotificacionVerde("se ha modificado tu contraseña",{ panelClass: [status] });
+  // this.mostrarNotificacionVerde("se ha modificado tu contraseña",{ panelClass: [status] });
+  this.mostrarNotificacion("se ha cambiado la contraseña.",{ panelClass: ['mat-toolbar', 'mat-primary'],verticalPosition:'top' });
+
 
 
 
@@ -314,6 +311,32 @@ mostrarNotificacion(mensaje: string, config:MatSnackBarConfig) {
 mostrarNotificacionVerde(mensaje: string, config:MatSnackBarConfig) {
   this._snackBar.open(mensaje, 'Cerrar', config,)
 }
+
+
+
+//todo obtener la imagen
+
+
+onFileSelected(event: any) {
+  this.selectedFile = event.target.files[0];
+  console.log(this.selectedFile);
+}
+
+onSubmit() {
+  if (this.selectedFile) {
+    this.supportService.subirImagen(this.selectedFile).subscribe((res) => {
+      console.log(res)
+    }
+
+    )
+  }
+}
+
+
+
+
+
+
 }
 
 
