@@ -1,6 +1,6 @@
 .user-form{
     .form-field-outer{
-        width: 280px;
+        width: 300px;
     }
     .mat-radio-button{
         margin-right: 12px;
@@ -8,10 +8,6 @@
 }
 
 /* styles.css o styles.scss */
-.green-snackbar {
-  background-color: green;
-  color: white;
-}
 
 
 .user-img{
@@ -34,10 +30,76 @@
   }
 }
 
-@media screen and (max-width: 600px) {
-  .mat-form-field {
-    width: 50%; /* Ajustar el ancho de los campos de entrada */
+//todo empezare con responsive de cambiar foto
+
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centra horizontalmente el contenido */
+  justify-content: center;
+  height: 100%;
+
+}
+
+.text-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.parrafo {
+  margin: 10px;
+}
+.imagen{
+  margin:10px;
+}
+
+
+// todo se cierra el responsive de cambiar foto
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 768px) {
+
+  .tab-container {
+    display: flex;
+    flex-direction: column;
   }
+
+  /* Estilos para los mat-tab-group */
+  .mat-tab-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+
+  .mat-tab-header {
+    flex-direction: row; /* Cambia la dirección de las pestañas a horizontal */
+    justify-content: space-around; /* Distribuye las pestañas de manera equitativa */
+    align-items: center; /* Centra verticalmente las pestañas */
+    position: fixed; /* Fija las pestañas en la parte superior */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f1f1f1; /* Cambia el color de fondo de las pestañas */
+    z-index: 1; /* Asegura que las pestañas estén sobre el contenido */
+  }
+  .mat-tab-header-pagination {
+    display: none; /* Oculta la paginación de las pestañas (los botones de scroll) */
+  }
+
+
+
 }
 
 

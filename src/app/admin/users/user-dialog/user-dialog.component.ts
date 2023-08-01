@@ -31,13 +31,15 @@ export class UserDialogComponent implements OnInit {
   contrasenia: any;
   nombre: any;
   nombreDeUsuario: any;
-  imagen: File| null;
+  imagen: null;
   num_Usuario: any;
   boton: TreeMapModule;
   token: any;
   contra: any;
   selectedImage: File | null;
   selectedFile: File | null;
+  nombreFoto: string;
+  nombreImagen: any;
 
   constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
@@ -102,6 +104,8 @@ export class UserDialogComponent implements OnInit {
     this.num_Usuario = this.data.numEmpleado,
     this.token=this.data.tokenId
 
+    // incializar el numero de usuario
+
 
 
 
@@ -156,6 +160,7 @@ export class UserDialogComponent implements OnInit {
           this.nombreDeUsuario = this.data.nombreUsuario;
           this.imagen = this.data.imagen;
           this.num_Usuario= this.data.numEmpleado
+
 
           console.log("Nombre del primer usuario:", this.nombreUsuario);
         } else {
@@ -313,30 +318,54 @@ mostrarNotificacionVerde(mensaje: string, config:MatSnackBarConfig) {
 }
 
 
-
 //todo obtener la imagen
-
 
 onFileSelected(event: any) {
   this.selectedFile = event.target.files[0];
   console.log(this.selectedFile);
+  this.nombreFoto = this.selectedFile.name
+
 }
 
 onSubmit() {
   if (this.selectedFile) {
     this.supportService.subirImagen(this.selectedFile).subscribe((res) => {
-      console.log(res)
+       console.log(res)
+       this.cambiarImagen();
+
+       this.mostrarNotificacion("se ha cambiado la foto de perfil.",{ panelClass: ['mat-toolbar', 'mat-primary'],verticalPosition:'top' });
+
     }
 
     )
   }
 }
 
+cambiarImagen(){
+  const urlImagen ={
+    p_NuevaImagen : 'https://dikeninternational.com/rhnet/uploads/'+ this.nombreFoto,
+    p_UsuarioId : this.data.IdDeUsuario,
+
+  }
+  this.nombreImagen = urlImagen.p_NuevaImagen;
+
+  console.log(urlImagen);
+
+
+
+  this.supportService.seCambiaFoto(urlImagen.p_UsuarioId,urlImagen.p_NuevaImagen).subscribe((res) => {
+    console.log(res)
+  })
+}
 
 
 
 
 
 }
+
+
+
+
 
 

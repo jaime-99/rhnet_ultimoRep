@@ -1,6 +1,8 @@
 <h1 mat-dialog-title><span >Editar</span><span ></span> usuario</h1>
 <div mat-dialog-content>
     <form [formGroup]="form" class="user-form">
+      <div class="tab-container">
+
         <mat-tab-group class="vertical-tabs">
             <!-- <mat-tab label="Cuenta">
                 <div fxLayout="column" class="form-field-outer">
@@ -72,26 +74,31 @@
 
         </mat-tab>
 
+
+
+
         <mat-tab label="Cambiar Foto de Perfil" formGroupName="contrasenia">
-
-          <div fxLayout="column" class="form-field-outer">
-
-
+          <div class="tab-content">
             <div class="user-img">
               <!-- <img *ngIf="user.imagen" [src]="usuario.imagen" class="transition-2"> -->
-              <img  src="https://dikeninternational.com/rhnet/uploads/default.png" class="transition-2">
+              <!-- <img  src={{this.nombreImagen}} class="transition-2"> -->
+
+              <img *ngIf="this.imagen === '' || this.imagen === null || this.imagen === undefined" src="https://dikeninternational.com/rhnet/uploads/default.png" class="transition-2">
+              <img *ngIf="this.imagen" [src]="this.imagen" class="transition-2">
+
             </div>
 
+
             <div class="text-center">
-              <p>Seleccionar una imagen (opcional)</p>
+              <p class="parrafo">Seleccionar una imagen (opcional)</p>
               <input class="imagen" placeholder="Seleccionar Imagen" type="file"  (change)="onFileSelected($event)">
               <hr>
-              <button mat-raised-button color="primary" type="button" (click)="onSubmit()">Cargar Imagen</button>
-
+              <button mat-raised-button color="primary" type="file" (click)="onSubmit()">Cargar Imagen</button>
             </div>
           </div>
 
         </mat-tab>
+
 
 
 
@@ -153,6 +160,7 @@
                 </div>
             </mat-tab> -->
         </mat-tab-group>
+        </div>
     </form>
 
     <!-- todo Aqui hare lo nuevo de cambiar contrasenia  -->
