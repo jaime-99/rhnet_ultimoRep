@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, HostListener } from '@angular/core';
 import { AppSettings, Settings } from '../app.settings';
-import { Router, NavigationEnd } from '@angular/router'; 
-import { MenuService } from './components/menu/menu.service';  
+import { Router, NavigationEnd } from '@angular/router';
+import { MenuService } from './components/menu/menu.service';
 
 @Component({
   selector: 'app-admin',
@@ -9,20 +9,20 @@ import { MenuService } from './components/menu/menu.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  @ViewChild('sidenav') sidenav:any;  
-  public userImage = 'assets/images/others/admin.jpg'; 
+  @ViewChild('sidenav') sidenav:any;
+  public userImage = 'assets/images/others/admin.jpg';
   public settings:Settings;
   public menuItems:Array<any>;
   public toggleSearchBar:boolean = false;
   public userLogged="";
   public maillogged="";
-  constructor(public appSettings:AppSettings, 
+  constructor(public appSettings:AppSettings,
               public router:Router,
-              private menuService: MenuService){        
+              private menuService: MenuService){
     this.settings = this.appSettings.settings;
   }
 
-  ngOnInit() {  
+  ngOnInit() {
     let userauth=JSON.parse(localStorage.getItem('datalogin')!);
     this.userImage=userauth.Imagen;
     this.userLogged=userauth.data.Usuario;
@@ -36,30 +36,30 @@ export class AdminComponent implements OnInit {
     {
       this.maillogged=puesto;
     }
-    if(window.innerWidth <= 960){ 
+    if(window.innerWidth <= 960){
       this.settings.adminSidenavIsOpened = false;
       this.settings.adminSidenavIsPinned = false;
-    }; 
+    };
     setTimeout(() => {
-      //this.settings.theme = 'green'; 
+      //this.settings.theme = 'green';
     });
-    this.menuItems = this.menuService.getMenuItems();    
+    this.menuItems = this.menuService.getMenuItems();
   }
 
-  ngAfterViewInit(){  
+  ngAfterViewInit(){
     if(document.getElementById('preloader')){
       document.getElementById('preloader').classList.add('hide');
-    } 
+    }
     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         this.scrollToTop();
-      } 
+      }
       if(window.innerWidth <= 960){
-        this.sidenav.close(); 
-      }                
-    });  
-    this.menuService.expandActiveSubMenu(this.menuService.getMenuItems());  
-  } 
+        this.sidenav.close();
+      }
+    });
+    this.menuService.expandActiveSubMenu(this.menuService.getMenuItems());
+  }
 
   public toggleSidenav(){
     this.sidenav.toggle();
@@ -73,12 +73,12 @@ export class AdminComponent implements OnInit {
          window.scrollBy(0, scrollStep);
       }
       else{
-        clearInterval(scrollInterval); 
+        clearInterval(scrollInterval);
       }
     },10);
     if(window.innerWidth <= 768){
-      setTimeout(() => {  
-        window.scrollTo(0,0); 
+      setTimeout(() => {
+        window.scrollTo(0,0);
       });
     }
   }
@@ -87,9 +87,9 @@ export class AdminComponent implements OnInit {
   public onWindowResize():void {
     if(window.innerWidth <= 960){
       this.settings.adminSidenavIsOpened = false;
-      this.settings.adminSidenavIsPinned = false; 
+      this.settings.adminSidenavIsPinned = false;
     }
-    else{ 
+    else{
       this.settings.adminSidenavIsOpened = true;
       this.settings.adminSidenavIsPinned = true;
     }

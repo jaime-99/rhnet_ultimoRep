@@ -1,0 +1,46 @@
+.profile-info {
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  padding: 20px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.profile-info h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.info-item span {
+  font-weight: bold;
+}
+
+/* Opcional: Estilos adicionales para mejorar el aspecto visual */
+.profile-info {
+  font-family: Arial, sans-serif;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-item {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
+}
+
+.profile-pic {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-pic img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover; /* Para asegurarse de que la imagen se ajuste correctamente dentro del círculo */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Opcional: Agregar una sombra a la imagen */
+}

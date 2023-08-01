@@ -11,19 +11,19 @@ import { Settings, AppSettings } from '../../../app.settings';
 
 export class TopMenuComponent implements OnInit {
   public currencies = ['USD', 'EUR'];
-  public currency:any; 
+  public currency:any;
   public rutabanderas="";
   public userLogged="";
   public maillogged="";
   public userImage="";
 
   public settings: Settings;
-  constructor(public appSettings:AppSettings, public appService:AppService, public translateService: TranslateService) { 
-    this.settings = this.appSettings.settings; 
-  } 
+  constructor(public appSettings:AppSettings, public appService:AppService, public translateService: TranslateService) {
+    this.settings = this.appSettings.settings;
+  }
 
   ngOnInit() {
-    this.currency = this.currencies[0];  
+    this.currency = this.currencies[0];
     let userauth=JSON.parse(localStorage.getItem('datalogin')!);
     this.userImage=userauth.Imagen;
     this.userLogged=userauth.data.Usuario;
@@ -41,11 +41,11 @@ export class TopMenuComponent implements OnInit {
 
   public changeCurrency(currency){
     this.currency = currency;
-  } 
+  }
 
-  public changeLang(lang:string){ 
-    this.translateService.use(lang);   
-  } 
+  public changeLang(lang:string){
+    this.translateService.use(lang);
+  }
 
   public getLangText(lang){
     if(lang == 'de'){
@@ -63,6 +63,6 @@ export class TopMenuComponent implements OnInit {
     else{
       return 'English';
     }
-  } 
+  }
 
 }

@@ -1,7 +1,7 @@
-<mat-tab-group >
-    <mat-tab label="Billing address">
+<!-- <mat-tab-group >
+    <mat-tab label="Informacion de la cuenta">
         <div class="p-2 mt-1">
-            <form [formGroup]="billingForm" (ngSubmit)="onBillingFormSubmit(billingForm.value)">     
+            <form [formGroup]="billingForm" (ngSubmit)="onBillingFormSubmit(billingForm.value)">
               <div fxLayout="row wrap">
                 <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
                   <mat-form-field class="w-100">
@@ -79,7 +79,7 @@
     </mat-tab>
     <mat-tab label="Shipping address">
         <div class="p-2 mt-1">
-            <form [formGroup]="shippingForm" (ngSubmit)="onShippingFormSubmit(shippingForm.value)">     
+            <form [formGroup]="shippingForm" (ngSubmit)="onShippingFormSubmit(shippingForm.value)">
               <div fxLayout="row wrap">
                 <div fxFlex="100" fxFlex.gt-sm="33.3" class="px-1">
                   <mat-form-field class="w-100">
@@ -155,4 +155,31 @@
             </form>
         </div>
     </mat-tab>
-</mat-tab-group>
+</mat-tab-group> -->
+
+<div class="profile-info">
+  <div class="profile-pic">
+    <img [src]="this.imagen" alt="Foto de Perfil">
+  </div>
+  <h2>Información del Perfil</h2>
+  <div class="info-item">
+    <span>Numero de empleado :</span>
+    <span> {{this.numEmpleado}} </span>
+  </div>
+  <div class="info-item">
+    <span>Nombre:</span>
+    <span> {{this.nombre}} </span>
+  </div>
+  <div class="info-item">
+    <span>Apellidos:</span>
+    <span> Gonzalez </span>
+  </div>
+  <div class="info-item">
+    <span>Correo:</span>
+    <span> {{this.correo}} </span>
+  </div>
+  <div class="info-item">
+    <span>Dirección:</span>
+    <span>las quintas</span>
+  </div>
+</div>

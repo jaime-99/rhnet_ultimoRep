@@ -269,6 +269,7 @@ GetLoginAuth2(Correo:string,contrasenia:string)
         EsServicio:resp.EsServicio,
         DepartamentoId:resp.DepartamentoId
 
+
       }
       localStorage.setItem('datalogin',JSON.stringify( this._usuario))
       return resp.ok;

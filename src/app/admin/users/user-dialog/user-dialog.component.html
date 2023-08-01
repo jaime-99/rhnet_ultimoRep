@@ -40,6 +40,14 @@
                         <!-- <mat-error *ngIf="form.controls.p_Telefono.errors?.required">El telefono no debe exceder</mat-error> -->
                       </mat-form-field>
 
+                      <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+                        <button (click)="modificarUsuario()" mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]=" !form.get('usuario.p_Nombre').value || !form.get('usuario.p_Apellidos').value || !form.get('usuario.p_Telefono').value">
+
+                        <span>Actualizar Datos</span> </button>
+                        <!-- <button mat-raised-button color="warn" (click)="close()">Salir</button> -->
+
+                    </div>
+
 <!--
                       <div class="text-center">
                         <p>Seleccionar una imagen  (opcional)</p>
@@ -197,9 +205,9 @@
 
 <div mat-dialog-actions>
     <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
-        <button (click)="modificarUsuario()" mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]=" !form.get('usuario.p_Nombre').value || !form.get('usuario.p_Apellidos').value || !form.get('usuario.p_Telefono').value">
+        <!-- <button (click)="modificarUsuario()" mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]=" !form.get('usuario.p_Nombre').value || !form.get('usuario.p_Apellidos').value || !form.get('usuario.p_Telefono').value">
 
-        <span>Actualizar</span> </button>
+        <span>Actualizar Datos</span> </button> -->
         <button mat-raised-button color="warn" (click)="close()">Salir</button>
 
     </div>

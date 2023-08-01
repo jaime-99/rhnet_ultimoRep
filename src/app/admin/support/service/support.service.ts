@@ -173,7 +173,9 @@ GetLoginAuth2(Correo:string,contrasenia:string)
         Departamento:resp.Departamento,
         EsServicio:resp.EsServicio,
         DepartamentoId:resp.DepartamentoId,
-        Imagen:resp.Imagen
+        Imagen:resp.Imagen,
+        Apellidos:resp.Apellidos,
+
       };
 
 
@@ -208,6 +210,7 @@ GetLoginAuth(Correo:string,contrasenia:string)
         data:resp.data,
         Imagen:resp.Imagen,
         BigDataUsuarioId:resp.BigDataUsuarioId,
+        Apellidos:resp.Apellidos
 
       }
       localStorage.setItem('datalogin',JSON.stringify( this._usuario))
