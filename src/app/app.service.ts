@@ -332,6 +332,13 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         }
 
+        // obtener todos los datos de un usuario , 02/08/2023
+
+        obtenerTodosDatos(p_UsuarioId){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/ObtenerDatosUsuario.php?p_UsuarioId=${p_UsuarioId}`
+          return this.http.get<any>(url)
+        }
 
 
 

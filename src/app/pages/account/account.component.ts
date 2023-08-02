@@ -10,11 +10,11 @@ export class AccountComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) sidenav: any;
   public sidenavOpen:boolean = true;
   public links = [
-    { name: 'Account Dashboard', href: 'dashboard', icon: 'dashboard' },
-    { name: 'Informacion de la cuenta', href: 'addresses', icon: 'location_on' },
-    { name: 'Configuracion de la cuenta', href: 'information', icon: 'info' },
-    { name: 'Order History', href: 'orders', icon: 'add_shopping_cart' },
-    { name: 'Logout', href: '/sign-in', icon: 'power_settings_new' },
+    { name: 'Tablero de la cuenta', href: 'dashboard', icon: 'dashboard' },
+    { name: 'Informacion de la cuenta', href: 'addresses', icon: 'info' },
+    { name: 'Configuracion de la cuenta', href: 'information', icon: 'build' },
+    { name: 'Historial de orden', href: 'orders', icon: 'add_shopping_cart' },
+    { name: 'Cerrar Sesion', href: '/sign-in', icon: 'power_settings_new' },
   ];
   constructor(public router:Router) { }
 

@@ -11,7 +11,7 @@
                 <mat-card class="content" perfectScrollbar>
                   <div fxLayout="column" fxLayoutAlign="none">
                       <button mat-button *ngFor="let message of messages">
-                          <img src="{{ ( message.image || (message.name | profilePicture)) }}" width="50">   
+                          <img src="{{ ( message.image || (message.name | profilePicture)) }}" width="50">
                           <div fxLayout="column" fxLayoutAlign="none" class="w-100">
                               <div fxLayout="row" fxLayoutAlign="space-between start">
                                   <span class="name">{{message.name}}</span>
@@ -20,7 +20,7 @@
                               <span class="text text-muted">{{message.text}}</span>
                           </div>
                       </button>
-                    </div>             
+                    </div>
                 </mat-card>
             </mat-tab>
             <mat-tab>
@@ -43,7 +43,7 @@
                               </mat-progress-bar>
                           </div>
                       </button>
-                    </div>             
+                    </div>
                 </mat-card>
             </mat-tab>
             <mat-tab>
@@ -52,7 +52,7 @@
                 </ng-template>
                 <mat-card class="content" perfectScrollbar>
                   <div fxLayout="column" fxLayoutAlign="none">
-                      <button mat-button *ngFor="let meeting of meetings">  
+                      <button mat-button *ngFor="let meeting of meetings">
                           <div fxLayout="column" fxLayoutAlign="center center" class="row-1">
                               <span class="name">{{meeting.day}}</span>
                               <span class="name">{{meeting.month}}</span>
@@ -62,7 +62,7 @@
                               <span class="text text-muted">{{meeting.text}}</span>
                           </div>
                       </button>
-                    </div>             
+                    </div>
                 </mat-card>
             </mat-tab>
         </mat-tab-group>

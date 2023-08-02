@@ -1,6 +1,5 @@
-<p class="text-muted">Hello, <b>Emilio Verdines!</b>
-From your My Account Dashboard you have the ability to view a snapshot of your recent account activity and update your account information. Select a link below to view or edit information.</p>
-
+<p class="text-muted">Hola, <b>{{this.nombre}} !</b>
+  Desde el Panel de control de Mi cuenta, puede ver la informacion de su cuenta y actualizar la información de su cuenta. Seleccione un enlace a continuación para ver o editar información
 <div fxLayout="row wrap" class="flex-wrapper">
     <div fxFlex="33.3" fxFlex.sm="50" fxFlex.xs="100" class="col">
         <mat-card class="p-0">
@@ -10,9 +9,9 @@ From your My Account Dashboard you have the ability to view a snapshot of your r
           </mat-card-header>
           <div class="divider"></div>
           <mat-card-content class="p-2 text-muted account-card-content">
-              <p>Emilio Verdines</p>
-              <p>emilio.verdines@gmail.com</p>
-              <p><a routerLink="/account/information" class="primary-text">Change password</a></p>
+              <p>{{this.nombre}} </p>
+              <p>{{this.correo}} </p>
+              <p><a routerLink="/account/information" class="primary-text">Cambiar contraseña</a></p>
           </mat-card-content>
         </mat-card>
     </div>
@@ -25,7 +24,8 @@ From your My Account Dashboard you have the ability to view a snapshot of your r
           <div class="divider"></div>
           <mat-card-content class="p-2 text-muted account-card-content">
             <p>Informacion de la cuenta</p>
-            <p>Shipping address</p>
+            <p><a routerLink="/account/addresses" class="primary-text">Ver datos de mi cuenta</a></p>
+
           </mat-card-content>
         </mat-card>
     </div>

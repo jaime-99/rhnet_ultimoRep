@@ -24,6 +24,9 @@ export class AddressesComponent implements OnInit {
   correo: any;
   imagen: any;
   numEmpleado: any;
+  p_UsuarioId= '';
+  apellidoUsuario: any;
+  direccion: any;
   constructor(public appService:AppService, public formBuilder: UntypedFormBuilder, public snackBar: MatSnackBar,
     public supportService:SupportService) { }
 
@@ -49,15 +52,25 @@ export class AddressesComponent implements OnInit {
       'address': ['', Validators.required]
     });
 
+    console.log('Aqui estaran los datos')
+
+    // obtendre los datos de el usuario que esta logeado
+
+
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
     console.log(userauth);
+
+
 
     this.nombre = userauth.Nombre
     this.apellidos = userauth.Apellidos;
     this.correo = userauth.Correo;
     this.imagen = userauth.Imagen;
     this.numEmpleado = userauth.data.Numero_Empleado;
+    this.p_UsuarioId = userauth.data.INUsuarioId;
+    console.log(this.p_UsuarioId);
 
+    this.obtenerDatos();
 
   }
 
@@ -79,11 +92,8 @@ export class AddressesComponent implements OnInit {
     this.supportService.getObtenerUsuarios().subscribe((res) =>{
       console.log(res)
     })
-
-
-
-
   }
+
 
 
 
@@ -91,7 +101,17 @@ export class AddressesComponent implements OnInit {
 
   // traer toda la info de el perfil
 
+  obtenerDatos(){
+  const p_UsuarioId = this.p_UsuarioId
+  this.appService.obtenerTodosDatos(this.p_UsuarioId).subscribe((res)=>{
+    console.log(res);
 
+    this.apellidoUsuario = res.Apellidos
+    this.direccion = res.Direccion
+
+  })
+
+  }
 
 
 
