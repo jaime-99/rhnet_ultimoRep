@@ -258,7 +258,6 @@ GetLoginAuth(Correo:string,contrasenia:string)
       const body={p_UsuarioId:formData.p_UsuarioId,p_Nombre:formData.p_Nombre,p_Apellidos:formData.p_Apellidos,p_Telefono:formData.p_Telefono }
       return this.http.post<any>( url, body );
 
-
     }
 
     //todo subir imagen a servidor general

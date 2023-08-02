@@ -13,23 +13,25 @@
                 <mat-error *ngIf="infoForm.controls.lastName.hasError('minlength')">Debe tener minimo 4 letras </mat-error>
             </mat-form-field>
             <mat-form-field class="w-100 mt-1">
-                <input matInput placeholder="Correo" formControlName="email" required>
-                <mat-error *ngIf="infoForm.controls.email.errors?.required">El correo es requerido</mat-error>
-                <mat-error *ngIf="infoForm.controls.email.hasError('invalidEmail')">Correo invalid, initenta otra vez</mat-error>
+                <input matInput placeholder="Telefono" formControlName="email" required>
+                <mat-error *ngIf="infoForm.controls.email.errors?.required">El telefono es requerido </mat-error>
+                <!-- <mat-error *ngIf="infoForm.controls.email.hasError('pattern')">Correo invalido, initenta otra vez</mat-error> -->
+                <mat-error *ngIf="infoForm.controls.email.hasError('pattern')">Telefono invalido, intenta otra vez</mat-error>
             </mat-form-field>
             <div class="text-center mt-2">
                 <button mat-raised-button color="primary" (click)="onInfoFormSubmit(infoForm.value)">Guardar</button>
             </div>
         </form>
     </div>
+    <!-- //todo empieza el otro fomrulario  -->
     <div fxFlex="100" fxFlex.gt-sm="50" class="p-2" ngClass.sm="mt-2" ngClass.xs="mt-2">
         <h2 class="text-muted text-center">Cambiar Contraseña</h2>
         <form [formGroup]="passwordForm" (ngSubmit)="onPasswordFormSubmit(passwordForm.value)">
-            <mat-form-field class="w-100 mt-2">
+            <!-- <mat-form-field class="w-100 mt-2">
                 <input matInput placeholder="Contraseña antigua" formControlName="currentPassword" type="password" minlength="6" required>
                 <mat-error *ngIf="passwordForm.controls.currentPassword.errors?.required">La contraseña es requerida</mat-error>
                 <mat-error *ngIf="passwordForm.controls.currentPassword.hasError('minlength')">La contraseña debe tener minimo 6 letras </mat-error>
-            </mat-form-field>
+            </mat-form-field> -->
             <mat-form-field class="w-100 mt-1">
                 <input matInput placeholder="Nueva contraseña" formControlName="newPassword" type="password" minlength="6" required>
                 <mat-error *ngIf="passwordForm.controls.newPassword.errors?.required">la nueva coontraseña es requerida</mat-error>
