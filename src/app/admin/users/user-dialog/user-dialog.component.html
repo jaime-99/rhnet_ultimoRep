@@ -4,23 +4,7 @@
       <div class="tab-container">
 
         <mat-tab-group class="vertical-tabs">
-            <!-- <mat-tab label="Cuenta">
-                <div fxLayout="column" class="form-field-outer">
-                    <mat-form-field class="w-100">
-                        <mat-placeholder><mat-icon>person</mat-icon> Nombre de usuario</mat-placeholder>
-                        <input matInput formControlName="username" required [value]="nombreDeUsuario">
-                        <mat-error *ngIf="form.controls.username.errors?.required">Username is required</mat-error>
-                        <mat-error *ngIf="form.controls.username.hasError('minlength')">Username isn't long enough, minimum of 5 characters</mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <mat-placeholder><mat-icon>vpn_key</mat-icon> Contraseña</mat-placeholder>
-                        <input  matInput formControlName="password" required [type]="passwordHide ? 'password' : 'text'"  [value]="contrasenia">
-                        <mat-icon matSuffix (click)="passwordHide = !passwordHide">{{passwordHide ? 'visibility' : 'visibility_off'}}</mat-icon>
-                        <mat-error *ngIf="form.controls.password.errors?.required">la Contraseña es requerida</mat-error>
-                        <mat-error *ngIf="form.controls.password.hasError('minlength')">Tiene que tener minimo 6 caracteres</mat-error>
-                    </mat-form-field>
-                </div>
-            </mat-tab> -->
+
             <mat-tab label="Datos Personales" formGroupName="usuario">
                 <div fxLayout="column" class="form-field-outer">
                   <mat-form-field class="w-100">
@@ -29,32 +13,34 @@
                     </mat-form-field>
                     <mat-form-field class="w-100">
                         <input matInput placeholder="Nombre" [value]="nombre" formControlName="p_Nombre">
-
+                        <!-- <mat-error *ngIf="form.controls.p_Nombre.errors?.required">El primer nombre es requrido</mat-error> -->
+                        <mat-error *ngIf="form.get('usuario.p_Nombre').invalid && form.get('usuario.p_Nombre').touched">
+                          El primer nombre debe tener minimo 4 caracteres
+                        </mat-error>
                       </mat-form-field>
                       <mat-form-field class="w-100">
                           <input matInput placeholder="Apellidos" [value]="apellidos" formControlName="p_Apellidos">
+                          <mat-error *ngIf="form.get('usuario.p_Apellidos').invalid && form.get('usuario.p_Apellidos').touched">
+                            El Apellido debe tener minimo 10 caracteres.
+                          </mat-error>
                       </mat-form-field>
 
                     <mat-form-field class="w-100">
                         <input matInput [value]="telefono" placeholder="Telefono" formControlName="p_Telefono">
-                        <!-- <mat-error *ngIf="form.controls.p_Telefono.errors?.required">El telefono no debe exceder</mat-error> -->
-                      </mat-form-field>
+
+                        <mat-error *ngIf="form.get('usuario.p_Telefono').invalid && form.get('usuario.p_Telefono').touched">
+                          El telefono debe tener maximo 10 numeros. y empeza con 844
+                        </mat-error>
+
+                    </mat-form-field>
 
                       <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
-                        <button (click)="modificarUsuario()" mat-raised-button color="primary" [mat-dialog-close]="form.value" [disabled]=" !form.get('usuario.p_Nombre').value || !form.get('usuario.p_Apellidos').value || !form.get('usuario.p_Telefono').value">
+                        <button (click)="modificarUsuario()" mat-raised-button color="primary"  [mat-dialog-close]="form.value" [disabled]=" form.get('usuario.p_Nombre').invalid || form.get('usuario.p_Apellidos').invalid || form.get('usuario.p_Telefono').invalid">
 
                         <span>Actualizar Datos</span> </button>
-                        <!-- <button mat-raised-button color="warn" (click)="close()">Salir</button> -->
-
                     </div>
 
-<!--
-                      <div class="text-center">
-                        <p>Seleccionar una imagen  (opcional)</p>
-                          <input class="imagen" placeholder="Seleccionar Imagen" type="file" (change)="onFileSelected($event)">
-                          <button type="button"  (click)="onSubmit()">Cargar Imagen</button>
-                      </div> -->
-                    </div>
+                  </div>
               </mat-tab>
 
 
@@ -64,26 +50,32 @@
               <div fxLayout="column" class="form-field-outer">
                 <mat-form-field class="w-100">
               <input matInput  placeholder="Id de Usuario" type="text" formControlName="p_UsuarioId" readonly>
+              <!-- <mat-error *ngIf="form.get('contrasenia.p_Password').invalid && form.get('contrasenia.p_Password').touched">
+              La contraseña debe tener minimo 5 caracteres
+              </mat-error> -->
             </mat-form-field>
                 <mat-form-field class="w-100">
-              <input matInput  placeholder="Nueva Contraseña" requered type="password" formControlName="p_Password" >
+              <input matInput  placeholder="Nueva Contraseña" requered type="password" formControlName="p_Password" requered  >
+              <mat-error *ngIf="form.get('contrasenia.p_Password').invalid && form.get('contrasenia.p_Password').touched">
+                La contraseña debe tener minimo 5 caracteres
+                </mat-error>
             </mat-form-field>
                 <mat-form-field class="w-100">
-              <input matInput  placeholder="Confirmar Contraseña" required type="password" formControlName="p_PassRepeat" >
-            </mat-form-field>
+                  <input matInput  placeholder="Confirmar Contraseña" required type="password" formControlName="p_PassRepeat" requered  >
+                  <mat-error *ngIf="form.get('contrasenia.p_PassRepeat').invalid && form.get('contrasenia.p_PassRepeat').touched">
+                    La contraseña debe tener minimo 5 caracteres
+                    </mat-error>
+                </mat-form-field>
             <div>
 
 
               <div>
-            <button mat-raised-button color="primary" (click)="cambiarPass()" [disabled]=" !form.get('contrasenia.p_Password').value"  >Cambiar Contraseña </button>
+            <button mat-raised-button color="primary" (click)="cambiarPass()" [mat-dialog-close]="form.value" [disabled]=" form.get('contrasenia.p_Password').invalid  || form.get('contrasenia.p_PassRepeat').invalid"    >Cambiar Contraseña </button>
             </div>
             </div>
           </div>
 
         </mat-tab>
-
-
-
 
         <mat-tab label="Cambiar Foto de Perfil" formGroupName="contrasenia">
           <div class="tab-content">
@@ -96,112 +88,23 @@
 
             </div>
 
-
             <div class="text-center">
               <p class="parrafo">Seleccionar una imagen (opcional)</p>
               <input class="imagen" placeholder="Seleccionar Imagen" type="file"  (change)="onFileSelected($event)">
               <hr>
-              <button mat-raised-button color="primary" type="file" (click)="onSubmit()">Cargar Imagen</button>
+              <button mat-raised-button color="primary" type="file" (click)="onSubmit() " [mat-dialog-close]="form.value">Cargar Imagen</button>
             </div>
           </div>
 
         </mat-tab>
 
-
-
-
-
-
-
-
-
-
-
-
-            <!-- <mat-tab label="Work" formGroupName="work">
-                <div fxLayout="column" class="form-field-outer">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Company" formControlName="company">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Position" formControlName="position">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Salary" formControlName="salary">
-                        <span matPrefix>$&nbsp;</span>
-                        <span matSuffix>.00</span>
-                    </mat-form-field>
-                </div>
-            </mat-tab> -->
-            <!-- <mat-tab label="Contacts" formGroupName="contacts">
-                <div fxLayout="column" class="form-field-outer">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Email" formControlName="email">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Phone" formControlName="phone">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Address" formControlName="address">
-                    </mat-form-field>
-                </div>
-            </mat-tab> -->
-            <!-- <mat-tab label="Social life" formGroupName="social">
-                <div fxLayout="column" class="form-field-outer">
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Facebook" formControlName="facebook">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Twitter" formControlName="twitter">
-                    </mat-form-field>
-                    <mat-form-field class="w-100">
-                        <input matInput placeholder="Google" formControlName="google">
-                    </mat-form-field>
-                </div>
-            </mat-tab> -->
-            <!-- <mat-tab label="Settings" formGroupName="settings">
-                <div fxLayout="column" class="form-field-outer">
-                    <mat-checkbox formControlName="isActive">Active</mat-checkbox>
-                    <mat-checkbox formControlName="isDeleted">Blocked</mat-checkbox>
-                    <p *ngIf="user.id"><span>Registration date:</span> <i>{{user.settings.registrationDate | date:"dd MMMM, yyyy 'at' HH:mm" }}</i></p>
-                    <p *ngIf="user.id"><span>Last joined date:</span> <i>{{user.settings.joinedDate | date:"dd MMMM, yyyy 'at' HH:mm" }}</i> </p>
-                </div>
-            </mat-tab> -->
         </mat-tab-group>
         </div>
     </form>
 
     <!-- todo Aqui hare lo nuevo de cambiar contrasenia  -->
 
-
-
-
-
-
-
-
 </div>
-
-<!-- <div mat-dialog-content>
-
-<form [formGroup]="cambioContrasenia" class="user-form">
-  <mat-tab-group class="vertical-tabs">
-
-    <mat-tab label="Cambiar Contraseña">
-
-      <div fxLayout="column" class="form-field-outer">
-        <mat-form-field class="w-100">
-          <input placeholder="contraseña" formControlName="password">
-
-
-        </mat-form-field>
-        </div>
-    </mat-tab>
-
-  </mat-tab-group>
-
-</form>
-</div> -->
 
 <div mat-dialog-actions>
     <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">

@@ -52,9 +52,9 @@ export class UserDialogComponent implements OnInit {
 
     usuario: this.fb.group({
         p_UsuarioId: data.IdDeUsuario,disabled: true,
-        p_Nombre: [[''], Validators.compose([Validators.required, Validators.maxLength(25)]),],
-        p_Apellidos: [[''], Validators.compose([Validators.required, Validators.maxLength(30)]),],
-        p_Telefono: [[''], Validators.compose([Validators.required, Validators.maxLength(10)]),],
+        p_Nombre: [[''], Validators.compose([Validators.required, Validators.minLength(5),Validators.maxLength(25)]),],
+        p_Apellidos: [[''], Validators.compose([Validators.required, Validators.minLength(10),Validators.maxLength(20)]),],
+        p_Telefono: [[''], Validators.compose([Validators.required, Validators.maxLength(10),Validators.minLength(10),  Validators.pattern(/^844\d{7}$/)]),],
         p_Imagen:[''],
         // p_Correo:data.email,
       }),
@@ -62,8 +62,8 @@ export class UserDialogComponent implements OnInit {
       contrasenia:this.fb.group({
 
         p_UsuarioId:data.IdDeUsuario,disabled:true,
-        p_Password: [[''], Validators.compose([Validators.required, Validators.maxLength(15)]),],
-        p_PassRepeat:[[''], Validators.compose([Validators.required, Validators.maxLength(15)]),],
+        p_Password: [[''], Validators.compose([Validators.required, Validators.minLength(5)]),],
+        p_PassRepeat:[[''], Validators.compose([Validators.required, Validators.minLength(5)]),],
         // p_repeatPass:['']
       })
     });
@@ -86,8 +86,9 @@ export class UserDialogComponent implements OnInit {
     //es el formgroup de cambiar contrasenia
 
       this.cambioContrasenia = this.fb.group({
-          password: ['', Validators.required],
-          passwordRepeat: ['', Validators.required]
+        p_UsuarioId:this.data.IdDeUsuario,disabled:true,
+          p_Password: [[''], Validators.compose([Validators.required, Validators.minLength(5)]),],
+          p_PassRepeat:[[''], Validators.compose([Validators.required, Validators.minLength(5)]),],
       });
 
       this.contra = this.form.get('contrasenia.p_UsuarioId').value
@@ -138,6 +139,12 @@ export class UserDialogComponent implements OnInit {
     //   this.user.settings = new UserSettings();
     //   this.user.usuario1 = new Usuario1();
     // }
+
+
+    // todo es el ngsubmit para que mande el mensaje
+
+
+
   }
 
   close(): void {
@@ -237,7 +244,10 @@ export class UserDialogComponent implements OnInit {
       (error) => {
         console.error("Error al llamar a la API:", error);
       }
-    );
+
+    ),
+    this.mostrarNotificacion("se han modificado los datos.",{ panelClass: ['success'],verticalPosition:'top' });
+    ;
   }
 
   // Boton desactivado
@@ -288,7 +298,7 @@ if (pass !== passRepeat) {
   return;
 } else {
   // this.mostrarNotificacionVerde("se ha modificado tu contraseña",{ panelClass: [status] });
-  this.mostrarNotificacion("se ha cambiado la contraseña.",{ panelClass: ['mat-toolbar', 'mat-primary'],verticalPosition:'top' });
+  this.mostrarNotificacion("se ha cambiado la contraseña.",{ panelClass: ['success'],verticalPosition:'top' });
 
 
 
@@ -333,7 +343,7 @@ onSubmit() {
        console.log(res)
        this.cambiarImagen();
 
-       this.mostrarNotificacion("se ha cambiado la foto de perfil.",{ panelClass: ['mat-toolbar', 'mat-primary'],verticalPosition:'top' });
+       this.mostrarNotificacion("se ha cambiado la foto de perfil.",{ panelClass: ['access'],verticalPosition:'top' });
 
     }
 
@@ -357,6 +367,17 @@ cambiarImagen(){
     console.log(res)
   })
 }
+
+
+
+//todo es para el ngSubmit()
+// public onInfoFormSubmit(values:Object):void {
+//   if (this.form.valid) {
+//     this.snackBar.open('has actualizado los datos de tu cuenta!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+//     // this.actualizarDatos();
+//   }
+// }
+
 
 
 

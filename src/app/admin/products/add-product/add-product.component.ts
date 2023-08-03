@@ -294,7 +294,7 @@ if (this.id!=undefined){
   this.prodservice.GetFamiliasDescription(SubFamiliaId).subscribe((famdes:any)=>{
 
     console.log(famdes);
-    this.paginaProductos();
+    // this.paginaProductos();
     this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado).subscribe();
     //todo ir a inicio
 

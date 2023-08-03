@@ -1,4 +1,5 @@
 import { SidenavMenu } from './sidenav-menu.model';
+import { SidenavMenuComponent } from './sidenav-menu.component';
 
 export const sidenavMenuItems = [
     // new SidenavMenu (1, 'Inicio', '/', null, null, false, 0),
@@ -33,7 +34,11 @@ export const sidenavMenuItems = [
     new SidenavMenu (54, 'PEDIDOS', '/misPedidos', null, null, false, 0),
     new SidenavMenu (54, 'CONSOLIDADOS', '/pedidosConsolidados', null, null, false, 0),
     new SidenavMenu (1, 'Cerrar Sesion', '/', null, null, false, 0),
+
+
     new SidenavMenu (1, 'Administracion', '/admin', null, null, false, 0),
+
+
 
 
 

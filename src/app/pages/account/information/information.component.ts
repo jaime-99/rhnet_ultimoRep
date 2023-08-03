@@ -105,12 +105,8 @@ export class InformationComponent implements OnInit {
 
     this.supportService.modificarUsuarios(formData).subscribe((res) => {
       console.log(res)
-      this.infoForm.reset();
-
-
+      this.passwordForm.reset();
 
     })
   }
-
-
 }

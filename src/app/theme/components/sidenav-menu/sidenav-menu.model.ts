@@ -5,6 +5,8 @@ export class SidenavMenu {
                 public href: string,
                 public target: string,
                 public hasSubMenu: boolean,
-                public parentId: number) { }
+                public parentId: number,
+                public esAdmin: boolean = false // Agrega esta propiedad para indicar si es el elemento "Administración"
+                ) { }
 }
 
