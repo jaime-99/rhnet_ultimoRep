@@ -125,10 +125,9 @@ export class AddProductComponent implements OnInit {
   public dataClase:Clase[];
   public dataFamilia:Familia[];
   public dataSubFamilia:SubFamilia[];
-  router: Router;
 
 
-  constructor(public snackBar: MatSnackBar,public appService:AppService,public prodservice: ProductserviceService, public formBuilder: UntypedFormBuilder, private activatedRoute: ActivatedRoute ) { }
+  constructor(public snackBar: MatSnackBar,public appService:AppService,public prodservice: ProductserviceService, public formBuilder: UntypedFormBuilder, private activatedRoute: ActivatedRoute,private router:Router ) { }
 
 
   Vertexto() {
@@ -397,9 +396,13 @@ if (this.id!=undefined){
           this.prodservice.AddProductoImagen(this.id,small,medium,big,1).subscribe();
 
         }
+        this.paginaProductos(); //todo con esto ya me voy al inicio de productos
+
+
       })
 
       return;
+
 
 
      }
@@ -428,7 +431,7 @@ if (this.id!=undefined){
 
 
     paginaProductos(){
-      this.router.navigate(['/sign-in']); // esto es para que me redireccione a ventas cuando inicio sesion
+      this.router.navigate(['/productos']); // esto es para que me redireccione a ventas cuando inicio sesion
     }
 
 
