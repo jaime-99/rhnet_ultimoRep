@@ -37,7 +37,9 @@
                 <a [routerLink]="['/admin/products/add-product', product.id]" mat-mini-fab color="primary" matTooltip="Editar"><mat-icon>edit</mat-icon></a>
                 <span class="px-1"> <a [routerLink]="['/admin/products/product-detail', product.id]" mat-mini-fab color="primary" matTooltip="Ver"><mat-icon>remove_red_eye</mat-icon></a></span>
                 <a [routerLink]="['/admin/products/productosrelacionados', product.id]" mat-mini-fab color="primary" matTooltip="Productos relacionados/Sustitutos"><mat-icon>group_work</mat-icon></a>
-                <button mat-mini-fab color="warn" matTooltip="Eliminar" (click)="remove(product)"><mat-icon>delete</mat-icon></button>
+                <div class="remove-button-container"> <!-- Contenedor del botón rojo -->
+                  <button mat-mini-fab color="warn" matTooltip="Eliminar" (click)="remove(product)"><mat-icon>delete</mat-icon></button>
+              </div>
             </div>
         </mat-card>
     </div>

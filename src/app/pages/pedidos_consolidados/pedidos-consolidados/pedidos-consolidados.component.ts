@@ -121,48 +121,55 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
 
-
   abrirTabla(id):void{
     // se abrira la tabla al seleccionar detalles
 
-    this.openTable = !this.openTable;
+    if (this.IdSeleccionado === id) {
+      this.openTable = !this.openTable;
+    } else {
+      this.IdSeleccionado = id;
 
-    this.IdSeleccionado=id;
+      this.detalleVentasArray = [];
+      this.openTable = true;
 
+      if (this.openTable) {
+        this.subscription = this.appService
+          .obtenerTablaJunta(id)
+          .subscribe((res) => {
+            const data = res;
+            for (const detalle of data) {
+              const detalleVenta = {
+                precio: detalle.Precio,
+                codigoDiken: detalle.CodigoDiken,
+                importe: detalle.Importe,
+                producto: detalle.Producto,
+                usuario: detalle.Usuario,
+                cantidad: detalle.Cantidad,
+                empleado: detalle.Numero_Empleado,
+              };
 
-    this.detalleVentasArray = [];
-
-    if(this.openTable){
-
-   this.subscription= this.appService.obtenerTablaJunta(id).subscribe((res) => {
-
-
-    const data=res;
-    for (const detalle of data) {
-      const detalleVenta = {
-        precio: detalle.Precio,
-        codigoDiken: detalle.CodigoDiken,
-        importe: detalle.Importe,
-        producto: detalle.Producto,
-        usuario: detalle.Usuario,
-        cantidad: detalle.Cantidad,
-        empleado: detalle.Numero_Empleado,
-      };
-
-
-
-      this.detalleVentasArray.push(detalleVenta);
+              this.detalleVentasArray.push(detalleVenta);
+            }
+          });
+      }
     }
-  });
-
-
-    }else{
-        if (this.subscription){
-          this.subscription.unsubscribe();
-    }
-
-
   }
+  //   }else{
+  //       if (this.subscription){
+  //         this.subscription.unsubscribe();
+  //   }
+
+
+  // }
+  // }
+
+  // es para ocultar los detalles
+  cerrarTabla(): void {
+    this.openTable = false;
+    this.IdSeleccionado = null;
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   descargarcsv(IdConsolidadoVentaEmpleado)

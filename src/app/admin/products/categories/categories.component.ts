@@ -12,7 +12,7 @@ import { AppSettings, Settings } from 'src/app/app.settings';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-  public categories:Category[] = []; 
+  public categories:Category[] = [];
   public page: any;
   public count = 6;
   public settings:Settings;
@@ -24,16 +24,16 @@ export class CategoriesComponent implements OnInit {
     this.getCategories();
   }
 
-  public getCategories(){   
+  public getCategories(){
     this.appService.getCategories().subscribe(data => {
-      this.categories = data; 
+      this.categories = data;
       this.categories.shift();
-    }); 
+    });
   }
 
   public onPageChanged(event){
-    this.page = event; 
-    window.scrollTo(0,0); 
+    this.page = event;
+    window.scrollTo(0,0);
   }
 
   public openCategoryDialog(data:any){
@@ -46,37 +46,37 @@ export class CategoriesComponent implements OnInit {
       autoFocus: false,
       direction: (this.settings.rtl) ? 'rtl' : 'ltr'
     });
-    dialogRef.afterClosed().subscribe(category => { 
-      if(category){    
+    dialogRef.afterClosed().subscribe(category => {
+      if(category){
         const index: number = this.categories.findIndex(x => x.id == category.id);
         if(index !== -1){
           this.categories[index] = category;
-        } 
-        else{ 
-          let last_category = this.categories[this.categories.length - 1]; 
+        }
+        else{
+          let last_category = this.categories[this.categories.length - 1];
           category.id = last_category.id + 1;
-          this.categories.push(category);  
-        }          
+          this.categories.push(category);
+        }
       }
     });
   }
 
-  public remove(category:any){  
+  public remove(category:any){
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       maxWidth: "400px",
       data: {
         title: "Confirm Action",
-        message: "Are you sure you want remove this category?"
+        message: "Seguro que quieres eliminar esta categoria?"
       }
-    }); 
-    dialogRef.afterClosed().subscribe(dialogResult => { 
+    });
+    dialogRef.afterClosed().subscribe(dialogResult => {
       if(dialogResult){
         const index: number = this.categories.indexOf(category);
         if (index !== -1) {
-          this.categories.splice(index, 1);  
-        } 
-      } 
-    }); 
+          this.categories.splice(index, 1);
+        }
+      }
+    });
   }
 
 }

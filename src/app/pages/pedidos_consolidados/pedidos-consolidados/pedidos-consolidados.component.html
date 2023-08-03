@@ -35,8 +35,12 @@
 <!-- segunda tabla de detalles -->
 <hr *ngIf="openTable">
 <!-- <div *ngFor="let consolidado of consolidados"> -->
-<h2 class="titulo-consolidado" *ngIf="openTable;">  Consolidado #{{IdSeleccionado}}
+  <div class="consolidado_" *ngIf="openTable;">
+<h2 class="titulo-consolidado">  Consolidado #{{IdSeleccionado}}
 </h2>
+<button (click)="cerrarTabla()" mat-raised-button color="secondary" > Ocultar Detalles</button>
+</div>
+
 <!-- </div> -->
 
 <div   *ngIf="openTable"   class="table-container">
