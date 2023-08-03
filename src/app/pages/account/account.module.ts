@@ -10,14 +10,14 @@ import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
 
 export const routes: Routes = [
-  { 
-      path: '', 
+  {
+      path: '',
       component: AccountComponent, children: [
           { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-          { path: 'dashboard', component: DashboardComponent, data: {  breadcrumb: 'Dashboard' } },
-          { path: 'information', component: InformationComponent, data: {  breadcrumb: 'Information' } },
-          { path: 'addresses', component: AddressesComponent, data: {  breadcrumb: 'Addresses' } },
-          { path: 'orders', component: OrdersComponent, data: {  breadcrumb: 'Orders' } }
+          { path: 'dashboard', component: DashboardComponent, data: {  breadcrumb: 'Cuadro de configuracion' } },
+          { path: 'information', component: InformationComponent, data: {  breadcrumb: 'Configuracion de Cuenta' } },
+          { path: 'addresses', component: AddressesComponent, data: {  breadcrumb: 'Informacion ' } },
+          { path: 'orders', component: OrdersComponent, data: {  breadcrumb: 'Ordenes' } }
       ]
   }
 ];

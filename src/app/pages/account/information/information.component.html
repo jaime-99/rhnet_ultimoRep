@@ -40,7 +40,7 @@
             <mat-form-field class="w-100 mt-1">
               <input matInput placeholder="Confirmar la nueva contraseña" formControlName="confirmNewPassword" type="password" required>
               <mat-error *ngIf="passwordForm.controls.confirmNewPassword.errors?.required">la confirmacion de la contraseña es requerida </mat-error>
-              <mat-error *ngIf="passwordForm.controls.confirmNewPassword.hasError('mismatchedPasswords')">las coontraseñas no coinciden</mat-error>
+              <mat-error *ngIf="passwordForm.controls.confirmNewPassword.hasError('mismatchedPasswords')">las contraseñas no coinciden</mat-error>
             </mat-form-field>
             <div class="text-center mt-2">
                 <button mat-raised-button color="primary" (click)="onPasswordFormSubmit(passwordForm.value)">Cambiar</button>

@@ -32,15 +32,15 @@ export class InformationComponent implements OnInit {
 
 
     this.infoForm = this.formBuilder.group({
-      'firstName': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
-      'lastName': ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+      'firstName': ['', Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(30)])],
+      'lastName': ['', Validators.compose([Validators.required, Validators.minLength(3),Validators.maxLength(30)])],
       'email': ['', Validators.compose([Validators.required, Validators.pattern("[0-9]{10}")])]
     });
 
     this.passwordForm = this.formBuilder.group({
       'currentPassword': ['',], // cambiar a p_password y p_usuarioId
-      'newPassword': ['', Validators.required],
-      'confirmNewPassword': ['', Validators.required]
+      'newPassword': ['', Validators.required,Validators.minLength(3),Validators.maxLength(20)],
+      'confirmNewPassword': ['', Validators.required,Validators.minLength(3),Validators.maxLength(20)]
     },{validator: matchingPasswords('newPassword', 'confirmNewPassword')});
   }
 
