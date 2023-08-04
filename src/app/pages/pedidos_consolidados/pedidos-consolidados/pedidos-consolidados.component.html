@@ -20,10 +20,10 @@
           <!-- Acciones -->
           <div class="acciones-container">
             <div class="boton1">
-              <button mat-raised-button color="warn" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
+              <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
             </div>
             <div class="boton2">
-              <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Detalles</button>
+              <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button>
             </div>
           </div>
         </td>
@@ -36,10 +36,26 @@
 <hr *ngIf="openTable">
 <!-- <div *ngFor="let consolidado of consolidados"> -->
   <div class="consolidado_" *ngIf="openTable;">
-<h2 class="titulo-consolidado">  Consolidado #{{IdSeleccionado}}
-</h2>
-<button (click)="cerrarTabla()" mat-raised-button color="secondary" > Ocultar Detalles</button>
-</div>
+    <h2 class="titulo-consolidado">  Consolidado #{{IdSeleccionado}}
+    </h2>
+        <button (click)="cerrarTabla()" mat-raised-button color="primary" > Ocultar Detalles</button>
+  </div>
+
+  <div class="text_box_pedido" *ngIf="openTable">
+
+    <form [formGroup]="numPedido" >
+    <mat-form-field class="w-100 mt-1" >
+      <input matInput placeholder="Numero de Factura" formControlName="Pedido" required>
+      <mat-error *ngIf="numPedido.get('Pedido').invalid && numPedido.get('Pedido').touched">
+        Deben ser solo numeros </mat-error>
+
+      </mat-form-field>
+    </form>
+
+
+  </div>
+
+
 
 <!-- </div> -->
 
@@ -54,11 +70,13 @@
         <th>Importe</th>
         <th>Empleado</th>
         <th>Usuario</th>
+        <th>Acciones</th>
+
       </tr>
     </thead>
     <tbody>
       <!-- Replace 'data' with the array containing the new data for this table -->
-      <tr *ngFor="let detalleVenta of detalleVentasArray">
+      <tr *ngFor="let detalleVenta of detalleVentasArray;let i = index">
         <td  class="td-2"> {{detalleVenta.codigoDiken}} </td>
         <td  class="td-2">{{detalleVenta.producto}} </td>
         <td  class="td-2">${{ detalleVenta.precio | number : '1.2-2'  }} </td>
@@ -66,7 +84,15 @@
         <td  class="td-2">{{detalleVenta.importe | number : '1.2-2'}} </td>
         <td  class="td-2">{{detalleVenta.empleado}} </td>
         <td  class="td-2">{{detalleVenta.usuario}} </td>
+        <td  class="td-2"> <button  mat-raised-button color="warn" [disabled]="detalleVenta.eliminado" (click)="eliminarDetalleVenta(i)">Eliminar</button></td>
       </tr>
     </tbody>
   </table>
+</div>
+<!-- se colocara el boton de guardar el numero de captura -->
+
+<div class="guardar" *ngIf="openTable"  >
+
+  <button  mat-raised-button color="primary"  [disabled]=" numPedido.get('Pedido').invalid"  (click)="guardarFactura()">Guardar Factura</button>
+
 </div>

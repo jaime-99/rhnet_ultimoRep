@@ -7,7 +7,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatTableModule } from "@angular/material/table";
 import { TablaConsolidadoComponent } from "../../tablaDetalles/tabla-consolidado/tabla-consolidado.component";
+import { MatFormField, MatFormFieldModule } from "@angular/material/form-field";
+import {MatInputModule} from '@angular/material/input';
 
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 
@@ -24,6 +27,11 @@ export const routes: Routes = [
     MatButtonModule,
     MatDialogModule,
     MatTableModule, // Agregar MatTableModule a la lista de importaciones
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule,
+
 
   ],
 

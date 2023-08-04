@@ -257,8 +257,21 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>(url, body , { headers });
         }
 
+
         // Aqui se termina el de cancelar venta
 
+        // cerrar venta
+
+        CerrarVenta(ventaId:number[]){
+
+          const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
+          const url = `${this.baseUrl}/ventas/cerrarVenta.php`;
+          const body = {ventaId};
+
+          return this.http.post<any>(url, body , { headers });
+
+        }
         //todo esta es la llamada de searchApi
 
         getProductsApiEmpleado(type):Observable<Product[]>{

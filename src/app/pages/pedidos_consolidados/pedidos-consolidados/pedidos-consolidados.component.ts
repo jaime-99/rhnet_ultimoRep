@@ -5,6 +5,12 @@ import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { Subscription } from 'rxjs';
 import * as Papa from 'papaparse';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
+import { FormGroup} from '@angular/forms';
+
 
 @Component({
   selector: 'app-pedidos-consolidados',
@@ -22,7 +28,11 @@ export class PedidosConsolidadosComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   detalleVentasArray=[];
   IdSeleccionado=0;
-  constructor(public dialog: MatDialog, public appService: AppService) { }
+  UsuarioId: any;
+  total: any;
+  fecha: any;
+  constructor(public dialog: MatDialog, public appService: AppService, public formBuilder: UntypedFormBuilder,
+    public snackBar: MatSnackBar) { }
 
   consolidadoIds: number[] = []; // Arreglo para almacenar los IdConsolidadoVentaEmpleado
 
@@ -33,9 +43,18 @@ export class PedidosConsolidadosComponent implements OnInit {
   codigoDiken: string;
   openTable = false;
 
+  numPedido: UntypedFormGroup;
+  partidas=[];
+  eliminado: boolean;
+
+
 
   ngOnInit(): void {
 
+    this.numPedido = this.formBuilder.group({
+      Pedido: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]]
+
+    });
 
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
@@ -97,7 +116,6 @@ export class PedidosConsolidadosComponent implements OnInit {
       const cantidad = data[2].Cantidad;
       const empleado = data[2].Numero_Empleado;
 
-
       const detalleVenta = {
         precio: precio,
         codigoDiken: codigoDiken,
@@ -146,11 +164,16 @@ export class PedidosConsolidadosComponent implements OnInit {
                 usuario: detalle.Usuario,
                 cantidad: detalle.Cantidad,
                 empleado: detalle.Numero_Empleado,
+                ventaEmpleadoId:detalle.VentaEmpleadoId
               };
 
+              // console.log(res);
               this.detalleVentasArray.push(detalleVenta);
+              console.log(detalleVenta);// ver los detalles de cada fila
             }
           });
+          // this.snackBar.open('Se muestran los detalles del consolidado Abajo!', '×', { panelClass: 'link', verticalPosition: 'top', duration: 5000 });
+
       }
     }
   }
@@ -171,6 +194,44 @@ export class PedidosConsolidadosComponent implements OnInit {
       this.subscription.unsubscribe();
     }
   }
+
+  //todo para eliminar cada detalle
+  eliminarDetalleVenta(index: number): void {
+    if (index >= 0 && index < this.detalleVentasArray.length) {
+      const detalleEliminado = { ...this.detalleVentasArray[index] };
+      this.detalleVentasArray[index].eliminado = true;
+      this.partidas.push(detalleEliminado);
+      console.log(this.partidas)
+    }
+  }
+
+
+  //TODO boton para guardar la factura, guardar los que se eliminaron
+
+
+  guardarFactura(){
+
+    // const ventaEmpelado = {
+    //   RhUsuarioId: this.UsuarioId,
+    //   Total:this.total,
+    //   Fecha:this.fecha,
+    // }
+
+    // Obtener todas las ventaEmpleadoId del arreglo partidas
+  const ventaCanceladaIds = this.partidas.map((detalleEliminado) => detalleEliminado.ventaEmpleadoId);
+
+  console.log(ventaCanceladaIds);
+
+
+
+    this.appService.CerrarVenta(ventaCanceladaIds).subscribe((res) => {
+      console.log(res)
+    })
+
+
+  }
+
+
 
   descargarcsv(IdConsolidadoVentaEmpleado)
   {

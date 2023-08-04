@@ -38,6 +38,15 @@ th, td {
   margin: 1.5rem;
 
 }
+.text_box_pedido{
+  width: 200px;
+
+}
+
+.boton_tamaño{
+  padding-right: 8.5px;
+  padding-left: 5px;
+}
 
 .acciones-container{
   flex-direction: column;
@@ -147,6 +156,7 @@ tr:nth-child(odd) {
 .td-2:nth-of-type(5):before { content: "Importe"; }
 .td-2:nth-of-type(6):before { content: "Empleado"; }
 .td-2:nth-of-type(7):before { content: "Usuario"; }
+.td-2:nth-of-type(7):before { content: "Acciones"; }
 
 
 
