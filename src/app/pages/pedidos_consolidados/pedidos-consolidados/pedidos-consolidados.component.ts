@@ -31,6 +31,7 @@ export class PedidosConsolidadosComponent implements OnInit {
   UsuarioId: any;
   total: any;
   fecha: any;
+  ventasEmpleado: any[];
   constructor(public dialog: MatDialog, public appService: AppService, public formBuilder: UntypedFormBuilder,
     public snackBar: MatSnackBar) { }
 
@@ -79,7 +80,7 @@ export class PedidosConsolidadosComponent implements OnInit {
         // obtener los id's
         this.consolidadoIds = this.consolidados.map((consolidado) => consolidado.IdConsolidadoVentaEmpleado);
 
-
+        console.log(res); // para ver los consolidados
     })
 
   }
@@ -164,7 +165,9 @@ export class PedidosConsolidadosComponent implements OnInit {
                 usuario: detalle.Usuario,
                 cantidad: detalle.Cantidad,
                 empleado: detalle.Numero_Empleado,
-                ventaEmpleadoId:detalle.VentaEmpleadoId
+                ventaEmpleadoId:detalle.VentaEmpleadoId,
+                rhUsuarioId:detalle.RhUsuarioId
+
               };
 
               // console.log(res);
@@ -202,8 +205,13 @@ export class PedidosConsolidadosComponent implements OnInit {
       this.detalleVentasArray[index].eliminado = true;
       this.partidas.push(detalleEliminado);
       console.log(this.partidas)
+      const eliminado = detalleEliminado.cantidad; // Cambia esto por el valor específico que deseas // accedo a el valor
+      console.log(eliminado); // esto te muestra el eliminado en vivo
+      const rhUsuarioId = detalleEliminado.rhUsuarioId;
+      //todo en esta funcion hacer que al darle click se elimine al instante
     }
   }
+
 
 
   //TODO boton para guardar la factura, guardar los que se eliminaron
@@ -217,20 +225,62 @@ export class PedidosConsolidadosComponent implements OnInit {
     //   Fecha:this.fecha,
     // }
 
-    // Obtener todas las ventaEmpleadoId del arreglo partidas
+   // Obtener todas las ventaEmpleadoId del arreglo partidas
   const ventaCanceladaIds = this.partidas.map((detalleEliminado) => detalleEliminado.ventaEmpleadoId);
 
   console.log(ventaCanceladaIds);
 
+  this.ventasEmpleado = ventaCanceladaIds
 
 
-    this.appService.CerrarVenta(ventaCanceladaIds).subscribe((res) => {
-      console.log(res)
-    })
+    //pendiente, me cambia tdos los eliminados, solo quiero cambiar un estatus
+    //todo esto de abajo es para cancelar varias ventas
+    // this.appService.CerrarVenta(ventaCanceladaIds).subscribe((res) => {
+    //   console.log(res)
+    // })
+
+  // this.cancelarEstatusConsolidado();
 
 
   }
 
+
+  cancelarEstatusConsolidado(id){
+    this.appService.cambiarEstatusConsolidado(id).subscribe((res) =>{
+      console.log(res)
+    })
+    this.insertarFactura();
+
+  }
+
+  // agregarLasVentas(){
+
+  //  const  ventas = {
+  //   rhUsuarioId : this.partidas
+
+
+  //   }
+
+  //   this.appService.AddVentaEmpleado().subscribe((res)=>{
+  //     console.log(res)
+  //   })
+  // }
+
+
+  insertarFactura(){
+
+    const numFactura = this.numPedido.get('Pedido').value;
+
+    const factura = {
+      numeroFactura: numFactura,
+      id:   this.IdSeleccionado,
+    }
+
+    this.appService.insertarFactura(factura.numeroFactura,factura.id).subscribe((res)=>{
+      console.log(res);
+    })
+
+  } //cambiar valores en api
 
 
   descargarcsv(IdConsolidadoVentaEmpleado)

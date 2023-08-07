@@ -7,6 +7,8 @@
         <th>#Pedidos</th>
         <th>Total</th>
         <th>Fecha Consolidado</th>
+        <th>Estatus</th>
+
         <th>Acciones</th>
       </tr>
     </thead>
@@ -16,6 +18,7 @@
         <td class="td-1">Pendiente </td>
         <td class="td-1">{{ consolidado.TotalConsolidado }}</td>
         <td class="td-1">{{ consolidado.Fecha }}</td>
+        <td class="td-1">{{ consolidado.NombreEstatus }}</td>
         <td class="td-1">
           <!-- Acciones -->
           <div class="acciones-container">
@@ -93,6 +96,6 @@
 
 <div class="guardar" *ngIf="openTable"  >
 
-  <button  mat-raised-button color="primary"  [disabled]=" numPedido.get('Pedido').invalid"  (click)="guardarFactura()">Guardar Factura</button>
+  <button   mat-raised-button color="primary"  [disabled]=" numPedido.get('Pedido').invalid"  (click)="cancelarEstatusConsolidado(IdSeleccionado)">Guardar Factura</button>
 
 </div>

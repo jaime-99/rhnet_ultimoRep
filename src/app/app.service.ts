@@ -272,6 +272,28 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>(url, body , { headers });
 
         }
+
+        // cambiarEstatusConsolidado
+        cambiarEstatusConsolidado(ventaId){
+
+          const headers = new HttpHeaders().set('Content-Type', 'application/json');
+          const url = `${this.baseUrl}/ventas/cambiarEstatusConsolidado.php`;
+          const body = {ventaId};
+
+          return this.http.post<any>(url, body , { headers });
+        }
+
+        insertarFactura(numeroFactura,id){
+
+          const headers = new HttpHeaders().set('Content-Type', 'application/json');
+          const url = `${this.baseUrl}/ventas/actualizarFactura.php`;
+          const body = {numeroFactura,id};
+
+          return this.http.post<any>(url, body , { headers });
+
+        }
+
+
         //todo esta es la llamada de searchApi
 
         getProductsApiEmpleado(type):Observable<Product[]>{
