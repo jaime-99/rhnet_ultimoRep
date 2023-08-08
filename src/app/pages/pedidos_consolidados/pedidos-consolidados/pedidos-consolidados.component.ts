@@ -10,6 +10,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { FormGroup} from '@angular/forms';
+import { Venn } from '@amcharts/amcharts5/.internal/charts/venn/Venn';
 
 
 @Component({
@@ -165,6 +166,11 @@ export class PedidosConsolidadosComponent implements OnInit {
                 rhUsuarioId:detalle.RhUsuarioId,
                 correo:detalle.Correo, // agregar correo
 
+                //detalles
+
+                ventaDetalle:detalle.ventaEmpleadoDetalleId
+
+
 
               };
 
@@ -209,44 +215,86 @@ export class PedidosConsolidadosComponent implements OnInit {
       const rhUsuarioId = detalleEliminado.rhUsuarioId; console.log(rhUsuarioId)
       const fecha = this.getCurrentDate();
       const Total = detalleEliminado.precio;
-      console.log(Total)
+      console.log(Total);
+      const VentaDetalleId = detalleEliminado.ventaDetalle;
+      console.log(VentaDetalleId);
+
+       // Llamar a la función para enviar la ventaEmpleado
+
+
+      //  this.partidas.forEach(detalleEliminado =>  {
+      //   console.log(detalleEliminado)
+
+      //   const ventaEmpleado = {  // todo de la 215 a la 226 es posible solucion para mandar varios conjuntos a la vez
+      //     RhUsuarioId: detalleEliminado.rhUsuarioId,
+      //     Fecha: detalleEliminado.fecha,
+      //     Total: detalleEliminado.total,
+      //   }
+      //   console.log(ventaEmpleado);
+
+      // })
+
+
 
       //todo enviar solo 1 conjunto a la vez
-      // const VentaEmpleado = {
-      //   RhUsuarioId : rhUsuarioId,
-      //   Fecha : fecha,
-      //   Total : Total,
-      // }
-      // this.appService.sinDetalles(VentaEmpleado).subscribe((res)=>{
+      const VentaEmpleado = {
+        RhUsuarioId : rhUsuarioId,
+        Fecha : fecha,
+        Total : Total,
+      }
+      console.log(VentaEmpleado)
+      const Detalles = {
+        // ProductoId: detalleEliminado.ProductoId,
+        Precio: detalleEliminado.precio,
+        Cantidad :detalleEliminado.cantidad,
+        Importe:detalleEliminado.importe,
+        CodigoDiken:detalleEliminado.codigoDiken
+
+
+        // Cantidad: detalleEliminado.Cantidad,
+        // Importe:detalleEliminado.Importe,
+        // CodigoDiken:detalleEliminado.CodigoDiken
+        // producto:product.name = product.name.length > this.maxPalabras ? product.name.substring(0, this.maxPalabras) + '...' : product.name,
+
+      }
+      console.log(Detalles);
+
+      // this.appService.sinDetalles(VentaEmpleado,Detalles).subscribe((res)=>{
       //   console.log(res)
       // })
 
       //todo enviar varios conjuntos a la vez
-      const conjuntosVentaEmpleado = [
-        {
-          RhUsuarioId: rhUsuarioId,
-          Fecha: fecha,
-          Total: Total,
-        },
-        {
-          RhUsuarioId: 12,
-          Fecha: fecha,
-          Total:12,
-        },
+//       const conjuntosVentaEmpleado = [
+//         {
+//           RhUsuarioId: rhUsuarioId,
+//           Fecha: fecha,
+//           Total: Total,
+//         },
+//         {
+//           RhUsuarioId: 12,
+//           Fecha: fecha,
+//           Total:12,
+//         },
+//       ];
+//       conjuntosVentaEmpleado.forEach(conjunto => {
+//         this.appService.sinDetalles(conjunto).subscribe((res) => {
+//         console.log(res);
+//   });
+// });
 
 
-        // ... Agrega más conjuntos según sea necesario
-      ];
-      conjuntosVentaEmpleado.forEach(conjunto => {
-        this.appService.sinDetalles(conjunto).subscribe((res) => {
-        console.log(res);
-  }); // lo de enviar mismos datos si se puede
-});
+//todo Eliminar Detalle
+
+
+      this.appService.EliminaDetalles(VentaDetalleId).subscribe((res)=>{
+        console.log(res)
+      })
 
 
       //todo en esta funcion hacer que al darle click se elimine al instante
     }
   }
+
 
 
 
