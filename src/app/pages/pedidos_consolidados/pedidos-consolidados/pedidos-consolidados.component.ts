@@ -30,7 +30,6 @@ export class PedidosConsolidadosComponent implements OnInit {
   IdSeleccionado=0;
   UsuarioId: any;
   total: any;
-  fecha: any;
   ventasEmpleado: any[];
   constructor(public dialog: MatDialog, public appService: AppService, public formBuilder: UntypedFormBuilder,
     public snackBar: MatSnackBar) { }
@@ -60,9 +59,6 @@ export class PedidosConsolidadosComponent implements OnInit {
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
     console.log(userauth);
-
-
-
 
 
 
@@ -166,7 +162,9 @@ export class PedidosConsolidadosComponent implements OnInit {
                 cantidad: detalle.Cantidad,
                 empleado: detalle.Numero_Empleado,
                 ventaEmpleadoId:detalle.VentaEmpleadoId,
-                rhUsuarioId:detalle.RhUsuarioId
+                rhUsuarioId:detalle.RhUsuarioId,
+                correo:detalle.Correo, // agregar correo
+
 
               };
 
@@ -204,10 +202,48 @@ export class PedidosConsolidadosComponent implements OnInit {
       const detalleEliminado = { ...this.detalleVentasArray[index] };
       this.detalleVentasArray[index].eliminado = true;
       this.partidas.push(detalleEliminado);
-      console.log(this.partidas)
+      console.log(this.partidas);
+      //empezare a ir a cada dato
       const eliminado = detalleEliminado.cantidad; // Cambia esto por el valor específico que deseas // accedo a el valor
       console.log(eliminado); // esto te muestra el eliminado en vivo
-      const rhUsuarioId = detalleEliminado.rhUsuarioId;
+      const rhUsuarioId = detalleEliminado.rhUsuarioId; console.log(rhUsuarioId)
+      const fecha = this.getCurrentDate();
+      const Total = detalleEliminado.precio;
+      console.log(Total)
+
+      //todo enviar solo 1 conjunto a la vez
+      // const VentaEmpleado = {
+      //   RhUsuarioId : rhUsuarioId,
+      //   Fecha : fecha,
+      //   Total : Total,
+      // }
+      // this.appService.sinDetalles(VentaEmpleado).subscribe((res)=>{
+      //   console.log(res)
+      // })
+
+      //todo enviar varios conjuntos a la vez
+      const conjuntosVentaEmpleado = [
+        {
+          RhUsuarioId: rhUsuarioId,
+          Fecha: fecha,
+          Total: Total,
+        },
+        {
+          RhUsuarioId: 12,
+          Fecha: fecha,
+          Total:12,
+        },
+
+
+        // ... Agrega más conjuntos según sea necesario
+      ];
+      conjuntosVentaEmpleado.forEach(conjunto => {
+        this.appService.sinDetalles(conjunto).subscribe((res) => {
+        console.log(res);
+  }); // lo de enviar mismos datos si se puede
+});
+
+
       //todo en esta funcion hacer que al darle click se elimine al instante
     }
   }
@@ -304,6 +340,18 @@ export class PedidosConsolidadosComponent implements OnInit {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
+  }
+
+//obtener fecha
+  getCurrentDate(): string {
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = this.formatNumber(currentDate.getMonth() + 1);
+    const day = this.formatNumber(currentDate.getDate());
+    return `${year}-${month}-${day}`;
+  }
+  formatNumber(value: number): string {
+    return value < 10 ? `0${value}` : value.toString();
   }
 }
 

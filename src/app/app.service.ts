@@ -192,6 +192,15 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         // termina ejemplo de addVentaEmpleado -- jaime
 
+        //esto es para mandar sin los detalles solo la ventaEmpelado
+        sinDetalles(ventaEmpleado:any){
+
+          const url=`${ this.baseUrl }/ventas/addventaempleados.php`;
+          const body={ventaEmpleado}
+          return this.http.post<any>( url, body );
+
+        }
+
         // ejemplo de api sendemailVentaEmpelado -- jaime
 
         sendemailVentaEmpleado(NumeroDeEmpleado:string,Fecha:Date,Total:number,detalles, Nombre:String,numVenta:number,correoDestino:string){

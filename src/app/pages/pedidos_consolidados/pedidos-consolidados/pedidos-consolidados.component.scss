@@ -146,8 +146,10 @@ tr:nth-child(odd) {
 .td-1:nth-of-type(1):before { content: "Empresa"; }
 .td-1:nth-of-type(2):before { content: "# Pedidos"; }
 .td-1:nth-of-type(3):before { content: "Total"; }
-.td-1:nth-of-type(4):before { content: "Fecha de Coonsolidado"; }
-.td-1:nth-of-type(5):before { content: "Acciones"; }
+.td-1:nth-of-type(4):before { content: "Fecha de Consolidado"; }
+.td-1:nth-of-type(5):before { content: "Estatus"; }
+.td-1:nth-of-type(6):before { content: "#Factura"; }
+.td-1:nth-of-type(7):before { content: "Acciones"; }
 
 .td-2:nth-of-type(1):before { content: "Codigo Diken"; }
 .td-2:nth-of-type(2):before { content: "Producto"; }
