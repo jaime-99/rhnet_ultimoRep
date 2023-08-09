@@ -91,7 +91,7 @@
         <td  class="td-2">{{detalleVenta.importe | number : '1.2-2'}} </td>
         <td  class="td-2">{{detalleVenta.empleado}} </td>
         <td  class="td-2">{{detalleVenta.usuario}} </td>
-        <td  class="td-2"> <button  mat-raised-button color="warn" [disabled]="detalleVenta.eliminado" (click)="eliminarDetalleVenta(i)">Eliminar</button></td>
+        <td  class="td-2"> <button  mat-raised-button color="warn"     [disabled]="detalleVenta.eliminado ||  numPedido.get('Pedido').invalid"  (click)="eliminarDetalleVenta(i)">Eliminar</button></td>
       </tr>
     </tbody>
   </table>

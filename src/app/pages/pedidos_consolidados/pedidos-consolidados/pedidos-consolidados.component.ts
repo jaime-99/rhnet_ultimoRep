@@ -8,6 +8,8 @@ import * as Papa from 'papaparse';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { mergeMap } from 'rxjs/operators';
+
 
 import { FormGroup} from '@angular/forms';
 import { Venn } from '@amcharts/amcharts5/.internal/charts/venn/Venn';
@@ -168,7 +170,9 @@ export class PedidosConsolidadosComponent implements OnInit {
 
                 //detalles
 
-                ventaDetalle:detalle.ventaEmpleadoDetalleId
+                ventaDetalle:detalle.ventaEmpleadoDetalleId,
+                productoId:detalle.ProductoId
+
 
 
 
@@ -218,6 +222,8 @@ export class PedidosConsolidadosComponent implements OnInit {
       console.log(Total);
       const VentaDetalleId = detalleEliminado.ventaDetalle;
       console.log(VentaDetalleId);
+      const ventaEmpleadoId = detalleEliminado.ventaEmpleadoId;
+      console.log(ventaEmpleadoId);
 
        // Llamar a la función para enviar la ventaEmpleado
 
@@ -237,29 +243,23 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
       //todo enviar solo 1 conjunto a la vez
-      const VentaEmpleado = {
+      const ventaEmpleado = {
         RhUsuarioId : rhUsuarioId,
         Fecha : fecha,
         Total : Total,
       }
-      console.log(VentaEmpleado)
-      const Detalles = {
-        // ProductoId: detalleEliminado.ProductoId,
+      console.log(ventaEmpleado)
+      const detalles = [{
+        ProductoId: detalleEliminado.productoId,
         Precio: detalleEliminado.precio,
         Cantidad :detalleEliminado.cantidad,
         Importe:detalleEliminado.importe,
-        CodigoDiken:detalleEliminado.codigoDiken
+        CodigoDiken:detalleEliminado.codigoDiken,
 
-
-        // Cantidad: detalleEliminado.Cantidad,
-        // Importe:detalleEliminado.Importe,
-        // CodigoDiken:detalleEliminado.CodigoDiken
-        // producto:product.name = product.name.length > this.maxPalabras ? product.name.substring(0, this.maxPalabras) + '...' : product.name,
-
-      }
-      console.log(Detalles);
-
-      // this.appService.sinDetalles(VentaEmpleado,Detalles).subscribe((res)=>{
+      }]
+      console.log(detalles);
+      //!es para enviar un nuevo ventaEmpleado
+      // this.appService.sinDetalles(ventaEmpleado,detalles).subscribe((res)=>{
       //   console.log(res)
       // })
 
@@ -283,15 +283,21 @@ export class PedidosConsolidadosComponent implements OnInit {
 // });
 
 
+
+
 //todo Eliminar Detalle
+// this.appService.EliminaDetalles(VentaDetalleId).pipe(
+//   mergeMap(() => {
+//     // Después de eliminar, actualiza el total de ventaEmpleado
+//     return this.appService.ActualizaTotal(ventaEmpleadoId);
+//   })
+// ).subscribe((res) => {
+//   console.log(res); // Esto se ejecutará después de que ambas operaciones se completen
+// });
 
 
-      this.appService.EliminaDetalles(VentaDetalleId).subscribe((res)=>{
-        console.log(res)
-      })
 
-
-      //todo en esta funcion hacer que al darle click se elimine al instante
+      //todo en esta funcion hace que al darle click se elimine al instante
     }
   }
 
