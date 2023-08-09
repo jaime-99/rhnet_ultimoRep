@@ -229,6 +229,15 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>( url, body );
         }
 
+        enviarFacturas(numFactura,Nombre,correoDestino,datosCorreo){
+
+          const url=`${ this.baseUrl }/tools/enviarFactura.php`;
+          const body={numFactura,Nombre,correoDestino,datosCorreo}
+          return this.http.post<any>( url, body );
+        }
+
+
+
 
         public GetCotizacionesPorUsuarioId(usuarioId:any){
 

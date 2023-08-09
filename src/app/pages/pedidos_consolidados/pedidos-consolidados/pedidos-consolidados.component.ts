@@ -13,6 +13,7 @@ import { mergeMap } from 'rxjs/operators';
 
 import { FormGroup} from '@angular/forms';
 import { Venn } from '@amcharts/amcharts5/.internal/charts/venn/Venn';
+import { dA } from '@fullcalendar/core/internal-common';
 
 
 @Component({
@@ -224,6 +225,9 @@ export class PedidosConsolidadosComponent implements OnInit {
       console.log(VentaDetalleId);
       const ventaEmpleadoId = detalleEliminado.ventaEmpleadoId;
       console.log(ventaEmpleadoId);
+      const correo = detalleEliminado.correo;
+      console.log(correo);
+
 
        // Llamar a la función para enviar la ventaEmpleado
 
@@ -295,10 +299,33 @@ export class PedidosConsolidadosComponent implements OnInit {
 //   console.log(res); // Esto se ejecutará después de que ambas operaciones se completen
 // });
 
+// todo mandar correo
+  // const nombres = this.partidas.map(partida => partida.usuario);
+
+    // const datosCorreo = this.partidas.map(partidas => ({
+
+    //   numFactura :  this.numPedido.get('Pedido').value,
+    //   Nombre: partidas.usuario,
+    //   Fecha :fecha,
+    //   correoDestino:partidas.correo,
+    //   Producto:partidas.Producto,
+
+    // }))
+
+    // console.log(datosCorreo);
+
+    // this.appService.enviarFacturas(datosCorreo.numFactura,datosCorreo.Nombre,datosCorreo.Fecha,datosCorreo.correoDestino).subscribe((res)=>{
+    //   console.log(res);
+    // })
+
+
+
+
 
 
       //todo en esta funcion hace que al darle click se elimine al instante
     }
+
   }
 
 
@@ -407,11 +434,52 @@ export class PedidosConsolidadosComponent implements OnInit {
   formatNumber(value: number): string {
     return value < 10 ? `0${value}` : value.toString();
   }
+
+
+  //mandar el correo a cada usuario de su venta
+
+  sendMail(index:number){
+
+    if (index >= 0 && index < this.detalleVentasArray.length) {
+      const detalleEliminado = { ...this.detalleVentasArray[index] };
+      this.detalleVentasArray[index].eliminado = true;
+      this.partidas.push(detalleEliminado);
+      console.log(this.partidas);
+
+      const fecha = this.getCurrentDate();
+      const principalesDatos = {
+        Nombre:detalleEliminado.usuario,
+        numFactura :  this.numPedido.get('Pedido').value,
+        correoDestino:detalleEliminado.correo
+      }
+      console.log(principalesDatos);
+
+      const datosCorreo = this.partidas.map(partidas => ({
+
+        // Fecha :fecha,
+        // correoDestino:partidas.correo,
+        Producto:partidas.Producto
+
+      }))
+
+      console.log(datosCorreo);
+      //!Hare lo del correro individualmente con cada detalle y su boton
+
+      // this.appService.enviarFacturas(principalesDatos.numFactura,principalesDatos.Nombre,principalesDatos.correoDestino,datosCorreo).subscribe((res =>{
+      //   console.log(res);
+      // }))
+
+
+
+
+
+  }
+
 }
 
 
 
 
 
-
+}
 
