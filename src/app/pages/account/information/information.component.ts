@@ -38,10 +38,11 @@ export class InformationComponent implements OnInit {
     });
 
     this.passwordForm = this.formBuilder.group({
-      'currentPassword': ['',], // cambiar a p_password y p_usuarioId
-      'newPassword': ['', Validators.required,Validators.minLength(3),Validators.maxLength(20)],
-      'confirmNewPassword': ['', Validators.required,Validators.minLength(3),Validators.maxLength(20)]
+      'newPassword': ['', Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(20)])],
+      'confirmNewPassword': ['', Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(20)])]
     },{validator: matchingPasswords('newPassword', 'confirmNewPassword')});
+
+
   }
 
   public onInfoFormSubmit(values:Object):void {
@@ -57,6 +58,7 @@ export class InformationComponent implements OnInit {
       this.cambiarContra();
     }
   }
+
 
 
 
@@ -80,7 +82,7 @@ export class InformationComponent implements OnInit {
 
     this.appService.cambiarContraseniaNuevo(formData).subscribe((res) => {
       console.log(res)
-      this.infoForm.reset();
+      this.passwordForm.reset();
     });
 
   }
@@ -105,8 +107,7 @@ export class InformationComponent implements OnInit {
 
     this.supportService.modificarUsuarios(formData).subscribe((res) => {
       console.log(res)
-      this.passwordForm.reset();
-
+      this.infoForm.reset
     })
   }
 }

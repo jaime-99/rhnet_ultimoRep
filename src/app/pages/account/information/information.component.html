@@ -38,7 +38,7 @@
                 <mat-error *ngIf="passwordForm.controls.newPassword.hasError('minlength')">la nueva contraseña debe tener minimo 6 letras</mat-error>
             </mat-form-field>
             <mat-form-field class="w-100 mt-1">
-              <input matInput placeholder="Confirmar la nueva contraseña" formControlName="confirmNewPassword" type="password" required>
+              <input matInput placeholder="Confirmar la nueva contraseña" formControlName="confirmNewPassword" type="password" minlength="6" required>
               <mat-error *ngIf="passwordForm.controls.confirmNewPassword.errors?.required">la confirmacion de la contraseña es requerida </mat-error>
               <mat-error *ngIf="passwordForm.controls.confirmNewPassword.hasError('mismatchedPasswords')">las contraseñas no coinciden</mat-error>
             </mat-form-field>
