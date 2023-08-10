@@ -41,8 +41,6 @@ export class InformationComponent implements OnInit {
       'newPassword': ['', Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(20)])],
       'confirmNewPassword': ['', Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(20)])]
     },{validator: matchingPasswords('newPassword', 'confirmNewPassword')});
-
-
   }
 
   public onInfoFormSubmit(values:Object):void {
@@ -58,8 +56,6 @@ export class InformationComponent implements OnInit {
       this.cambiarContra();
     }
   }
-
-
 
 
 

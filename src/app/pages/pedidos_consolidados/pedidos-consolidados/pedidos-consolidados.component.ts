@@ -263,9 +263,9 @@ export class PedidosConsolidadosComponent implements OnInit {
       }]
       console.log(detalles);
       //!es para enviar un nuevo ventaEmpleado
-      // this.appService.sinDetalles(ventaEmpleado,detalles).subscribe((res)=>{
-      //   console.log(res)
-      // })
+      this.appService.sinDetalles(ventaEmpleado,detalles).subscribe((res)=>{
+        console.log(res)
+      })
 
       //todo enviar varios conjuntos a la vez
 //       const conjuntosVentaEmpleado = [
@@ -290,33 +290,80 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
 //todo Eliminar Detalle
-// this.appService.EliminaDetalles(VentaDetalleId).pipe(
-//   mergeMap(() => {
-//     // Después de eliminar, actualiza el total de ventaEmpleado
-//     return this.appService.ActualizaTotal(ventaEmpleadoId);
-//   })
-// ).subscribe((res) => {
-//   console.log(res); // Esto se ejecutará después de que ambas operaciones se completen
-// });
+this.appService.EliminaDetalles(VentaDetalleId).pipe(
+  mergeMap(() => {
+    // Después de eliminar, actualiza el total de ventaEmpleado
+    return this.appService.ActualizaTotal(ventaEmpleadoId);
+  })
+).subscribe((res) => {
+  console.log(res); // Esto se ejecutará después de que ambas operaciones se completen
+});
 
 // todo mandar correo
   // const nombres = this.partidas.map(partida => partida.usuario);
 
-    // const datosCorreo = this.partidas.map(partidas => ({
+    const destino = detalleEliminado.correo;
+    console.log(destino);
 
-    //   numFactura :  this.numPedido.get('Pedido').value,
-    //   Nombre: partidas.usuario,
-    //   Fecha :fecha,
-    //   correoDestino:partidas.correo,
-    //   Producto:partidas.Producto,
+    const informacionCorreo = {
+      numFactura :  this.numPedido.get('Pedido').value,
+      correoDestino: detalleEliminado.correo,
+      Fecha:fecha,
+      Nombre:detalleEliminado.usuario,
+      Producto:detalleEliminado.producto
+    }
 
-    // }))
 
-    // console.log(datosCorreo);
 
-    // this.appService.enviarFacturas(datosCorreo.numFactura,datosCorreo.Nombre,datosCorreo.Fecha,datosCorreo.correoDestino).subscribe((res)=>{
-    //   console.log(res);
-    // })
+    const datosCorreo = this.partidas.map(partidas => ({
+
+      numFactura :  this.numPedido.get('Pedido').value,
+      Nombre: partidas.usuario,
+      Fecha :fecha,
+      correoDestino:partidas.correo,
+      Producto:partidas.producto,
+
+    }))
+
+    console.log(datosCorreo);
+
+    this.appService.enviarFacturas(informacionCorreo.numFactura,informacionCorreo.correoDestino,informacionCorreo.Fecha,informacionCorreo.Nombre,informacionCorreo.Producto).subscribe((res)=>{
+      console.log(res);
+    })
+//
+
+    // const destinatarios = {};
+
+//Llenar el objeto con los datos de productos y destinatarios
+//   this.partidas.forEach(partida => {
+//   const correo = partida.correo;
+
+//   if (!destinatarios[correo]) {
+//     destinatarios[correo] = {
+//       numFactura: this.numPedido.get('Pedido').value,
+//       Nombre: partida.usuario,
+//       Fecha: fecha,
+//       correoDestino: partida.correo,
+//       Productos: [partida.producto]
+//     };
+//   } else {
+//     destinatarios[correo].Productos.push(partida.producto);
+//   }
+// });
+
+// Iterar a través de los destinatarios y enviar correos
+// for (const correo in destinatarios) {
+//   const detalles = destinatarios[correo];
+//   const productosTexto = detalles.Productos.join(', ');
+// }
+
+// console.log(destinatarios);
+
+
+// this.appService.enviarFacturas(destinatarios).subscribe((res =>{
+//   console.log(res)
+// }))
+
 
 
 

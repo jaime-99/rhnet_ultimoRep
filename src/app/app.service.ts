@@ -229,10 +229,10 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>( url, body );
         }
 
-        enviarFacturas(numFactura,Nombre,correoDestino,datosCorreo){
+        enviarFacturas(numFactura,correoDestino,Fecha,Nombre,Producto){
 
           const url=`${ this.baseUrl }/tools/enviarFactura.php`;
-          const body={numFactura,Nombre,correoDestino,datosCorreo}
+          const body={numFactura,correoDestino,Fecha,Nombre,Producto}
           return this.http.post<any>( url, body );
         }
 
