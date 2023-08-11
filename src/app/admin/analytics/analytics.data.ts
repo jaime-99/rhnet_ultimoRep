@@ -21,7 +21,7 @@ export const sales_summary = [
     ]
   },
   {
-    
+
     name: 'MEXICO',
     series: [
       {
@@ -163,7 +163,7 @@ export const daily_views_stats = [
       {
         name: 'Day 8',
         value: 31476
-      }, 
+      },
       {
         name: 'Day 9',
         value: 71632
@@ -191,7 +191,7 @@ export const daily_views_stats = [
       {
         name: 'Day 15',
         value: 76953
-      } 
+      }
     ]
   },
   {
@@ -228,7 +228,7 @@ export const daily_views_stats = [
       {
         name: 'Day 8',
         value: 21476
-      }, 
+      },
       {
         name: 'Day 9',
         value: 61632
@@ -256,7 +256,7 @@ export const daily_views_stats = [
       {
         name: 'Day 15',
         value: 76953
-      } 
+      }
     ]
   },
 ];
@@ -307,7 +307,7 @@ export const transactions = [
   {
     name: 'Store 1',
     value: 40632
-  
+
   },
   {
     name: 'Store 2',

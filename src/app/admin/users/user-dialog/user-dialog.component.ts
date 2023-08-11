@@ -127,6 +127,7 @@ export class UserDialogComponent implements OnInit {
     this.obtenerInformacion();
     // this.getObtenerUsuarios();
     console.log(this.data.name);
+
     // if(this.user){
     //   this.form.setValue(this.user);
     // }

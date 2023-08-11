@@ -40,6 +40,18 @@
   <mat-step [editable]="false"  [stepControl]="detallesForm "  >
     <ng-template  matStepLabel>Detalles de Venta     </ng-template>
     <div class="divider"></div>
+
+
+    <section class="example-section">
+      <label class="example-margin">Cuenta:</label>
+      <mat-radio-group [(ngModel)]="noUsuario">
+        <mat-radio-button class="example-margin" value="after">Si</mat-radio-button>
+        <mat-radio-button class="example-margin" value="before">No</mat-radio-button>
+      </mat-radio-group>
+    </section>
+
+
+
     <div fxLayout="row wrap">
       <div fxFlex="100" class="p-1">
         <h3 class="text-muted">Productos</h3>

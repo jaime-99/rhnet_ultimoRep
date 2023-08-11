@@ -56,7 +56,7 @@ export class PedidosConsolidadosComponent implements OnInit {
   ngOnInit(): void {
 
     this.numPedido = this.formBuilder.group({
-      Pedido: ['', [Validators.required, Validators.pattern(/^[0-9]+$/)]]
+      Pedido: ['', [Validators.required, Validators.pattern(/^[0-9]+$/), Validators.maxLength(4)]]
 
     });
 

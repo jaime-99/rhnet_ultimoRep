@@ -38,7 +38,7 @@
     <mat-menu #accountMenu="matMenu" [overlapTrigger]="false" xPosition="before" class="app-dropdown account">
         <span (mouseleave)="accountMenuTrigger.closeMenu()">
             <div fxLayout="row" fxLayoutAlign="space-around center" class="user-info">
-                <img [src]="userImage" alt="user-image" width="50">
+                <img class="pp" [src]="userImage" alt="user-image" width="50" border-radius="50px" height="50px">
                 <p>{{userLogged}} <br> <small>{{maillogged}} <span *ngIf="settings.rtl">&rlm;</span>(152<mat-icon class="mat-icon-xs">star</mat-icon>)</small></p>
             </div>
             <div class="divider"></div>

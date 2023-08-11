@@ -28,6 +28,7 @@ export class VentaEmpleadoComponent implements OnInit {
   correoDestinatario='';
 
   Desabilitado: boolean = false;
+  noUsuario: any;
 
 
 
@@ -75,6 +76,13 @@ export class VentaEmpleadoComponent implements OnInit {
       detalles: this.formBuilder.array([]),
     });
 
+    this.noUsuario = this.formBuilder.group({
+      numUsuario: ['', Validators.required],
+      nombre: [this.grandTotal, Validators.required],
+    });
+
+
+
 
 
     // this.fillDetalles(); // Llenar los detalles de venta automáticamente
@@ -89,7 +97,6 @@ export class VentaEmpleadoComponent implements OnInit {
 
    //this.ventaForm.controls['RhUsuarioId'].setValue(this.UsuarioId)
    this.ventaForm.controls['RhUsuarioId'].setValue(this.Nombre) // para que se vea el nombre
-
 
   }
 

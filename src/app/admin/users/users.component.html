@@ -43,7 +43,7 @@
                     </button>
                     <button mat-menu-item (click)="deleteUser(user);">
                         <mat-icon>delete</mat-icon>
-                        <span>Delete</span>
+                        <span>Borrar</span>
                     </button>
                 </span>
             </mat-menu>
@@ -85,7 +85,7 @@
         </mat-card>
     </div>
 </div>
-
+<!-- esto no se usa -->
 <div *ngIf="viewType.value == 'list'" fxLayout="row wrap">
     <div *ngFor="let user of usuarios | BuscarNombre: searchText | paginate: { itemsPerPage: 6, currentPage: page }" fxFlex="100" class="p-1">
         <mat-card class="p-0">

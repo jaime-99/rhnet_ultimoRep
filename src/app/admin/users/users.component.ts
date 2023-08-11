@@ -41,6 +41,7 @@ export class UsersComponent implements OnInit {
 
 
 
+
         this.getObtenerUsuarios();
     }
 
@@ -120,11 +121,11 @@ export class UsersComponent implements OnInit {
       );
     }
 
-    // buscar con lupa
+    // buscar con lupa (no funciona)
 
     filterUsers(): void {
       if (!this.searchText) {
-        this.filteredUsers = this.usuarios;
+        this.filteredUsers = this.usuarios ;
       } else {
         this.filteredUsers = this.usuarios.filter((user) => {
           return user.name.toLowerCase().includes(this.searchText.toLowerCase());

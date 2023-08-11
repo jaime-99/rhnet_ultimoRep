@@ -8,6 +8,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { InformationComponent } from './information/information.component';
 import { AddressesComponent } from './addresses/addresses.component';
 import { OrdersComponent } from './orders/orders.component';
+import {MatIconModule} from '@angular/material/icon';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 
 export const routes: Routes = [
   {
@@ -27,7 +30,10 @@ export const routes: Routes = [
     CommonModule,
     RouterModule.forChild(routes),
     ReactiveFormsModule,
-    SharedModule
+    SharedModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
   ],
   declarations: [
     AccountComponent,
@@ -35,6 +41,9 @@ export const routes: Routes = [
     InformationComponent,
     AddressesComponent,
     OrdersComponent
+  ],
+  exports:[
+    MatMenuModule
   ]
 })
 export class AccountModule { }

@@ -5,7 +5,9 @@ import { Settings, AppSettings } from '../../../app.settings';
 
 @Component({
   selector: 'app-top-menu',
-  templateUrl: './top-menu.component.html'
+  templateUrl: './top-menu.component.html',
+  styleUrls: ['./top-menu.component.scss']
+
 })
 
 

@@ -20,7 +20,7 @@
         <td class="td-1">{{ consolidado.Empresa }}</td>
         <td class="td-1">Pendiente </td>
         <td class="td-1">{{ consolidado.TotalConsolidado }}</td>
-        <td class="td-1">{{ consolidado.Fecha }}</td>
+        <td class="td-1">{{ consolidado.Fecha  | date }}</td>
         <td class="td-1">{{ consolidado.NombreEstatus }}</td>
         <td class="td-1">{{ consolidado.NumeroFactura }}</td>
         <td class="td-1">
@@ -51,10 +51,11 @@
   <div class="text_box_pedido" *ngIf="openTable">
 
     <form [formGroup]="numPedido" >
-    <mat-form-field class="w-100 mt-1" >
+    <mat-form-field class=" custom-form-field  w-100 mt-1" >
       <input matInput placeholder="Numero de Factura" formControlName="Pedido" required>
-      <mat-error *ngIf="numPedido.get('Pedido').invalid && numPedido.get('Pedido').touched">
-        Deben ser solo numeros </mat-error>
+      <mat-error class="custom-error" *ngIf="numPedido.get('Pedido').invalid && numPedido.get('Pedido').touched">
+        Deben ser solo numeros y no mas de 4 digitos</mat-error>
+
 
       </mat-form-field>
     </form>

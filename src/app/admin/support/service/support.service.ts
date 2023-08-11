@@ -270,6 +270,14 @@ GetLoginAuth(Correo:string,contrasenia:string)
 
     }
 
+    cambiarImagen(file:File){
+      const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/cargarImagen.php`;
+      const formData = new FormData();
+      formData.append('image', file);
+      return this.http.post<string>(url, formData); // Es
+
+    }
+
     // okey ya que se sube la foto, ahora tengo que obtener la respuesta y de la url y con eso
    // crear una funcion que llene el nombre de la foto al darle al boton tambien
 

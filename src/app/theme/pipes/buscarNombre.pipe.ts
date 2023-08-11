@@ -16,7 +16,9 @@ export class BuscarNombre implements PipeTransform {
     return usuarios.filter((usuario: Usuario) => {
       return (
         (usuario.name && usuario.name.toLowerCase().includes(searchText)) ||
-        (usuario.number && usuario.number.includes(searchText))
+        (usuario.number && usuario.number.includes(searchText)) ||
+        (usuario.nombreUsuario && usuario.nombreUsuario.includes(searchText))
+
       );
     });
   }

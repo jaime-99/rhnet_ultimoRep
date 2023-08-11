@@ -40,6 +40,7 @@ th, td {
 }
 .text_box_pedido{
   width: 200px;
+  margin-bottom: 1.5rem;
 
 }
 
@@ -54,6 +55,22 @@ th, td {
 .boton1, .boton2{
   margin-bottom: 0.5rem;
 }
+
+/* styles.css o styles.scss */
+.custom-error {
+  font-size: 16px; /* Ajusta el tamaño de fuente según tus preferencias */
+  color: red;     /* Cambia el color según tus preferencias */
+
+}
+
+/* styles.css o styles.scss */
+.custom-form-field {
+  border: 2px solid #ccc; /* Define el estilo del borde según tus preferencias */
+  border-radius: 5px;     /* Define el radio de borde según tus preferencias */
+  padding: 10px;          /* Añade un espacio interno alrededor del campo */
+}
+
+
 @media screen and (max-width: 768px) {
 //   .table-container {
 //     display: flex;
