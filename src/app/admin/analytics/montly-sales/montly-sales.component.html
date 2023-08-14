@@ -4,7 +4,7 @@
     </mat-card-header>
     <mat-card-content>
         <div class="w-100 h-300p" #resizedDiv>
-            <ngx-charts-pie-chart
+            <!-- <ngx-charts-pie-chart
                 [scheme]="colorScheme"
                 [results]="data"
                 [legend]="showLegend"
@@ -17,7 +17,28 @@
               [tooltipText]="formatLabel"
 
                 (select)="onSelect($event)">
-            </ngx-charts-pie-chart>
+            </ngx-charts-pie-chart> -->
+
+            <!-- Reemplaza ngx-charts-advanced-pie-chart por ngx-charts-bar-vertical -->
+              <ngx-charts-bar-vertical
+                    [results]="data"
+                    [gradient]="gradient"
+                    [scheme]="colorScheme"
+                    [showXAxisLabel]="showLabels"
+                    [showYAxisLabel]="showLabels"
+                    [xAxis]="showLabels"
+                    [yAxis]="showLabels"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel"
+                    [tooltipDisabled]="tooltipDisabled"
+                    [barPadding]="barPadding"
+                    [animations]="animations"
+                    [yScaleMax]="yScaleMax"
+
+                    (select)="onSelect($event)"
+                    >
+              </ngx-charts-bar-vertical>
+
         </div>
     </mat-card-content>
 </mat-card>

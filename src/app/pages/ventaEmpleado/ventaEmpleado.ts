@@ -117,6 +117,8 @@ export class VentaEmpleadoComponent implements OnInit {
   ]);
 
 
+
+
   extraerValores() {
     const numUsuarioValue = this.numUsu.value;
     const nombreValue = this.nombre.value;
