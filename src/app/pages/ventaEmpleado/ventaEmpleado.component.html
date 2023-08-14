@@ -1,3 +1,25 @@
+
+<section class="example-section">
+  <label class="example-margin">Cuenta:</label>
+  <mat-radio-group [(ngModel)]="noUsuario" (ngModelChange)="onNoUsuarioChange($event)">
+
+    <mat-radio-button class="example-margin" value="after">Si</mat-radio-button>
+    <mat-radio-button class="example-margin" value="before">No</mat-radio-button>
+  </mat-radio-group>
+</section>
+
+
+  <section class="formAdicional" *ngIf="noUsuario === 'before'">
+    <div class="divider"></div>
+    <label class="example-margin1">Formulario Adicional:</label>
+    <mat-form-field>
+      <input matInput placeholder="Numero de usuario" [formControl]="numUsu">
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Nombre" [formControl]="nombre">
+    </mat-form-field>
+  </section>
+
 <mat-stepper #stepper>
   <!-- <mat-step  [stepControl]="ventaForm" [editable]="false" [completed]="true">
     <ng-template  matStepLabel>Datos de Venta</ng-template>
@@ -41,17 +63,6 @@
     <ng-template  matStepLabel>Detalles de Venta     </ng-template>
     <div class="divider"></div>
 
-
-    <section class="example-section">
-      <label class="example-margin">Cuenta:</label>
-      <mat-radio-group [(ngModel)]="noUsuario">
-        <mat-radio-button class="example-margin" value="after">Si</mat-radio-button>
-        <mat-radio-button class="example-margin" value="before">No</mat-radio-button>
-      </mat-radio-group>
-    </section>
-
-
-
     <div fxLayout="row wrap">
       <div fxFlex="100" class="p-1">
         <h3 class="text-muted">Productos</h3>
@@ -81,9 +92,19 @@
         <h3 class="text-muted mt-2">Información del empleado</h3>
         <div class="divider"></div>
 
-        <div class="mat-cell"> Numero de Empleado:{{NumeroEmpleado}}</div>
-        <div class="mat-cell"> Nombre: {{Nombre}}</div>
-        <div class="mat-cell"> ID:{{UsuarioId}}</div>
+        <div *ngIf="!abrirFormulario"  class="mat-cell"> Numero de Empleado:{{NumeroEmpleado}}</div>
+        <div *ngIf="!abrirFormulario" class="mat-cell"> Nombre: {{Nombre}}</div>
+        <div *ngIf="!abrirFormulario" class="mat-cell"> ID:{{UsuarioId}}</div>
+
+        <div class="info" *ngIf="abrirFormulario">
+        <div class="mat-cell"> Numero de Usuario:{{this.numUsu.value}}</div>
+        <div class="mat-cell"> Nombre: {{this.nombre.value}}</div>
+        </div>
+
+
+
+
+
 
       </div>
     </div>

@@ -50,3 +50,21 @@ mat-form-field {
 .example-margin {
   margin: 0 10px;
 }
+.example-margin1 {
+  margin: 0 10px 15px;
+}
+
+
+.formAdicional {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; /* Ajusta el margen superior según tus preferencias */
+  align-items: center;
+}
+
+.formAdicional .divider {
+  width: 1px; /* Ancho de la línea divisoria */
+  height: 100%; /* Tamaño completo de la línea divisoria */
+  background-color: #ccc; /* Color de la línea divisoria */
+  margin-right: 10px; /* Espacio a la derecha de la línea divisoria */
+}

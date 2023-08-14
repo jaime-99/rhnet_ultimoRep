@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { Usuario } from 'src/app/auth/interfaces/iUsuario';
 import { EmpleadoVentas } from 'src/app/app.models';
 import { array } from '@amcharts/amcharts5';
 import { id } from '@swimlane/ngx-charts';
+import { ThisReceiver } from '@angular/compiler';
 
 
 @Component({
@@ -24,11 +25,12 @@ export class VentaEmpleadoComponent implements OnInit {
   Producto = "";
   NumeroEmpleado="";
   numeroDeVentaNuevo = 0;
-
   correoDestinatario='';
 
   Desabilitado: boolean = false;
-  noUsuario: any;
+  noUsuario: string = "after";
+  abrirFormulario:boolean = false;
+  formAdicional: any;
 
 
 
@@ -39,18 +41,20 @@ export class VentaEmpleadoComponent implements OnInit {
 
 
   ngOnInit() {
+    this.extraerValores();
 
 
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
 
-     this.UsuarioId = userauth.UsuarioId;  // con esto sacamos informacion del usuario
+    this.UsuarioId = userauth.UsuarioId;  // con esto sacamos informacion del usuario
     this.Nombre = userauth.Nombre;
     this.NumeroEmpleado = userauth.data.Numero_Empleado;
      // este es para ver mejor que hayconsole.log(userauth);
     //this.UsuarioId = userauth.data.INUsuarioId;
     // console.log(this.UsuarioId);
     // console.log(this.NumeroEmpleado);
+
 
 
 
@@ -76,7 +80,8 @@ export class VentaEmpleadoComponent implements OnInit {
       detalles: this.formBuilder.array([]),
     });
 
-    this.noUsuario = this.formBuilder.group({
+
+    this.formAdicional = this.formBuilder.group({
       numUsuario: ['', Validators.required],
       nombre: [this.grandTotal, Validators.required],
     });
@@ -99,6 +104,28 @@ export class VentaEmpleadoComponent implements OnInit {
    this.ventaForm.controls['RhUsuarioId'].setValue(this.Nombre) // para que se vea el nombre
 
   }
+
+  //formulario adicional
+  numUsu: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^[0-9]*$') // Patrón que permite solo números
+  ]);
+
+  nombre: FormControl = new FormControl('', [
+    Validators.required,
+    Validators.pattern('^[a-zA-Z ]*$') // Patrón que permite solo letras (mayúsculas y minúsculas) y espacios
+  ]);
+
+
+  extraerValores() {
+    const numUsuarioValue = this.numUsu.value;
+    const nombreValue = this.nombre.value;
+
+    console.log('Número de Usuario:', numUsuarioValue);
+    console.log('Nombre:', nombreValue);
+  }// se acaba el dormulario adicional
+
+
 
   // fillDetalles() {
   //   const detallesFormArray = this.ventaForm.get('detalles') as FormArray;
@@ -168,7 +195,7 @@ export class VentaEmpleadoComponent implements OnInit {
    // esto es para agregar ahora si bien el numero de la venta
    let empleadoVentas = new EmpleadoVentas();
 
-          let userauth = JSON.parse(localStorage.getItem('datalogin')!);
+    let userauth = JSON.parse(localStorage.getItem('datalogin')!);
 
     if (this.ventaForm.valid) {
       console.log('Formulario válido');
@@ -176,13 +203,15 @@ export class VentaEmpleadoComponent implements OnInit {
     } else {
       console.log('Formulario inválido');
     }
+
+
       const ventaEmpleado = {
-        RhUsuarioId: this.UsuarioId,
+        RhUsuarioId: this.abrirFormulario ? this.numUsu.value: this.UsuarioId,
         Fecha: this.ventaForm.get('Fecha').value,
         Total: this.ventaForm.get('Total').value,
         // de aqui para aca son los que agregue
         //Nombre:this.ventaForm.controls['RhusuarioId'].setValue(this.Nombre)
-        Nombre: this.Nombre, // para que se vea el nombre
+        Nombre: this.abrirFormulario ? this.nombre.value: this.Nombre, // para que se vea el nombre
         //numVenta:this.numVenta = this.numVenta + 1, // para sumar cada venta , es una demo
         NumeroDeEmpleado:this.NumeroEmpleado,
 
@@ -190,6 +219,9 @@ export class VentaEmpleadoComponent implements OnInit {
         //Total: 0  // Inicializamos el Total en 0
          // hacemos algo con el numVenta
       };
+
+
+
 
       const detalles = this.appService.Data.cartList.map(product => ({
         ProductoId: product.id,
@@ -252,6 +284,17 @@ export class VentaEmpleadoComponent implements OnInit {
     this.appService.Data.totalPrice = 0;
     this.appService.Data.totalCartCount = 0;
   }
+
+
+// Método que se llama cuando cambia la selección del radio button
+onNoUsuarioChange(value: string) {
+  this.noUsuario = value;
+  if (value === 'before') {
+    this.abrirFormulario = true;
+  } else {
+    this.abrirFormulario = false;
+  }
+}
 
 
 }
