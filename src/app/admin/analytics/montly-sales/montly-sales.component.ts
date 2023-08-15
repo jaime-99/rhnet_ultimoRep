@@ -35,6 +35,14 @@ public barPadding = 10; // Espaciado entre barras
 public animations = true; // Activa las animaciones
 public yScaleMax = 50; // Establece el valor máximo del eje Y
 
+public valueFormatting: (value: number) => string = (value) => `${value} Compras`;
+
+// ...
+
+
+// ...
+
+
 
 
 
@@ -43,8 +51,10 @@ public yScaleMax = 50; // Establece el valor máximo del eje Y
   constructor(public appService:AppService) { }
 
   ngOnInit(){
-    this.data = montly_sales;
+    this.data = []
     this.obtenerProductos()
+
+
 
   }
 
@@ -66,8 +76,8 @@ public yScaleMax = 50; // Establece el valor máximo del eje Y
       (res) => {
         console.log(res);
         this.productos = res.map((user: any) => ({
-          name: user.NombreProducto,
-          value: user.Repeticiones
+          name: user.Producto,
+          value: user.CantidadComprada
         }));
 
         // Asignar directamente a this.data para tener el formato adecuado
@@ -92,6 +102,9 @@ public yScaleMax = 50; // Establece el valor máximo del eje Y
     // Formatea el tooltip para mostrar el nombre y el valor
     return `${data.name}: ${data.value}`;
   }
+
+
+
 
 
 

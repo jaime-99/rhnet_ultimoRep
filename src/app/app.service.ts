@@ -243,6 +243,16 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.get<any>(url)
         }
 
+        //obtener Categorias mas populares
+
+        getObtenerCategoria(){
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/productosPorCategoria.php`;
+          return this.http.get<any>(url)
+
+        }
+
+
+
 
 
 

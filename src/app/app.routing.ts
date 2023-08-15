@@ -9,6 +9,7 @@ import { modificarPass } from './pages/modificarPass/modificarPass.component';
 import { modificarPassModule } from './pages/modificarPass/modificarPass.module';
 import { formularioPassModule } from './pages/formularioPass/formularioPass.component.module';
 import { pedidosConsolidadosModule } from './pages/pedidos_consolidados/pedidos-consolidados/pedidos.component.module';
+import { ManualDeUsuarioModule } from './pages/manual-de-usuario/manualDeUsuarioPDF.component.module';
 
 
 export const routes: Routes = [
@@ -48,6 +49,7 @@ export const routes: Routes = [
             { path: 'ventas', loadChildren: () => import('./pages/ventaEmpleado/ventaEmpleado.module').then(m => m.VentaEmpleadoModule), data: { breadcrumb: 'ventas Empleado' } },
             { path: 'misPedidos', loadChildren: () => import('./pages/misPedidos/misPedidos.component.module').then(m => misPedidosModule), data: { breadcrumb: 'Todos Mis Pedidos' } },
             { path: 'pedidosConsolidados', loadChildren: () => import('./pages/pedidos_consolidados/pedidos-consolidados/pedidos.component.module').then(m => pedidosConsolidadosModule), data: { breadcrumb: 'Pedidos consolidados' } },
+            { path: 'manualDeUsuario', loadChildren: () => import('./pages/manual-de-usuario/manualDeUsuarioPDF.component.module').then(m => ManualDeUsuarioModule), data: { breadcrumb: 'Manual De Usuario' } },
 
 
             { path: 'plataformas',loadChildren:()=>import('./pages/plataformas/plataformas.module').then(m=>m.PlataformasModule),

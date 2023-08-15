@@ -119,6 +119,8 @@ export class VentaEmpleadoComponent implements OnInit {
 
 
 
+
+
   extraerValores() {
     const numUsuarioValue = this.numUsu.value;
     const nombreValue = this.nombre.value;
@@ -187,7 +189,7 @@ export class VentaEmpleadoComponent implements OnInit {
 
   clickDosBotones(){
     this.submitForm();
-    this.clear();
+    // this.clear();
   }
 
   submitForm() {
@@ -221,6 +223,7 @@ export class VentaEmpleadoComponent implements OnInit {
         //Total: 0  // Inicializamos el Total en 0
          // hacemos algo con el numVenta
       };
+
 
 
 
@@ -286,6 +289,7 @@ export class VentaEmpleadoComponent implements OnInit {
     this.appService.Data.totalPrice = 0;
     this.appService.Data.totalCartCount = 0;
   }
+
 
 
 // Método que se llama cuando cambia la selección del radio button

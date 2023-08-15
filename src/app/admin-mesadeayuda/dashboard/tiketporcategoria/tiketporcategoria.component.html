@@ -1,17 +1,17 @@
-<button mat-button mat-mini-fab color="primary" printSectionId="print-section" 
+<button mat-button mat-mini-fab color="primary" printSectionId="print-section"
      ngxPrint #print [useExistingCss]="true" styleSheetFile="theme/styles/_admin.scss">
      <mat-icon>cloud_download</mat-icon>
  </button>
  <div fxLayout="row wrap">
-    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1"> 
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1">
         <mat-card>
-            <mat-card-header fxLayoutAlign="center">                
+            <mat-card-header fxLayoutAlign="center">
               <mat-card-subtitle><h3>Filtros</h3></mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
-           
+
       <div fxLayout="row wrap">
-      
+
           <div fxFlex="100" fxFlex.gt-sm="40" class="p-1">
             <mat-form-field class="example-form-field" appearance="fill">
                 <mat-label>Fechas</mat-label>
@@ -26,25 +26,25 @@
                 <mat-datepicker-toggle matIconSuffix [for]="campaignOnePicker"></mat-datepicker-toggle>
                 <mat-date-range-picker #campaignOnePicker></mat-date-range-picker>
               </mat-form-field>
-   
-              <button mat-button mat-mini-fab color="primary"  (click)="Filtrar()" 
+
+              <button mat-button mat-mini-fab color="primary"  (click)="Filtrar()"
               >
               <mat-icon>search</mat-icon>
           </button>
-      
+
      </div></div>
-                   
+
                   <!-- </mat-form-field> -->
 
-             
+
             </mat-card-content>
         </mat-card>
-    </div></div>  
+    </div></div>
 <div fxLayout="row wrap">
 
-     <div fxFlex="100" fxFlex.gt-sm="100" class="p-1"> 
+     <div fxFlex="100" fxFlex.gt-sm="100" class="p-1">
         <mat-card>
-            <mat-card-header fxLayoutAlign="center center">                
+            <mat-card-header fxLayoutAlign="center center">
                 <mat-card-subtitle><h2>Tickets Por Responsable</h2></mat-card-subtitle>
             </mat-card-header>
             <div class="w-100 h-300p">
@@ -62,14 +62,14 @@
                     [xAxisLabel]="xAxisLabel"
                     [yAxisLabel]="yAxisLabel"
                     (select)="onSelectDetalleTicket($event)">
-                </ngx-charts-bar-vertical-2d>        
+                </ngx-charts-bar-vertical-2d>
             </div>
         </mat-card>
-    
+
     </div>
-    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1">  
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1">
         <mat-card>
-            <mat-card-header fxLayoutAlign="center center">                
+            <mat-card-header fxLayoutAlign="center center">
                 <mat-card-subtitle><h2>Tickets Por Categoría</h2></mat-card-subtitle>
             </mat-card-header>
             <div class="w-100 h-300p">
@@ -87,13 +87,13 @@
                     [xAxisLabel]="xAxisLabel"
                     [yAxisLabel]="yAxisLabel"
                     (select)="onSelect($event)">
-                </ngx-charts-bar-vertical>        
+                </ngx-charts-bar-vertical>
             </div>
         </mat-card>
     </div>
-    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1"> 
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1">
         <mat-card>
-            <mat-card-header fxLayoutAlign="center center">                
+            <mat-card-header fxLayoutAlign="center center">
                 <mat-card-subtitle><h2>Tiempo de Atención por Categoría</h2></mat-card-subtitle>
             </mat-card-header>
             <div class="scroll-class" style="max-height: 650px;height: 650px;">
@@ -108,27 +108,27 @@
                     [legend]="showLegend"
                     legendTitle="Tiempo"
                     legendPosition="right"
-                    
-                    
+
+
                     [showYAxisLabel]="showYAxisLabel"
                     [xAxisLabel]="ylabelChartTiempo"
                     [yAxisLabel]="xlabelChartTiempo"
-                    
+
                     [barPadding]="5"
                     (select)="onSelectDetalle($event)">
-                </ngx-charts-bar-vertical-2d>        
+                </ngx-charts-bar-vertical-2d>
             </div>
         </mat-card>
-    
+
     </div>
 
 
 
 </div>
 <div   fxLayout="row wrap">
-    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1"> 
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1">
         <mat-card>
-            <mat-card-header fxLayoutAlign="center center">                
+            <mat-card-header fxLayoutAlign="center center">
                 <mat-card-subtitle><h2>Tiempo de Estimado vs Efectivo por Categoría</h2></mat-card-subtitle>
             </mat-card-header>
             <div class="scroll-class" style="max-height: 650px;height: 650px;">
@@ -143,12 +143,12 @@
                     [legend]="showLegend"
                     legendTitle="Tiempo"
                     legendPosition="right"
-                    
-                    
+
+
                     [showYAxisLabel]="showYAxisLabel"
                     [xAxisLabel]="ylabelChartTiempo"
                     [yAxisLabel]="xlabelChartTiempo"
-                     
+
                     [barPadding]="5"
                     (select)="onSelectDetalle($event)">
                     <ng-template #tooltipTemplate let-model="model">
@@ -156,20 +156,20 @@
                           {{ model.value | number }}
                         </div>
                       </ng-template>
-                </ngx-charts-bar-vertical-2d>        
+                </ngx-charts-bar-vertical-2d>
             </div>
         </mat-card>
-    
+
     </div>
     </div>
 <div *ngIf="tablavisible" fxLayout="row wrap">
-    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1"> 
+    <div fxFlex="100" fxFlex.gt-sm="100" class="p-1">
         <mat-card>
-            <mat-card-header fxLayoutAlign="center center">                
+            <mat-card-header fxLayoutAlign="center center">
                 <mat-card-subtitle><h3>Detalle de la categoría: {{CategoriaSeleccionada}}</h3></mat-card-subtitle>
             </mat-card-header>
             <div class="mat-table admin-table">
-                <div class="mat-header-row"> 
+                <div class="mat-header-row">
                     <div class="mat-header-cell mat-column-id"># Tiket</div>
                     <div class="mat-header-cell mat-column-10">Responsable</div>
                     <div class="mat-header-cell mat-column-10">Tiempo Transcurrido</div>
@@ -177,21 +177,21 @@
                     <div class="mat-header-cell mat-column-10">Tiempo Estimado</div>
                     <div class="mat-header-cell">Detalle</div>
                 </div>
-                <div *ngFor="let element of detallecategoria " class="mat-row"> 
-                    <div class="mat-cell mat-column-id">{{element.TiketId}}</div> 
-                    <div class="mat-cell mat-column-10">{{element.Responsable}}</div> 
+                <div *ngFor="let element of detallecategoria " class="mat-row">
+                    <div class="mat-cell mat-column-id">{{element.TiketId}}</div>
+                    <div class="mat-cell mat-column-10">{{element.Responsable}}</div>
                     <div class="mat-cell mat-column-10">{{element.TiempoTranscurridoNeto}}</div>
                     <div class="mat-cell mat-column-10">{{element.TiempoEfectivoTranscurridoNeto}}</div>
                     <div class="mat-cell mat-column-10">{{element.TiempoEstimado}}</div>
                     <div class="mat-cell" >{{element.Detalle }}</div>
-                    
-                    
-                        
+
+
+
                 </div>
             </div>
             <div *ngIf="true" fxLayout="row wrap">
-                <div fxFlex="100"> 
-                    <mat-card class="p-0 text-center">           
+                <div fxFlex="100">
+                    <mat-card class="p-0 text-center">
                         <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
                     </mat-card>
                 </div>
@@ -203,10 +203,10 @@
  <div  fxLayout="row wrap">
     <div  fxFlex="100" fxFlex.gt-sm="100" class="p-1">
         <mat-card>
-            <mat-card-header fxLayoutAlign="center center">                
+            <mat-card-header fxLayoutAlign="center center">
                 <mat-card-subtitle><h2>Tiempo de Estimado vs Efectivo por Categoría</h2></mat-card-subtitle>
             </mat-card-header>
             <div  id="chartdiv" style="height: 400px;width: 95%;min-width: 500px;" ></div>
-        </mat-card>    
+        </mat-card>
     </div>
  </div>

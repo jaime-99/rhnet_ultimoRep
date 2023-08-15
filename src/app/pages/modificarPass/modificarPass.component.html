@@ -1,5 +1,5 @@
 
-<h1 class="mat-h1 text-center text-lg font-weight-bold">Recuperación de contraseña</h1>
+<h1 class="titulo_1">Recuperación de contraseña</h1>
 
 <div class="containerAlert">
   <div class="mat-alert mat-alert-success success-alert" role="alert" *ngIf="correoEnviado">
@@ -12,7 +12,7 @@
   <form class="container">
     <img class="imagen" src="assets/images/flags/diken_azulL.png" alt="imagen Diken" width="200" height="60">
     <h1 class="mat-h3 mb-3 fw-normal text-center text-lg">Por favor introduce tu correo electrónico</h1>
-    <mat-form-field appearance="fill" class="form-floating">
+    <mat-form-field class="mat_form_field" appearance="fill">
       <mat-label>Correo electrónico</mat-label>
       <input matInput type="email" placeholder="name@example.com" [(ngModel)]="correo" name="correo">
     </mat-form-field>
