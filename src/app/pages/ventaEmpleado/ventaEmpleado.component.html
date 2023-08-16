@@ -34,7 +34,37 @@
     </mat-form-field>
   </section>
 
-<mat-stepper *ngIf="appService.Data.cartList?.length > 0"  #stepper>
+<mat-stepper linear *ngIf="appService.Data.cartList?.length > 0"  #stepper>
+
+  <!-- <mat-step  [stepControl]="ventaForm" [editable]="false" [completed]="true">
+    <ng-template  matStepLabel>Datos de Venta</ng-template>
+    <form [formGroup]="ventaForm">
+      <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
+        <mat-form-field>
+          <mat-label>Usuario ID</mat-label>
+          <input matInput id="RhUsuarioId" [value]="ventaForm.get('RhUsuarioId').value" type="text"
+            formControlName="RhUsuarioId" required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
+        <mat-form-field>
+          <mat-label>Fecha</mat-label>
+          <input matInput id="Fecha" type="date" formControlName="Fecha" [value]="getCurrentDate()" required>
+        </mat-form-field>
+      </div>
+      <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
+        <mat-form-field>
+          <mat-label>Total</mat-label>
+          <input matInput id="Total" type="number" formControlName="Total" required [readonly]="true"
+            [value]="grandTotal">
+        </mat-form-field>
+      </div>
+      <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1">
+        <button mat-mini-fab matStepperNext color="primary" matTooltip="Next"
+            matTooltipPosition="after" [disabled]="Desabilitado" ><mat-icon>navigate_next</mat-icon></button>
+      </div>
+    </form>
+  </mat-step> -->
 
 
 
@@ -109,8 +139,10 @@
 
 
 
-  <mat-step  disabled>
-    <ng-template matStepLabel>confirmacion</ng-template>
+
+
+  <mat-step [completed]="false" >
+    <ng-template  matStepLabel>confirmacion</ng-template>
 
 
     <div fxLayout="column" fxLayoutAlign="center center" class="p-2 text-center">

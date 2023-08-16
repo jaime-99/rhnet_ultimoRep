@@ -79,3 +79,8 @@ mat-form-field {
   width: 150px;
   vertical-align: middle;
 }
+
+
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
