@@ -9,7 +9,7 @@
   <a [routerLink]="['/productos']" mat-raised-button color="primary" class="mt-3">Regresar</a>
 </mat-card>
 
-<section  *ngIf="appService.Data.cartList?.length > 0" class="example-section">
+<section  *ngIf="appService.Data.cartList?.length > 0  && mostrarFormAdicional"    class="example-section">
   <label class="example-margin">Cuenta:</label>
   <mat-radio-group [(ngModel)]="noUsuario" (ngModelChange)="onNoUsuarioChange($event)">
 
@@ -18,7 +18,7 @@
   </mat-radio-group>
 </section>
 
-<section class="formAdicional" *ngIf="noUsuario === 'before' && appService.Data.cartList?.length > 0 " >
+<section class="formAdicional" *ngIf="noUsuario === 'before' && appService.Data.cartList?.length > 0  && mostrarFormAdicional" >
 
     <div class="divider"></div>
     <label class="example-margin1">Formulario Adicional:</label>
@@ -35,39 +35,6 @@
   </section>
 
 <mat-stepper *ngIf="appService.Data.cartList?.length > 0"  #stepper>
-  <!-- <mat-step  [stepControl]="ventaForm" [editable]="false" [completed]="true">
-    <ng-template  matStepLabel>Datos de Venta</ng-template>
-
-    <form [formGroup]="ventaForm">
-      <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
-        <mat-form-field>
-          <mat-label>Usuario ID</mat-label>
-          <input matInput id="RhUsuarioId" [value]="ventaForm.get('RhUsuarioId').value" type="text"
-            formControlName="RhUsuarioId" required>
-        </mat-form-field>
-      </div>
-
-      <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
-        <mat-form-field>
-          <mat-label>Fecha</mat-label>
-          <input matInput id="Fecha" type="date" formControlName="Fecha" [value]="getCurrentDate()" required>
-        </mat-form-field>
-      </div>
-
-      <div fxFlex="100" fxFlex.gt-sm="25" class="px-1">
-        <mat-form-field>
-          <mat-label>Total</mat-label>
-          <input matInput id="Total" type="number" formControlName="Total" required [readonly]="true"
-            [value]="grandTotal">
-        </mat-form-field>
-      </div>
-
-      <div fxLayout="row" fxLayoutAlign="center center" class="mt-2 p-1">
-        <button mat-mini-fab matStepperNext color="primary" matTooltip="Next"
-            matTooltipPosition="after" [disabled]="Desabilitado" ><mat-icon>navigate_next</mat-icon></button>
-      </div>
-    </form>
-  </mat-step> -->
 
 
 
@@ -140,36 +107,12 @@
 
 
 
-  <!-- <mat-step>
-    <ng-template matStepLabel>Confirmar Datos</ng-template>
-    <div>
-      <h3>Datos de Venta</h3>
-      <p>Usuario ID: {{ ventaForm.get('RhUsuarioId').value }}</p>
-      <p>Fecha: {{ ventaForm.get('Fecha1').value }}</p>
-      <p>Total: {{ ventaForm.get('Total').value }}</p>
 
-    </div> -->
 
-  <!-- <div>
-      <h3>Detalles de Venta</h3>
-      <ul>
-        <li *ngFor="let detalle of detalles.controls; let i=index">
-          <h4>Detalle {{ i + 1 }}</h4>
-          <p>Producto ID: {{ detalle.get('ProductoId').value }}</p>
-          <p>Precio: {{ detalle.get('Precio').value }}</p>
-          <p>Cantidad: {{ detalle.get('Cantidad').value }}</p>
-          <p>Importe: {{ detalle.get('Importe').value }}</p>
-        </li>
-      </ul>
-    </div> -->
+  <mat-step  disabled>
+    <ng-template matStepLabel>confirmacion</ng-template>
 
-  <!-- <div>
-      <button mat-button color="primary" (click)="submitForm()">Guardar</button>
-      <button mat-button matStepperPrevious>Volver</button>
-    </div> -->
-  <!-- </mat-step> -->
 
-  <mat-step  label="Confirmación">
     <div fxLayout="column" fxLayoutAlign="center center" class="p-2 text-center">
       <button mat-fab color="primary"><mat-icon>check</mat-icon></button>
       <h2 class="py-2">Felicidades! La Venta Empleado {{numVenta}} se ha registrado de forma correcta</h2>
@@ -180,5 +123,6 @@
     </div>
   </mat-step>
 </mat-stepper>
+
 
 

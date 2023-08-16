@@ -31,6 +31,11 @@ export class VentaEmpleadoComponent implements OnInit {
   noUsuario: string = "after";
   abrirFormulario:boolean = false;
   formAdicional: any;
+  mostrarFormAdicional: boolean = true; // Inicialmente visible
+  pasoConfirmacionHabilitado: boolean = false; // Inicialmente deshabilitado
+
+
+
 
 
 
@@ -189,6 +194,8 @@ export class VentaEmpleadoComponent implements OnInit {
 
   clickDosBotones(){
     this.submitForm();
+    this.mostrarFormAdicional = false;
+
     // this.clear();
   }
 
