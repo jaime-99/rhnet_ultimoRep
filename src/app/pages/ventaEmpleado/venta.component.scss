@@ -84,3 +84,24 @@ mat-form-field {
 ::ng-deep .mat-horizontal-stepper-header{
   pointer-events: none !important;
 }
+
+// es para celulares
+
+.formAdicional {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .divider {
+    margin: 20px 0;
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    @media (min-width: 600px) {
+      width: 50%;
+    }
+  }
+}
+
