@@ -236,6 +236,7 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>( url, body );
         }
 
+
         //obtenerProductosPopulares
 
         getObtenerProductos(){
@@ -250,6 +251,23 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.get<any>(url)
 
         }
+
+        //obtener total de ventas por mes
+        getObtenerTotalPorMes(){
+          const url ='https://www.dikeninternational.com/dikenecommerce/api/ventas/ventasPorMes.php';
+          return this.http.get<any>(url);
+        }
+
+        //es para actualizar el total de el mes
+
+        actualizarTotalMes(idToUpdate){
+          const url ='https://www.dikeninternational.com/dikenecommerce/api/ventas/actualizarTotalMes.php';
+          const body={idToUpdate}
+          return this.http.post<any>( url, body );
+        }
+
+
+
 
 
 
@@ -346,6 +364,8 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>(url, body , { headers });
 
         }
+
+
 
 
         //todo esta es la llamada de searchApi

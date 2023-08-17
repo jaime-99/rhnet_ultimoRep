@@ -1,19 +1,25 @@
 <mat-card>
-    <mat-card-header fxLayoutAlign="center">                
-        <mat-card-subtitle><h2>Most Viewed Products</h2></mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content> 
-        <div class="w-100 h-300p" #resizedDiv>
-            <ngx-charts-pie-chart
-                [scheme]="colorScheme"
-                [results]="data"
-                [legend]="showLegend"
-                [explodeSlices]="explodeSlices"
-                [labels]="showLabels"
-                [doughnut]="doughnut"
-                [gradient]="gradient"
-                (select)="onSelect($event)">
-            </ngx-charts-pie-chart>   
-        </div>
-    </mat-card-content>
+  <mat-card-header fxLayoutAlign="center center">
+    <mat-card-subtitle><h2>Ventas por mes</h2></mat-card-subtitle>
+  </mat-card-header>
+  <div class="w-100 h-400p">
+    <ngx-charts-bar-vertical
+      [results]="data"
+      [scheme]="colorScheme"
+
+      [gradient]="gradient"
+      [showXAxisLabel]="showLabels"
+      [showYAxisLabel]="showLabels"
+      [xAxis]="showLabels"
+      [yAxis]="showLabels"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [tooltipDisabled]="tooltipDisabled"
+      [barPadding]="barPadding"
+      [animations]="animations"
+      [yScaleMax]="yScaleMax"
+      [showDataLabel]="true"
+      (select)="onSelect($event)">
+    </ngx-charts-bar-vertical>
+  </div>
 </mat-card>

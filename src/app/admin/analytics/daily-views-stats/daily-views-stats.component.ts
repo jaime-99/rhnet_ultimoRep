@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild,OnInit } from '@angular/core';
+import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { daily_views_stats } from '../analytics.data';
 import { AppService } from 'src/app/app.service';
 
@@ -7,7 +7,7 @@ import { AppService } from 'src/app/app.service';
   templateUrl: './daily-views-stats.component.html',
   styleUrls: ['./daily-views-stats.component.scss']
 })
-export class DailyViewsStatsComponent {
+export class DailyViewsStatsComponent implements OnInit {
   public data=[];
   public categorias =[];
 
@@ -25,9 +25,7 @@ public yScaleMax = 50; // Establece el valor máximo del eje Y
 
 
 
-  constructor(public appService:AppService) {
-
-  }
+  constructor(public appService:AppService) { }
 
   ngOnInit(){
     this.data =[]

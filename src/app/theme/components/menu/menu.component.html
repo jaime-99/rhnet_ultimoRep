@@ -33,15 +33,14 @@
 
 
   </mat-menu> -->
-<!--
+
   <a mat-button [matMenuTriggerFor]="categorias">Categorías<mat-icon class="caret">arrow_drop_down</mat-icon></a>
   <mat-menu #categorias="matMenu" [overlapTrigger]="false" class="app-dropdown">
 
       <button (click)="search( 'QUIMICO')" mat-menu-item>QUÍMICOS</button>
       <button (click)="search( 'EQUIPO')" mat-menu-item>EQUIPOS</button>
 
-
-  </mat-menu> -->
+  </mat-menu>
 
 <!--
   <a mat-button [routerLink]="['/quienessomos']" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">¿Quienes somos?</a>
@@ -83,6 +82,10 @@
   <!-- <a mat-button routerLink="/plataformas" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">Plataformas</a> -->
   <a mat-button routerLink="/misPedidos" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">Ver mis pedidos</a>
   <a mat-button routerLink="/productos" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">Productos</a>
+
+
+
+
   <a mat-button routerLink="/pedidosConsolidados" routerLinkActive="horizontal-active-link" *ngIf="mostrarApartado" [routerLinkActiveOptions]="{exact:true}">Pedidos consolidados</a>
   <a mat-button routerLink="/admin/products/product-list" routerLinkActive="horizontal-active-link" *ngIf="mostrarApartado" [routerLinkActiveOptions]="{exact:true}">Administracion</a>
 
