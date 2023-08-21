@@ -1,8 +1,8 @@
 <div class="mat-table orders-table">
     <div class="mat-header-row">
-      <div class="mat-header-cell">Order</div>
-      <div class="mat-header-cell">Date</div>
-      <div class="mat-header-cell">Status</div>
+      <div class="mat-header-cell">Orden</div>
+      <div class="mat-header-cell">Fecha</div>
+      <div class="mat-header-cell">Estatus</div>
       <div class="mat-header-cell">Total</div>
       <div class="mat-header-cell"></div>
     </div>
@@ -10,16 +10,16 @@
       <div class="mat-cell"><span class="order">{{order.number}}</span></div>
       <div class="mat-cell">{{order.date}}</div>
       <div class="mat-cell">{{order.status}}</div>
-      <div class="mat-cell">{{order.total}}</div>     
+      <div class="mat-cell">{{order.total}}</div>
       <div class="mat-cell">
-        <div class="p-1 actions">          
-          <button mat-mini-fab color="primary" matTooltip="View">
+        <div class="p-1 actions">
+          <button mat-mini-fab color="primary" matTooltip="Ver">
               <mat-icon>remove_red_eye</mat-icon>
           </button>
           <button *ngIf="order.invoice" mat-mini-fab color="warn" matTooltip="View invoice" class="btn-invoice">
               <mat-icon>receipt</mat-icon>
           </button>
         </div>
-      </div>      
+      </div>
     </div>
   </div>

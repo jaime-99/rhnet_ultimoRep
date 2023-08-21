@@ -266,8 +266,12 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>( url, body );
         }
 
+        //es para devolver los detalles de cada venta
 
-
+        getDetallesPorVentaEmpleado(detalleId){
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/detallesDeCadaVenta.php?detalleId=${detalleId}`;
+          return this.http.get<any>(url)
+        }
 
 
 
@@ -392,6 +396,7 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         verIdConCorreo(p_Correo: string) {
           const url = ` https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerIdConCorreo.php?p_Correo=${p_Correo}`;
+
           return this.http.get<any>(url);
         }
 

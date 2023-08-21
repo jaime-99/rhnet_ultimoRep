@@ -14,7 +14,7 @@ export class Settings {
 export class AppSettings {
     public settings = new Settings(
         'Diken International',  // theme name
-       'blue',
+       'green',
         false,       // true = rtl, false = ltr
         true,        // adminSidenavIsOpened
         true,        // adminSidenavIsPinned

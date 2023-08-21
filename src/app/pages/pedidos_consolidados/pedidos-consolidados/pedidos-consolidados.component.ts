@@ -176,7 +176,6 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
 
-
               };
 
               // console.log(res);
@@ -184,7 +183,7 @@ export class PedidosConsolidadosComponent implements OnInit {
               console.log(detalleVenta);// ver los detalles de cada fila
             }
           });
-          // this.snackBar.open('Se muestran los detalles del consolidado Abajo!', '×', { panelClass: 'link', verticalPosition: 'top', duration: 5000 });
+          this.snackBar.open('Se muestran los detalles del consolidado Abajo!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 8000 });
 
       }
     }

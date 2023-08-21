@@ -10,6 +10,10 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from "@angular/material/dialog";
+import { detalles } from './detalles.component'; // importamos
+import {MatIconModule} from '@angular/material/icon';
+
+
 
 
 
@@ -27,12 +31,24 @@ export const routes: Routes = [
     MatButtonModule,
     MatTableModule,
     MatDialogModule,
+    MatIconModule,
 
 
   ],
   declarations: [
-    misPedidos
+    misPedidos,
+    detalles,
+
+
   ],
+
+  exports:[
+    misPedidos,
+    detalles
+
+  ],
+
+
   providers:[{ provide: MAT_DATE_LOCALE, useValue: 'es-MX', }]
 })
   export class misPedidosModule {}

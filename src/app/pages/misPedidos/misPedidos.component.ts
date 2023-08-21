@@ -1,13 +1,12 @@
 import { array } from '@amcharts/amcharts5';
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Subscription } from 'rxjs';
 import { response } from 'express';
-
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { id } from '@swimlane/ngx-charts';
+import { detalles } from './detalles.component';
 
 
 
@@ -33,6 +32,12 @@ export class misPedidos  implements OnInit{
   ventasCanceladas = [];
   ventaId=0;
   numeroDeVenta =0;
+  mostrarDetallesComponent: boolean = false;
+  idDetalles:number=0;
+
+  @ViewChild('detallesComponent') detallesComponent: detalles;
+
+
 
 
 
@@ -88,6 +93,7 @@ export class misPedidos  implements OnInit{
   //     this.grandTotal += product.cartCount * product.newPrice;
 
   // }
+  console.log(this.mostrarDetallesComponent);
   }
 
 
@@ -132,6 +138,27 @@ export class misPedidos  implements OnInit{
           })
       }});
     }
+
+    //Aqui ira el ejemplo, para mostrar el id
+
+    ejemplo(id):void{
+
+      this.mostrarDetallesComponent = true;
+      this.idDetalles = id
+
+      console.log(this.idDetalles);
+
+    }
+
+
+
+    regresarDesdeDetalles() { // esto se activa cuando le doy click en regresar desde la clase de detalles
+      this.mostrarDetallesComponent = false;
+      this.idDetalles = 0; // Restablecer idDetalles al valor predeterminado
+
+      // this.detallesComponent.ocultarDetalles();
+    }
+
     }
 
 

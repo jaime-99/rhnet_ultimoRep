@@ -1,14 +1,18 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Mis_Pedidos</title>
 </head>
 <body>
 
+<!-- todo es para mostrar el detalle de cada venta -->
+  <app-detalles #detallesComponent *ngIf="mostrarDetallesComponent" [idVenta]="idDetalles" (regresar)="regresarDesdeDetalles()"  ></app-detalles>
 
-  <div class="table-container">
+
+  <div *ngIf="mostrarDetallesComponent ==false" class="table-container">
    <table *ngIf="Ventas.length > 0">
     <thead>
       <tr>
@@ -35,10 +39,17 @@
         <td>{{venta.Estatus}} </td>
 
           <!-- Agrega el botón con estilo de Angular Material -->
-        <td>
+          <td>
             <button *ngIf="venta.IdEstatusVentaEmpleado === 1" mat-raised-button color="warn" (click)="mostrarMensajeAlerta(venta.VentaEmpleadoId)">Cancelar</button>
+            <div class="espacio"></div> <!-- Agregar un espacio vertical -->
+
+          <button (click)="ejemplo(venta.VentaEmpleadoId)" mat-raised-button color="primary" matTooltip="Ver detalles">
+              Ver Detalles
+          </button>
+
           </td>
        </tr>
+
     </tbody>
 
      </table>
@@ -50,10 +61,7 @@
 
 
   <div *ngIf="Ventas.length === 0 ">
-
     <p style="font-size: 24px; font-weight: bold; color: black;">No se han seleccionado pedidos.</p>
-
-
   </div>
 
 

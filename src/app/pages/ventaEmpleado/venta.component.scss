@@ -87,6 +87,7 @@ mat-form-field {
 
 // es para celulares
 
+@media screen and (max-width: 768px) {
 .formAdicional {
   display: flex;
   flex-direction: column;
@@ -103,5 +104,6 @@ mat-form-field {
       width: 50%;
     }
   }
+}
 }
 

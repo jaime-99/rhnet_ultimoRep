@@ -1,0 +1,29 @@
+
+
+
+
+<h2>Detalles del pedido numero : {{idVenta}} </h2>
+<div>
+<button mat-raised-button color="primary" (click)="regresarAVentas()">Regresar a Pedidos</button>
+</div>
+
+<div class="mat-table orders-table">
+  <div class="mat-header-row">
+    <div class="mat-header-cell">Producto</div>
+    <div class="mat-header-cell">Precio</div>
+    <div class="mat-header-cell">Cantidad</div>
+
+  </div>
+    <div  class="mat-row" *ngFor="let detalle of detalles">
+    <div class="mat-cell"> {{detalle.Producto}} <span class="order"></span></div>
+    <div class="mat-cell">{{detalle.Precio}}</div>
+    <div class="mat-cell"> {{detalle.Cantidad}} </div>
+
+
+  </div>
+</div>
+
+
+
+
+
