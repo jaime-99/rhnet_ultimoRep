@@ -100,5 +100,13 @@ GotoUniversidadDiken()
 
   }
 
+  equiposMenuVisible = false;
+
+  toggleEquiposMenu(): void {
+    this.equiposMenuVisible = !this.equiposMenuVisible; // Cambiar de true a false y viceversa
+  }
+
+
+
 
 }

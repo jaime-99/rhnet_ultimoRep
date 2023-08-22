@@ -11,7 +11,9 @@ th, td {
   text-align: left;
 }
 
-
+.boton_detalles{
+  padding-right: 21px;
+}
 
 // empieza lo responsivo
 
@@ -22,6 +24,7 @@ th, td {
 .espacio{
   margin:3px
 }
+
 
 @media screen and (max-width: 768px) {
   // .table-container {

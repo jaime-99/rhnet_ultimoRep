@@ -22,7 +22,7 @@
         <th>Nombre</th>
         <th>Fecha de venta</th>
         <th>Total</th>
-        <th>status de la venta</th>
+        <th>Estatus de la venta</th>
         <th>Acciones</th>
 
       </tr>
@@ -34,17 +34,18 @@
         <td>{{ venta.VentaEmpleadoId }}</td>
         <td>{{ NumeroEmpleado }}</td>
         <td>{{ Nombre }}</td>
-        <td>{{ venta.Fecha | date }}</td>
+        <td>{{ venta.Fecha | date :'dd/MM/yyyy' }}</td>
         <td>${{venta.Total | number : '1.2-2'}}</td>
-        <td>{{venta.Estatus}} </td>
+        <td><strong>{{venta.Estatus}}</strong> </td>
+
 
           <!-- Agrega el botón con estilo de Angular Material -->
           <td>
             <button *ngIf="venta.IdEstatusVentaEmpleado === 1" mat-raised-button color="warn" (click)="mostrarMensajeAlerta(venta.VentaEmpleadoId)">Cancelar</button>
             <div class="espacio"></div> <!-- Agregar un espacio vertical -->
 
-          <button (click)="ejemplo(venta.VentaEmpleadoId)" mat-raised-button color="primary" matTooltip="Ver detalles">
-              Ver Detalles
+          <button class="boton_detalles"  (click)="ejemplo(venta.VentaEmpleadoId)" mat-raised-button color="primary" matTooltip="Ver detalles">
+              Detalles
           </button>
 
           </td>

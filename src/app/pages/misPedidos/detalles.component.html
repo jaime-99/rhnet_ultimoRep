@@ -10,13 +10,14 @@
 <div class="mat-table orders-table">
   <div class="mat-header-row">
     <div class="mat-header-cell">Producto</div>
-    <div class="mat-header-cell">Precio</div>
+    <div class="mat-header-cell">Precio </div>
     <div class="mat-header-cell">Cantidad</div>
 
   </div>
     <div  class="mat-row" *ngFor="let detalle of detalles">
+
     <div class="mat-cell"> {{detalle.Producto}} <span class="order"></span></div>
-    <div class="mat-cell">{{detalle.Precio}}</div>
+    <div class="mat-cell">${{detalle.Precio | number : '1.2-2'}}</div>
     <div class="mat-cell"> {{detalle.Cantidad}} </div>
 
 
