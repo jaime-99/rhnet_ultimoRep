@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/app.service';
 
+
 @Component({
   selector: 'app-analytics',
   templateUrl: './analytics.component.html',
@@ -13,14 +14,15 @@ export class AnalyticsComponent implements OnInit {
 
   }
   currentMonth: number; // variable que cambia dependiendo de el mes
-
+  anio:number=0;
 
   ngOnInit(): void {
     // console.log(this.currentDate);
     this.currentMonth = this.getCurrentMonth();
-    console.log(this.currentMonth);
+    this.anio = this.getCurrentYear();
+    // console.log(this.currentMonth);
 
-    this.actualizarMes();
+    // this.actualizarMes();
 
   }
 
@@ -33,7 +35,11 @@ export class AnalyticsComponent implements OnInit {
       const currentDate = new Date();
       const month = currentDate.getMonth() + 1; // Los meses en JavaScript van de 0 a 11, por eso sumamos 1
       return month;
-
+    }
+    getCurrentYear():number{
+      const currentDate = new Date();
+      const year = currentDate.getFullYear();
+      return year;
     }
 
 

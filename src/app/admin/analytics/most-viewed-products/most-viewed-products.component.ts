@@ -27,6 +27,7 @@ public colorScheme = {
   domain: ['#1f77b4', '#ff7f0e', '#2ca02c', '#d62728', '#9467bd', '#8c564b']
 };
 
+  public anio = 0;
 
   constructor(public appService:AppService) { }
 
@@ -34,6 +35,9 @@ public colorScheme = {
     // this.data = most_viewed_product;s;
     // this.data=[];
     this.obtenerMeses();
+
+    this.anio = this.getCurrentYear();
+    console.log(this.anio)
 
 
   }
@@ -49,7 +53,7 @@ public colorScheme = {
         console.log(res);
         this.meses = res.map((user: any) => ({
           name: user.mes,
-          value: user.total
+          value: user.Total
         }));
 
         // Asignar directamente a this.data para tener el formato adecuado
@@ -62,6 +66,16 @@ public colorScheme = {
       }
     );
   }
+
+
+  public currentDate: Date = new Date(); //obtener la fecha y hora
+
+  getCurrentYear():number{
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    return year;
+  }
+
 
 
 
