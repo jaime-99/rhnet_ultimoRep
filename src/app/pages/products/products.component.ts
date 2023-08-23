@@ -6,6 +6,8 @@ import { AppService } from '../../app.service';
 import { Product, Category } from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
 import { isPlatformBrowser } from '@angular/common';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+
 
 @Component({
   selector: 'app-products',
@@ -72,6 +74,7 @@ export class ProductsComponent implements OnInit,OnChanges {
               public dialog: MatDialog,
               private router: Router,
               private route: ActivatedRoute,
+
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;
     if (this.route.snapshot.queryParamMap.keys.length > 0) {
@@ -227,6 +230,22 @@ export class ProductsComponent implements OnInit,OnChanges {
   }
 
 
+  //cambiar a español los coontroles next
+
+    itemsPerPageLabel = 'Items por página'; // Opcional: Cambia la etiqueta de "Items per page"
+    nextPageLabel = 'Siguiente'; // Cambia el texto de "Next"
+    previousPageLabel = 'Anterior'; // Cambia el texto de "Previous"
+
+
+
+
   }
+
+  export class CustomPaginatorIntl extends MatPaginatorIntl {
+    itemsPerPageLabel = 'Items por página';
+    nextPageLabel = 'Siguiente';
+    previousPageLabel = 'Anterior';
+  }
+
 
 

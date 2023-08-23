@@ -26,12 +26,12 @@ export class WishlistComponent implements OnInit {
     const index: number = this.appService.Data.wishList.indexOf(product);
     if (index !== -1) {
         this.appService.Data.wishList.splice(index, 1);
-    }     
+    }
   }
 
   public clear(){
     this.appService.Data.wishList.length = 0;
-  } 
+  }
 
   public getQuantity(val){
     this.quantity = val.soldQuantity;
@@ -52,6 +52,6 @@ export class WishlistComponent implements OnInit {
       product.cartCount = this.quantity;
     }
     this.appService.addToCart(product);
-  } 
+  }
 
 }

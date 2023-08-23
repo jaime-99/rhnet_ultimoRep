@@ -236,6 +236,13 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>( url, body );
         }
 
+          // es para enviar los mensajes de quejas
+          sendComments(name,email,phone,message){
+            const url=`${ this.baseUrl }/tools/sendComments.php`;
+            const body={name,email,phone,message}
+            return this.http.post<any>( url, body );
+          }
+
 
         //obtenerProductosPopulares
 

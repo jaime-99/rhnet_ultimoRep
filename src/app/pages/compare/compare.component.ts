@@ -9,10 +9,10 @@ import { Product } from '../../app.models';
   styleUrls: ['./compare.component.scss']
 })
 export class CompareComponent implements OnInit {
-  
+
   constructor(public appService:AppService, public snackBar: MatSnackBar) { }
 
-  ngOnInit() { 
+  ngOnInit() {
     this.appService.Data.cartList.forEach(cartProduct=>{
       this.appService.Data.compareList.forEach(product=>{
         if(cartProduct.id == product.id){
@@ -26,7 +26,7 @@ export class CompareComponent implements OnInit {
       const index: number = this.appService.Data.compareList.indexOf(product);
       if (index !== -1) {
           this.appService.Data.compareList.splice(index, 1);
-      }        
+      }
   }
 
   public clear(){
