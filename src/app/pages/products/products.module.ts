@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,6 +11,8 @@ import { ProductComponent } from './product/product.component';
 import { ProductZoomComponent } from './product/product-zoom/product-zoom.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
 
+
+
 export const routes: Routes = [
   { path: '', component: ProductsComponent, pathMatch: 'full' },
   { path: ':name', component: ProductsComponent },
@@ -19,11 +21,11 @@ export const routes: Routes = [
 
 @NgModule({
     imports: [
-        CommonModule, 
+        CommonModule,
         RouterModule.forChild(routes),
         FormsModule,
         ReactiveFormsModule,
-        
+
         SwiperModule,
         NgxPaginationModule,
         SharedModule,
@@ -33,6 +35,9 @@ export const routes: Routes = [
         ProductsComponent,
         ProductComponent,
         ProductZoomComponent
-    ]
+    ],
+
+
+
 })
 export class ProductsModule { }

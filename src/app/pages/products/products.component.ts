@@ -6,7 +6,7 @@ import { AppService } from '../../app.service';
 import { Product, Category } from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
 import { isPlatformBrowser } from '@angular/common';
-import { MatPaginatorIntl } from '@angular/material/paginator';
+
 
 
 @Component({
@@ -124,6 +124,9 @@ export class ProductsComponent implements OnInit,OnChanges {
    //this.getAllProducts(); // hace que muestre todos los productos
     //this.getProductsEmpleado();
     this.getProductsEmpleado();
+
+
+
   }
 
 
@@ -236,15 +239,6 @@ export class ProductsComponent implements OnInit,OnChanges {
     nextPageLabel = 'Siguiente'; // Cambia el texto de "Next"
     previousPageLabel = 'Anterior'; // Cambia el texto de "Previous"
 
-
-
-
-  }
-
-  export class CustomPaginatorIntl extends MatPaginatorIntl {
-    itemsPerPageLabel = 'Items por página';
-    nextPageLabel = 'Siguiente';
-    previousPageLabel = 'Anterior';
   }
 
 
