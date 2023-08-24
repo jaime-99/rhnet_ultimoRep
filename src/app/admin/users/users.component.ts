@@ -77,7 +77,7 @@ export class UsersComponent implements OnInit {
             data: data,
 
         })
-        console.log(data);
+        //console.log(data);
 
 
         dialogRef.afterClosed().subscribe(user => {
@@ -93,7 +93,7 @@ export class UsersComponent implements OnInit {
     getObtenerUsuarios(): void {
       this.supportService.getObtenerUsuarios().subscribe(
         (res) => {
-          console.log(res);
+          //console.log(res);
           this.usuarios = res.map((user: any) => {
             const usuario: Usuario = {
               name: user.Nombre,
@@ -109,7 +109,7 @@ export class UsersComponent implements OnInit {
               tokenId:user.TokenId,
 
             };
-            console.log(usuario); // Realizar un console.log con los datos de nombre y número de cada usuario
+            //console.log(usuario); // Realizar un //console.log con los datos de nombre y número de cada usuario
           return usuario;
         });
         // this.filterUsers(); // Llamamos a la función para filtrar los usuarios

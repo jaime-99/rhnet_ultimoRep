@@ -37,20 +37,20 @@ public colorScheme = {
     this.obtenerMeses();
 
     this.anio = this.getCurrentYear();
-    console.log(this.anio)
+    //console.log(this.anio)
 
 
   }
 
   public onSelect(event) {
-    console.log(event);
+    //console.log(event);
   }
 
   obtenerMeses(){
 
     this.appService.getObtenerTotalPorMes().subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.meses = res.map((user: any) => ({
           name: user.mes,
           value: user.Total
@@ -59,7 +59,7 @@ public colorScheme = {
         // Asignar directamente a this.data para tener el formato adecuado
         this.data = this.meses;
 
-        console.log(this.meses); // Imprimir los datos preparados
+        //console.log(this.meses); // Imprimir los datos preparados
       },
       (error) => {
         console.error('Error al obtener los meses', error);

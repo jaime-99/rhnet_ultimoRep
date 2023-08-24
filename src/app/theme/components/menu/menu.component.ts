@@ -21,7 +21,7 @@ export class MenuComponent implements OnInit {
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
     this.NumeroEmpleado = userauth.data.INUsuarioId;
-    console.log(this.NumeroEmpleado)
+    //console.log(this.NumeroEmpleado)
 
 
 
@@ -60,7 +60,7 @@ GotoUniversidadDiken()
 
 
     let searchText = event;
-    console.log(searchText);
+    //console.log(searchText);
 
 
     let queryParams: any = {};
@@ -80,15 +80,15 @@ GotoUniversidadDiken()
 
   mostrarAdmin() {
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-    console.log(userauth);
+    //console.log(userauth);
 
     this.appService1.obtenerAdmin().subscribe((res) => {
       if (res !== null && res.includes(userauth.data.INUsuarioId)) {
         this.mostrarApartado = true;
-        console.log("Mostrar el apartado para el usuario actual");
+        //console.log("Mostrar el apartado para el usuario actual");
       } else {
         this.mostrarApartado = false;
-        console.log("No mostrar el apartado para el usuario actual");
+        //console.log("No mostrar el apartado para el usuario actual");
       }
     });
   }
@@ -96,7 +96,7 @@ GotoUniversidadDiken()
   mostrarConfigurarion(){
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-    console.log(userauth);
+    //console.log(userauth);
 
   }
 

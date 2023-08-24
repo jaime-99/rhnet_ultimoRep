@@ -54,7 +54,7 @@ export class misPedidos  implements OnInit{
 
 
     this.numerodeUsuario = userauth.UsuarioId;
-    console.log(userauth);
+    //console.log(userauth);
 
 
     // es para ver solo los del el RhUsuarioId
@@ -62,27 +62,27 @@ export class misPedidos  implements OnInit{
       this.Ventas = res;
 
       //this.Ventas=res;
-      console.log(this.Ventas);
+      //console.log(this.Ventas);
 
     });
 
 
 
     //   // de las venta debo agarrar el idStatus y colocarlo en status
-    //   console.log(userauth.UsuarioId)
+    //   //console.log(userauth.UsuarioId)
     //   //this.numeroDeVenta = Ventas.ventaEmpleadoId;
 
     //   for (let venta of this.Ventas) {
     //     let idEstatusVentaEmpleado = venta.idEstatusVentaEmpleado;
-    //     console.log('Valor de idEstatusVentaEmpleado:', venta.IdEstatusVentaEmpleado);
+    //     //console.log('Valor de idEstatusVentaEmpleado:', venta.IdEstatusVentaEmpleado);
 
     //     // Verificar el valor de idEstatusVentaEmpleado y mostrar el botón en caso de ser 1
     //     if (idEstatusVentaEmpleado === 1) {
     //       // this.mostrarBotonCancelar = true; c
-    //       console.log("es uno ");
+    //       //console.log("es uno ");
     //     } else {
     //       // this.mostrarBotonCancelar = false;
-    //       console.log("no es uno");
+    //       //console.log("no es uno");
     //     }
     //   }
 
@@ -93,7 +93,7 @@ export class misPedidos  implements OnInit{
   //     this.grandTotal += product.cartCount * product.newPrice;
 
   // }
-  console.log(this.mostrarDetallesComponent);
+  //console.log(this.mostrarDetallesComponent);
   }
 
 
@@ -131,7 +131,7 @@ export class misPedidos  implements OnInit{
         if (result) {
           this.appService.CancelarVenta(id).subscribe((res) => {
             // Lógica después de cancelar la venta
-            console.log(res); // Imprime la respuesta en la c
+            //console.log(res); // Imprime la respuesta en la c
             location.reload();
             //this.actualizarDatosLocalmente(id);
 
@@ -146,7 +146,7 @@ export class misPedidos  implements OnInit{
       this.mostrarDetallesComponent = true;
       this.idDetalles = id
 
-      console.log(this.idDetalles);
+      //console.log(this.idDetalles);
 
     }
 

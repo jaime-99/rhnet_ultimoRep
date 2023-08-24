@@ -55,19 +55,19 @@ export class VentaEmpleadoComponent implements OnInit {
     this.UsuarioId = userauth.UsuarioId;  // con esto sacamos informacion del usuario
     this.Nombre = userauth.Nombre;
     this.NumeroEmpleado = userauth.data.Numero_Empleado;
-     // este es para ver mejor que hayconsole.log(userauth);
+     // este es para ver mejor que hay//console.log(userauth);
     //this.UsuarioId = userauth.data.INUsuarioId;
-    // console.log(this.UsuarioId);
-    // console.log(this.NumeroEmpleado);
+    // //console.log(this.UsuarioId);
+    // //console.log(this.NumeroEmpleado);
 
 
 
 
-     console.log(userauth);
+     //console.log(userauth);
 
 
     this.correoDestinatario = userauth.data.Correo; // Obtén la dirección de correo electrónico del usuario
-    console.log(this.correoDestinatario);
+    //console.log(this.correoDestinatario);
 
 
 
@@ -130,8 +130,8 @@ export class VentaEmpleadoComponent implements OnInit {
     const numUsuarioValue = this.numUsu.value;
     const nombreValue = this.nombre.value;
 
-    console.log('Número de Usuario:', numUsuarioValue);
-    console.log('Nombre:', nombreValue);
+    //console.log('Número de Usuario:', numUsuarioValue);
+    //console.log('Nombre:', nombreValue);
   }// se acaba el dormulario adicional
 
 
@@ -209,10 +209,10 @@ export class VentaEmpleadoComponent implements OnInit {
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
 
     if (this.ventaForm.valid) {
-      console.log('Formulario válido');
+      //console.log('Formulario válido');
 
     } else {
-      console.log('Formulario inválido');
+      //console.log('Formulario inválido');
     }
 
 
@@ -265,14 +265,14 @@ export class VentaEmpleadoComponent implements OnInit {
         //this.numVenta +=1;
 
         // Agregar algo sobre que ha sido exitoso
-        console.log(this.numVenta);
+        //console.log(this.numVenta);
 
     //enviar los datos al correo elctronico
       this.appService.sendemailVentaEmpleado(ventaEmpleado.NumeroDeEmpleado,ventaEmpleado.Fecha,ventaEmpleado.Total,detalles,ventaEmpleado.Nombre,this.numVenta,ventaEmpleado.correoDestino).subscribe((res) => {
 
-        console.log(this.numVenta);
+        //console.log(this.numVenta);
         // const id = res.id;
-        // console.log('ID recibido:', id);
+        // //console.log('ID recibido:', id);
         // Agregar algo sobre que ha sido exitoso
       });
       });
@@ -281,7 +281,7 @@ export class VentaEmpleadoComponent implements OnInit {
   //   onFocusOutEventCliente(value) {
   //     let clave = (value.target as HTMLInputElement).value;
   //     this.appService.GetClienteByClave(clave).subscribe((res: any) => {
-  //       console.log(res);
+  //       //console.log(res);
   //       this.billingForm.controls['claveCliente'].setValue(res.ClaveCliente);
   //     })
 

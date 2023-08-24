@@ -34,14 +34,14 @@ public yScaleMax = 50; // Establece el valor máximo del eje Y
   }
 
   onSelect(event) {
-    console.log(event);
+    //console.log(event);
   }
 
   //esto es para obtener las categorias mas populares
   obtenerCategorias(): void {
     this.appService.getObtenerCategoria().subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.categorias = res.map((user: any) => ({
           name: user.Familia,
           value: user.CantidadComprada
@@ -50,7 +50,7 @@ public yScaleMax = 50; // Establece el valor máximo del eje Y
         // Asignar directamente a this.data para tener el formato adecuado
         this.data = this.categorias;
 
-        console.log(this.categorias); // Imprimir los datos preparados
+        //console.log(this.categorias); // Imprimir los datos preparados
       },
       (error) => {
         console.error('Error al obtener Categorias', error);

@@ -59,7 +59,7 @@ public valueFormatting: (value: number) => string = (value) => `${value} Compras
   }
 
   public onSelect(event) {
-    console.log(event);
+    //console.log(event);
   }
 
   ngAfterViewChecked() {
@@ -74,7 +74,7 @@ public valueFormatting: (value: number) => string = (value) => `${value} Compras
   obtenerProductos(): void {
     this.appService.getObtenerProductos().subscribe(
       (res) => {
-        console.log(res);
+        //console.log(res);
         this.productos = res.map((user: any) => ({
           name: user.Producto,
           value: user.CantidadComprada
@@ -83,7 +83,7 @@ public valueFormatting: (value: number) => string = (value) => `${value} Compras
         // Asignar directamente a this.data para tener el formato adecuado
         this.data = this.productos;
 
-        console.log(this.productos); // Imprimir los datos preparados
+        //console.log(this.productos); // Imprimir los datos preparados
       },
       (error) => {
         console.error('Error al obtener Productos', error);

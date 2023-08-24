@@ -17,10 +17,10 @@ export class AnalyticsComponent implements OnInit {
   anio:number=0;
 
   ngOnInit(): void {
-    // console.log(this.currentDate);
+    // //console.log(this.currentDate);
     this.currentMonth = this.getCurrentMonth();
     this.anio = this.getCurrentYear();
-    // console.log(this.currentMonth);
+    // //console.log(this.currentMonth);
 
     // this.actualizarMes();
 
@@ -50,7 +50,7 @@ export class AnalyticsComponent implements OnInit {
         }
 
       this.appService.actualizarTotalMes(id.idToUpdate).subscribe((res) =>{
-        console.log(res);
+        //console.log(res);
       })
 
     }

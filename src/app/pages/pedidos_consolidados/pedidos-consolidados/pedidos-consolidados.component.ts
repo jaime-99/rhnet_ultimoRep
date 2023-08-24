@@ -62,7 +62,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
-    console.log(userauth);
+    //console.log(userauth);
 
 
 
@@ -70,7 +70,7 @@ export class PedidosConsolidadosComponent implements OnInit {
     // obtengo el id de solo los admin de ventaEmpelados
     this.appService.obtenerAdmin().subscribe((res)=>{
 
-      //console.log(res)
+      ////console.log(res)
     })
 
     // con esto obtengo los consolidados
@@ -80,7 +80,7 @@ export class PedidosConsolidadosComponent implements OnInit {
         // obtener los id's
         this.consolidadoIds = this.consolidados.map((consolidado) => consolidado.IdConsolidadoVentaEmpleado);
 
-        console.log(res); // para ver los consolidados
+        //console.log(res); // para ver los consolidados
     })
 
   }
@@ -174,13 +174,11 @@ export class PedidosConsolidadosComponent implements OnInit {
                 ventaDetalle:detalle.ventaEmpleadoDetalleId,
                 productoId:detalle.ProductoId
 
-
-
               };
 
-              // console.log(res);
+              //console.log(res);
               this.detalleVentasArray.push(detalleVenta);
-              console.log(detalleVenta);// ver los detalles de cada fila
+              //console.log(detalleVenta);// ver los detalles de cada fila
             }
           });
           this.snackBar.open('Se muestran los detalles del consolidado Abajo!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 8000 });
@@ -212,34 +210,34 @@ export class PedidosConsolidadosComponent implements OnInit {
       const detalleEliminado = { ...this.detalleVentasArray[index] };
       this.detalleVentasArray[index].eliminado = true;
       this.partidas.push(detalleEliminado);
-      console.log(this.partidas);
+      //console.log(this.partidas);
       //empezare a ir a cada dato
       const eliminado = detalleEliminado.cantidad; // Cambia esto por el valor específico que deseas // accedo a el valor
-      console.log(eliminado); // esto te muestra el eliminado en vivo
-      const rhUsuarioId = detalleEliminado.rhUsuarioId; console.log(rhUsuarioId)
+      //console.log(eliminado); // esto te muestra el eliminado en vivo
+      const rhUsuarioId = detalleEliminado.rhUsuarioId; //console.log(rhUsuarioId)
       const fecha = this.getCurrentDate();
       const Total = detalleEliminado.precio;
-      console.log(Total);
+      //console.log(Total);
       const VentaDetalleId = detalleEliminado.ventaDetalle;
-      console.log(VentaDetalleId);
+      //console.log(VentaDetalleId);
       const ventaEmpleadoId = detalleEliminado.ventaEmpleadoId;
-      console.log(ventaEmpleadoId);
+      //console.log(ventaEmpleadoId);
       const correo = detalleEliminado.correo;
-      console.log(correo);
+      //console.log(correo);
 
 
        // Llamar a la función para enviar la ventaEmpleado
 
 
       //  this.partidas.forEach(detalleEliminado =>  {
-      //   console.log(detalleEliminado)
+      //   //console.log(detalleEliminado)
 
       //   const ventaEmpleado = {  // todo de la 215 a la 226 es posible solucion para mandar varios conjuntos a la vez
       //     RhUsuarioId: detalleEliminado.rhUsuarioId,
       //     Fecha: detalleEliminado.fecha,
       //     Total: detalleEliminado.total,
       //   }
-      //   console.log(ventaEmpleado);
+      //   //console.log(ventaEmpleado);
 
       // })
 
@@ -251,7 +249,7 @@ export class PedidosConsolidadosComponent implements OnInit {
         Fecha : fecha,
         Total : Total,
       }
-      console.log(ventaEmpleado)
+      //console.log(ventaEmpleado)
       const detalles = [{
         ProductoId: detalleEliminado.productoId,
         Precio: detalleEliminado.precio,
@@ -260,10 +258,10 @@ export class PedidosConsolidadosComponent implements OnInit {
         CodigoDiken:detalleEliminado.codigoDiken,
 
       }]
-      console.log(detalles);
+      //console.log(detalles);
       //!es para enviar un nuevo ventaEmpleado
       this.appService.sinDetalles(ventaEmpleado,detalles).subscribe((res)=>{
-        console.log(res)
+        //console.log(res)
       })
 
       //todo enviar varios conjuntos a la vez
@@ -281,7 +279,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 //       ];
 //       conjuntosVentaEmpleado.forEach(conjunto => {
 //         this.appService.sinDetalles(conjunto).subscribe((res) => {
-//         console.log(res);
+//         //console.log(res);
 //   });
 // });
 
@@ -295,14 +293,14 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
     return this.appService.ActualizaTotal(ventaEmpleadoId);
   })
 ).subscribe((res) => {
-  console.log(res); // Esto se ejecutará después de que ambas operaciones se completen
+  //console.log(res); // Esto se ejecutará después de que ambas operaciones se completen
 });
 
 // todo mandar correo
   // const nombres = this.partidas.map(partida => partida.usuario);
 
     const destino = detalleEliminado.correo;
-    console.log(destino);
+    //console.log(destino);
 
     const informacionCorreo = {
       numFactura :  this.numPedido.get('Pedido').value,
@@ -324,10 +322,10 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
 
     }))
 
-    console.log(datosCorreo);
+    //console.log(datosCorreo);
 
     this.appService.enviarFacturas(informacionCorreo.numFactura,informacionCorreo.correoDestino,informacionCorreo.Fecha,informacionCorreo.Nombre,informacionCorreo.Producto).subscribe((res)=>{
-      console.log(res);
+      //console.log(res);
     })
 //
 
@@ -356,11 +354,11 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
 //   const productosTexto = detalles.Productos.join(', ');
 // }
 
-// console.log(destinatarios);
+// //console.log(destinatarios);
 
 
 // this.appService.enviarFacturas(destinatarios).subscribe((res =>{
-//   console.log(res)
+//   //console.log(res)
 // }))
 
 
@@ -391,7 +389,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
    // Obtener todas las ventaEmpleadoId del arreglo partidas
   const ventaCanceladaIds = this.partidas.map((detalleEliminado) => detalleEliminado.ventaEmpleadoId);
 
-  console.log(ventaCanceladaIds);
+  //console.log(ventaCanceladaIds);
 
   this.ventasEmpleado = ventaCanceladaIds
 
@@ -399,7 +397,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
     //pendiente, me cambia tdos los eliminados, solo quiero cambiar un estatus
     //todo esto de abajo es para cancelar varias ventas
     // this.appService.CerrarVenta(ventaCanceladaIds).subscribe((res) => {
-    //   console.log(res)
+    //   //console.log(res)
     // })
 
   // this.cancelarEstatusConsolidado();
@@ -410,7 +408,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
 
   cancelarEstatusConsolidado(id){
     this.appService.cambiarEstatusConsolidado(id).subscribe((res) =>{
-      console.log(res)
+      //console.log(res)
     })
     this.insertarFactura();
 
@@ -425,7 +423,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
   //   }
 
   //   this.appService.AddVentaEmpleado().subscribe((res)=>{
-  //     console.log(res)
+  //     //console.log(res)
   //   })
   // }
 
@@ -440,7 +438,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
     }
 
     this.appService.insertarFactura(factura.numeroFactura,factura.id).subscribe((res)=>{
-      console.log(res);
+      //console.log(res);
     })
 
   } //cambiar valores en api
@@ -490,7 +488,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
       const detalleEliminado = { ...this.detalleVentasArray[index] };
       this.detalleVentasArray[index].eliminado = true;
       this.partidas.push(detalleEliminado);
-      console.log(this.partidas);
+      //console.log(this.partidas);
 
       const fecha = this.getCurrentDate();
       const principalesDatos = {
@@ -498,7 +496,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
         numFactura :  this.numPedido.get('Pedido').value,
         correoDestino:detalleEliminado.correo
       }
-      console.log(principalesDatos);
+      //console.log(principalesDatos);
 
       const datosCorreo = this.partidas.map(partidas => ({
 
@@ -508,11 +506,11 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
 
       }))
 
-      console.log(datosCorreo);
+      //console.log(datosCorreo);
       //!Hare lo del correro individualmente con cada detalle y su boton
 
       // this.appService.enviarFacturas(principalesDatos.numFactura,principalesDatos.Nombre,principalesDatos.correoDestino,datosCorreo).subscribe((res =>{
-      //   console.log(res);
+      //   //console.log(res);
       // }))
 
 

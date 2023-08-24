@@ -31,7 +31,7 @@ export class ControlsComponent implements OnInit {
     const Today = new Date().getDay();
     this.Day = Today === 1 || Today === 2 || Today === 3 || Today ===4 || Today ===5;
 
-     console.log(Today);
+     //console.log(Today);
   }
 
   public layoutAlign(){
@@ -84,7 +84,7 @@ export class ControlsComponent implements OnInit {
   }
 
   public addToCart(product:Product){
-    // console.log(product)
+    // //console.log(product)
     let currentProduct = this.appService.Data.cartList.filter(item=>item.id == product.id)[0];
     if(currentProduct){
       if((currentProduct.cartCount + this.count) <= this.product.availibilityCount){

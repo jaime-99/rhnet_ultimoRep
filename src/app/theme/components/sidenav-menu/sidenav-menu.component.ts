@@ -58,13 +58,13 @@ export class SidenavMenuComponent implements OnInit {
     this.appService1.obtenerAdmin().subscribe((res) => {
       if (res !== null && res.includes(userauth.data.INUsuarioId)) {
         this.mostrarApartado = true;
-        console.log("Mostrar el apartado para el usuario actual");
+        //console.log("Mostrar el apartado para el usuario actual");
         if (this.mostrarApartado) {
           this.parentMenu = this.menuItems.filter(item => item.parentId === this.menuParentId);
         }
       } else {
         this.mostrarApartado = false;
-        console.log("No mostrar el apartado para el usuario actual");
+        //console.log("No mostrar el apartado para el usuario actual");
 
         this.parentMenu = this.menuItems.filter(
           item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'
