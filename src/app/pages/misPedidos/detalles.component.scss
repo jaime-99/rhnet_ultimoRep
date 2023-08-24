@@ -1,115 +1,225 @@
-// .orders-table.mat-table {
-//   display: block;
-//   overflow-x:auto;
-//   .mat-row, .mat-header-row {
-//       display: flex;
-//       border-bottom-width: 1px;
-//       border-bottom-style: solid;
-//       align-items: center;
-//       min-height: 48px;
-//       padding: 0 24px;
-//       min-width: 870px;
-//   }
-//   .mat-cell, .mat-header-cell {
-//       flex: 1;
-//       overflow: hidden;
-//       word-wrap: break-word;
-//   }
-//   .mat-header-cell {
-//       font-size: 14px;
-//   }
-//   .mat-cell{
-//       .order{
-//           color: inherit;
-//           text-decoration: none;
-//           font-weight: 500;
+// // .orders-table.mat-table {
+// //   display: block;
+// //   overflow-x:auto;
+// //   .mat-row, .mat-header-row {
+// //       display: flex;
+// //       border-bottom-width: 1px;
+// //       border-bottom-style: solid;
+// //       align-items: center;
+// //       min-height: 48px;
+// //       padding: 0 24px;
+// //       min-width: 870px;
+// //   }
+// //   .mat-cell, .mat-header-cell {
+// //       flex: 1;
+// //       overflow: hidden;
+// //       word-wrap: break-word;
+// //   }
+// //   .mat-header-cell {
+// //       font-size: 14px;
+// //   }
+// //   .mat-cell{
+// //       .order{
+// //           color: inherit;
+// //           text-decoration: none;
+// //           font-weight: 500;
 
-//       }
-//       .btn-invoice{
-//           margin-left: 8px;
-//       }
-//       .actions{
-//           text-align: right;
-//       }
-//   }
+// //       }
+// //       .btn-invoice{
+// //           margin-left: 8px;
+// //       }
+// //       .actions{
+// //           text-align: right;
+// //       }
+// //   }
+// // }
+
+// /* Estilos generales */
+// body {
+//   font-family: Arial, sans-serif;
+//   margin: 0;
+//   padding: 0;
 // }
 
-/* Estilos generales */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
+// /* Encabezado */
+// h2 {
+//   margin-top: 20px;
+// }
+
+// /* Botón de regreso */
+// .button-container {
+//   margin-top: 10px;
+//   margin-bottom: 20px;
+// }
+
+// /* Tabla de pedidos */
+// .mat-table {
+//   margin-top: 20px;
+//   width: 100%;
+//   overflow-x: auto; /* Agregar desplazamiento horizontal */
+
+// }
+
+// .mat-header-row {
+//   background-color: #f2f2f2;
+//   font-weight: bold;
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+
+
+// }
+
+// .mat-header-cell,
+// .mat-cell {
+//   border: 1px solid #ddd;
+//   padding: 8px;
+//   text-align: left;
+//   box-sizing: border-box; /* Incluye el padding en el ancho */
+// }
+// .mat-header-cell{
+//   font-size: 15px;
+// }
+
+// /* Espaciado entre filas */
+// .mat-row {
+//   display: grid;
+//   grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+//   align-items: center;
+//   border-top: 1px solid #ddd;
+//   padding: 8px 0;
+// }
+
+// .mat-row:last-child {
+//   border-bottom: 1px solid #ddd;
+// }
+
+
+// @media (max-width: 768px) {
+//   .mat-table {
+//     font-size: 14px; /* Ajustar tamaño de fuente para dispositivos móviles */
+//   }
+
+
+//   .mat-row,
+//   .mat-cell {
+//     display: block;
+//     width: 100%; /* Ocupar todo el ancho en dispositivos móviles */
+//   }
+
+//   .mat-row {
+//     display: block;
+//     margin-top: 15px;
+//   }
+
+// }
+
+
+.mat-mdc-form-field {
+  margin-top: 16px;
 }
 
-/* Encabezado */
-h2 {
-  margin-top: 20px;
+.review-order-table.mat-table {
+  display: block;
+  overflow-x:auto;
+  .mat-row, .mat-header-row {
+      display: flex;
+      border-bottom-width: 1px;
+      border-bottom-style: solid;
+      align-items: center;
+      min-height: 48px;
+      padding: 0 24px;
+      min-width: 760px;
+  }
+  .mat-row{
+      min-height: 60px;
+  }
+  .mat-cell, .mat-header-cell {
+      flex: 1;
+      overflow: hidden;
+      word-wrap: break-word;
+  }
+  .mat-header-cell {
+      font-size: 14px;
+  }
+  .mat-cell{
+      img{
+          width: 60px;
+      }
+  }
 }
 
-/* Botón de regreso */
-.button-container {
-  margin-top: 10px;
-  margin-bottom: 20px;
+mat-form-field {
+  margin: 0 19px 23px 0;
 }
 
-/* Tabla de pedidos */
-.mat-table {
-  margin-top: 20px;
-  width: 100%;
-  overflow-x: auto; /* Agregar desplazamiento horizontal */
-
+.example-h2 {
+  margin: 10px;
 }
 
-.mat-header-row {
-  background-color: #f2f2f2;
-  font-weight: bold;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
-
-
-}
-
-.mat-header-cell,
-.mat-cell {
-  border: 1px solid #ddd;
-  padding: 8px;
-  text-align: left;
-  box-sizing: border-box; /* Incluye el padding en el ancho */
-}
-.mat-header-cell{
-  font-size: 15px;
-}
-
-/* Espaciado entre filas */
-.mat-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Tres columnas iguales */
+.example-section {
+  display: flex;
+  align-content: center;
   align-items: center;
-  border-top: 1px solid #ddd;
-  padding: 8px 0;
+  height: 60px;
 }
 
-.mat-row:last-child {
-  border-bottom: 1px solid #ddd;
+.example-margin {
+  margin: 0 10px;
+}
+.example-margin1 {
+  margin: 0 10px 15px;
 }
 
 
-@media (max-width: 768px) {
-  .mat-table {
-    font-size: 14px; /* Ajustar tamaño de fuente para dispositivos móviles */
+.formAdicional {
+  display: flex;
+  align-items: center;
+  margin-top: 10px; /* Ajusta el margen superior según tus preferencias */
+  align-items: center;
+}
+
+.formAdicional .divider {
+  width: 1px; /* Ancho de la línea divisoria */
+  height: 100%; /* Tamaño completo de la línea divisoria */
+  background-color: #ccc; /* Color de la línea divisoria */
+  margin-right: 10px; /* Espacio a la derecha de la línea divisoria */
+}
+
+
+
+//esto solo es el carrito de compras
+.mat-icon.empty-cart-icon{
+  font-size: 150px;
+  line-height: 150px;
+  height: 150px;
+  width: 150px;
+  vertical-align: middle;
+}
+
+
+::ng-deep .mat-horizontal-stepper-header{
+  pointer-events: none !important;
+}
+
+// es para celulares
+
+@media screen and (max-width: 768px) {
+.formAdicional {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .divider {
+    margin: 20px 0;
   }
 
+  .mat-form-field {
+    width: 100%;
 
-  .mat-row,
-  .mat-cell {
-    display: block;
-    width: 100%; /* Ocupar todo el ancho en dispositivos móviles */
+    @media (min-width: 600px) {
+      width: 50%;
+    }
   }
-
-  .mat-row {
-    display: block;
-    margin-top: 15px;
-  }
-
+}
 }
 
