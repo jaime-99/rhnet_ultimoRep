@@ -18,7 +18,7 @@
     <tbody>
       <tr *ngFor="let consolidado of consolidados">
         <td class="td-1">{{ consolidado.Empresa }}</td>
-        <td class="td-1">Pendiente de trabajar </td>
+        <td class="td-1">Pendiente por trabajar </td>
         <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
         <td class="td-1">{{ consolidado.Fecha  | date: 'dd/MM/yyyy' }}</td>
         <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>

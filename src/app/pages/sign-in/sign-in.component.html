@@ -1,5 +1,6 @@
-<mat-card>
-    <div fxLayout="row " fxLayoutAlign="center center">
+
+<mat-card class="login-card">
+    <div fxLayout="row " fxLayoutAlign="center center" class="login-container">
         <div fxFlex="100" fxFlex.gt-sm="50" class="p-2">
             <h2 class="text-muted text-center">Inicio de Sesión</h2>
             <form [formGroup]="loginForm" >
@@ -26,12 +27,41 @@
               <button (click)="recuperarPass()" mat-button color="primary"> Recuperar Contraseña</button>
             </div>
           </div>
+
+          <div fxFlex="50" class="first">
+
+          <div fxFlex="50" class="right-content">
+            <img src="../../../assets/images/flags/LOGO_DIKEN_2022.jpg" alt="Imagen" class="left-image">
+            <p class="left-text">Bienvenido a nuestra plataforma</p>
+            <p class="left-text"> Venta Empleados</p>
+
+          </div>
+
+
+          <div fxFlex="50" class="footer">
+            <span class="logo">D<span class="logo-r">i</span>ken</span>
+              <span class="rights">&copy; Todos los derechos reservados</span>
+          </div>
+
+        </div>
+
         </div>
 
 </mat-card>
 
 
-<div class="pie">
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="pie">
 
 
   <img src="../../../assets/images/flags/LOGO_DIKEN_2022.jpg" alt="imagenDeDiken">
@@ -41,5 +71,5 @@
 
 
 
-</div>
+</div> -->
 
