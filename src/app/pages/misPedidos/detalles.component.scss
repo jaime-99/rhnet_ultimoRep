@@ -123,7 +123,7 @@
   overflow-x:auto;
   .mat-row, .mat-header-row {
       display: flex;
-      border-bottom-width: 1px;
+      border-bottom-width: 2.5px;
       border-bottom-style: solid;
       align-items: center;
       min-height: 48px;
@@ -171,19 +171,7 @@ mat-form-field {
 }
 
 
-.formAdicional {
-  display: flex;
-  align-items: center;
-  margin-top: 10px; /* Ajusta el margen superior según tus preferencias */
-  align-items: center;
-}
 
-.formAdicional .divider {
-  width: 1px; /* Ancho de la línea divisoria */
-  height: 100%; /* Tamaño completo de la línea divisoria */
-  background-color: #ccc; /* Color de la línea divisoria */
-  margin-right: 10px; /* Espacio a la derecha de la línea divisoria */
-}
 
 
 
@@ -203,23 +191,5 @@ mat-form-field {
 
 // es para celulares
 
-@media screen and (max-width: 768px) {
-.formAdicional {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 
-  .divider {
-    margin: 20px 0;
-  }
-
-  .mat-form-field {
-    width: 100%;
-
-    @media (min-width: 600px) {
-      width: 50%;
-    }
-  }
-}
-}
 

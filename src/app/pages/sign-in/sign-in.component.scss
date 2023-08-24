@@ -107,6 +107,8 @@ font-size: 20px;
     justify-content: flex-start;
     align-items: center;
     padding: 0px;
+    max-width: 100% !important;
+    margin: 20px auto; /* Aumentar el margen vertical */
 
   }
   .login-container{
@@ -114,11 +116,14 @@ font-size: 20px;
     flex-direction: column !important;
 
   }
+  .rights{
+    width: 100%  !important;
+  }
 
+  .first{
+    width: 300px !important;
+  }
 
 
 }
-
-
-
 
