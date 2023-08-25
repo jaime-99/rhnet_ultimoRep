@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { SwiperConfigInterface, SwiperDirective } from 'ngx-swiper-wrapper';
 import { Product } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
@@ -30,38 +30,44 @@ export class ProductosRelacionadosComponent implements OnInit {
   public searchText:string="";
   public ProductoId:any;
 
-  constructor(public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: UntypedFormBuilder) { }
+  constructor(public appService:AppService,
+      private activatedRoute: ActivatedRoute,
+      public dialog: MatDialog,
+      public formBuilder:
+      UntypedFormBuilder,
+      public router: Router,
+      ) { }
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.params.subscribe(params => {  
+    this.sub = this.activatedRoute.params.subscribe(params => {
       if(params['id']){
         this.ProductoId=params['id']
-        this.getProductById(params['id']); 
+        this.getProductById(params['id']);
         this.getAllProducts(params['id']);
         this.getAllProductsSutitutos(params['id']);
-      } 
-      else{
-        this.getProductById(1); 
       }
-    }); 
-    this.form = this.formBuilder.group({ 
-      'review': [null, Validators.required],            
+      else{
+        this.getProductById(1);
+      }
+    });
+    this.form = this.formBuilder.group({
+      'review': [null, Validators.required],
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
       'email': [null, Validators.compose([Validators.required, emailValidator])]
-    }); 
+    });
   }
 
   ngAfterViewInit(){
     this.config = {
       observer: false,
       slidesPerView: 4,
-      spaceBetween: 10,      
+      spaceBetween: 10,
       keyboard: true,
       navigation: true,
-      pagination: false,       
-      loop: false, 
+      pagination: false,
+      loop: false,
       preloadImages: false,
-      lazy: true, 
+      lazy: true,
       breakpoints: {
         480: {
           slidesPerView: 2
@@ -78,7 +84,7 @@ export class ProductosRelacionadosComponent implements OnInit {
       this.product = data;
       this.image = data.images[0].medium;
       this.zoomImage = data.images[0].big;
-      setTimeout(() => { 
+      setTimeout(() => {
         this.config.observer = true;
        // this.directiveRef.setIndex(0);
       });
@@ -93,7 +99,7 @@ export class ProductosRelacionadosComponent implements OnInit {
   public onMouseMove(e){
     if(window.innerWidth >= 1280){
       var image, offsetX, offsetY, x, y, zoomer;
-      image = e.currentTarget; 
+      image = e.currentTarget;
       offsetX = e.offsetX;
       offsetY = e.offsetY;
       x = offsetX/image.offsetWidth*100;
@@ -121,9 +127,9 @@ export class ProductosRelacionadosComponent implements OnInit {
 
   ngOnDestroy() {
     this.sub.unsubscribe();
-  } 
-  
-  public onSubmit(){ 
+  }
+
+  public onSubmit(){
     if(this.form.valid){
       console.log(this.form.value);
     }
@@ -138,16 +144,16 @@ export class ProductosRelacionadosComponent implements OnInit {
 
     let queryParams: any = {};
     queryParams.textSearch=this.searchText;
-    this.sub = this.activatedRoute.params.subscribe(params => {  
+    this.sub = this.activatedRoute.params.subscribe(params => {
       if(params['id']){
-        this.getProductById(params['id']); 
+        this.getProductById(params['id']);
         this.getAllProducts(params['id']);
         this.getAllProductsSutitutos(params['id']);
-      } 
-      else{
-        this.getProductById(1); 
       }
-    }); 
+      else{
+        this.getProductById(1);
+      }
+    });
 
     // setTimeout(() => {
     //   window.location.reload();
@@ -155,23 +161,22 @@ export class ProductosRelacionadosComponent implements OnInit {
   }
   public search2(event:any){
 
-
     this.searchText = (event.target as HTMLInputElement).value;
     console.log(this.searchText);
     this.appService.search.next(this.searchText);
 
     let queryParams: any = {};
     queryParams.textSearch=this.searchText;
-    this.sub = this.activatedRoute.params.subscribe(params => {  
+    this.sub = this.activatedRoute.params.subscribe(params => {
       if(params['id']){
-        this.getProductById(params['id']); 
+        this.getProductById(params['id']);
         this.getAllProducts(params['id']);
         this.getAllProductsSutitutos(params['id']);
-      } 
-      else{
-        this.getProductById(1); 
       }
-    }); 
+      else{
+        this.getProductById(1);
+      }
+    });
 
     // setTimeout(() => {
     //   window.location.reload();
@@ -180,21 +185,29 @@ export class ProductosRelacionadosComponent implements OnInit {
 
   public getAllProducts(id:any){
     this.appService.getProductsApiRelacionados(id).subscribe(data=>{
-      this.products = data; 
-      //for show more product  
+      this.products = data;
+      //for show more product
       // for (var index = 0; index < 3; index++) {
-      //   this.products = this.products.concat(this.products);        
+      //   this.products = this.products.concat(this.products);
       // }
     });
   }
   public getAllProductsSutitutos(id:any){
     this.appService.getProductsApiSustitutos(id).subscribe(data=>{
-      this.productsSustitutos = data; 
-      //for show more product  
+      this.productsSustitutos = data;
+      //for show more product
       // for (var index = 0; index < 3; index++) {
-      //   this.products = this.products.concat(this.products);        
+      //   this.products = this.products.concat(this.products);
       // }
     });
+  }
+
+  //emieza jaime,
+  // este producto es para que te mande a la pestaña de productos
+  public agrega(){
+    this.router.navigate(['/admin/products/EscogerProductos',this.product.id])
+
+
   }
 
 }

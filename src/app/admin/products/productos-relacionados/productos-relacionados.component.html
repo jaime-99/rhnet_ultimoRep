@@ -69,12 +69,28 @@
             <mat-tab-group [@.disabled]="true" [selectedIndex]="0">
                 <mat-tab label="Productos relacionados">
 
-                   <app-cproductlist [products]="products" [ProductoPadreId]="ProductoId" [EsRelacionado]="1"></app-cproductlist>
+                   <!-- <app-cproductlist [products]="products" [ProductoPadreId]="ProductoId" [EsRelacionado]="1"></app-cproductlist> -->
+                   <div fxLayout="row" fxLayoutAlign="space-between center" class="p-1">
+                    <div fxLayout="row">
+                        <mat-button-toggle-group #controls="matButtonToggleGroup" appearance="legacy">
+                            <mat-button-toggle (click)="agrega()"><mat-icon>person_add</mat-icon></mat-button-toggle>
+                            <!-- <mat-button-toggle value="search">
+                                <mat-icon>search</mat-icon>
+                            </mat-button-toggle> -->
+                        </mat-button-toggle-group>
+                    </div>
+                    <!-- <form class="user-search" [class.show]="controls.value == 'search'">
+                        <mat-form-field class="user-search-input">
+                            <input matInput placeholder="Buscar producto" [(ngModel)]="searchText" name="search" (keyup.enter)="search($event)">
+                        </mat-form-field>
+                    </form> -->
+
+                </div>
 
                 </mat-tab>
                 <mat-tab label="Productos sustitutos">
 
-                    <app-cproductlist [products]="productsSustitutos" [ProductoPadreId]="ProductoId" [EsRelacionado]="0"></app-cproductlist>
+                    <!-- <app-cproductlist [products]="productsSustitutos" [ProductoPadreId]="ProductoId" [EsRelacionado]="0"></app-cproductlist> -->
 
 
                 </mat-tab>

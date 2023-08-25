@@ -38,8 +38,6 @@ public colorScheme = {
 
     this.anio = this.getCurrentYear();
     //console.log(this.anio)
-
-
   }
 
   public onSelect(event) {

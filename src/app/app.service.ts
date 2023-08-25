@@ -281,6 +281,17 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         }
 
 
+        // es para agregar productosRelacionados a un producto
+
+
+        insertarProductosRelacionados(ProductoPadreId,ProductoId){
+
+          const url=`${ this.baseUrl }/ventas/insertarRelacionados.php`;
+          const body={ProductoPadreId,ProductoId}
+          return this.http.post<any>( url, body );
+        }
+
+
 
 
 

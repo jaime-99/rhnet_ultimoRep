@@ -18,6 +18,7 @@ import { ProductoComponent } from './producto/producto.component';
 import { ProductorelacionadoComponent } from './productorelacionado/productorelacionado.component';
 import { QuillModule } from 'ngx-quill'
 import { NgxMatFileInputModule } from '@angular-material-components/file-input';
+import { EscogerProductos } from './productos-relacionados/productos-escoger.component';
 
 
 export const routes: Routes = [
@@ -28,7 +29,9 @@ export const routes: Routes = [
   { path: 'product-detail/:id', component: ProductDetailComponent, data: { breadcrumb: 'Producto Detalle' } },
   { path: 'add-product', component: AddProductComponent, data: { breadcrumb: 'Agregar Producto' } },
   { path: 'add-product/:id', component: AddProductComponent, data: { breadcrumb: 'Editar Producto' } },
-  {path:'productosrelacionados/:id',component:ProductosRelacionadosComponent,data:{breadcrumb:'Productos relacionados'}}
+  {path:'productosrelacionados/:id',component:ProductosRelacionadosComponent,data:{breadcrumb:'Productos relacionados'}},
+  {path:'EscogerProductos/:id',component:EscogerProductos,data:{breadcrumb:'Escoger Productos'}}
+
 ];
 
 @NgModule({
@@ -42,7 +45,8 @@ export const routes: Routes = [
     ProductosRelacionadosComponent,
     ProductosSustitutosComponent,
     ProductoComponent,
-    ProductorelacionadoComponent
+    ProductorelacionadoComponent,
+    EscogerProductos,
   ],
   imports: [
     CommonModule,
