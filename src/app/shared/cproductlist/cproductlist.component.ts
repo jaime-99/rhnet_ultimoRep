@@ -33,7 +33,7 @@ export class CproductlistComponent implements OnInit {
 
     let queryParams: any = {};
     queryParams.textSearch=this.searchText;
-    
+
 
     // setTimeout(() => {
     //   window.location.reload();

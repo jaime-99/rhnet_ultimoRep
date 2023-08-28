@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Route, Router } from '@angular/router';
@@ -7,6 +7,10 @@ import { Product } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { ProductZoomComponent } from '../product-detail/product-zoom/product-zoom.component';
+import { EscogerProductos } from './productos-escoger.component';
+
+import { SharedService } from './esRelacionado.service';
+
 
 @Component({
   selector: 'app-productos-relacionados',
@@ -30,12 +34,21 @@ export class ProductosRelacionadosComponent implements OnInit {
   public searchText:string="";
   public ProductoId:any;
 
+  // public esRelacionado: boolean = false;
+
+  // @ViewChild('esRelacionado') esRelacionado: EscogerProductos;
+  @Output() esRelacionadoChanged = new EventEmitter<boolean>();
+  esRelacionado: boolean;
+
+
+
   constructor(public appService:AppService,
       private activatedRoute: ActivatedRoute,
       public dialog: MatDialog,
       public formBuilder:
       UntypedFormBuilder,
       public router: Router,
+      private sharedService: SharedService
       ) { }
 
   ngOnInit(): void {
@@ -204,8 +217,22 @@ export class ProductosRelacionadosComponent implements OnInit {
 
   //emieza jaime,
   // este producto es para que te mande a la pestaña de productos
-  public agrega(){
-    this.router.navigate(['/admin/products/EscogerProductos',this.product.id])
+  public agrega(id){
+    if(id===1){
+
+      this.esRelacionado = true;
+      this.sharedService.setEsRelacionado(this.esRelacionado);
+      console.log("debe dar true")
+      this.router.navigate(['/admin/products/EscogerProductos',this.product.id])
+    }else{
+
+      this.esRelacionado = id ===2
+      this.esRelacionado = false;
+      this.sharedService.setEsRelacionado(this.esRelacionado);
+      console.log("debe dar false")
+      this.router.navigate(['/admin/products/EscogerProductos',this.product.id])
+    }
+
 
 
   }

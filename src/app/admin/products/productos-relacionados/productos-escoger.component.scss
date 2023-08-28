@@ -1,0 +1,42 @@
+// Es para la imagen
+.mat-card.product-image {
+  padding: 6px;
+  text-align: center;
+  button{
+      position: absolute;
+      top: 0;
+      right: 0;
+      z-index: 99;
+  }
+  img{
+      max-width: 100%;
+  }
+  .mat-chip-list{
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      pointer-events: none;
+  }
+}
+
+// es para el boton de buscar
+.user-search{
+  width: 0;
+  overflow: hidden;
+  transition: 0.3s;
+  .mat-form-field{
+      width: 100% !important;
+      text-align: center !important;
+      height: 36px;
+  }
+  .mat-form-field-infix{
+      padding: 5px;
+  }
+  .mat-input-element{
+      text-align: center;
+  }
+  &.show{
+      width: 100%;
+      overflow: visible;
+  }
+}

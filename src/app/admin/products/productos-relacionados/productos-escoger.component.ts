@@ -1,19 +1,23 @@
 
 import { Template } from '@amcharts/amcharts5';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Product } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
+import { ProductosRelacionadosComponent } from './productos-relacionados.component';
+import { SharedService } from './esRelacionado.service';
 
 
 @Component({
   selector: 'app-escoger',
-  templateUrl: './productos-escoger.component.html'
+  templateUrl: './productos-escoger.component.html',
+  styleUrls: ['./productos-escoger.component.scss']
 })
 
 export class EscogerProductos implements OnInit {
+
 
   public searchText:string="";
   public viewCol: number = 25;
@@ -27,9 +31,15 @@ export class EscogerProductos implements OnInit {
   zoomImage: any;
   public config: SwiperConfigInterface={};
   public products: Array<Product> = [];
+  public esSusORel = 'Relacionados'
+  esRelacionado: boolean;
+  constructor(public appService: AppService,private activatedRoute: ActivatedRoute,public snackBar: MatSnackBar,
+    private sharedService:SharedService
 
-  constructor(public appService: AppService,private activatedRoute: ActivatedRoute,public snackBar: MatSnackBar
-    ) { }
+
+    ) {
+      this.esRelacionado = this.sharedService.getEsRelacionado();
+    }
 
   ngOnInit() {
     if(window.innerWidth < 1280){
@@ -38,6 +48,10 @@ export class EscogerProductos implements OnInit {
     this.getAllProducts();
     this.verIdProductoPadre();
 
+    // console.log(this.esRelacionado);
+    console.log(this.esRelacionado);
+
+    this.cambiarCadena();
    }
 
 
@@ -51,6 +65,7 @@ export class EscogerProductos implements OnInit {
     let queryParams: any = {};
     queryParams.textSearch=this.searchText;
     this.getAllProducts();
+
   }
 
 
@@ -116,23 +131,40 @@ export class EscogerProductos implements OnInit {
   }
 
 
+
   public agregar(id) {
     // console.log(id)
     this.ProductoId = id
+    if(this.esRelacionado===true){
     // console.log(this.ProductoPadreId);
     this.appService.insertarProductosRelacionados(this.ProductoPadreId,this.ProductoId).subscribe((res)=>{
       // console.log(res);
-      this.snackBar.open('se relaciono el producto seleccionado a ', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('se agreggo a relacionados el producto seleccionado ' + this.product.name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+    })
 
-
+  }else{
+    this.appService.insertarProductosSustitutos(this.ProductoPadreId,this.ProductoId).subscribe((res)=>{
+      // console.log(res);
+      this.snackBar.open('se agrego a sustituos el producto seleccionado ' + this.product.name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
     })
 
   }
+}
 
   // es para ir a siguiente
     public onPageChanged(event){
       this.page = event;
       window.scrollTo(0,0);
+    }
+
+
+
+    cambiarCadena(){
+      if(this.esRelacionado ===true ){
+        this.esSusORel ='Relaciondos'
+      }else{
+        this.esSusORel = 'Sustitutos'
+      }
     }
 
 

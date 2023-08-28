@@ -291,6 +291,15 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>( url, body );
         }
 
+        // es para agregar los productosSustitutos a un producto
+        insertarProductosSustitutos(ProductoPadreId,ProductoId){
+
+          const url=`${ this.baseUrl }/ventas/insertarSustitutos.php`;
+          const body={ProductoPadreId,ProductoId}
+          return this.http.post<any>( url, body );
+        }
+
+
 
 
 

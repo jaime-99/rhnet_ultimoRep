@@ -1,11 +1,19 @@
-<h2 class="text-center">Seleccionar Productos para agregar a relacionados</h2>
 
-<div>
+<h2 class="text-center">Seleccionar Productos para agregar a productos {{this.esSusORel}} </h2>
+
+<div fxLayout="row wrap" class="p-1" fxLayoutAlign="center center">
+
+  <div fxFlex="100" fxFlex.gt-md="35">
+
   <p>Nombre del producto: <strong> {{product?.name}} </strong></p>
-  <p>Categoria: {{product?.Familia}} </p>
+  <p>Categoria: <strong>{{product?.Familia}} </strong></p>
+  <mat-card class="product-image">
     <img [src]="this.image" >
-</div>
+  </mat-card>
+  </div>
 
+</div>
+<!--  -->
 
 <div fxLayout="row" fxLayoutAlign="space-between center" class="p-1">
   <div fxLayout="row">
@@ -24,7 +32,9 @@
 
 </div>
 
-<!--  -->
+
+
+
 
 <div fxLayout="row wrap">
   <div *ngFor="let product of products | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="p-1">

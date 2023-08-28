@@ -1,5 +1,5 @@
 
-<div fxLayout="row" fxLayoutAlign="space-between center" class="p-1">
+<!-- <div fxLayout="row" fxLayoutAlign="space-between center" class="p-1">
     <div fxLayout="row">
         <mat-button-toggle-group #controls="matButtonToggleGroup" appearance="legacy">
             <mat-button-toggle (click)="agrega()"><mat-icon>person_add</mat-icon></mat-button-toggle>
@@ -14,7 +14,7 @@
         </mat-form-field>
     </form>
 
-</div>
+</div> -->
 <div fxLayout="row wrap">
     <div *ngFor="let product of products | ProductSearchPipe : searchText | paginate: { itemsPerPage: count, currentPage: page }" fxFlex="100" [fxFlex.gt-sm]="viewCol" fxFlex.sm="50" class="p-1">
         <mat-card class="product-item text-center">
@@ -37,7 +37,7 @@
             <div class="icons">
                 <a [routerLink]="['/admin/products/add-product', product.id]" mat-mini-fab color="primary" matTooltip="Editar"><mat-icon>edit</mat-icon></a>
                 <span class="px-1"> <a [routerLink]="['/admin/products/product-detail', product.id]" mat-mini-fab color="primary" matTooltip="Ver"><mat-icon>remove_red_eye</mat-icon></a></span>
-                <a [routerLink]="['/admin/products/add-product', product.id]" mat-mini-fab color="primary" matTooltip="Productos relacionados/Sustitutos"><mat-icon>group_work</mat-icon></a>
+                <!-- <a [routerLink]="['/admin/products/add-product', product.id]" mat-mini-fab color="primary" matTooltip="Productos relacionados/Sustitutos"><mat-icon>group_work</mat-icon></a> -->
                 <button mat-mini-fab color="warn" matTooltip="Eliminar" (click)="remove(product)"><mat-icon>delete</mat-icon></button>
             </div>
         </mat-card>
