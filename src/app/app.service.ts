@@ -299,6 +299,41 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>( url, body );
         }
 
+        // es para eliminar producto relacinado
+
+        eliminarRelacionado(id){
+
+          const url=`${ this.baseUrl }/ventas/eliminarRelacionados.php`;
+          const body={id}
+          return this.http.post<any>( url, body );
+        }
+
+        //obtengo los productosSustitutos para ver el id y asi eliminarlo
+
+        verSustitutos(p_ProductoId: any): Observable<any> {
+          let apiurl = 'https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerInfoSustitutos.php?';
+          const params = new HttpParams().set('p_ProductoId', p_ProductoId);
+          return this.http.get<any>(apiurl, { params });
+        }
+
+        eliminarSustitutos(id){
+          const url=`${ this.baseUrl }/ventas/eliminarSustitutos.php`;
+          const body={id}
+          return this.http.post<any>( url, body );
+        }
+
+        verRelacionados(p_ProductoId: any): Observable<any> {
+          let apiurl = 'https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerInfoRelacionados.php?';
+          const params = new HttpParams().set('p_ProductoId', p_ProductoId);
+          return this.http.get<any>(apiurl, { params });
+        }
+
+
+
+
+
+
+
 
 
 

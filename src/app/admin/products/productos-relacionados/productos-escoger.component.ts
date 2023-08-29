@@ -33,6 +33,8 @@ export class EscogerProductos implements OnInit {
   public products: Array<Product> = [];
   public esSusORel = 'Relacionados'
   esRelacionado: boolean;
+  sutitutos =[]
+  relacionados=[]
   constructor(public appService: AppService,private activatedRoute: ActivatedRoute,public snackBar: MatSnackBar,
     private sharedService:SharedService
 
@@ -134,21 +136,35 @@ export class EscogerProductos implements OnInit {
 
   public agregar(id) {
     // console.log(id)
+    // if(this.ProductoId ===this.product?.id){
+    //   this.snackBar.open('no se puede agregar el mismo producto a relacionads' ,  '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
+
+    // }
     this.ProductoId = id
-    if(this.esRelacionado===true){
+    if(this.esRelacionado===true && this.ProductoId !=this.product.id && !this.relacionados.includes(this.ProductoId) ){
     // console.log(this.ProductoPadreId);
     this.appService.insertarProductosRelacionados(this.ProductoPadreId,this.ProductoId).subscribe((res)=>{
       // console.log(res);
-      this.snackBar.open('se agreggo a relacionados el producto seleccionado ' + this.product.name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('se agrego a relacionados el producto seleccionado ' + this.product.name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.relacionados.push(this.ProductoId); // Agregar el ProductoId al arreglo
+
     })
 
-  }else{
+  }else if (this.esRelacionado ===false && this.ProductoId != this.product.id && !this.sutitutos.includes(this.ProductoId)){
     this.appService.insertarProductosSustitutos(this.ProductoPadreId,this.ProductoId).subscribe((res)=>{
       // console.log(res);
       this.snackBar.open('se agrego a sustituos el producto seleccionado ' + this.product.name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.sutitutos.push(this.ProductoId);
     })
 
+
+  }else if(this.relacionados.includes(this.ProductoId) || this.sutitutos.includes(this.ProductoId)){
+    this.snackBar.open('no se puede agregar el mismo producto a relacionados / sustitutos',  '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+  } else{
+    this.snackBar.open('no se puede agregar al producto mismo',  '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
   }
+
 }
 
   // es para ir a siguiente
@@ -166,6 +182,7 @@ export class EscogerProductos implements OnInit {
         this.esSusORel = 'Sustitutos'
       }
     }
+
 
 
 }
