@@ -21,11 +21,14 @@ export class CproductlistComponent implements OnInit {
   public searchText:string="";
   id:number;
   p_ProductoId :number;
+  idSustituto: number;
+  idRelacionado:number;
   // snackBar: any;
   constructor(public appService:AppService, public snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
     console.log(this.EsRelacionado);
+    // this.verRelacionados();
   }
   agrega()
   {
@@ -67,10 +70,41 @@ export class CproductlistComponent implements OnInit {
       for (const producto of res.productoInfo) {
         const productoSustitutoId = producto.ProductoSustitutoId;
         console.log('ProductoSustitutoId:', productoSustitutoId);
-        this.id= productoSustitutoId
-        this.remove()
+        this.idSustituto= productoSustitutoId
       }
+
+         console.log(this.idSustituto)
+
+         if(this.EsRelacionado===1){
+          this.verRelacionados(id)
+          // this.remove()
+          }else{
+            this.remove();
+          }
+
     }
+    });
+
+
+
+  }
+  verRelacionados(id){
+    // es para ver los productos relacionados
+    this.appService.verRelacionados(id).subscribe((res)=>{
+      console.log(res);
+
+      if (res.productoInfo && res.productoInfo.length > 0) {
+        for (const producto of res.productoInfo) {
+          const productoRelacionadoId = producto.ProductoRelacionadoId;
+          console.log('ProductoRelacionadoId:', productoRelacionadoId);
+          this.idRelacionado= productoRelacionadoId
+          // console.log(id);
+          this.remove()
+        }
+      }
+
+
+
     });
 
   }
@@ -80,18 +114,26 @@ export class CproductlistComponent implements OnInit {
     // this.id = id
 
     if(this.EsRelacionado===0){
-
-    this.appService.eliminarSustitutos(this.id).subscribe((res)=>{
+      const id = this.idSustituto
+    this.appService.eliminarSustitutos(id).subscribe((res)=>{
       console.log(res);
-      console.log(this.id);
-      this.snackBar.open('se elimino el producto seleccionado '  ,  '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+      console.log(this.idSustituto);
+      this.snackBar.open('se elimino el producto sustituto '  ,  '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
 
 
     })
   }
 
-  else if(this.EsRelacionado===0){
-    console.log('no es relacionado')
+  else if(this.EsRelacionado===1){
+      const id = this.idRelacionado
+    console.log(' es relacionado')
+    this.appService.eliminarRelacionado(id).subscribe((res)=>{
+      console.log(res)
+      console.log(this.idRelacionado)
+      this.snackBar.open('se elimino el producto relacionado '  ,  '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
+    })
+
   }
 }
 
