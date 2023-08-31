@@ -7,13 +7,13 @@
       <button mat-icon-button matTooltip="Agregar" (click)="increment()"><mat-icon>add</mat-icon></button>
     </bdi>
   </div>
-  <div *ngIf="type!='wish'">
+  <div *ngIf="type!='wish'" fxLayout="row" fxLayoutGap="8px">
     <!-- <button mat-icon-button matTooltip="Agregar a deseos" (click)="addToWishList(product)"><mat-icon>favorite</mat-icon></button> -->
-    <button mat-icon-button matTooltip="Agregar a carrito" *ngIf="product?.availibilityCount > 0 && Day"
-      (click)="addToCart(product)"><mat-icon>shopping_cart</mat-icon></button>
+    <button mat-raised-button color="primary" mat-icon-button matTooltip="Agregar a carrito" *ngIf="product?.availibilityCount > 0 && Day"
+      (click)="addToCart(product)"> <mat-icon> shopping_cart</mat-icon></button>
     <!-- <button mat-icon-button matTooltip="Comparar" (click)="addToCompare(product)"><mat-icon>compare</mat-icon></button> -->
-    <button *ngIf="type!='all'" mat-icon-button matTooltip="Vista previa"
-      (click)="openProductDialog(product)"><mat-icon>remove_red_eye</mat-icon></button>
+    <button mat-icon-button  mat-raised-button color="primary"  *ngIf="type!='all'" mat-icon-button matTooltip="Vista previa"
+      (click)="openProductDialog(product)" style="color: white;"><mat-icon>remove_red_eye</mat-icon></button>
   </div>
 </div>
 <div *ngIf="product?.availibilityCount == 0 && type=='all'" class="bg-warn p-1 mt-2">
