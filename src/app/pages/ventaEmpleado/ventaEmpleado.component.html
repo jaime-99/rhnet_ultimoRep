@@ -48,34 +48,29 @@
 </div>
 
   <div *ngIf="noUsuario === 'before'" fxLayout="row wrap">
-      <div  *ngFor="let user of  usuarios | BuscarNombre : searchText | paginate: { itemsPerPage: 6, currentPage: page }" fxFlex="100"  fxFlex.gt-md="33.3" fxFlex.md="50" class="p-1">
+      <div  *ngFor="let empleado of  empleados | BuscarNombreEmpleado:searchText | paginate: { itemsPerPage: 6, currentPage: page }" fxFlex="100"  fxFlex.gt-md="33.3" fxFlex.md="50" class="p-1">
           <mat-card class="p-0">
               <div class="bg-primary" fxLayout="row" fxLayoutAlign="space-between center">
-                  <h3  class="user-name">  {{user.name}} </h3>
-                  <button mat-icon-button  (click)="SeleccionarEmpleado(user.numEmpleado,user.name)">
+                  <h3  class="user-name">  {{empleado.Nombre}} </h3>
+                  <button mat-icon-button  (click)="SeleccionarEmpleado(empleado.Numero_Empleado,empleado.Nombre)">
                     <mat-icon>done</mat-icon>
                 </button>
               </div>
 
             <!-- informacion del usuario -->
-            <div class="user-content" fxLayout="row" fxLayoutAlign="space-around center">
-              <div fxFlex="30" fxLayout="column" fxLayoutAlign="center center">
-                <div class="user-img">
-                  <!-- <img *ngIf="user.imagen" [src]="usuario.imagen" class="transition-2"> -->
-                  <img *ngIf="user.imagen === '' || user.imagen === null || user.imagen === undefined" src="https://dikeninternational.com/rhnet/uploads/default.png" class="transition-2">
-
-                  <img *ngIf="user.imagen" [src]="user.imagen" class="transition-2">
-
-                </div>
-              </div>
+            <div class="user-content" fxLayout="row" fxLayoutAlign="start start">
               <div fxFlex="70" fxLayout="column" class="user-details transition-2">
                 <p fxLayout="row" fxLayoutAlign="start center">
                   <mat-icon class="text-muted">face</mat-icon>
-                  <span> {{user.numEmpleado}} </span>
+                  <span> {{empleado.Numero_Empleado}} </span>
                 </p>
                 <p fxLayout="row" fxLayoutAlign="start center">
-                  <mat-icon class="text-muted">mail_outline</mat-icon>
-                  <span> {{user.email}} </span>
+                  <mat-icon class="text-muted">account_circle</mat-icon>
+                  <span> {{empleado.NombreCompleto}} </span>
+                </p>
+                <p fxLayout="row" fxLayoutAlign="start center">
+                  <mat-icon class="text-muted">payment</mat-icon>
+                  <span> {{empleado.Nomina}} </span>
                 </p>
 
               </div>

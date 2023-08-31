@@ -251,6 +251,11 @@ GetLoginAuth(Correo:string,contrasenia:string)
     return this.http.get<any>(url)
   }
 
+  getObtenerEmpleadosRhnet(){
+    const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/datosEmpleadoRhnet.php`;
+    return this.http.get<any>(url)
+  }
+
   // modificar los datos de usuarios solo nombre, telefono y apellidos
 
     modificarUsuarios(formData:any){

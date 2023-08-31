@@ -11,6 +11,7 @@ import { TiketSearchPipe } from './tiket-search.pipe';
 import { CategoriaSearchPipe } from './categoria-search.pipe';
 import { BgdClienteSearchPipe } from './BgdCliente-search.pipe';
 import { BuscarNombre } from './buscarNombre.pipe';
+import { BuscarNombreEmpleado } from './buscarNombreEmpleado.pipe';
 
 @NgModule({
     imports: [
@@ -27,6 +28,7 @@ import { BuscarNombre } from './buscarNombre.pipe';
         CategoriaSearchPipe,
         BgdClienteSearchPipe,
         BuscarNombre,
+        BuscarNombreEmpleado
     ],
     exports: [
         FilterByIdPipe,
@@ -39,6 +41,7 @@ import { BuscarNombre } from './buscarNombre.pipe';
         CategoriaSearchPipe,
         BgdClienteSearchPipe,
         BuscarNombre,
+        BuscarNombreEmpleado
     ]
 })
 export class PipesModule { }

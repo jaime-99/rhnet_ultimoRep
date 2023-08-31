@@ -72,8 +72,11 @@ export interface Usuario {
 }
 
 //todo ejemplo , borrar
-export interface Usuario3 {
-  name: string;
-  number: string;
+export interface Empleados {
+  Nombre:string;
+  NombreCompleto:string;
+  Numero_Empleado:number;
+  Nomina:string;
+
 }
 
