@@ -71,3 +71,9 @@ export interface Usuario {
   tokenId:number;
 }
 
+//todo ejemplo , borrar
+export interface Usuario3 {
+  name: string;
+  number: string;
+}
+

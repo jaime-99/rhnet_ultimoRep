@@ -7,6 +7,10 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import {STEPPER_GLOBAL_OPTIONS} from '@angular/cdk/stepper';
 import { MatStepperModule } from '@angular/material/stepper';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { PipesModule } from 'src/app/theme/pipes/pipes.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 
@@ -25,6 +29,9 @@ export const routes: Routes = [
     MatStepperModule,
     FormsModule,
     ReactiveFormsModule,
+    PipesModule,
+    FlexLayoutModule,
+    NgxPaginationModule
   ],
   declarations: [
     VentaEmpleadoComponent

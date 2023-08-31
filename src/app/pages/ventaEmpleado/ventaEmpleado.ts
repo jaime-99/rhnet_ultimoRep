@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
-import { Usuario } from 'src/app/auth/interfaces/iUsuario';
+// import { Usuario } from 'src/app/auth/interfaces/iUsuario';
 import { EmpleadoVentas } from 'src/app/app.models';
 import { array } from '@amcharts/amcharts5';
 import { id } from '@swimlane/ngx-charts';
 import { ThisReceiver } from '@angular/compiler';
-
-
+import { SupportService } from 'src/app/admin/support/service/support.service';
+import { Usuario } from 'src/app/admin/users/user.model';
+import { Settings,AppSettings } from 'src/app/app.settings';
 @Component({
   selector: 'app-venta-empleado',
   templateUrl: './ventaEmpleado.component.html',
@@ -34,21 +35,28 @@ export class VentaEmpleadoComponent implements OnInit {
   mostrarFormAdicional: boolean = true; // Inicialmente visible
   pasoConfirmacionHabilitado: boolean = false; // Inicialmente deshabilitado
 
+  mostrarBox:boolean=true;
+  public searchText: string;
+  public usuarios=[];
+  public settings: Settings;
+
+  public empleadoSeleccionado:number;
+  numeroDeEmpleado: number = 0;
+  nombre1: string = 'ejemplo';
 
 
-
-
-
-
-  constructor(private formBuilder: FormBuilder, public appService: AppService) { }
+  constructor(private formBuilder: FormBuilder, public appService: AppService,public supportService:SupportService,public appSettings:AppSettings) {
+    this.settings = this.appSettings.settings;
+   }
 
 
 
 
   ngOnInit() {
     this.extraerValores();
+    this.getObtenerUsuarios();
 
-
+    // this.mostrarPerfilNuevo();
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
 
@@ -308,6 +316,78 @@ onNoUsuarioChange(value: string) {
     this.abrirFormulario = false;
   }
 }
+
+//sera para que los perfiles solo vean el textBox
+
+mostrarPerfilNuevo() {
+  let userauth = JSON.parse(localStorage.getItem('datalogin')!);
+  //console.log(userauth);
+  this.appService.obtenerPerfil().subscribe((res) => {
+    if (res !== null && res.includes(userauth.data.INUsuarioId)) {
+      this.mostrarBox = true;
+      console.log("Mostrar el box para el usuario actual");
+    } else {
+      this.mostrarBox = false;
+      console.log("No mostrar el box para el usuario actual");
+    }
+  });
+}
+
+// se usara para buscar el usuario
+poderBuscarUsuario(){
+
+}
+
+getObtenerUsuarios(): void {
+  this.supportService.getObtenerUsuarios().subscribe(
+    (res) => {
+      //console.log(res);
+      this.usuarios = res.map((user: any) => {
+        const usuario: Usuario = {
+          name: user.Nombre,
+          number: user.Telefono,
+          email:user.Email,
+          apellidos:user.Apellidos,
+          direccion:user.Direccion,
+          nombreUsuario:user.Usuario,
+          contraseña:user.Password,
+          IdDeUsuario:user.UsuarioId,
+          imagen:user.Imagen,
+          numEmpleado:user.Numero_Empleado,
+          tokenId:user.TokenId,
+        };
+
+        // Aqui los asigno para que despues los obtenga en el formAdicional
+        this.numeroDeEmpleado= usuario.numEmpleado
+        this.nombre1 = usuario.name
+
+        //console.log(usuario); // Realizar un //console.log con los datos de nombre y número de cada usuario
+      return usuario;
+
+    });
+    // this.filterUsers(); // Llamamos a la función para filtrar los usuarios
+
+  },
+    (error) => {
+      console.error('Error al obtener usuarios', error);
+    }
+  );
+}
+
+  SeleccionarEmpleado(id,name){
+    // es para seleccionar el empleado que se elegira por si no tiene cuenta la persona
+
+    this.empleadoSeleccionado = id;
+
+    console.log(id,name)
+
+    this.nombre1 = name;
+    this.numeroDeEmpleado = id;
+
+
+    this.numUsu.setValue(this.numeroDeEmpleado); // Actualizar el valor del FormControl numUsu
+    this.nombre.setValue(this.nombre1); // Actua
+  }
 
 
 }
