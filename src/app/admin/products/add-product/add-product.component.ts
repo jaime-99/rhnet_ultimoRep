@@ -23,6 +23,8 @@ export class AddProductComponent implements OnInit {
   accept: string=  ".png,.jpg,.jepg";
   fileControl!: FormControl;
 
+   sePuedeFraccionar:boolean = false;
+
 
 
   htmlText = '';
@@ -125,6 +127,7 @@ export class AddProductComponent implements OnInit {
   public dataClase:Clase[];
   public dataFamilia:Familia[];
   public dataSubFamilia:SubFamilia[];
+  cantidadFraccionar: any;
 
 
   constructor(public snackBar: MatSnackBar,public appService:AppService,public prodservice: ProductserviceService, public formBuilder: UntypedFormBuilder, private activatedRoute: ActivatedRoute,private router:Router ) { }
@@ -160,6 +163,19 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
 
+    // const checkbox = document.getElementById('fraccionarCheckbox') as HTMLInputElement;
+    // this.sePuedeFraccionar
+
+    // checkbox.addEventListener('change',() => {
+    //   // Verifica si el checkbox está marcado (seleccionado)
+    //   if (checkbox.checked) {
+    //       this.sePuedeFraccionar = true;
+    //   } else {
+    //       this.sePuedeFraccionar = false;
+    //   }
+
+    //   // Puedes usar la variable sePuedeFraccionar en tu código aquí
+    // });
     this.form = this.formBuilder.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
       'images': [null,Validators.required],
@@ -173,9 +189,19 @@ export class AddProductComponent implements OnInit {
       "CodigoDiken":['',Validators.required],
       "ParaVentaEmpleado":null,
       "availibilityCount": null,
-
+      "SePuedeFraccionar":false,
+      "CantidadFraccionar":0
 
     });
+    this.form.get('SePuedeFraccionar').valueChanges.subscribe(value => {
+      this.sePuedeFraccionar = value;
+    });
+    this.form.get('CantidadFraccionar').valueChanges.subscribe(value => {
+      this.cantidadFraccionar = value;
+    });
+
+
+
 
     this.appService.GetClases().subscribe((res:any)=>{
       console.log(res);
@@ -189,6 +215,7 @@ export class AddProductComponent implements OnInit {
       if(params['id']){
         this.id = params['id'];
         this.getProductById();
+        console.log(this.id)
       }
     });
   }
@@ -396,7 +423,13 @@ if (this.id!=undefined){
           this.prodservice.AddProductoImagen(this.id,small,medium,big,1).subscribe();
 
         }
-        this.paginaProductos(); //todo con esto ya me voy al inicio de productos
+
+        if(this.sePuedeFraccionar){
+            this.agregarFraccionado();
+            console.log(this.sePuedeFraccionar);
+
+        }
+        // this.paginaProductos(); //todo con esto ya me voy al inicio de productos
 
 
       })
@@ -433,6 +466,31 @@ if (this.id!=undefined){
     paginaProductos(){
       this.router.navigate(['/productos']); // esto es para que me redireccione a ventas cuando inicio sesion
     }
+
+
+    agregarFraccionado(){
+      // es para que un producto se coloque en fraccionado
+
+      // this.id = params['id'];
+
+
+      const Datosfraccionado = {
+        ProductoId:this.id,
+        CantidadFraccion: this.cantidadFraccionar
+      }
+
+
+      this.appService.agregarFraccionado(Datosfraccionado.ProductoId,Datosfraccionado.CantidadFraccion).subscribe((res)=>{
+        console.log(res);
+      })
+
+    }
+
+
+
+
+
+
 
 
 

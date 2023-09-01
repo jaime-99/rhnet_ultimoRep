@@ -330,6 +330,15 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
 
 
+        // esto es para agregar un producto que se pueda fraccionar 01/09/2023
+
+        agregarFraccionado(ProductoId,CantidadFraccion){
+
+          const url=`${ this.baseUrl }/ventas/InsertarFraccionado.php`;
+          const body={ProductoId,CantidadFraccion}
+          return this.http.post<any>( url, body );
+
+        }
 
 
 
