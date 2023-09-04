@@ -204,6 +204,7 @@ export class AddProductComponent implements OnInit {
 
 
 
+
     this.appService.GetClases().subscribe((res:any)=>{
       this.dataClase=res;
 
@@ -263,8 +264,9 @@ export class AddProductComponent implements OnInit {
       });
       this.htmlText=data.description;
       // console.log(this.htmlText=data.description);
-      console.log(data.SePuedeFraccionar)
+      console.log(data.SePuedeFraccionar) //? solo hacer que si se vea 1 o 0 si se puede o no fraccionar
       this.FraccionIsActive = data.SePuedeFraccionar
+      console.log(this.FraccionIsActive)
       this.htmlTextCaracteristica=data.PrettyText;
 
       this.form.patchValue(data);
@@ -430,12 +432,14 @@ if (this.id!=undefined){
             this.agregarFraccionado();
             console.log(this.sePuedeFraccionar);
 
+
         }
         // this.paginaProductos(); //todo con esto ya me voy al inicio de productos
 
-        //colocar algo para saber que este sesta en activo para fraccionado
+        //colocar algo para saber que este esta en activo para fraccionado
 
-        if(!this.sePuedeFraccionar &&  this.FraccionIsActive ==1){
+        if(!this.sePuedeFraccionar){
+          console.log("se debe eliminar")
           this.eliminarFraccionado();
         }
 

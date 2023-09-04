@@ -633,9 +633,20 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         else{
             this.Data.cartList.push(product);
         }
+
         this.Data.cartList.forEach(product=>{
+          if(product.SePuedeFraccionar ==1){
+            let total = product.CantidadFraccion
+
+            this.Data.totalPrice = this.Data.totalPrice + (total * product.newPrice);
+            this.Data.totalCartCount = this.Data.totalCartCount + product.cartCount;
+
+            // return;
+          }else{
+
             this.Data.totalPrice = this.Data.totalPrice + (product.cartCount * product.newPrice);
             this.Data.totalCartCount = this.Data.totalCartCount + product.cartCount;
+          }
         });
 
         message = 'El producto ' + product.name + ' se ha agregado al carrito.';

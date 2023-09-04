@@ -130,11 +130,16 @@ export class ControlsComponent implements OnInit {
   }
 
   public addToCart(product:Product){
+    // let cantidadAFraccionar = product.CantidadFraccion;
+    // if(product.SePuedeFraccionar ===1){
+    //   console.log('se le debe sumar la cantidad de fraccion')
+    // }
     // //console.log(product)
     let currentProduct = this.appService.Data.cartList.filter(item=>item.id == product.id)[0];
     if(currentProduct){
       if((currentProduct.cartCount + this.count) <= this.product.availibilityCount){
         product.cartCount = currentProduct.cartCount + this.count;
+        console.log(product.cartCount);
       }
       else{
         this.snackBar.open('You can not add more items than available. In stock ' + this.product.availibilityCount + ' items and you already added ' + currentProduct.cartCount + ' item to your cart', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
