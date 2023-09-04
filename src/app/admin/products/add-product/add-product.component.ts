@@ -128,6 +128,7 @@ export class AddProductComponent implements OnInit {
   public dataFamilia:Familia[];
   public dataSubFamilia:SubFamilia[];
   cantidadFraccionar: any;
+  FraccionIsActive: any;
 
 
   constructor(public snackBar: MatSnackBar,public appService:AppService,public prodservice: ProductserviceService, public formBuilder: UntypedFormBuilder, private activatedRoute: ActivatedRoute,private router:Router ) { }
@@ -204,7 +205,6 @@ export class AddProductComponent implements OnInit {
 
 
     this.appService.GetClases().subscribe((res:any)=>{
-      console.log(res);
       this.dataClase=res;
 
     })
@@ -214,7 +214,7 @@ export class AddProductComponent implements OnInit {
     this.sub = this.activatedRoute.params.subscribe(params => {
       if(params['id']){
         this.id = params['id'];
-        this.getProductById();
+        this.getProductById(); // esto trae cada dato de el producto
         console.log(this.id)
       }
     });
@@ -251,7 +251,6 @@ export class AddProductComponent implements OnInit {
 
   public getProductById(){
     this.appService.getProductsByIdApi(this.id).subscribe((data:any)=>{
-
       this.appService.GetFamiliaByClass(data.ClaseId).subscribe((res:any)=>{
 
         this.dataFamilia=res;
@@ -263,6 +262,9 @@ export class AddProductComponent implements OnInit {
 
       });
       this.htmlText=data.description;
+      // console.log(this.htmlText=data.description);
+      console.log(data.SePuedeFraccionar)
+      this.FraccionIsActive = data.SePuedeFraccionar
       this.htmlTextCaracteristica=data.PrettyText;
 
       this.form.patchValue(data);
@@ -319,7 +321,7 @@ if (this.id!=undefined){
 
   this.prodservice.GetFamiliasDescription(SubFamiliaId).subscribe((famdes:any)=>{
 
-    console.log(famdes);
+    // console.log(famdes);
     // this.paginaProductos();
     this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado).subscribe();
     //todo ir a inicio
@@ -431,6 +433,11 @@ if (this.id!=undefined){
         }
         // this.paginaProductos(); //todo con esto ya me voy al inicio de productos
 
+        //colocar algo para saber que este sesta en activo para fraccionado
+
+        if(!this.sePuedeFraccionar &&  this.FraccionIsActive ==1){
+          this.eliminarFraccionado();
+        }
 
       })
 
@@ -486,6 +493,17 @@ if (this.id!=undefined){
 
     }
 
+
+  eliminarFraccionado(){
+    const DatosFraccionado = {
+      FraccionId:this.id
+    }
+
+    this.appService.eliminarFraccionado(DatosFraccionado.FraccionId).subscribe((res)=>{
+      console.log(res)
+    })
+
+  }
 
 
 

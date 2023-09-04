@@ -70,7 +70,8 @@
                     <a [routerLink]="['/productos', product.id, product.name]" class="image-link">
                         <img [src]="product.images[0].small" alt="">
                     </a>
-                    <h5 class="category text-muted">Se puede fraccionar :</h5>
+                    <h5 class="category text-muted">Se puede fraccionar : {{product.SePuedeFraccionar}} </h5>
+                    <h5 class="category text-muted">Cantidad : {{product.CantidadFraccion}} </h5>
                     <h5 class="category text-muted">{{product.CodigoDiken}}</h5>
                     <!-- <h5 class="category text-muted">{{product.SePuedeFraccionar}}</h5> -->
                     <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>
@@ -86,6 +87,7 @@
                     </div>
                     <div class="divider mt-2"></div>
                     <div class="icons">
+                      <!-- con esto de abajo mandad el producto completo con el input o output a la clase app-controls -->
                         <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
                     </div>
                 </mat-card>

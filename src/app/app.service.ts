@@ -340,6 +340,15 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         }
 
+        // es para eliminar el fraccionado
+
+        eliminarFraccionado(FraccionId){
+          const url=`${ this.baseUrl }/ventas/eliminarFraccionado.php`;
+          const body={FraccionId}
+          return this.http.post<any>( url, body );
+
+        }
+
 
 
 

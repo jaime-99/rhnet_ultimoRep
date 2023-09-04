@@ -64,7 +64,9 @@ export class Product {
               public PrettyText:string,
               public ClaseId:number,
               public FamiliaId:number,
-              public SubFamiliaId:number
+              public SubFamiliaId:number,
+              public SePuedeFraccionar:number, // esta linea es nueva
+              public CantidadFraccion:number, // esta es nueva tambien
               ){ }
 }
 

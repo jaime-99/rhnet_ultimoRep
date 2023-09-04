@@ -32,6 +32,9 @@ export class ControlsComponent implements OnInit {
     this.Day = Today === 1 || Today === 2 || Today === 3 || Today ===4 || Today ===5;
 
      //console.log(Today);
+
+    //  this.incrementarConFraccion();
+
   }
 
   public layoutAlign(){
@@ -61,6 +64,7 @@ export class ControlsComponent implements OnInit {
     else{
       this.snackBar.open('You can not choose more items than available. In stock ' + this.count + ' items.', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
     }
+
   }
 
   public decrement(count){
@@ -74,6 +78,48 @@ export class ControlsComponent implements OnInit {
       this.changeQuantity(obj);
     }
   }
+
+  //TODO Aqui debo agregar que si tiene fraccionar, agregar ese dinero a la fraccion
+
+  // traer si es fraccion a ese y ya ver si se puede o no
+
+  public incrementarConFraccion(count){
+    const cantidadParaSumar = this.product.CantidadFraccion;
+
+
+    if(this.product.SePuedeFraccionar ===1){
+
+    if(this.count  < this.product.availibilityCount){
+      this.count++;
+      let obj = {
+        productId: this.product.id,
+        soldQuantity: this.count,
+        total: this.count * this.product.CantidadFraccion,
+      }
+      this.changeQuantity(obj);
+    }
+
+    console.log(this.product.SePuedeFraccionar)
+
+
+    }
+
+    else{
+
+      if(this.count < this.product.availibilityCount){
+        this.count++;
+        let obj = {
+          productId: this.product.id,
+          soldQuantity: this.count,
+          total: this.count * this.product.newPrice
+        }
+        this.changeQuantity(obj);
+
+      }
+
+    }
+  }
+
 
   public addToCompare(product:Product){
     this.appService.addToCompare(product);
