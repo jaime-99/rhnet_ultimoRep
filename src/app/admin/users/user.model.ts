@@ -77,6 +77,8 @@ export interface Empleados {
   NombreCompleto:string;
   Numero_Empleado:number;
   Nomina:string;
+  Empresa:String;
+  id:number;
 
 }
 

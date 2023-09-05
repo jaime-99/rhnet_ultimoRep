@@ -432,11 +432,11 @@ if (this.id!=undefined){
             this.agregarFraccionado();
             console.log(this.sePuedeFraccionar);
 
-
         }
         // this.paginaProductos(); //todo con esto ya me voy al inicio de productos
 
         //colocar algo para saber que este esta en activo para fraccionado
+
 
         if(!this.sePuedeFraccionar){
           console.log("se debe eliminar")

@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener, ViewChild, Inject, PLATFORM_ID } from 
 import { Router, NavigationEnd } from '@angular/router';
 import { Settings, AppSettings } from '../app.settings';
 import { AppService } from '../app.service';
-import { Category } from '../app.models';
+import { Category, Product } from '../app.models';
 import { SidenavMenuService } from '../theme/components/sidenav-menu/sidenav-menu.service';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -22,6 +22,12 @@ export class PagesComponent implements OnInit {
   public searchText1='';
   public searchText2 ='';
   public viewsearchandcart=false;
+
+  public products = [];
+  filteredProducts: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
+  showAutocomplete: boolean = false; // Variable para controlar la visibilidad del autocompletado
+
+
   @ViewChild('sidenav', { static: true }) sidenav:any;
 
   public settings: Settings;
@@ -35,6 +41,8 @@ export class PagesComponent implements OnInit {
 
   ngOnInit() {
     let userauth=JSON.parse(localStorage.getItem('datalogin')!);
+
+    this.getProductsEmpleado();
 
     if(userauth!=undefined)
     {
@@ -204,5 +212,28 @@ export class PagesComponent implements OnInit {
       this.sidenavMenuService.closeAllSubMenus();
     }
   }
+
+
+  public getProductsEmpleado(){
+
+    this.appService.getProductsApiEmpleado(' ').subscribe(data=>{
+    this.products = data;
+
+    // console.log(data)
+  });
+}
+
+
+// Función para manejar los cambios en el valor del campo de búsqueda
+onSearchInputChange() {
+  this.filteredProducts = this.filterProducts(this.searchText1);
+  this.showAutocomplete = !!this.searchText1; // Mostrar el autocompletado si el campo de búsqueda tiene texto
+
+}
+
+filterProducts(value: string): string[] {
+  const filterValue = value.toLowerCase();
+  return this.products.filter((product) => product.name.toLowerCase().includes(filterValue));
+}
 
 }
