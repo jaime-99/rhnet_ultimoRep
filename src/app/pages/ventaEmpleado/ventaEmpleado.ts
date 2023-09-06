@@ -86,8 +86,9 @@ export class VentaEmpleadoComponent implements OnInit {
 
     this.correoDestinatario = userauth.data.Correo; // Obtén la dirección de correo electrónico del usuario
     //console.log(this.correoDestinatario);
-
+console.log(this.appService.Data.cartList);
     this.appService.Data.cartList.forEach((product) => {
+
       this.grandTotal += product.cartCount * product.newPrice;
       this.Producto = product.name;
     });

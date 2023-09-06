@@ -560,17 +560,17 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         const params=new HttpParams().set("id",type);
         return this.http.get<Product[]>(apiurl,{params}   );
     }
-    public getProductsByIdApi(id): Observable<Product>{
+    public getProductsByIdApi(id): Observable<any>{
         let apiurl='https://www.dikeninternational.com/dikenecommerce/api/producto/getproductbyid.php?';
         const params=new HttpParams().set("id",id);
         return this.http.get<Product>(apiurl,{params}   );
     }
-    UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clase:any,Familia:any,SubFamilia:any,TextSearch:any,CodigoDiken:any,PrettyText:any,ParaVentaEmpleado:any)
+    UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clase:any,Familia:any,SubFamilia:any,TextSearch:any,CodigoDiken:any,PrettyText:any,ParaVentaEmpleado:any,SePuedeFraccionar:any,CantidadFraccionar:any)
     {
       const url=`${ this.baseUrl }/producto/UpdateProducto.php`;
 
 
-      const body={ProductoId,Producto,PrecioActual,Descripcion,Clase,Familia,SubFamilia,TextSearch,CodigoDiken,PrettyText,ParaVentaEmpleado}
+      const body={ProductoId,Producto,PrecioActual,Descripcion,Clase,Familia,SubFamilia,TextSearch,CodigoDiken,PrettyText,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar}
       return this.http.put<any>( url, body );
 
     }
@@ -621,10 +621,12 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
     }
 
     public addToCart(product:Product){
+  
         let message, status;
         this.Data.CodigoDiken=product.CodigoDiken;
         this.Data.totalPrice = null;
         this.Data.totalCartCount = null;
+
 
         if(this.Data.cartList.filter(item=>item.id == product.id)[0]){
             let item = this.Data.cartList.filter(item=>item.id == product.id)[0];
@@ -635,18 +637,11 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         }
 
         this.Data.cartList.forEach(product=>{
-          if(product.SePuedeFraccionar ==1){
-            let total = product.CantidadFraccion
-
-            this.Data.totalPrice = this.Data.totalPrice + (total * product.newPrice);
-            this.Data.totalCartCount = this.Data.totalCartCount + product.cartCount;
-
-            // return;
-          }else{
+         
 
             this.Data.totalPrice = this.Data.totalPrice + (product.cartCount * product.newPrice);
             this.Data.totalCartCount = this.Data.totalCartCount + product.cartCount;
-          }
+         
         });
 
         message = 'El producto ' + product.name + ' se ha agregado al carrito.';

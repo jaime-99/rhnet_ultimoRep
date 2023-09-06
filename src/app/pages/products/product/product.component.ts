@@ -71,6 +71,7 @@ export class ProductComponent implements OnInit {
   public getProductById(id){
     this.appService.getProductsByIdApi(id).subscribe(data=>{
       this.product = data;
+      this.product.CantidadFraccion=data.CantidadFraccionar;
       this.image = data.images[0].medium;
       this.zoomImage = data.images[0].big;
       setTimeout(() => { 

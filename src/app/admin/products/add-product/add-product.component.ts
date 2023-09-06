@@ -164,19 +164,8 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // const checkbox = document.getElementById('fraccionarCheckbox') as HTMLInputElement;
-    // this.sePuedeFraccionar
-
-    // checkbox.addEventListener('change',() => {
-    //   // Verifica si el checkbox está marcado (seleccionado)
-    //   if (checkbox.checked) {
-    //       this.sePuedeFraccionar = true;
-    //   } else {
-    //       this.sePuedeFraccionar = false;
-    //   }
-
-    //   // Puedes usar la variable sePuedeFraccionar en tu código aquí
-    // });
+   
+    
     this.form = this.formBuilder.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
       'images': [null,Validators.required],
@@ -220,6 +209,7 @@ export class AddProductComponent implements OnInit {
       }
     });
   }
+
   changeClase(id:string)
   {
 
@@ -251,7 +241,8 @@ export class AddProductComponent implements OnInit {
   }
 
   public getProductById(){
-    this.appService.getProductsByIdApi(this.id).subscribe((data:any)=>{
+    this.appService.getProductsByIdApi(this.id).subscribe((data:any)=>
+    {
       this.appService.GetFamiliaByClass(data.ClaseId).subscribe((res:any)=>{
 
         this.dataFamilia=res;
@@ -263,12 +254,11 @@ export class AddProductComponent implements OnInit {
 
       });
       this.htmlText=data.description;
-      // console.log(this.htmlText=data.description);
-      console.log(data.SePuedeFraccionar) //? solo hacer que si se vea 1 o 0 si se puede o no fraccionar
-      this.FraccionIsActive = data.SePuedeFraccionar
-      console.log(this.FraccionIsActive)
+   
+      this.FraccionIsActive = data.SePuedeFraccionar;
+      this.cantidadFraccionar=data.CantidadFracionar;
       this.htmlTextCaracteristica=data.PrettyText;
-
+     
       this.form.patchValue(data);
       this.selectedColors = data.color;
 
@@ -311,12 +301,13 @@ export class AddProductComponent implements OnInit {
     const formDataM = new FormData();
 
     const formDataB = new FormData();
-    const {name,newPrice,TextSearch,ClaseId,FamiliaId,SubFamiliaId, images,imagesM,imagesB,CodigoDiken,ParaVentaEmpleado } = this.form.value;
+    const {name,newPrice,TextSearch,ClaseId,FamiliaId,SubFamiliaId, images,imagesM,imagesB,CodigoDiken,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar } = this.form.value;
 if (this.form.invalid)
 {
   this.snackBar.open("Las imagenes son requeridas", '×', { panelClass: "error", verticalPosition: 'top', duration: 3000 })
   return;
 }
+
 
 // return;
 if (this.id!=undefined){
@@ -325,7 +316,7 @@ if (this.id!=undefined){
 
     // console.log(famdes);
     // this.paginaProductos();
-    this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado).subscribe();
+    this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar).subscribe();
     //todo ir a inicio
 
 
@@ -428,20 +419,14 @@ if (this.id!=undefined){
 
         }
 
-        if(this.sePuedeFraccionar){
-            this.agregarFraccionado();
-            console.log(this.sePuedeFraccionar);
-
-        }
+        
         // this.paginaProductos(); //todo con esto ya me voy al inicio de productos
 
         //colocar algo para saber que este esta en activo para fraccionado
 
 
-        if(!this.sePuedeFraccionar){
-          console.log("se debe eliminar")
-          this.eliminarFraccionado();
-        }
+       
+        
 
       })
 

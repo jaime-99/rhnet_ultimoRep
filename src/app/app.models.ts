@@ -52,6 +52,7 @@ export class Product {
               public description: string,
               public availibilityCount: number,
               public cartCount: number,
+              public cartCount2: number,
               public color: Array<string>,
               public size: Array<string>,
               public weight: number,
@@ -66,7 +67,7 @@ export class Product {
               public FamiliaId:number,
               public SubFamiliaId:number,
               public SePuedeFraccionar:number, // esta linea es nueva
-              public CantidadFraccion:number, // esta es nueva tambien
+              public CantidadFraccion:number // esta es nueva tambien
               ){ }
 }
 

@@ -70,8 +70,10 @@
                     <a [routerLink]="['/productos', product.id, product.name]" class="image-link">
                         <img [src]="product.images[0].small" alt="">
                     </a>
-                    <h5 class="category text-muted">Se puede fraccionar : {{product.SePuedeFraccionar}} </h5>
-                    <h5 class="category text-muted">Cantidad de fraccion: {{product.CantidadFraccion}} </h5>
+                    <h5 *ngIf="product.SePuedeFraccionar" class="category text-muted">Se pide por pieza : {{product.SePuedeFraccionar?"Si":"NO"}} </h5>
+                    <h5 *ngIf="product.SePuedeFraccionar" class="category text-muted">Piezas por paquete: {{product.CantidadFraccion}} </h5>
+                    <h5 *ngIf="!product.SePuedeFraccionar" class="category text-muted" style="color: white;">  &nbsp;</h5>
+                    <h5 *ngIf="!product.SePuedeFraccionar" class="category text-muted">  &nbsp; </h5>
 
                     <h5 *ngIf="product.availabilityCount <= 5" class="category text-muted">
                       <span style="color: red;">disponibilidad: {{product.availabilityCount}}</span>
