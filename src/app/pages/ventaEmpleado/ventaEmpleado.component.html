@@ -25,7 +25,7 @@
   <div fxLayout="row">
       <mat-button-toggle-group #controls="matButtonToggleGroup" appearance="legacy">
 
-          <mat-button-toggle value="search">
+          <mat-button-toggle  matTooltip="Click para buscar" value="search" (click)="verCuadroEmpleados =true" >
               <mat-icon>search</mat-icon>
           </mat-button-toggle>
       </mat-button-toggle-group>
@@ -37,7 +37,7 @@
   </form>
   <div fxLayout="row" fxLayoutAlign="space-between center">
       <mat-button-toggle-group #viewType="matButtonToggleGroup" appearance="legacy" value="grid">
-          <mat-button-toggle value="grid"  [hidden]="true">
+          <mat-button-toggle  value="grid"  [hidden]="true">
               <mat-icon>view_module</mat-icon>
           </mat-button-toggle>
           <!-- <mat-button-toggle value="list">
@@ -47,18 +47,18 @@
   </div>
 </div>
 
-  <div *ngIf="noUsuario === 'before'   && appService.Data.cartList?.length > 0  && mostrarFormAdicional " fxLayout="row wrap">
+  <div  *ngIf="noUsuario === 'before'   && appService.Data.cartList?.length > 0  && mostrarFormAdicional " fxLayout="row wrap" >
       <div  *ngFor="let empleado of  empleados | BuscarNombreEmpleado:searchText | paginate: { itemsPerPage: 6, currentPage: page }" fxFlex="100"  fxFlex.gt-md="33.3" fxFlex.md="50" class="p-1">
           <mat-card class="p-0">
-              <div class="bg-primary" fxLayout="row" fxLayoutAlign="space-between center">
+              <div  *ngIf="verCuadroEmpleados" class="bg-primary" fxLayout="row" fxLayoutAlign="space-between center">
                   <h3  class="user-name">  {{empleado.Nombre}} </h3>
-                  <button mat-icon-button  (click)="SeleccionarEmpleado(empleado.Numero_Empleado,empleado.Nombre,empleado.Empresa,empleado.Nomina,empleado.id)">
+                  <button mat-icon-button matTooltip="Seleccionar Empleado"  (click)="SeleccionarEmpleado(empleado.Numero_Empleado,empleado.Nombre,empleado.Empresa,empleado.Nomina,empleado.id)">
                     <mat-icon>done</mat-icon>
                 </button>
               </div>
 
             <!-- informacion del usuario -->
-            <div class="user-content" fxLayout="row" fxLayoutAlign="start start">
+            <div  *ngIf="verCuadroEmpleados"  class="user-content" fxLayout="row" fxLayoutAlign="start start">
               <div fxFlex="70" fxLayout="column" class="user-details transition-2">
                 <p fxLayout="row" fxLayoutAlign="start center">
                   <mat-icon class="text-muted">face</mat-icon>
@@ -199,9 +199,9 @@
 
 
         <div class="info" *ngIf="abrirFormulario">
-        <div class="mat-cell"> Numero de Usuario:{{this.numUsu.value}}</div>
-        <div class="mat-cell"> Nombre: {{this.nombre.value}}</div>
-        <div class="mat-cell"> Numero de Empleado : {{this.NumeroEmpleadoEmpleado.value}}</div>
+        <div class="mat-cell"> Numero de Usuario: <strong>{{this.numUsu.value}}</strong></div>
+        <div class="mat-cell"> Nombre Completo:<strong> {{this.nombre.value}} </strong></div>
+        <div class="mat-cell"> Numero de Empleado : <strong>{{this.NumeroEmpleadoEmpleado.value}} </strong></div>
 
         </div>
 

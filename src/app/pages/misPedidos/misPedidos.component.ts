@@ -35,6 +35,8 @@ export class misPedidos  implements OnInit{
   mostrarDetallesComponent: boolean = false;
   idDetalles:number=0;
 
+  tieneCuenta:boolean = false;
+
   @ViewChild('detallesComponent') detallesComponent: detalles;
 
 
@@ -54,13 +56,19 @@ export class misPedidos  implements OnInit{
 
 
     this.numerodeUsuario = userauth.UsuarioId;
-    //console.log(userauth);
+    console.log(userauth);
 
 
     // es para ver solo los del el RhUsuarioId
     this.appService.GetVentasEmpleadoPorId(userauth.UsuarioId).subscribe((res)=>{
       this.Ventas = res;
+      //this.Ventas=res;
+      //console.log(this.Ventas);
 
+    });
+
+    this.appService.GetVentasEmpleadoPorId(userauth.UsuarioId).subscribe((res)=>{
+      this.Ventas = res;
       //this.Ventas=res;
       //console.log(this.Ventas);
 

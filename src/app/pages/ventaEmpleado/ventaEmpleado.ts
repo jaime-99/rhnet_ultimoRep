@@ -36,7 +36,7 @@ export class VentaEmpleadoComponent implements OnInit {
   mostrarFormAdicional: boolean = true; // Inicialmente visible
   pasoConfirmacionHabilitado: boolean = false; // Inicialmente deshabilitado
 
-  mostrarBox: boolean = true;
+  mostrarBox: boolean = true; // es para los que no tienen cuenta, se les desabilitara a los que si tienen
   public searchText: string;
   public usuarios = [];
   public settings: Settings;
@@ -50,6 +50,7 @@ export class VentaEmpleadoComponent implements OnInit {
   empresaEmpleado: any;
   nominaEmpleado: any;
   idEmpleado: any;
+  verCuadroEmpleados: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -142,7 +143,7 @@ export class VentaEmpleadoComponent implements OnInit {
 
   NumeroEmpleadoEmpleado: FormControl = new FormControl("", [
     Validators.required,
-    Validators.pattern("^[a-zA-Z ]*$"), // Patrón que permite solo letras (mayúsculas y minúsculas) y espacios
+    Validators.pattern("^[0-9]*$"), // Patrón que permite solo letras (mayúsculas y minúsculas) y espacios
   ]);
 
 
@@ -341,7 +342,7 @@ export class VentaEmpleadoComponent implements OnInit {
   }
 
   //sera para que los perfiles solo vean el textBox
-
+//todo creo es para los perfiles que no tienen perfil
   mostrarPerfilNuevo() {
     let userauth = JSON.parse(localStorage.getItem("datalogin")!);
     //console.log(userauth);
@@ -438,6 +439,9 @@ export class VentaEmpleadoComponent implements OnInit {
     this.EmpresaCapturar.setValue(this.empresaEmpleado); // Actua
     this.TipoNomina.setValue(this.nominaEmpleado); // Actua
     this.NumeroEmpleadoEmpleado.setValue(this.idEmpleado); // Actua
+
+
+    this.verCuadroEmpleados = false;
 
 
   }
