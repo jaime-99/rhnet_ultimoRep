@@ -164,6 +164,25 @@ export class ControlsComponent implements OnInit {
         product.cartCount2=this.count;
       }
 
+      var decimalPart = product.cartCount - Math.floor(product.cartCount); // Obtén la parte decimal del número
+      let micartcount:number;
+      //alert(decimalPart.toFixed(2)+" | "+parseFloat(((1/product.CantidadFraccion).toFixed(2))));
+       if (parseFloat(decimalPart.toFixed(2)) < parseFloat(((1/product.CantidadFraccion).toFixed(2)))) {
+         // Redondea hacia abajo si la parte decimal es menor que 0.05
+         micartcount= Math.floor(product.cartCount);
+       } 
+       else{
+        let midecimal=product.cartCount-Math.floor(product.cartCount);
+         
+        if(midecimal >.47 && midecimal<=.51)
+        {
+          product.cartCount=Math.floor(product.cartCount);
+          product.cartCount=product.cartCount+.50;
+        }
+         micartcount=product.cartCount;
+       } 
+       product.cartCount=micartcount;
+
       
     }
     else{
@@ -183,16 +202,7 @@ export class ControlsComponent implements OnInit {
     }
   }
 
-  var decimalPart = product.cartCount - Math.floor(product.cartCount); // Obtén la parte decimal del número
- let micartcount;
-  if (decimalPart < 0.05) {
-    // Redondea hacia abajo si la parte decimal es menor que 0.05
-    micartcount= Math.floor(product.cartCount);
-  } 
-  else{
-    micartcount=product.cartCount;
-  }
-  product.cartCount=(micartcount);
+ 
  
     this.appService.addToCart(product);
   }
