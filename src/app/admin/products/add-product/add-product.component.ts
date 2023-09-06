@@ -424,6 +424,7 @@ if (this.id!=undefined){
 
         //colocar algo para saber que este esta en activo para fraccionado
 
+
        
         
 

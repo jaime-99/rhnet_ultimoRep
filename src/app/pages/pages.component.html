@@ -53,8 +53,15 @@
                 (change)="changeCategory($event)"></app-category-list>
             </span>
           </mat-menu> -->
-          <input type="text" placeholder="Buscar..." fxFlex name="searchText" [(ngModel)]="searchText1"
+          <input  [matAutocomplete]="auto" type="text" placeholder="Buscar..." fxFlex name="searchText" [(ngModel)]="searchText1"  (ngModelChange)="onSearchInputChange()"
+
             (keyup.enter)="search($event)">
+
+            <mat-autocomplete   #auto="matAutocomplete">
+              <mat-option *ngFor="let product of  filteredProducts" [value]="product.name">
+                {{ product.name }}
+              </mat-option>
+            </mat-autocomplete>
 
           <button mat-mini-fab type="button" class="search-btn mat-elevation-z0 text-muted"
             (click)="search1(searchText1)">
@@ -79,7 +86,8 @@
             </div>
             <mat-icon class="mat-icon-sm">arrow_drop_down</mat-icon>
           </button>
-          <mat-menu #cartMenu="matMenu" [overlapTrigger]="false" xPosition="before"
+          <!-- que el mat menu de abajo se active cada vez que se agruege algo al carrito -->
+          <mat-menu #cartMenu="matMenu"  [overlapTrigger]="false" xPosition="before"
             class="top-menu-dropdown cart-dropdown">
             <ng-template matMenuContent>
               <span (mouseleave)="cartMenuTrigger.closeMenu()" class="d-block">
@@ -99,7 +107,7 @@
                     </p>
                     <img [src]="product.images[0].small" alt="image">
                     <button mat-icon-button color="warn" class="remove"
-                      (click)="remove(product);stopClickPropagate($event)" matTooltip="Remove"
+                      (click)="remove(product);stopClickPropagate($event)" matTooltip="Eliminar"
                       matTooltipPosition="before">
                       <mat-icon class="mat-icon-sm">close</mat-icon>
                     </button>

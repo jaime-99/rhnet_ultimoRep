@@ -45,6 +45,11 @@ export class VentaEmpleadoComponent implements OnInit {
   numeroDeEmpleado: number = 0;
   nombre1: string = "ejemplo";
   public empleados = [];
+  Empresa: any;
+  IdNomina: any;
+  empresaEmpleado: any;
+  nominaEmpleado: any;
+  idEmpleado: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -64,15 +69,19 @@ export class VentaEmpleadoComponent implements OnInit {
 
     let userauth = JSON.parse(localStorage.getItem("datalogin")!);
 
+
     this.UsuarioId = userauth.UsuarioId; // con esto sacamos informacion del usuario
     this.Nombre = userauth.Nombre;
     this.NumeroEmpleado = userauth.data.Numero_Empleado;
+    this.Empresa = userauth.data.Empresa
+    // console.log(this.Empresa);
+    this.IdNomina = userauth.data.IdTipoNomina
     // este es para ver mejor que hay//console.log(userauth);
     //this.UsuarioId = userauth.data.INUsuarioId;
     // //console.log(this.UsuarioId);
     // //console.log(this.NumeroEmpleado);
 
-    //console.log(userauth);
+    console.log(userauth);
 
     this.correoDestinatario = userauth.data.Correo; // Obtén la dirección de correo electrónico del usuario
     //console.log(this.correoDestinatario);
@@ -87,6 +96,10 @@ console.log(this.appService.Data.cartList);
       RhUsuarioId: ["", Validators.required],
       Fecha: [this.getCurrentDate(), Validators.required],
       Total: [this.grandTotal, Validators.required],
+      Numero_Empleado: ["" ,Validators.required],
+      Nombre: ["", Validators.required],
+      Empresa: ["", Validators.required],
+      TipoNomina: ["", Validators.required],
       detalles: this.formBuilder.array([]),
     });
 
@@ -117,6 +130,24 @@ console.log(this.appService.Data.cartList);
     Validators.required,
     Validators.pattern("^[a-zA-Z ]*$"), // Patrón que permite solo letras (mayúsculas y minúsculas) y espacios
   ]);
+
+  EmpresaCapturar: FormControl = new FormControl("", [
+    Validators.required,
+    Validators.pattern("^[a-zA-Z ]*$"), // Patrón que permite solo letras (mayúsculas y minúsculas) y espacios
+  ]);
+
+  TipoNomina: FormControl = new FormControl("", [
+    Validators.required,
+    Validators.pattern("^[a-zA-Z ]*$"), // Patrón que permite solo letras (mayúsculas y minúsculas) y espacios
+  ]);
+
+  NumeroEmpleadoEmpleado: FormControl = new FormControl("", [
+    Validators.required,
+    Validators.pattern("^[a-zA-Z ]*$"), // Patrón que permite solo letras (mayúsculas y minúsculas) y espacios
+  ]);
+
+
+  // se termina el formulario adicional
 
   extraerValores() {
     const numUsuarioValue = this.numUsu.value;
@@ -205,11 +236,19 @@ console.log(this.appService.Data.cartList);
       RhUsuarioId: this.abrirFormulario ? this.numUsu.value : this.UsuarioId,
       Fecha: this.ventaForm.get("Fecha").value,
       Total: this.ventaForm.get("Total").value,
+
       // de aqui para aca son los que agregue
       //Nombre:this.ventaForm.controls['RhusuarioId'].setValue(this.Nombre)
       Nombre: this.abrirFormulario ? this.nombre.value : this.Nombre, // para que se vea el nombre
       //numVenta:this.numVenta = this.numVenta + 1, // para sumar cada venta , es una demo
-      NumeroDeEmpleado: this.NumeroEmpleado,
+      Numero_Empleado:this.abrirFormulario? this.NumeroEmpleadoEmpleado.value: this.NumeroEmpleado,
+      Empresa: this.abrirFormulario ? this.EmpresaCapturar.value : this.Empresa,
+      TipoNomina:this.abrirFormulario ? this.TipoNomina.value : this.IdNomina,
+
+
+
+
+      NumeroDeEmpleado:  this.NumeroEmpleado,
 
       correoDestino: this.correoDestinatario,
       //Total: 0  // Inicializamos el Total en 0
@@ -364,7 +403,9 @@ console.log(this.appService.Data.cartList);
             NombreCompleto: e.Nombre + " " + e.APELLIDO_PATERNO + " " + e.APELLIDO_MATERNO,
             Numero_Empleado: e.NUMERO_EMPLEADO,
             Nomina: e.Nomina,
-            Nombre:e.Nombre
+            Nombre:e.Nombre,
+            Empresa:e.EMPRESA,
+            id:e.id
           };
 
           // Aqui los asigno para que despues los obtenga en el formAdicional
@@ -379,18 +420,27 @@ console.log(this.appService.Data.cartList);
     );
   }
 
-  SeleccionarEmpleado(id, name) {
+  SeleccionarEmpleado(NumeroEmpleado, name ,empresa ,Nomina,id) {
     // es para seleccionar el empleado que se elegira por si no tiene cuenta la persona
 
     this.empleadoSeleccionado = id;
 
-    console.log(id, name);
+    console.log(id, name,empresa,Nomina,NumeroEmpleado);
 
     this.nombre1 = name;
-    this.numeroDeEmpleado = id;
+    this.numeroDeEmpleado = NumeroEmpleado;
+    this.empresaEmpleado = empresa;
+    this.nominaEmpleado = Nomina
+    this.idEmpleado = id
+
 
     this.numUsu.setValue(this.numeroDeEmpleado); // Actualizar el valor del FormControl numUsu
     this.nombre.setValue(this.nombre1); // Actua
+    this.EmpresaCapturar.setValue(this.empresaEmpleado); // Actua
+    this.TipoNomina.setValue(this.nominaEmpleado); // Actua
+    this.NumeroEmpleadoEmpleado.setValue(this.idEmpleado); // Actua
+
+
   }
 }
 

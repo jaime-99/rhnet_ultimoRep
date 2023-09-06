@@ -21,7 +21,7 @@
 </section>
 
 
-<div *ngIf="noUsuario === 'before'"   fxLayout="row" fxLayoutAlign="space-between center" class="p-1" >
+<div *ngIf="noUsuario === 'before'  && appService.Data.cartList?.length > 0  && mostrarFormAdicional"    fxLayout="row" fxLayoutAlign="space-between center" class="p-1" >
   <div fxLayout="row">
       <mat-button-toggle-group #controls="matButtonToggleGroup" appearance="legacy">
 
@@ -47,12 +47,12 @@
   </div>
 </div>
 
-  <div *ngIf="noUsuario === 'before'" fxLayout="row wrap">
+  <div *ngIf="noUsuario === 'before'   && appService.Data.cartList?.length > 0  && mostrarFormAdicional " fxLayout="row wrap">
       <div  *ngFor="let empleado of  empleados | BuscarNombreEmpleado:searchText | paginate: { itemsPerPage: 6, currentPage: page }" fxFlex="100"  fxFlex.gt-md="33.3" fxFlex.md="50" class="p-1">
           <mat-card class="p-0">
               <div class="bg-primary" fxLayout="row" fxLayoutAlign="space-between center">
                   <h3  class="user-name">  {{empleado.Nombre}} </h3>
-                  <button mat-icon-button  (click)="SeleccionarEmpleado(empleado.Numero_Empleado,empleado.Nombre)">
+                  <button mat-icon-button  (click)="SeleccionarEmpleado(empleado.Numero_Empleado,empleado.Nombre,empleado.Empresa,empleado.Nomina,empleado.id)">
                     <mat-icon>done</mat-icon>
                 </button>
               </div>
@@ -72,6 +72,10 @@
                   <mat-icon class="text-muted">payment</mat-icon>
                   <span> {{empleado.Nomina}} </span>
                 </p>
+                <p fxLayout="row" fxLayoutAlign="start center">
+                  <mat-icon class="text-muted">room</mat-icon>
+                  <span> {{empleado.Empresa}} </span>
+                </p>
 
               </div>
           </div>
@@ -90,13 +94,28 @@
     <div class="divider"></div>
     <label class="example-margin1">Formulario Adicional:</label>
     <mat-form-field>
-      <input matInput placeholder="Numero de usuario" [formControl]="numUsu">
+      <input matInput placeholder="Numero de empleado" [formControl]="numUsu" readonly>
       <mat-error *ngIf="numUsu.hasError('required')">El número de usuario es requerido</mat-error>
       <mat-error *ngIf="numUsu.hasError('pattern')">Ingrese solo números</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input matInput placeholder="Nombre" [formControl]="nombre">
+      <input matInput placeholder="Numero de usuario" [formControl]="NumeroEmpleadoEmpleado" readonly>
+      <mat-error *ngIf="numUsu.hasError('required')">El número de empleado es requerido</mat-error>
+      <mat-error *ngIf="numUsu.hasError('pattern')">Ingrese solo números</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input  matInput placeholder="Nombre" [formControl]="nombre" readonly>
       <mat-error *ngIf="nombre.hasError('required')">El nombre es requerido</mat-error>
+      <mat-error *ngIf="nombre.hasError('pattern')">Ingrese solo letras y espacios</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Empresa" [formControl]="EmpresaCapturar" readonly>
+      <mat-error *ngIf="nombre.hasError('required')">La Empresa es requerida</mat-error>
+      <mat-error *ngIf="nombre.hasError('pattern')">Ingrese solo letras y espacios</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput placeholder="Tipo de nomina " [formControl]="TipoNomina" readonly>
+      <mat-error *ngIf="nombre.hasError('required')">La Empresa es requerida</mat-error>
       <mat-error *ngIf="nombre.hasError('pattern')">Ingrese solo letras y espacios</mat-error>
     </mat-form-field>
   </section>
@@ -173,10 +192,17 @@
         <div *ngIf="!abrirFormulario"  class="mat-cell"> Numero de Empleado:{{NumeroEmpleado}}</div>
         <div *ngIf="!abrirFormulario" class="mat-cell"> Nombre: {{Nombre}}</div>
         <div *ngIf="!abrirFormulario" class="mat-cell"> ID:{{UsuarioId}}</div>
+        <div *ngIf="!abrirFormulario" class="divider"></div>
+
+        <div *ngIf="!abrirFormulario" class="mat-cell"> Empresa: {{Empresa}}</div>
+        <div *ngIf="!abrirFormulario" class="mat-cell"> Tipo de Nomina: {{IdNomina}}</div>
+
 
         <div class="info" *ngIf="abrirFormulario">
         <div class="mat-cell"> Numero de Usuario:{{this.numUsu.value}}</div>
         <div class="mat-cell"> Nombre: {{this.nombre.value}}</div>
+        <div class="mat-cell"> Numero de Empleado : {{this.NumeroEmpleadoEmpleado.value}}</div>
+
         </div>
 
 

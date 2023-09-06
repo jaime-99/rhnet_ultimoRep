@@ -75,7 +75,10 @@
                     <h5 *ngIf="!product.SePuedeFraccionar" class="category text-muted" style="color: white;">  &nbsp;</h5>
                     <h5 *ngIf="!product.SePuedeFraccionar" class="category text-muted">  &nbsp; </h5>
 
-                    <h5 style="color: red;" *ngIf="product.availibilityCount <=5" class="category text-muted">disponibilidad: {{product.availibilityCount}} </h5>
+                    <h5 *ngIf="product.availabilityCount <= 5" class="category text-muted">
+                      <span style="color: red;">disponibilidad: {{product.availabilityCount}}</span>
+                  </h5>
+
 
                     <h5 class="category text-muted">{{product.CodigoDiken}}</h5>
                     <!-- <h5 class="category text-muted">{{product.SePuedeFraccionar}}</h5> -->

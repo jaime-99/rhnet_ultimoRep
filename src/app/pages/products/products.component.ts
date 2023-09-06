@@ -30,6 +30,8 @@ export class ProductsComponent implements OnInit,OnChanges {
   public brands = [];
   public priceFrom: number = 750;
   public priceTo: number = 1599;
+  filteredProducts: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
+
   public colors = [
     { name: "#5C6BC0", selected: false },
     { name: "#66BB6A", selected: false },
@@ -228,6 +230,7 @@ export class ProductsComponent implements OnInit,OnChanges {
 
       this.appService.getProductsApiEmpleado(this.searchText).subscribe(data=>{
       this.products = data;
+      // console.log(data)
 
     });
   }
