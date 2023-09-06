@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Data, AppService } from '../../app.service';
 import { Product } from '../../app.models';
+import { math } from '@amcharts/amcharts5';
+import { round } from '@amcharts/amcharts5/.internal/core/util/Time';
 
 @Component({
   selector: 'app-controls',
@@ -130,13 +132,43 @@ export class ControlsComponent implements OnInit {
   }
 
   public addToCart(product:Product){
-    // let cantidadAFraccionar = product.CantidadFraccion;
-    // if(product.SePuedeFraccionar ===1){
-    //   console.log('se le debe sumar la cantidad de fraccion')
-    // }
-    // //console.log(product)
+
     let currentProduct = this.appService.Data.cartList.filter(item=>item.id == product.id)[0];
+    if(product.SePuedeFraccionar)
+    {
+    
+      if(currentProduct)
+      {
+        let countLocal=1/product.CantidadFraccion;
+        if((currentProduct.cartCount + countLocal) <= this.product.availibilityCount){
+          product.cartCount = parseFloat( (currentProduct.cartCount + countLocal).toFixed(2));
+          product.cartCount2=parseFloat( (currentProduct.cartCount2+this.count).toFixed(2));
+          if(product.cartCount2%product.CantidadFraccion===0)
+          {
+            
+            product.cartCount=Math.floor(product.cartCount2/product.CantidadFraccion);
+          }
+          
+        }
+        else{
+          this.snackBar.open('You can not add more items than available. In stock ' + this.product.availibilityCount + ' items and you already added ' + currentProduct.cartCount + ' item to your cart', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
+          return false;
+        }
+
+      }
+      else{
+        console.log(product);
+        let countLocal2=parseFloat(( 1/product.CantidadFraccion).toFixed(2));
+        
+        product.cartCount=countLocal2;
+        product.cartCount2=this.count;
+      }
+
+      
+    }
+    else{
     if(currentProduct){
+
       if((currentProduct.cartCount + this.count) <= this.product.availibilityCount){
         product.cartCount = currentProduct.cartCount + this.count;
         console.log(product.cartCount);
@@ -149,8 +181,22 @@ export class ControlsComponent implements OnInit {
     else{
       product.cartCount = this.count;
     }
+  }
+
+  var decimalPart = product.cartCount - Math.floor(product.cartCount); // Obtén la parte decimal del número
+ let micartcount;
+  if (decimalPart < 0.05) {
+    // Redondea hacia abajo si la parte decimal es menor que 0.05
+    micartcount= Math.floor(product.cartCount);
+  } 
+  else{
+    micartcount=product.cartCount;
+  }
+  product.cartCount=(micartcount);
+ 
     this.appService.addToCart(product);
   }
+
 
   public openProductDialog(event){
     this.onOpenProductDialog.emit(event);
