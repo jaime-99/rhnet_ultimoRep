@@ -12,6 +12,10 @@ import {MatInputModule} from '@angular/material/input';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatTabsModule } from "@angular/material/tabs";
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatIconModule } from '@angular/material/icon';
+import { PipesModule } from "src/app/theme/pipes/pipes.module";
+
 
 
 
@@ -33,6 +37,9 @@ export const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule, // Añade MatTabsModule a la lista de importaciones
+    MatButtonToggleModule,
+    MatIconModule,
+    PipesModule,
 
 
 

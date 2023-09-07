@@ -11,9 +11,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { mergeMap } from 'rxjs/operators';
 
 
-import { FormGroup} from '@angular/forms';
-import { Venn } from '@amcharts/amcharts5/.internal/charts/venn/Venn';
-import { dA } from '@fullcalendar/core/internal-common';
 
 
 @Component({
@@ -38,11 +35,14 @@ export class PedidosConsolidadosComponent implements OnInit {
   consolidadosPendiente: any[];
   consolidadosCerrado: any[];
   consolidadosProceso: any[];
+  consolidadosFiltrados: any[];
+  filtroTexto: any;
+  mostrarBusqueda: boolean = false;
   constructor(public dialog: MatDialog, public appService: AppService, public formBuilder: UntypedFormBuilder,
     public snackBar: MatSnackBar) { }
 
   consolidadoIds: number[] = []; // Arreglo para almacenar los IdConsolidadoVentaEmpleado
-
+    searchText='';
 
   private subscription: Subscription | undefined; // Almacena la suscripción
 
@@ -535,7 +535,26 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
 }
 
 
+aplicarFiltro() {
+  // Aplicar el filtro al arreglo de datos
+  this.consolidadosFiltrados = this.consolidados.filter((consolidado) =>
+    consolidado.Empresa.toLowerCase().includes(this.filtroTexto.toLowerCase())||
+    consolidado.IdConsolidadoVentaEmpleado.toString().includes(this.filtroTexto)
 
+  );
+  // this.mostrarBusqueda = true;
+
+
+  console.log(this.consolidadosFiltrados)
+}
+
+
+onTabChange(): void {
+  // event contiene el índice de la pestaña seleccionada
+  this.mostrarBusqueda = true;
+  // Modifica la variable según la pestaña seleccionada
+
+}
 
 
 }

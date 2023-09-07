@@ -36,6 +36,30 @@
   </table>
 </div>  -->
 
+<!--todo implementar la busqueda -->
+<!-- <div fxLayout="row">
+  <mat-button-toggle-group #controls="matButtonToggleGroup" appearance="legacy">
+
+      <mat-button-toggle  matTooltip="Click para buscar" value="search" >
+          <mat-icon>search</mat-icon>
+      </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+
+<form class="user-search" [class.show]="controls.value == 'search'">
+  <mat-form-field class="user-search-input">
+      <input matInput placeholder="Buscar por numero de consolidado o empresa" [(ngModel)]="searchText" name="search">
+  </mat-form-field>
+</form> -->
+<div  *ngIf="mostrarBusqueda">
+<mat-form-field class="search-consolidado">
+  <mat-label>Buscar por Empresa o número de pedido</mat-label>
+  <input matInput [(ngModel)]="filtroTexto" placeholder="Ejemplo: Empresa o número de pedido" />
+</mat-form-field>
+<button  mat-raised-button color="primary" (click)="aplicarFiltro()">Filtrar</button>
+</div>
+
+
 <!-- segunda tabla de detalles -->
 <hr *ngIf="openTable">
 <!-- <div *ngFor="let consolidado of consolidados"> -->
@@ -103,8 +127,9 @@
 </div>
 
 
+<!-- ?mat-group -->
 
-<mat-tab-group>
+<mat-tab-group  *ngIf="!openTable" (selectedIndexChange)="onTabChange($event)" >
   <mat-tab label="EN PROCESO">
     <!-- Contenido de la primera pestaña -->
 
@@ -112,6 +137,8 @@
       <table class="table">
         <thead>
           <tr>
+
+            <th>csvconsolidadonum</th>
             <th>Empresa</th>
             <th>#Pedidos</th>
             <th>Total</th>
@@ -123,6 +150,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let consolidado of consolidadosProceso">
+
+            <td class="td-1">{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
             <td class="td-1">{{ consolidado.Empresa }}</td>
             <td class="td-1"> {{consolidado.NumPedidos}} </td>
             <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
@@ -155,6 +184,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th>csvconsolidadonum</th>
             <th>Empresa</th>
             <th>#Pedidos</th>
             <th>Total</th>
@@ -166,6 +196,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let consolidado of consolidadosPendiente">
+            <td class="td-1">{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
             <td class="td-1">{{ consolidado.Empresa }}</td>
             <td class="td-1"> {{consolidado.NumPedidos}} </td>
             <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
@@ -198,6 +229,7 @@
       <table class="table">
         <thead>
           <tr>
+            <th>csvconsolidadonum</th>
             <th>Empresa</th>
             <th>#Pedidos</th>
             <th>Total</th>
@@ -209,6 +241,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let consolidado of consolidadosCerrado">
+            <td class="td-1">{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
             <td class="td-1">{{ consolidado.Empresa }}</td>
             <td class="td-1"> {{consolidado.NumPedidos}} </td>
             <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
@@ -231,6 +264,56 @@
       </table>
     </div>
 
+
+
+
+
+
+
+
+  </mat-tab>
+
+  <mat-tab label="TODOS " (click)="onTabChange">
+
+
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>csvconsolidadonum</th>
+            <th>Empresa</th>
+            <th>#Pedidos</th>
+            <th>Total</th>
+            <th>Fecha Consolidado</th>
+            <th>Estatus</th>
+            <th>#Factura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let consolidado of consolidadosFiltrados">
+            <td class="td-1">{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
+            <td class="td-1">{{ consolidado.Empresa }}</td>
+            <td class="td-1"> {{consolidado.NumPedidos}} </td>
+            <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
+            <td class="td-1">{{ consolidado.Fecha  | date: 'dd/MM/yyyy' }}</td>
+            <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>
+            <td class="td-1">{{ consolidado.NumeroFactura }}</td>
+            <td class="td-1">
+              <!-- Acciones -->
+              <div class="acciones-container">
+                <div class="boton1">
+                  <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
+                </div>
+                <div class="boton2">
+                  <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
 
 
