@@ -234,7 +234,7 @@ console.log(this.appService.Data.cartList);
     }
 
     const ventaEmpleado = {
-      RhUsuarioId: this.abrirFormulario ? this.numUsu.value : this.UsuarioId,
+      RhUsuarioId: this.abrirFormulario ? this.NumeroEmpleadoEmpleado.value : this.UsuarioId,
       Fecha: this.ventaForm.get("Fecha").value,
       Total: this.ventaForm.get("Total").value,
 
@@ -242,9 +242,15 @@ console.log(this.appService.Data.cartList);
       //Nombre:this.ventaForm.controls['RhusuarioId'].setValue(this.Nombre)
       Nombre: this.abrirFormulario ? this.nombre.value : this.Nombre, // para que se vea el nombre
       //numVenta:this.numVenta = this.numVenta + 1, // para sumar cada venta , es una demo
-      Numero_Empleado:this.abrirFormulario? this.NumeroEmpleadoEmpleado.value: this.NumeroEmpleado,
+      Numero_Empleado:this.abrirFormulario? this.numUsu.value: this.NumeroEmpleado,
       Empresa: this.abrirFormulario ? this.EmpresaCapturar.value : this.Empresa,
       TipoNomina:this.abrirFormulario ? this.TipoNomina.value : this.IdNomina,
+
+
+      Colaborador:this.abrirFormulario?  this.UsuarioId: 40, // es lo nuevo implementado
+
+
+
 
 
 

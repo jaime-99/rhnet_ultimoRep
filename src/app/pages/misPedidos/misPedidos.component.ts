@@ -25,6 +25,7 @@ export class misPedidos  implements OnInit{
   Producto ="";
   Fecha:Date;
   public Ventas:any= [];
+  public ventasColaboradores =[]
   Estatus:boolean;
   numPedido:number=0; // para ver que cuales son mis ped
 
@@ -63,16 +64,16 @@ export class misPedidos  implements OnInit{
     this.appService.GetVentasEmpleadoPorId(userauth.UsuarioId).subscribe((res)=>{
       this.Ventas = res;
       //this.Ventas=res;
-      //console.log(this.Ventas);
+      console.log( "estas son las ventas normales "+ this.Ventas);
+      console.log(userauth.UsuarioId)
 
     });
 
-    this.appService.GetVentasEmpleadoPorId(userauth.UsuarioId).subscribe((res)=>{
-      this.Ventas = res;
-      //this.Ventas=res;
-      //console.log(this.Ventas);
 
-    });
+    this.appService.GetVentaColaboradoresPorId(userauth.UsuarioId).subscribe((res)=>{
+      this.ventasColaboradores = res;
+    })
+
 
 
 

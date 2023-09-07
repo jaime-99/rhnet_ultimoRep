@@ -392,6 +392,14 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
       return this.http.get<any[]>(apiurl,{params});
 
     }
+
+    public GetVentaColaboradoresPorId(id){
+
+
+      let apiurl='https://www.dikeninternational.com/dikenecommerce/api/ventas/GetVentaColaboradores.php?';
+      const params=new HttpParams().set("id",id);
+      return this.http.get<any[]>(apiurl,{params});
+    }
     //todo jaime
     // este sera el metodo de CancelarVentas del empleado
 
@@ -621,7 +629,7 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
     }
 
     public addToCart(product:Product){
-  
+
         let message, status;
         this.Data.CodigoDiken=product.CodigoDiken;
         this.Data.totalPrice = null;
@@ -637,11 +645,11 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         }
 
         this.Data.cartList.forEach(product=>{
-         
+
 
             this.Data.totalPrice = this.Data.totalPrice + (product.cartCount * product.newPrice);
             this.Data.totalCartCount = this.Data.totalCartCount + product.cartCount;
-         
+
         });
 
         message = 'El producto ' + product.name + ' se ha agregado al carrito.';

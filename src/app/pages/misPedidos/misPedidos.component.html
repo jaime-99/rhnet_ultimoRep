@@ -60,7 +60,6 @@
 
 
 
-
   <div *ngIf="Ventas.length === 0 ">
     <p style="font-size: 24px; font-weight: bold; color: black;">No se han seleccionado pedidos.</p>
   </div>
@@ -69,5 +68,58 @@
   <!-- <button (click)="BtnCancelar()">Cancelar</button> -->
 </div>
 
+
+<!--todo colocar tabla de pedidos pero de colaboradores -->
+<div class="colaboradores-div" *ngIf="mostrarDetallesComponent ==false">
+  <h2 class="colaboradores-text">Colaboradores: </h2>
+</div>
+
+
+<div *ngIf="mostrarDetallesComponent ==false" class="table-container">
+<table *ngIf="ventasColaboradores.length > 0">
+  <thead>
+    <tr>
+
+      <th>Numero de Pedido</th>
+      <th>Numero Empelado</th>
+      <th>Nombre</th>
+      <th>Fecha de venta</th>
+      <th>Total</th>
+      <th>Estatus de la venta</th>
+      <th>Acciones</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let ventasColaboradores of ventasColaboradores">
+      <td>{{ ventasColaboradores.VentaEmpleadoId }}</td>
+      <td>{{ ventasColaboradores.Numero_Empleado }}</td>
+      <td>{{ ventasColaboradores.Nombre }}</td>
+      <td>{{ ventasColaboradores.Fecha | date :'dd/MM/yyyy' }}</td>
+      <td>${{ventasColaboradores.Total | number : '1.2-2'}}</td>
+      <td><strong>{{ventasColaboradores.Estatus}}</strong> </td>
+
+
+        <!-- Agrega el botón con estilo de Angular Material -->
+        <td>
+          <button *ngIf="ventasColaboradores.IdEstatusVentaEmpleado === 1" mat-raised-button color="warn" (click)="mostrarMensajeAlerta(venta.VentaEmpleadoId)">Cancelar</button>
+          <div class="espacio"></div> <!-- Agregar un espacio vertical -->
+
+        <button class="boton_detalles"  (click)="ejemplo(ventasColaboradores.VentaEmpleadoId)" mat-raised-button color="primary" matTooltip="Ver detalles">
+            Detalles
+        </button>
+
+        </td>
+     </tr>
+
+  </tbody>
+
+   </table>
+
+
+
+</div>
 </body>
 </html>
