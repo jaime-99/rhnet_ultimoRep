@@ -1,5 +1,5 @@
 <!-- Wrap the table with a container and apply Flexbox -->
-<div class="table-container">
+<!-- <div class="table-container">
   <table class="table">
     <thead>
       <tr>
@@ -7,11 +7,8 @@
         <th>#Pedidos</th>
         <th>Total</th>
         <th>Fecha Consolidado</th>
-
         <th>Estatus</th>
         <th>#Factura</th>
-
-
         <th>Acciones</th>
       </tr>
     </thead>
@@ -24,8 +21,8 @@
         <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>
         <td class="td-1">{{ consolidado.NumeroFactura }}</td>
         <td class="td-1">
-          <!-- Acciones -->
-          <div class="acciones-container">
+          <! Acciones -->
+          <!-- <div class="acciones-container">
             <div class="boton1">
               <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
             </div>
@@ -37,7 +34,7 @@
       </tr>
     </tbody>
   </table>
-</div>
+</div>  -->
 
 <!-- segunda tabla de detalles -->
 <hr *ngIf="openTable">
@@ -104,3 +101,142 @@
   <button   mat-raised-button color="primary"  [disabled]=" numPedido.get('Pedido').invalid"  (click)="cancelarEstatusConsolidado(IdSeleccionado)">Guardar Factura</button>
 
 </div>
+
+
+
+<mat-tab-group>
+  <mat-tab label="EN PROCESO">
+    <!-- Contenido de la primera pestaña -->
+
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>#Pedidos</th>
+            <th>Total</th>
+            <th>Fecha Consolidado</th>
+            <th>Estatus</th>
+            <th>#Factura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let consolidado of consolidadosProceso">
+            <td class="td-1">{{ consolidado.Empresa }}</td>
+            <td class="td-1"> {{consolidado.NumPedidos}} </td>
+            <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
+            <td class="td-1">{{ consolidado.Fecha  | date: 'dd/MM/yyyy' }}</td>
+            <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>
+            <td class="td-1">{{ consolidado.NumeroFactura }}</td>
+            <td class="td-1">
+              <!-- Acciones -->
+              <div class="acciones-container">
+                <div class="boton1">
+                  <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
+                </div>
+                <div class="boton2">
+                  <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+  </mat-tab>
+  <mat-tab label="PENDIENTES">
+    <!-- Contenido de la segunda pestaña -->
+
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>#Pedidos</th>
+            <th>Total</th>
+            <th>Fecha Consolidado</th>
+            <th>Estatus</th>
+            <th>#Factura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let consolidado of consolidadosPendiente">
+            <td class="td-1">{{ consolidado.Empresa }}</td>
+            <td class="td-1"> {{consolidado.NumPedidos}} </td>
+            <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
+            <td class="td-1">{{ consolidado.Fecha  | date: 'dd/MM/yyyy' }}</td>
+            <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>
+            <td class="td-1">{{ consolidado.NumeroFactura }}</td>
+            <td class="td-1">
+              <!-- Acciones -->
+              <div class="acciones-container">
+                <div class="boton1">
+                  <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
+                </div>
+                <div class="boton2">
+                  <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+  </mat-tab>
+
+  <mat-tab  label="CERRADOS">
+
+    <div class="table-container">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Empresa</th>
+            <th>#Pedidos</th>
+            <th>Total</th>
+            <th>Fecha Consolidado</th>
+            <th>Estatus</th>
+            <th>#Factura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let consolidado of consolidadosCerrado">
+            <td class="td-1">{{ consolidado.Empresa }}</td>
+            <td class="td-1"> {{consolidado.NumPedidos}} </td>
+            <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
+            <td class="td-1">{{ consolidado.Fecha  | date: 'dd/MM/yyyy' }}</td>
+            <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>
+            <td class="td-1">{{ consolidado.NumeroFactura }}</td>
+            <td class="td-1">
+              <!-- Acciones -->
+              <div class="acciones-container">
+                <div class="boton1">
+                  <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
+                </div>
+                <div class="boton2">
+                  <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+
+
+
+
+
+  </mat-tab>
+</mat-tab-group>

@@ -35,6 +35,9 @@ export class PedidosConsolidadosComponent implements OnInit {
   UsuarioId: any;
   total: any;
   ventasEmpleado: any[];
+  consolidadosPendiente: any[];
+  consolidadosCerrado: any[];
+  consolidadosProceso: any[];
   constructor(public dialog: MatDialog, public appService: AppService, public formBuilder: UntypedFormBuilder,
     public snackBar: MatSnackBar) { }
 
@@ -80,7 +83,17 @@ export class PedidosConsolidadosComponent implements OnInit {
         // obtener los id's
         this.consolidadoIds = this.consolidados.map((consolidado) => consolidado.IdConsolidadoVentaEmpleado);
 
-        //console.log(res); // para ver los consolidados
+        this.consolidadosPendiente = res.filter((consolidado) => consolidado.NombreEstatus === 'PENDIENTE');
+        // console.log(this.consolidadosPendiente)
+
+        this.consolidadosProceso = res.filter((consolidado) => consolidado.NombreEstatus === 'EN PROCESO');
+
+        this.consolidadosCerrado = res.filter((consolidado) => consolidado.NombreEstatus === 'CERRADO');
+        // console.log(this.consolidadosPendiente)
+
+
+
+        // console.log(res); // para ver los consolidados
     })
 
   }

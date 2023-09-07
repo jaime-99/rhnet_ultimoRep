@@ -12,6 +12,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatDialogModule } from "@angular/material/dialog";
 import { detalles } from './detalles.component'; // importamos
 import {MatIconModule} from '@angular/material/icon';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 
@@ -32,6 +33,8 @@ export const routes: Routes = [
     MatTableModule,
     MatDialogModule,
     MatIconModule,
+    MatTabsModule, // Añade MatTabsModule a la lista de importaciones
+
 
 
   ],

@@ -1,5 +1,5 @@
 import { array } from '@amcharts/amcharts5';
-import { Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import { AppService } from 'src/app/app.service';
 import { Subscription } from 'rxjs';
 import { response } from 'express';
@@ -14,7 +14,9 @@ import { detalles } from './detalles.component';
 @Component({
   selector: 'app-misPedidos',
   templateUrl: './misPedidos.component.html',
-  styleUrls: ['./misPedidos.scss']
+  styleUrls: ['./misPedidos.scss'],
+  encapsulation: ViewEncapsulation.None
+
 })
 
 export class misPedidos  implements OnInit{

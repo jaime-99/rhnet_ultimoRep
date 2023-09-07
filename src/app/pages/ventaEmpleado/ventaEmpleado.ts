@@ -247,7 +247,7 @@ console.log(this.appService.Data.cartList);
       TipoNomina:this.abrirFormulario ? this.TipoNomina.value : this.IdNomina,
 
 
-      Colaborador:this.abrirFormulario?  this.UsuarioId: 40, // es lo nuevo implementado
+      Colaborador:this.abrirFormulario?  this.UsuarioId: 0, // es lo nuevo implementado
 
 
 

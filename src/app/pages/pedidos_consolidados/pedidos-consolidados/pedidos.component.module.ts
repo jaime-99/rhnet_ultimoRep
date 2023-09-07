@@ -11,6 +11,7 @@ import { MatFormField, MatFormFieldModule } from "@angular/material/form-field";
 import {MatInputModule} from '@angular/material/input';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { MatTabsModule } from "@angular/material/tabs";
 
 
 
@@ -31,6 +32,8 @@ export const routes: Routes = [
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    MatTabsModule, // Añade MatTabsModule a la lista de importaciones
+
 
 
   ],

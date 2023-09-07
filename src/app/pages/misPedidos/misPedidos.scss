@@ -1,3 +1,4 @@
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -29,6 +30,15 @@ th, td {
   color: #053B50;
   text-align: center;
 }
+
+// Definir colores personalizados
+
+.mat-tab-label{
+  color:black !important ;
+
+  background-color:transparent;
+}
+
 
 @media screen and (max-width: 768px) {
   // .table-container {

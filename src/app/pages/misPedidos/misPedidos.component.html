@@ -11,6 +11,8 @@
 <!-- todo es para mostrar el detalle de cada venta -->
   <app-detalles #detallesComponent *ngIf="mostrarDetallesComponent" [idVenta]="idDetalles" (regresar)="regresarDesdeDetalles()"  ></app-detalles>
 
+  <mat-tab-group mat-align-tabs="start">
+  <mat-tab label="MIS PEDIDOS">
 
   <div *ngIf="mostrarDetallesComponent ==false" class="table-container">
    <table *ngIf="Ventas.length > 0">
@@ -65,15 +67,23 @@
   </div>
 
 
+
   <!-- <button (click)="BtnCancelar()">Cancelar</button> -->
 </div>
-
+</mat-tab>
 
 <!--todo colocar tabla de pedidos pero de colaboradores -->
 <div class="colaboradores-div" *ngIf="mostrarDetallesComponent ==false">
   <h2 class="colaboradores-text">Colaboradores: </h2>
 </div>
 
+
+    <!-- Contenido de la primera pestaña -->  <!-- <mat-tab label="Pestaña 2">
+    <p>Contenido de la pestaña 2</p>
+  </mat-tab> -->
+
+
+<mat-tab  label="COLABORADORES">
 
 <div *ngIf="mostrarDetallesComponent ==false" class="table-container">
 <table *ngIf="ventasColaboradores.length > 0">
@@ -121,5 +131,9 @@
 
 
 </div>
+</mat-tab>
+
+</mat-tab-group>
+
 </body>
 </html>
