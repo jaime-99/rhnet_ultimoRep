@@ -5,6 +5,8 @@ import { Product } from '../../app.models';
 import { math } from '@amcharts/amcharts5';
 import { round } from '@amcharts/amcharts5/.internal/core/util/Time';
 
+
+
 @Component({
   selector: 'app-controls',
   templateUrl: './controls.component.html',
@@ -15,10 +17,17 @@ export class ControlsComponent implements OnInit {
   @Input() type: string;
   @Output() onOpenProductDialog: EventEmitter<any> = new EventEmitter();
   @Output() onQuantityChange: EventEmitter<any> = new EventEmitter<any>();
+
   public count:number = 1;
   public align = 'center center';
+  avisoDeAgregado: boolean;
+  compraSeleccionada: any;
+  mostrarDetalles: boolean;
   constructor(public appService:AppService, public snackBar: MatSnackBar) { }
   public Day: boolean;
+
+  // @Output() compraAgregada = new EventEmitter<Product>();
+
 
 
   ngOnInit() {
@@ -136,7 +145,7 @@ export class ControlsComponent implements OnInit {
     let currentProduct = this.appService.Data.cartList.filter(item=>item.id == product.id)[0];
     if(product.SePuedeFraccionar)
     {
-    
+
       if(currentProduct)
       {
         let countLocal=1/product.CantidadFraccion;
@@ -145,13 +154,13 @@ export class ControlsComponent implements OnInit {
           product.cartCount2=parseFloat( (currentProduct.cartCount2+this.count).toFixed(2));
           if(product.cartCount2%product.CantidadFraccion===0)
           {
-            
+
             product.cartCount=Math.floor(product.cartCount2/product.CantidadFraccion);
           }
-          
+
         }
         else{
-          this.snackBar.open('You can not add more items than available. In stock ' + this.product.availibilityCount + ' items and you already added ' + currentProduct.cartCount + ' item to your cart', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
+          this.snackBar.open('No se pueden agregar más artículos de los disponibles. En stock ' + this.product.availibilityCount + ' elementos y ya agregaste' + currentProduct.cartCount + ' artículo a tu carrito', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
           return false;
         }
 
@@ -159,7 +168,7 @@ export class ControlsComponent implements OnInit {
       else{
         console.log(product);
         let countLocal2=parseFloat(( 1/product.CantidadFraccion).toFixed(2));
-        
+
         product.cartCount=countLocal2;
         product.cartCount2=this.count;
       }
@@ -170,20 +179,21 @@ export class ControlsComponent implements OnInit {
        if (parseFloat(decimalPart.toFixed(2)) < parseFloat(((1/product.CantidadFraccion).toFixed(2)))) {
          // Redondea hacia abajo si la parte decimal es menor que 0.05
          micartcount= Math.floor(product.cartCount);
-       } 
+       }
        else{
         let midecimal=product.cartCount-Math.floor(product.cartCount);
-         
+
         if(midecimal >.47 && midecimal<=.51)
         {
           product.cartCount=Math.floor(product.cartCount);
           product.cartCount=product.cartCount+.50;
         }
          micartcount=product.cartCount;
-       } 
+       }
        product.cartCount=micartcount;
 
-      
+
+
     }
     else{
     if(currentProduct){
@@ -193,7 +203,7 @@ export class ControlsComponent implements OnInit {
         console.log(product.cartCount);
       }
       else{
-        this.snackBar.open('You can not add more items than available. In stock ' + this.product.availibilityCount + ' items and you already added ' + currentProduct.cartCount + ' item to your cart', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
+        this.snackBar.open('No se pueden agregar más artículos de los disponibles. En stock ' + this.product.availibilityCount + 'elementos y ya agregaste ' + currentProduct.cartCount + ' artículo a tu carrito', '×', { panelClass: 'error', verticalPosition: 'top', duration: 5000 });
         return false;
       }
     }
@@ -202,15 +212,22 @@ export class ControlsComponent implements OnInit {
     }
   }
 
- 
- 
-    this.appService.addToCart(product);
+
+  this.appService.addToCart(product);
+
+  // this.compraAgregada.emit(product);
+  // this.compraSeleccionada = product;
+  // this.mostrarDetalles = true;
+
+
+
   }
 
 
   public openProductDialog(event){
     this.onOpenProductDialog.emit(event);
   }
+
 
   public changeQuantity(value){
       this.onQuantityChange.emit(value);

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, Inject, PLATFORM_ID, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, Inject, PLATFORM_ID, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductDialogComponent } from '../../shared/products-carousel/product-dialog/product-dialog.component';
@@ -31,6 +31,9 @@ export class ProductsComponent implements OnInit,OnChanges {
   public priceFrom: number = 750;
   public priceTo: number = 1599;
   filteredProducts: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
+
+  @Input() product: Product;
+
 
   public colors = [
     { name: "#5C6BC0", selected: false },

@@ -40,7 +40,7 @@ import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   wheelPropagation: true,
-  suppressScrollX: true               
+  suppressScrollX: true
 };
 
 import { PipesModule } from '../theme/pipes/pipes.module';
@@ -62,7 +62,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   imports: [
-    
+
     CommonModule,
     RouterModule,
     SwiperModule,
@@ -103,7 +103,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PipesModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-  
+
     FormsModule,
   ],
   exports: [
@@ -169,11 +169,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
     LangComponent,
     ConfirmInputDialogComponent,
     CproductlistComponent
-   
-    
-  ], 
+
+
+  ],
   providers:[
-    
+
+
+
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
   ]
 })
