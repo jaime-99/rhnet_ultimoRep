@@ -24,13 +24,16 @@ export class ControlsComponent implements OnInit {
   compraSeleccionada: any;
   mostrarDetalles: boolean;
   constructor(public appService:AppService, public snackBar: MatSnackBar) { }
-  public Day: boolean;
+  public Day: boolean=false;
 
   // @Output() compraAgregada = new EventEmitter<Product>();
 
 
 
   ngOnInit() {
+    //let userauth=JSON.parse(localStorage.getItem('Esdiadeventa')!);
+ 
+    //this.Day=userauth;
     if(this.product){
       if(this.product.cartCount > 0){
         this.count = this.product.cartCount;
@@ -39,8 +42,8 @@ export class ControlsComponent implements OnInit {
     this.layoutAlign();
 
     // Esto es para que el boton solo se vea lunes, miercoles y viernes
-    const Today = new Date().getDay();
-    this.Day = Today === 1 || Today === 2 || Today === 3 || Today ===4 || Today ===5;
+    // const Today = new Date().getDay();
+    // this.Day = Today === 1 || Today === 2 || Today === 3 || Today ===4 || Today ===5;
 
      //console.log(Today);
 

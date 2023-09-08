@@ -7,6 +7,7 @@ import { Md5 } from 'ts-md5';
 
 import { SupportService } from 'src/app/admin/support/service/support.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AppService } from 'src/app/app.service';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -40,6 +41,7 @@ export class SignInComponent implements OnInit {
     const{email,password}=this.loginForm.value;
     this.authService.GetLoginAuth(email,this.Encriptpass(password)).subscribe(ok=>{
       if ( ok == true ) {
+        
        this.errorlogin=false;
         this.router.navigate(['/productos']); // esto es para que me redireccione a ventas cuando inicio sesion
        // window.location.reload();

@@ -573,6 +573,12 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         const params=new HttpParams().set("id",id);
         return this.http.get<Product>(apiurl,{params}   );
     }
+ public getperiodosventa( ): Observable<any>{
+        let apiurl='https://www.dikeninternational.com/dikenecommerce/api/usuario/getperiodosventa.php';
+        
+        return this.http.get<Product>(apiurl );
+    }
+    
     UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clase:any,Familia:any,SubFamilia:any,TextSearch:any,CodigoDiken:any,PrettyText:any,ParaVentaEmpleado:any,SePuedeFraccionar:any,CantidadFraccionar:any)
     {
       const url=`${ this.baseUrl }/producto/UpdateProducto.php`;

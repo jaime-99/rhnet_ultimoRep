@@ -104,6 +104,13 @@ export class ProductsComponent implements OnInit,OnChanges {
 
   ngOnInit() {
 
+    
+        // this.appService.getperiodosventa().subscribe(res=>{
+        //   console.log(res);
+        //   console.log(res.DentroPeriodo);
+        //   //localStorage.setItem('Esdiadeventa',JSON.stringify( res.DentroPeriodo))
+          
+        // });
     let userauth=JSON.parse(localStorage.getItem('datalogin')!);
     if(userauth!=undefined){
     if(userauth.Nombre!="")
