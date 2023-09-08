@@ -38,6 +38,7 @@ export class PedidosConsolidadosComponent implements OnInit {
   consolidadosFiltrados: any[];
   filtroTexto: any;
   mostrarBusqueda: boolean = false;
+  aviso: boolean;
   constructor(public dialog: MatDialog, public appService: AppService, public formBuilder: UntypedFormBuilder,
     public snackBar: MatSnackBar) { }
 
@@ -542,6 +543,13 @@ aplicarFiltro() {
     consolidado.IdConsolidadoVentaEmpleado.toString().includes(this.filtroTexto)
 
   );
+
+  if(this.consolidadosFiltrados.length ===0){
+    console.log("no se encontraron consolidados")
+    this.aviso = true;
+  }else{
+    this.aviso = false
+  }
   // this.mostrarBusqueda = true;
 
 
@@ -549,11 +557,14 @@ aplicarFiltro() {
 }
 
 
-onTabChange(): void {
-  // event contiene el índice de la pestaña seleccionada
-  this.mostrarBusqueda = true;
-  // Modifica la variable según la pestaña seleccionada
-
+onTabChange(event: any) {
+  if (event.index === 3) {
+    // La primera pestaña está activa
+    this.mostrarBusqueda = true;
+  } else {
+    // Otra pestaña está activa
+    this.mostrarBusqueda = false;
+  }
 }
 
 

@@ -51,12 +51,12 @@
       <input matInput placeholder="Buscar por numero de consolidado o empresa" [(ngModel)]="searchText" name="search">
   </mat-form-field>
 </form> -->
-<div  *ngIf="mostrarBusqueda">
-<mat-form-field class="search-consolidado">
+<div class="search-consolidado"  *ngIf="mostrarBusqueda">
+<mat-form-field >
   <mat-label>Buscar por Empresa o número de pedido</mat-label>
-  <input matInput [(ngModel)]="filtroTexto" placeholder="Ejemplo: Empresa o número de pedido" />
+  <input matInput [(ngModel)]="filtroTexto" placeholder="Empresa o número de pedido" />
 </mat-form-field>
-<button  mat-raised-button color="primary" (click)="aplicarFiltro()">Filtrar</button>
+<button class="boton-buscar"  mat-raised-button color="primary" (click)="aplicarFiltro()">Filtrar</button>
 </div>
 
 
@@ -129,7 +129,7 @@
 
 <!-- ?mat-group -->
 
-<mat-tab-group  *ngIf="!openTable" (selectedIndexChange)="onTabChange($event)" >
+<mat-tab-group  *ngIf="!openTable" (selectedTabChange)="onTabChange($event)" >
   <mat-tab label="EN PROCESO">
     <!-- Contenido de la primera pestaña -->
 
@@ -273,10 +273,10 @@
 
   </mat-tab>
 
-  <mat-tab label="TODOS " (click)="onTabChange">
+  <mat-tab label="BUSCAR">
 
 
-    <div class="table-container">
+    <div *ngIf="!aviso"  class="table-container">
       <table class="table">
         <thead>
           <tr>
@@ -315,6 +315,13 @@
       </table>
     </div>
 
+
+    <div *ngIf="aviso">
+
+      <h3 style="color:red; text-align: center; margin-top: 10px; " >No se encontraron consolidados</h3>
+
+
+    </div>
 
 
 
