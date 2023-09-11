@@ -120,6 +120,8 @@
     </mat-form-field>
   </section>
 
+
+
 <mat-stepper  *ngIf="appService.Data.cartList?.length > 0 || verStrepper" #stepper>
 
   <!-- <mat-step  [stepControl]="ventaForm" [editable]="false" [completed]="true">
@@ -220,8 +222,8 @@
         class="mr-1" [disabled]="Desabilitado">
         <mat-icon>navigate_before</mat-icon>
       </button>
-      <button *ngIf="!abrirFormulario" mat-raised-button matStepperNext color="primary" (click)="clickDosBotones()"  >Guardar</button>
-      <button *ngIf="abrirFormulario" mat-raised-button matStepperNext color="primary" (click)="clickDosBotones()" [disabled]="numUsu.invalid || nombre.invalid " >Guardar</button>
+      <button *ngIf="!abrirFormulario" mat-raised-button matStepperNext color="primary" (click)="clickDosBotones()" [disabled]="appService.Data.cartList.length == 0" >Guardar</button>
+      <button *ngIf="abrirFormulario" mat-raised-button matStepperNext color="primary" (click)="clickDosBotones()" [disabled]="numUsu.invalid || nombre.invalid  || appService.Data.cartList.length ===0" >Guardar</button>
     </div>
   </mat-step>
 
