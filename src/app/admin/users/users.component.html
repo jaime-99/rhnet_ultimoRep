@@ -1,9 +1,9 @@
 <div fxLayout="row" fxLayoutAlign="space-between center" class="p-1">
     <div fxLayout="row">
         <mat-button-toggle-group #controls="matButtonToggleGroup" appearance="legacy">
-            <mat-button-toggle value="add" (click)="openUserDialog(null)">
+            <!-- <mat-button-toggle value="add" (click)="openUserDialog(null)">
                 <mat-icon>person_add</mat-icon>
-            </mat-button-toggle>
+            </mat-button-toggle> -->
             <mat-button-toggle value="search">
                 <mat-icon>search</mat-icon>
             </mat-button-toggle>
@@ -41,10 +41,10 @@
                         <mat-icon>mode_edit</mat-icon>
                         <span>Editar</span>
                     </button>
-                    <button mat-menu-item (click)="deleteUser(user);">
+                    <!-- <button mat-menu-item (click)="deleteUser(user);">
                         <mat-icon>delete</mat-icon>
                         <span>Borrar</span>
-                    </button>
+                    </button> -->
                 </span>
             </mat-menu>
             <div class="user-content" fxLayout="row" fxLayoutAlign="space-around center">
@@ -172,7 +172,9 @@
 <div *ngIf="users" fxLayout="row wrap">
     <div fxFlex="100" class="p-1">
         <mat-card class="p-0 text-center">
-            <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+            <pagination-controls class="product-pagination"
+            previousLabel="Anterior"
+            nextLabel="Siguiente" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
         </mat-card>
     </div>
 </div>

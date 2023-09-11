@@ -9,20 +9,20 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 })
 export class CategoryDialogComponent implements OnInit {
   public form: UntypedFormGroup;
-  constructor(public dialogRef: MatDialogRef<CategoryDialogComponent>, 
+  constructor(public dialogRef: MatDialogRef<CategoryDialogComponent>,
               @Inject(MAT_DIALOG_DATA) public data: any,
               public fb: UntypedFormBuilder) { }
 
-  ngOnInit(): void { 
+  ngOnInit(): void {
     this.form = this.fb.group({
       id: 0,
       name: [null, Validators.required],
       hasSubCategory: false,
       parentId: 0
-    }); 
+    });
 
     if(this.data.category){
-      this.form.patchValue(this.data.category); 
+      this.form.patchValue(this.data.category);
     };
   }
 

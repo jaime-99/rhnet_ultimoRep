@@ -192,7 +192,9 @@
             <div *ngIf="true" fxLayout="row wrap">
                 <div fxFlex="100">
                     <mat-card class="p-0 text-center">
-                        <pagination-controls class="product-pagination" autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+                        <pagination-controls  class="product-pagination"
+                        previousLabel="Anterior" nextLabel="Siguiente"
+                         autoHide="true" maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
                     </mat-card>
                 </div>
             </div>

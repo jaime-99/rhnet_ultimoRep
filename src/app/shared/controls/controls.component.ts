@@ -32,7 +32,7 @@ export class ControlsComponent implements OnInit {
 
   ngOnInit() {
     //let userauth=JSON.parse(localStorage.getItem('Esdiadeventa')!);
- 
+
     //this.Day=userauth;
     if(this.product){
       if(this.product.cartCount > 0){
