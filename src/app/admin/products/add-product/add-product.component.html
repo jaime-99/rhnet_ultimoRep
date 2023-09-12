@@ -90,19 +90,23 @@
                   </div>
 
 
-                    <div fxFlex="33.3" class="px-1">
+                  <div [fxLayout.xs]="'column'" [fxLayout.gt-sm]="'row'" class="px-5">
+
+
+                    <div fxFlex="33.3" fxFlex.gt-sm="33.3" class="px-1" >
                         <p class="mt-1"><span class="uppercase fw-500">Pequeña</span><span class="text-muted px-1">(185X135)</span></p>
                         <input-file formControlName="images" fileLimit="1" fileAccept="image/*" required></input-file>
                     </div>
-                    <div fxFlex="33.3" class="px-1">
+                    <div fxFlex="33.3" fxFlex.gt-sm="33.3" class="px-1" >
                         <p class="mt-1"><span class="uppercase fw-500">Mediana</span><span class="text-muted px-1">(480X360)</span></p>
                         <input-file formControlName="imagesM" fileLimit="1" fileAccept="image/*" required></input-file>
                     </div>
-
-                    <div fxFlex="33.3" class="px-1">
+                    <div fxFlex="33.3" fxFlex.gt-sm="33.3" class="px-1" >
                         <p class="mt-1"><span class="uppercase fw-500">Grande</span><span class="text-muted px-1">(960X720)</span></p>
                         <input-file formControlName="imagesB" fileLimit="1" fileAccept="image/*" required></input-file>
                     </div>
+                </div>
+
 
 
 
@@ -122,6 +126,10 @@
                     <div [innerHTML]="htmlText"></div>
                 </div> -->
             </form>
+
+            <div [fxLayout.xs]="'column'" [fxLayout.gt-sm]="'row'">
+
+
             <div fxLayout="row wrap">
             <div fxFlex="50" class="px-2">
         <quill-editor
@@ -131,8 +139,8 @@
         (onSelectionChanged)="onSelectionChanged($event)"
         (onContentChanged)="onContentChanged($event)"
         ></quill-editor></div>
-        <div fxFlex="50" class="px-2">
-        <div [innerHTML]="htmlText"></div>
+        <div  fxFlex="50" class="px-2">
+        <div fxFlex="50" class="px-2" [innerHTML]="htmlText"></div>
         </div>
     </div>
     <div fxLayout="row wrap">
@@ -145,16 +153,18 @@
     (onContentChanged)="onContentChanged($event)"
     ></quill-editor></div>
     <div fxFlex="50" class="px-2">
-    <div [innerHTML]="htmlTextCaracteristica"></div>
+    <div fxFlex="50" class="px-2"  [innerHTML]="htmlTextCaracteristica"></div>
     </div>
 </div>
+</div>
+
     <div fxLayout="row wrap">
         <div fxFlex="100" class="mt-2 text-center w-100">
             <button style="float: right;" mat-raised-button color="primary" (click)="onSubmit()">Guardar</button>
         </div>
         </div>
-        </mat-card-content>
 
+        </mat-card-content>
 </mat-card>
 
 </div>

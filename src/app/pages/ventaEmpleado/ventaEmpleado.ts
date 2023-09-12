@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, FormControl } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 // import { Usuario } from 'src/app/auth/interfaces/iUsuario';
@@ -10,6 +10,7 @@ import { SupportService } from 'src/app/admin/support/service/support.service';
 import { Usuario } from 'src/app/admin/users/user.model';
 import { Settings,AppSettings } from 'src/app/app.settings';
 import { Empleados } from 'src/app/admin/users/user.model';
+import { Router } from '@angular/router';
 import { Product } from '../../app.models';
 @Component({
   selector: "app-venta-empleado",
@@ -61,7 +62,8 @@ export class VentaEmpleadoComponent implements OnInit {
     private formBuilder: FormBuilder,
     public appService: AppService,
     public supportService: SupportService,
-    public appSettings: AppSettings
+    public appSettings: AppSettings,
+    public router:Router
   ) {
     this.settings = this.appSettings.settings;
   }
@@ -71,7 +73,17 @@ export class VentaEmpleadoComponent implements OnInit {
     // this.getObtenerUsuarios();
     this.getObtenerEmpleadosSinCuenta();
 
+    this.verificarCarritoVacio()
+
     // this.mostrarPerfilNuevo();
+
+    if (this.appService.Data.cartList.length === 0) {
+      // Carrito vacío, navega a la página de productos y muestra un mensaje de alerta
+      this.router.navigate(['/productos']).then(() => {
+        alert('Tu carrito de compras está vacío. Por favor, agrega productos al carrito.');
+      });
+    }
+
 
     let userauth = JSON.parse(localStorage.getItem("datalogin")!);
 
@@ -358,6 +370,7 @@ export class VentaEmpleadoComponent implements OnInit {
     this.appService.Data.totalCartCount = 0;
   }
 
+
   // Método que se llama cuando cambia la selección del radio button
   onNoUsuarioChange(value: string) {
     this.noUsuario = value;
@@ -472,6 +485,18 @@ export class VentaEmpleadoComponent implements OnInit {
     this.verCuadroEmpleados = false;
 
 
+  }
+
+
+  verificarCarritoVacio() {
+    if (this.appService.Data.cartList.length === 0) {
+      // Carrito vacío, navega a la página de productos y muestra un mensaje de alerta
+      this.router.navigate(['/products']).then(() => {
+        alert('Tu carrito de compras está vacío. Por favor, agrega productos al carrito.');
+      });
+    }
+
+    console.log("no hay productos")
   }
 }
 

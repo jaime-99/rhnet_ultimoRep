@@ -11,7 +11,7 @@ export const menuItems = [
     // new Menu (31, 'Cotizaciones', '/admin/sales/orders', null, 'list_alt', null, false, 30),
     new Menu (32, 'Cotizaciones', '/admin/sales/cotizaciones', null, 'local_atm', null, false, 30),
     new Menu (40, 'Usuarios.', '/admin/users', null, 'group_add', null, false, 0),
-    new Menu (50, 'Clientes', '/admin/customers', null, 'supervisor_account', null, false, 0),
+    // new Menu (50, 'Clientes', '/admin/customers', null, 'supervisor_account', null, false, 0),
     // new Menu (60, 'ADMIN_NAV.COUPONS', '/admin/coupons', null, 'card_giftcard', null, false, 0),
     // new Menu (70, 'ADMIN_NAV.WITHDRAWAL', '/admin/withdrawal', null, 'credit_card', null, false, 0),
     new Menu (80, 'Analitica', '/admin/analytics', null, 'multiline_chart', null, false, 0),
