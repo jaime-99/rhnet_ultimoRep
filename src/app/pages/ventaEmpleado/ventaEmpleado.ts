@@ -10,6 +10,7 @@ import { SupportService } from 'src/app/admin/support/service/support.service';
 import { Usuario } from 'src/app/admin/users/user.model';
 import { Settings,AppSettings } from 'src/app/app.settings';
 import { Empleados } from 'src/app/admin/users/user.model';
+import { Product } from '../../app.models';
 @Component({
   selector: "app-venta-empleado",
   templateUrl: "./ventaEmpleado.component.html",
@@ -296,6 +297,18 @@ export class VentaEmpleadoComponent implements OnInit {
 
     // });
 
+    detalles.forEach(X=>{
+     this.appService.getProductById((r)=>{ 
+      let prod=r.shift();
+      if(prod.availibilityCount<X.Cantidad)  
+      {
+        alert("solo quedan "+prod.availibilityCount+ "del producto "+prod.name);
+        return;
+      }   
+      })
+
+    });
+
     this.appService
       .AddVentaEmpleado(ventaEmpleado, detalles)
       .subscribe((res) => {
@@ -419,7 +432,8 @@ export class VentaEmpleadoComponent implements OnInit {
             Nomina: e.Nomina,
             Nombre:e.Nombre,
             Empresa:e.EMPRESA,
-            id:e.id
+            id:e.id,
+            TextSearch:e.TextSearch
           };
 
           // Aqui los asigno para que despues los obtenga en el formAdicional

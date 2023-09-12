@@ -92,7 +92,7 @@
 <section class="formAdicional" *ngIf="noUsuario === 'before' && appService.Data.cartList?.length > 0  && mostrarFormAdicional" >
 
     <div class="divider"></div>
-    <label class="example-margin1">Formulario Adicional:</label>
+    <label class="example-margin1">Datos del Empleado:</label>
     <mat-form-field>
       <input matInput placeholder="Numero de empleado" [formControl]="numUsu" readonly>
       <mat-error *ngIf="numUsu.hasError('required')">El número de usuario es requerido</mat-error>

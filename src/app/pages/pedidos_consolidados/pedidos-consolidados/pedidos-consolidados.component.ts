@@ -240,22 +240,7 @@ export class PedidosConsolidadosComponent implements OnInit {
       //console.log(correo);
 
 
-       // Llamar a la función para enviar la ventaEmpleado
-
-
-      //  this.partidas.forEach(detalleEliminado =>  {
-      //   //console.log(detalleEliminado)
-
-      //   const ventaEmpleado = {  // todo de la 215 a la 226 es posible solucion para mandar varios conjuntos a la vez
-      //     RhUsuarioId: detalleEliminado.rhUsuarioId,
-      //     Fecha: detalleEliminado.fecha,
-      //     Total: detalleEliminado.total,
-      //   }
-      //   //console.log(ventaEmpleado);
-
-      // })
-
-
+     
 
       //todo enviar solo 1 conjunto a la vez
       const ventaEmpleado = {
@@ -278,24 +263,6 @@ export class PedidosConsolidadosComponent implements OnInit {
         //console.log(res)
       })
 
-      //todo enviar varios conjuntos a la vez
-//       const conjuntosVentaEmpleado = [
-//         {
-//           RhUsuarioId: rhUsuarioId,
-//           Fecha: fecha,
-//           Total: Total,
-//         },
-//         {
-//           RhUsuarioId: 12,
-//           Fecha: fecha,
-//           Total:12,
-//         },
-//       ];
-//       conjuntosVentaEmpleado.forEach(conjunto => {
-//         this.appService.sinDetalles(conjunto).subscribe((res) => {
-//         //console.log(res);
-//   });
-// });
 
 
 
@@ -341,39 +308,6 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
     this.appService.enviarFacturas(informacionCorreo.numFactura,informacionCorreo.correoDestino,informacionCorreo.Fecha,informacionCorreo.Nombre,informacionCorreo.Producto).subscribe((res)=>{
       //console.log(res);
     })
-//
-
-    // const destinatarios = {};
-
-//Llenar el objeto con los datos de productos y destinatarios
-//   this.partidas.forEach(partida => {
-//   const correo = partida.correo;
-
-//   if (!destinatarios[correo]) {
-//     destinatarios[correo] = {
-//       numFactura: this.numPedido.get('Pedido').value,
-//       Nombre: partida.usuario,
-//       Fecha: fecha,
-//       correoDestino: partida.correo,
-//       Productos: [partida.producto]
-//     };
-//   } else {
-//     destinatarios[correo].Productos.push(partida.producto);
-//   }
-// });
-
-// Iterar a través de los destinatarios y enviar correos
-// for (const correo in destinatarios) {
-//   const detalles = destinatarios[correo];
-//   const productosTexto = detalles.Productos.join(', ');
-// }
-
-// //console.log(destinatarios);
-
-
-// this.appService.enviarFacturas(destinatarios).subscribe((res =>{
-//   //console.log(res)
-// }))
 
 
 
@@ -408,13 +342,6 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
   this.ventasEmpleado = ventaCanceladaIds
 
 
-    //pendiente, me cambia tdos los eliminados, solo quiero cambiar un estatus
-    //todo esto de abajo es para cancelar varias ventas
-    // this.appService.CerrarVenta(ventaCanceladaIds).subscribe((res) => {
-    //   //console.log(res)
-    // })
-
-  // this.cancelarEstatusConsolidado();
 
 
   }
@@ -428,18 +355,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
 
   }
 
-  // agregarLasVentas(){
-
-  //  const  ventas = {
-  //   rhUsuarioId : this.partidas
-
-
-  //   }
-
-  //   this.appService.AddVentaEmpleado().subscribe((res)=>{
-  //     //console.log(res)
-  //   })
-  // }
+  
 
 
   insertarFactura(){
@@ -460,14 +376,42 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
 
   descargarcsv(IdConsolidadoVentaEmpleado)
   {
+    this.appService.getdataconsolidadobyid(IdConsolidadoVentaEmpleado).subscribe((res) => {
+      
+      this.appService.GenerarOrdenDeventa(res).subscribe((result)=>{
 
-    this.appService.obtenerTablaJunta(IdConsolidadoVentaEmpleado).subscribe((res) => {
+        this.appService.obtenerConsolidados().subscribe((res)=>{
 
-      const data=res;
+          this.consolidados = res.filter((consolidado) =>consolidado);
+          // obtener los id's
+          this.consolidadoIds = this.consolidados.map((consolidado) => consolidado.IdConsolidadoVentaEmpleado);
+  
+          this.consolidadosPendiente = res.filter((consolidado) => consolidado.NombreEstatus === 'PENDIENTE');
+          // console.log(this.consolidadosPendiente)
+  
+          this.consolidadosProceso = res.filter((consolidado) => consolidado.NombreEstatus === 'EN PROCESO');
+  
+          this.consolidadosCerrado = res.filter((consolidado) => consolidado.NombreEstatus === 'CERRADO');
+          // console.log(this.consolidadosPendiente)
+  
+  
+  
+          // console.log(res); // para ver los consolidados
+      })
+  
+        
+      });
+     
+   
 
-    var csv = Papa.unparse(data, { encoding: "utf-8" });
-    this.downloadCSV(csv, 'csvconsolidadoventaempleado' + IdConsolidadoVentaEmpleado + '.csv');
-  });
+    });
+  //   this.appService.obtenerTablaJunta(IdConsolidadoVentaEmpleado).subscribe((res) => {
+
+  //     const data=res;
+
+  //   var csv = Papa.unparse(data, { encoding: "utf-8" });
+  //   this.downloadCSV(csv, 'csvconsolidadoventaempleado' + IdConsolidadoVentaEmpleado + '.csv');
+  // });
   }
 
   private downloadCSV(csv: string, filename: string): void {

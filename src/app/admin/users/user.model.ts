@@ -79,6 +79,7 @@ export interface Empleados {
   Nomina:string;
   Empresa:String;
   id:number;
+  TextSearch:string;
 
 }
 

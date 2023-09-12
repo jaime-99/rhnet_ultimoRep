@@ -540,6 +540,29 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.get<any>(url)
 
         }
+        getdataconsolidadobyid(p_ConsolidadoId){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/getdataconsolidadobyid.php?p_ConsolidadoId=${p_ConsolidadoId}`
+          return this.http.get<any>(url)
+
+        }
+        getordenVentaPorConoslidadoId(p_ConsolidadoId){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/NS/getordenVentaPorConoslidadoId.php?p_ConsolidadoId=${p_ConsolidadoId}`
+          return this.http.get<any>(url)
+
+        }
+        GenerarOrdenDeventa(data:any){
+
+          const headers = new HttpHeaders().set('Content-Type', 'application/json');
+          const url = `${this.baseUrl}/NS/addordersale.php`;
+          //const body = {data};
+
+          return this.http.post<any>(url, data , { headers });
+        }
+
+
+
 
         // obtener todos los datos de un usuario , 02/08/2023
 

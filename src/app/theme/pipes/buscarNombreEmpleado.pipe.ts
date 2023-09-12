@@ -15,7 +15,7 @@ export class BuscarNombreEmpleado implements PipeTransform {
 
     return empleados.filter((empleado: Empleados) => {
       return (
-        (empleado.Nombre && empleado.Nombre.toLowerCase().includes(searchText))
+        (empleado.Nombre && empleado.TextSearch.toLowerCase().includes(searchText))
         // (empleado.number && empleado.number.includes(searchText)) ||
         // (empleado.nombreempleado && empleado.nombreempleado.includes(searchText))
 
