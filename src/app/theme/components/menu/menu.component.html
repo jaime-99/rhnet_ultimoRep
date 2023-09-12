@@ -43,11 +43,16 @@
 </mat-menu>
 
 <!-- Submenú para la opción EQUIPOS -->
-<mat-menu #equiposSubMenu="matMenu" [overlapTrigger]="false" class="app-dropdown sub-menu">
-  <button (click)="search('ROPA PARA TRABAJO')" mat-menu-item>ROPA PARA TRABAJO</button>
-  <button (click)="search('EQUIPO DE PROTECCION PERSONAL')" mat-menu-item>EQUIPO DE PROTECCION PERSONAL</button>
+
+<mat-menu  #equiposSubMenu="matMenu" [overlapTrigger]="false" class="app-dropdown sub-menu">
+  <!-- <button (click)="search('ROPA PARA TRABAJO')" mat-menu-item>ROPA PARA TRABAJO</button> -->
+  <!-- <button (click)="search('EQUIPO DE PROTECCION PERSONAL')" mat-menu-item>EQUIPO DE PROTECCION PERSONAL</button>
   <button (click)="search('EQUIPO DE SERVICIO A LOS ALIMENTOS')" mat-menu-item>EQUIPO DE SERVICIO A LOS ALIMENTOS</button>
-  <button (click)="search('CONTENEDORES')" mat-menu-item>CONTENEDORES</button>
+  <button (click)="search('CONTENEDORES')" mat-menu-item>CONTENEDORES</button> -->
+
+  <button *ngFor="let categoria of categoriasProducto" (click)="search(categoria.Familia)" mat-menu-item>{{ categoria.Familia }}</button>
+
+
 </mat-menu>
 
 

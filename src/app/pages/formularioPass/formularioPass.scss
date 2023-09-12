@@ -1,35 +1,35 @@
 
-.centered-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top:100px;
-}
-.centered-form div {
-  margin-bottom: 10px;
-}
+// .centered-form {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   margin-top:100px;
+// }
+// .centered-form div {
+//   margin-bottom: 10px;
+// }
 
-.centered-form label {
-  display: block;
-  margin-bottom: 5px;
-}
+// .centered-form label {
+//   display: block;
+//   margin-bottom: 5px;
+// }
 
-.example-form-field {
-  width: 200px;
-}
+// .example-form-field {
+//   width: 200px;
+// }
 
-.example-form-field2 {
-  width: 200px;
-  top:25px;
-}
+// .example-form-field2 {
+//   width: 200px;
+//   top:25px;
+// }
 
-.titulo{
-  text-align: center;
-}
-.boton1{
-  top:25px;
-}
+// .titulo{
+//   text-align: center;
+// }
+// .boton1{
+//   top:25px;
+// }
 
 // esto es para el mensaje de confirmacion
 
@@ -52,4 +52,24 @@
   margin-bottom: 10px;
 
 
+}
+
+//todo nuevo diseño
+
+
+.change-password{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* O la altura deseada */
+  background-color: #3386FF !important;
+}
+
+.container{
+  width: 100%;
+  max-width: 700px; /* Ajusta el ancho máximo según tu diseño */
+  background-color: white; /* Fondo blanco */
+  border-radius: 10px; /* Esquinas redondeadas */
+  padding: 20px; /* Espacio interno */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
 }

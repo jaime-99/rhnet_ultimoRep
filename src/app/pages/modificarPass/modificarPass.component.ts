@@ -8,6 +8,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 import { AlertaComponent } from "../dialogoDeAlerta/alerta/alerta.component";
 import {MatButtonModule} from '@angular/material/button';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 declare var toastr: any;
 
@@ -28,6 +29,7 @@ export class modificarPass{
   public authService:SupportService,
   public router:Router,
   private dialog: MatDialog,
+  public snackBar: MatSnackBar,
   renderer: Renderer2) {}
   correo:string="";
   correoEnviado = false;
@@ -61,12 +63,16 @@ export class modificarPass{
         this.dialogoAbierto();
 
       } else {
-        alert(res.message); // Mostrar mensaje de error en una alerta
+        // alert(res.message); // Mostrar mensaje de error en una alerta
         this.correoEnviado=false;
+        this.snackBar.open('no se puede a',  '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
       }
     });
   } else {
-    alert('La terminación del correo no es válida');
+    // alert('La terminación del correo no es válida');
+    this.snackBar.open('la terminacion de correo no es valida, no se ha podido enviar el correo',  '×', { panelClass: 'error', verticalPosition: 'top', duration: 3500 });
+    this.correo ='';
 
     //toastr.success('Mensaje de éxito');
   }

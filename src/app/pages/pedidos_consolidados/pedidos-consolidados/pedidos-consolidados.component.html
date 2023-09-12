@@ -75,7 +75,7 @@
     <mat-form-field class=" custom-form-field  w-100 mt-1" >
       <input matInput placeholder="Numero de Factura" formControlName="Pedido" required>
       <mat-error class="custom-error" *ngIf="numPedido.get('Pedido').invalid && numPedido.get('Pedido').touched">
-        Deben ser solo numeros y no mas de 4 digitos</mat-error>
+        Deben ser solo numeros y letras</mat-error>
 
 
       </mat-form-field>
@@ -130,7 +130,7 @@
 <!-- ?mat-group -->
 
 <mat-tab-group  *ngIf="!openTable" (selectedTabChange)="onTabChange($event)" >
-  
+
   <mat-tab label="PENDIENTES">
     <!-- Contenido de la segunda pestaña -->
 
@@ -138,7 +138,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>csvconsolidadonum</th>
+            <th># Numero</th>
             <th>Empresa</th>
             <th>#Pedidos</th>
             <th>Total</th>
@@ -223,7 +223,7 @@
 
 
   </mat-tab>
- 
+
 
   <mat-tab  label="CERRADOS">
 

@@ -1,6 +1,10 @@
 
 
-<h2 class="titulo">Cambio de contraseña</h2>
+<!-- <h2 class="titulo">Cambio de contraseña</h2> -->
+<main class="change-password">
+  <div class="container" fxLayout="row " fxLayoutAlign="center center">
+    <div fxFlex="100" fxFlex.gt-sm="50" class="p-2">
+
 
 <form class="centered-form">
 
@@ -14,8 +18,7 @@
     <input type="email" id="P_Usuario" name="P_Usuario" [(ngModel)]="formData.p_Usuario" required>
   </div> -->
 <!-- lo de arriba no se vera solo la contraseña de los input, pero no se debe eliminar lo de arriba  -->
-
-  <mat-form-field class="example-form-field" appearance="fill">
+  <mat-form-field class="example-form-field w-100 mt-2" appearance="outline">
     <mat-label>Contraseña</mat-label>
     <input matInput  [type]="hide ? 'password' : 'text'" alt="strongPass" required [(ngModel)]="formData.p_Password" name="password"
       pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,15}$" #passwordField>
@@ -27,7 +30,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class="example-form-field2" appearance="fill">
+  <mat-form-field class="example-form-field2 w-100 mt-2" appearance="outline">
     <mat-label>Confirmar Contraseña</mat-label>
     <input matInput  [type]="hide ? 'password' : 'text'"  required [(ngModel)]="formData.confirmPassword" name="confirmPassword"  #confirmPasswordField>
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -42,12 +45,17 @@
 
   <!-- <button  type="submit" (click)="mostrarSnackBar(message)">Ver una alerta ejemplo</button> -->
 
+  <!-- no modificar esto -->
 
       <button [hidden]="true" type="submit" (click)="submitForm()">Cambiar Contraseña</button>
       <button [hidden]="true" type="submit" (click)="verificarCorreo()">Verificar Correo</button>
 
       <button type="submit" [hidden]="true" (click)="obtenerIdConToken(formData.usuarioId)"> ejemplo para ver el id</button>
   </form>
+
+  </div>
+  </div>
+  </main>
 
 
   <div *ngIf="showConfirmation">

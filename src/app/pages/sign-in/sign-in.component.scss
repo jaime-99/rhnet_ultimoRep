@@ -86,6 +86,17 @@ font-size: 20px;
 }
 
 
+::ng-deep input[type="password"] { /* para el input de contraseña */
+  font-size: 18px; /* Ajusta el tamaño de la fuente según tus preferencias */
+}
+
+::ng-deep input[formControlName="email"] { /* para el input de correo */
+  font-size: 18px; /* Ajusta el tamaño de la fuente según tus preferencias */
+}
+
+
+
+
 
 //todo responsivo
 

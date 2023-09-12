@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
   numerodeUsuario: any;
   mostrarApartado = false;
   NumeroEmpleado: any;
+  categoriasProducto: any[];
 
   constructor(public appService:MaService,public router:Router,
    public appService1: AppService) { }
@@ -23,10 +24,7 @@ export class MenuComponent implements OnInit {
     this.NumeroEmpleado = userauth.data.INUsuarioId;
     //console.log(this.NumeroEmpleado)
 
-
-
-
-
+    this.obtenerCategorias();
 
   }
   GotoBigData()
@@ -104,6 +102,18 @@ GotoUniversidadDiken()
 
   toggleEquiposMenu(): void {
     this.equiposMenuVisible = !this.equiposMenuVisible; // Cambiar de true a false y viceversa
+  }
+
+
+  obtenerCategorias(){
+    //se obtendran las categorias dinamicamente
+
+      this.appService1.obtenerCategoriasProducto().subscribe((res) =>{
+      console.log(res);
+
+      this.categoriasProducto = res;
+
+    })
   }
 
 

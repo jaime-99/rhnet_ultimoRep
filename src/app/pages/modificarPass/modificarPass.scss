@@ -1,51 +1,75 @@
-.container {
+// .container {
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   height: 90vh;
+//   margin-top: 10px;
+//   //width: 100%;
+//   background-color: #e6f2ff; /* Color de fondo azul claro */
+// }
+
+// h2 {
+//   text-align: center;
+// }
+
+// .btn-bottom {
+//   margin-top: 20px; /* Ajusta el valor según sea necesario */
+// }
+
+// .button-group {
+//   display: flex;
+//   flex-direction: column;
+//   gap: 18px;
+//   align-items: center;
+// }
+
+// .button-row {
+//   display: flex;
+//   justify-content: center;
+// }
+
+// .pie {
+//   margin-top: 10px; /* Ajusta el valor según sea necesario para aumentar el espacio entre el formulario y el div "pie" */
+//   display: flex;
+// }
+
+// .container img {
+//   margin-bottom: 20px; /* Ajusta el valor según sea necesario para posicionar la imagen más arriba */
+// }
+
+// .titulo_1{
+//   text-align: center;
+// }
+// .mat_form_field{
+
+//   min-width: 150px;
+//   max-width: 400px;
+//   width: 100%;
+
+// }
+
+// todo nuevo diseño
+
+.form-sign-in{
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  height: 90vh;
-  margin-top: 10px;
-  //width: 100%;
-  background-color: #e6f2ff; /* Color de fondo azul claro */
-}
-
-h2 {
-  text-align: center;
-}
-
-.btn-bottom {
-  margin-top: 20px; /* Ajusta el valor según sea necesario */
-}
-
-.button-group {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-  align-items: center;
-}
-
-.button-row {
-  display: flex;
   justify-content: center;
+  height: 100vh; /* O la altura deseada */
+  background-color: #3386FF !important;
 }
 
-.pie {
-  margin-top: 10px; /* Ajusta el valor según sea necesario para aumentar el espacio entre el formulario y el div "pie" */
-  display: flex;
-}
+.container{
 
-.container img {
-  margin-bottom: 20px; /* Ajusta el valor según sea necesario para posicionar la imagen más arriba */
-}
-
-.titulo_1{
-  text-align: center;
-}
-.mat_form_field{
-
-  min-width: 150px;
-  max-width: 400px;
   width: 100%;
+  max-width: 700px; /* Ajusta el ancho máximo según tu diseño */
+  background-color: white; /* Fondo blanco */
+  border-radius: 10px; /* Esquinas redondeadas */
+  padding: 20px; /* Espacio interno */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+}
 
+body{
+  color: #3386FF;
 }
 
