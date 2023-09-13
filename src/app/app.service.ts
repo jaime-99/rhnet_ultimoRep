@@ -577,6 +577,13 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         }
 
+        obtenerSubMenuEquipos(){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/getSubMenu.php`;
+          return this.http.get<any[]>(url);
+
+        }
+
 
 
 

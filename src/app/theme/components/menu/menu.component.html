@@ -39,21 +39,42 @@
 <a mat-button [matMenuTriggerFor]="categorias">Categorías<mat-icon class="caret">arrow_drop_down</mat-icon></a>
 <mat-menu #categorias="matMenu" [overlapTrigger]="false" class="app-dropdown">
   <button (click)="search('QUIMICO')" mat-menu-item>QUÍMICOS</button>
-  <button mat-menu-item [matMenuTriggerFor]="equiposSubMenu">EQUIPOS</button>
+  <button a mat-menu-item [matMenuTriggerFor]="equiposSubMenu">EQUIPOS</button>
 </mat-menu>
 
-<!-- Submenú para la opción EQUIPOS -->
 
-<mat-menu  #equiposSubMenu="matMenu" [overlapTrigger]="false" class="app-dropdown sub-menu">
-  <!-- <button (click)="search('ROPA PARA TRABAJO')" mat-menu-item>ROPA PARA TRABAJO</button> -->
-  <!-- <button (click)="search('EQUIPO DE PROTECCION PERSONAL')" mat-menu-item>EQUIPO DE PROTECCION PERSONAL</button>
-  <button (click)="search('EQUIPO DE SERVICIO A LOS ALIMENTOS')" mat-menu-item>EQUIPO DE SERVICIO A LOS ALIMENTOS</button>
-  <button (click)="search('CONTENEDORES')" mat-menu-item>CONTENEDORES</button> -->
-
-  <button *ngFor="let categoria of categoriasProducto" (click)="search(categoria.Familia)" mat-menu-item>{{ categoria.Familia }}</button>
-
-
+<mat-menu #equiposSubMenu="matMenu" [overlapTrigger]="false" class="app-dropdown sub-menu">
+  <ng-container *ngFor="let categoria of menu">
+    <button [matMenuTriggerFor]="equiposSubMenu2" (click)="openSubMenu(categoria)" mat-menu-item>{{ categoria.Familia }}</button>
+  </ng-container>
 </mat-menu>
+
+<!-- Segundo menú -->
+
+<mat-menu #equiposSubMenu2="matMenu" [overlapTrigger]="false" class="app-dropdown sub-menu">
+  <ng-container *ngIf="selectedCategoria">
+    <ng-container *ngFor="let subCategoria of selectedCategoria.Submenu.split(',')">
+      <button (click)="search(subCategoria)" mat-menu-item>{{ subCategoria }}</button>
+    </ng-container>
+  </ng-container>
+</mat-menu>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -14,6 +14,10 @@ export class MenuComponent implements OnInit {
   NumeroEmpleado: any;
   categoriasProducto: any[];
 
+  menu: any[];
+  selectedCategoria: string[] ; // Variable para almacenar la categoría seleccionada
+
+
   constructor(public appService:MaService,public router:Router,
    public appService1: AppService) { }
 
@@ -25,6 +29,7 @@ export class MenuComponent implements OnInit {
     //console.log(this.NumeroEmpleado)
 
     this.obtenerCategorias();
+    this.obtenerSubMenuEquipos();
 
   }
   GotoBigData()
@@ -109,7 +114,7 @@ GotoUniversidadDiken()
     //se obtendran las categorias dinamicamente
 
       this.appService1.obtenerCategoriasProducto().subscribe((res) =>{
-      console.log(res);
+      // console.log(res);
 
       this.categoriasProducto = res;
 
@@ -118,5 +123,21 @@ GotoUniversidadDiken()
 
 
 
+  obtenerSubMenuEquipos(){
+
+    this.appService1.obtenerSubMenuEquipos().subscribe((res)=>{
+      console.log(res)
+
+      this.menu = res;
+
+    })
+
+
+  }
+
+
+  openSubMenu(categoria: any) {
+    this.selectedCategoria = categoria;
+  }
 
 }
