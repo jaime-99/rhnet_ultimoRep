@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Product } from 'src/app/app.models';
 import { AppService } from 'src/app/app.service';
+import { Settings,AppSettings } from 'src/app/app.settings';
 
 @Component({
   selector: 'app-cproductlist',
@@ -14,6 +16,10 @@ export class CproductlistComponent implements OnInit {
   @Input('EsRelacionado') EsRelacionado:any;
   @Input('ProductoRelacionadoId') ProductoRelacionadoId:any;
 
+  public config: SwiperConfigInterface = {};
+  public settings: Settings;
+
+
 
   public viewCol: number = 25;
   public page: any;
@@ -24,7 +30,7 @@ export class CproductlistComponent implements OnInit {
   idSustituto: number;
   idRelacionado:number;
   // snackBar: any;
-  constructor(public appService:AppService, public snackBar:MatSnackBar) { }
+  constructor(public appSettings:AppSettings,public appService:AppService, public snackBar:MatSnackBar, ) {this.settings = this.appSettings.settings; }
 
   ngOnInit(): void {
     console.log(this.EsRelacionado);
@@ -136,6 +142,40 @@ export class CproductlistComponent implements OnInit {
 
   }
 }
+
+
+ngAfterViewInit(){
+  this.config = {
+    observer: true,
+    slidesPerView: 1,
+    spaceBetween: 16,
+    keyboard: true,
+    navigation: true,
+    pagination: false,
+    grabCursor: true,
+    loop: false,
+    preloadImages: false,
+    lazy: true,
+    breakpoints: {
+      480: {
+        slidesPerView: 1
+      },
+      740: {
+        slidesPerView: 2
+      },
+      960: {
+        slidesPerView: 3
+      },
+      1280: {
+        slidesPerView: 4
+      },
+      1500: {
+        slidesPerView: 5
+      }
+    }
+  }
+}
+
 
 
 }

@@ -19,33 +19,33 @@ export class ProductsCarouselComponent implements OnInit {
   public config: SwiperConfigInterface = {};
   public settings: Settings;
   public viewprice:boolean=false;
-  constructor(public appSettings:AppSettings, public appService:AppService, public dialog: MatDialog, private router: Router) { 
+  constructor(public appSettings:AppSettings, public appService:AppService, public dialog: MatDialog, private router: Router) {
     this.settings = this.appSettings.settings;
   }
 
-  ngOnInit() { 
+  ngOnInit() {
     let userauth=JSON.parse(localStorage.getItem('datalogin')!);
-   
+
 if(userauth!=undefined)
     if(userauth.Nombre!="")
     {
       this.viewprice=true;
     }
-    
+
   }
-  
+
   ngAfterViewInit(){
     this.config = {
       observer: true,
       slidesPerView: 1,
-      spaceBetween: 16,       
+      spaceBetween: 16,
       keyboard: true,
       navigation: true,
       pagination: false,
-      grabCursor: true,        
+      grabCursor: true,
       loop: false,
       preloadImages: false,
-      lazy: true,  
+      lazy: true,
       breakpoints: {
         480: {
           slidesPerView: 1
@@ -66,7 +66,7 @@ if(userauth!=undefined)
     }
   }
 
-  public openProductDialog(product){   
+  public openProductDialog(product){
     let dialogRef = this.dialog.open(ProductDialogComponent, {
         data: product,
         panelClass: 'product-dialog',
@@ -74,7 +74,7 @@ if(userauth!=undefined)
     });
     dialogRef.afterClosed().subscribe(product => {
       if(product){
-        this.router.navigate(['/productos', product.id, product.name]); 
+        this.router.navigate(['/productos', product.id, product.name]);
       }
     });
   }

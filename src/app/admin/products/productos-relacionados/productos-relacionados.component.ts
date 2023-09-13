@@ -222,14 +222,14 @@ export class ProductosRelacionadosComponent implements OnInit {
 
       this.esRelacionado = true;
       this.sharedService.setEsRelacionado(this.esRelacionado);
-      console.log("debe dar true")
+      // console.log("debe dar true")
       this.router.navigate(['/admin/products/EscogerProductos',this.product.id])
     }else{
 
       this.esRelacionado = id ===2
       this.esRelacionado = false;
       this.sharedService.setEsRelacionado(this.esRelacionado);
-      console.log("debe dar false")
+      // console.log("debe dar false")
       this.router.navigate(['/admin/products/EscogerProductos',this.product.id])
     }
 
