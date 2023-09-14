@@ -216,7 +216,7 @@ export class PagesComponent implements OnInit {
 
   public getProductsEmpleado(){
 
-    this.appService.getProductsApiEmpleado(' ').subscribe(data=>{
+    this.appService.getProductsApiEmpleado(this.searchText1).subscribe(data=>{
     this.products = data;
 
     // console.log(data)
@@ -233,7 +233,7 @@ onSearchInputChange() {
 
 filterProducts(value: string): string[] {
   const filterValue = value.toLowerCase();
-  return this.products.filter((product) => product.name.toLowerCase().includes(filterValue));
+  return this.products.filter((product) => product.TextSearch.toLowerCase().includes(filterValue));
 }
 
 }

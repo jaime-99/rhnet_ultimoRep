@@ -3,7 +3,7 @@ import { AppService } from 'src/app/app.service';
 import { TablaConsolidadoComponent } from '../../tablaDetalles/tabla-consolidado/tabla-consolidado.component';
 import { MatDialog,MatDialogConfig } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Subscription } from 'rxjs';
+import { Subscription, filter } from 'rxjs';
 import * as Papa from 'papaparse';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -36,6 +36,7 @@ export class PedidosConsolidadosComponent implements OnInit {
   consolidadosCerrado: any[];
   consolidadosProceso: any[];
   consolidadosFiltrados: any[];
+  DetalleConsolidadoOV:any[];
   filtroTexto: any;
   mostrarBusqueda: boolean = false;
   aviso: boolean;
@@ -89,7 +90,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
         this.consolidadosProceso = res.filter((consolidado) => consolidado.NombreEstatus === 'EN PROCESO');
 
-        this.consolidadosCerrado = res.filter((consolidado) => consolidado.NombreEstatus === 'CERRADO');
+        this.consolidadosCerrado = res.filter((consolidado) => consolidado.NombreEstatus === 'FACTURADO');
         // console.log(this.consolidadosPendiente)
 
 
@@ -97,6 +98,28 @@ export class PedidosConsolidadosComponent implements OnInit {
         // console.log(res); // para ver los consolidados
     })
 
+  }
+
+  CargarConsolidados()
+  {
+    this.appService.obtenerConsolidados().subscribe((res)=>{
+
+      this.consolidados = res.filter((consolidado) =>consolidado);
+      // obtener los id's
+      this.consolidadoIds = this.consolidados.map((consolidado) => consolidado.IdConsolidadoVentaEmpleado);
+
+      this.consolidadosPendiente = res.filter((consolidado) => consolidado.NombreEstatus === 'PENDIENTE');
+      // console.log(this.consolidadosPendiente)
+
+      this.consolidadosProceso = res.filter((consolidado) => consolidado.NombreEstatus === 'EN PROCESO');
+
+      this.consolidadosCerrado = res.filter((consolidado) => consolidado.NombreEstatus === 'FACTURADO');
+      // console.log(this.consolidadosPendiente)
+
+
+
+      // console.log(res); // para ver los consolidados
+  })
   }
 
   seleccionarConsolidado(consolidado: number) {
@@ -154,7 +177,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
 
 
-  abrirTabla(id):void{
+  abrirTabla(id,ov):void{
     // se abrira la tabla al seleccionar detalles
 
     if (this.IdSeleccionado === id) {
@@ -194,8 +217,62 @@ export class PedidosConsolidadosComponent implements OnInit {
               this.detalleVentasArray.push(detalleVenta);
               //console.log(detalleVenta);// ver los detalles de cada fila
             }
+            this.appService.getFacturaByOV(ov).subscribe((detFactura)=>{
+
+               const data2=detFactura;
+               if(data2.length>0)
+            {
+              let Factura="";
+              for (const det of data)
+              {
+                
+                
+                if(data2.filter(x=>x.memo==det.producto+" "+det.Numero_Empleado+" "+det.Usuario)[0])
+                {
+                  let xd=data2.filter(x=>x.memo==det.producto+" "+det.Numero_Empleado+" "+det.Usuario)[0];
+                  if(xd.quantity!=det.Cantidad)
+                  {  
+                    Factura=xd.tranid;
+                      det.Cantidad=xd.quantity;
+                      console.log(det.Cantidad);
+                      det.Importe=det.Precio*det.Cantidad;
+                      this.appService.UPVentaEmpleadoDetalle(det.ventaEmpleadoDetalleId,det.VentaEmpleadoId,det.Cantidad,xd.tranid).subscribe(
+                        (res)=>{
+                          console.log(res);
+                        }
+                      )
+                  }
+                  else
+                  {
+                    Factura=xd.tranid;
+                  }
+
+                }
+                else{
+                  this.appService.deletePartida(det.ventaEmpleadoDetalleId,det.VentaEmpleadoId,id).subscribe((res)=>{
+                    console.log(res);
+                  })
+                }
+    
+              }
+              this.appService.UpdateConsolidado(id,Factura,3).subscribe((res)=>{
+
+                console.log(res);
+              })
+              this.snackBar.open('La orden de venta: '+ov+" se cotejo con la Factura:"+Factura,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+            }
+            else{
+              this.snackBar.open('La orden de Venta no se encutra facturada ' ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+            }
+  
+            })
+           
+
           });
-          this.snackBar.open('Se muestran los detalles del consolidado Abajo!', '×', { panelClass: 'success', verticalPosition: 'top', duration: 8000 });
+          
+          
+          
+          
 
       }
     }
@@ -215,6 +292,7 @@ export class PedidosConsolidadosComponent implements OnInit {
     this.IdSeleccionado = null;
     if (this.subscription) {
       this.subscription.unsubscribe();
+      this.CargarConsolidados();
     }
   }
 
@@ -379,6 +457,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
     this.appService.getdataconsolidadobyid(IdConsolidadoVentaEmpleado).subscribe((res) => {
       
       this.appService.GenerarOrdenDeventa(res).subscribe((result)=>{
+        this.snackBar.open('Se creo la orden de venta: '+result.tranid,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
         this.appService.obtenerConsolidados().subscribe((res)=>{
 
@@ -391,7 +470,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
   
           this.consolidadosProceso = res.filter((consolidado) => consolidado.NombreEstatus === 'EN PROCESO');
   
-          this.consolidadosCerrado = res.filter((consolidado) => consolidado.NombreEstatus === 'CERRADO');
+          this.consolidadosCerrado = res.filter((consolidado) => consolidado.NombreEstatus === 'FACTURADO');
           // console.log(this.consolidadosPendiente)
   
   

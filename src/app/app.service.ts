@@ -190,6 +190,29 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         return this.http.post<any>( url, body );
         }
 
+        UPVentaEmpleadoDetalle(detalleid:any,ventaid:any,cantidad:any,NumeroFactura:any)
+        {
+        
+          const url=`${ this.baseUrl }/ventas/actualizardetalleventa.php`;
+          const body={detalleid,ventaid,cantidad,NumeroFactura}
+          return this.http.post<any>( url, body );
+        }
+
+        UpdateConsolidado(consolidadoid:any,NumeroFactura:any,estatus:any)
+        {
+          const url=`${ this.baseUrl }/ventas/updateConsolidado.php`;
+          const body={consolidadoid,NumeroFactura,estatus}
+          return this.http.post<any>( url, body );
+
+        }
+        deletePartida(detalleid:any,ventaempleadoid:any,consolidadoid:any)
+        {
+          const url=`${ this.baseUrl }/ventas/deletedetallepartida.php`;
+          const body={detalleid,ventaempleadoid,consolidadoid}
+          return this.http.post<any>( url, body );
+
+        }
+
         // termina ejemplo de addVentaEmpleado -- jaime
 
         //esto es para mandar sin los detalles solo la ventaEmpelado
@@ -549,6 +572,12 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         getordenVentaPorConoslidadoId(p_ConsolidadoId){
 
           const url = `https://www.dikeninternational.com/dikenecommerce/api/NS/getordenVentaPorConoslidadoId.php?p_ConsolidadoId=${p_ConsolidadoId}`
+          return this.http.get<any>(url)
+
+        }
+        getFacturaByOV(p_ConsolidadoId){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/NS/getqueryResultNs.php?p_ConsolidadoId=${p_ConsolidadoId}`
           return this.http.get<any>(url)
 
         }
