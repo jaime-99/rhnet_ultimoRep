@@ -134,7 +134,7 @@ export class EscogerProductos implements OnInit {
 
 
 
-  public agregar(id) {
+  public agregar(id,name) {
     // console.log(id)
     // if(this.ProductoId ===this.product?.id){
     //   this.snackBar.open('no se puede agregar el mismo producto a relacionads' ,  '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
@@ -145,16 +145,20 @@ export class EscogerProductos implements OnInit {
     // console.log(this.ProductoPadreId);
     this.appService.insertarProductosRelacionados(this.ProductoPadreId,this.ProductoId).subscribe((res)=>{
       // console.log(res);
-      this.snackBar.open('se agrego a relacionados el producto seleccionado ' + this.product.name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('se agrego a relacionados el producto seleccionado ' + name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       this.relacionados.push(this.ProductoId); // Agregar el ProductoId al arreglo
 
+      // console.log(name)
     })
 
   }else if (this.esRelacionado ===false && this.ProductoId != this.product.id && !this.sutitutos.includes(this.ProductoId)){
     this.appService.insertarProductosSustitutos(this.ProductoPadreId,this.ProductoId).subscribe((res)=>{
       // console.log(res);
-      this.snackBar.open('se agrego a sustituos el producto seleccionado ' + this.product.name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.snackBar.open('se agrego a sustituos el producto seleccionado ' + name ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       this.sutitutos.push(this.ProductoId);
+
+      // console.log(name)
+
     })
 
 

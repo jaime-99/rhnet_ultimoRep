@@ -555,7 +555,7 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         }
 
-        // colcoare para obtener la tabla junta de los consolidados
+        // colocare para obtener la tabla junta de los consolidados
 
         obtenerTablaJunta(p_ConsolidadoId){
 
@@ -590,9 +590,6 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>(url, data , { headers });
         }
 
-
-
-
         // obtener todos los datos de un usuario , 02/08/2023
 
         obtenerTodosDatos(p_UsuarioId){
@@ -601,6 +598,20 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.get<any>(url)
         }
 
+
+      obtenerCategoriasProducto(){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/getCategoriasEmpleados.php`;
+          return this.http.get<any[]>(url);
+
+        }
+
+        obtenerSubMenuEquipos(){
+
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/getSubMenu.php`;
+          return this.http.get<any[]>(url);
+
+        }
 
 
 
@@ -627,10 +638,10 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
     }
  public getperiodosventa( ): Observable<any>{
         let apiurl='https://www.dikeninternational.com/dikenecommerce/api/usuario/getperiodosventa.php';
-        
+
         return this.http.get<Product>(apiurl );
     }
-    
+
     UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clase:any,Familia:any,SubFamilia:any,TextSearch:any,CodigoDiken:any,PrettyText:any,ParaVentaEmpleado:any,SePuedeFraccionar:any,CantidadFraccionar:any)
     {
       const url=`${ this.baseUrl }/producto/UpdateProducto.php`;

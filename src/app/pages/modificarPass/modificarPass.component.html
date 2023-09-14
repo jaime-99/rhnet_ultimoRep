@@ -1,5 +1,4 @@
 
-<h1 class="titulo_1">Recuperación de contraseña</h1>
 
 <div class="containerAlert">
   <div class="mat-alert mat-alert-success success-alert" role="alert" *ngIf="correoEnviado">
@@ -8,27 +7,34 @@
   </div>
 </div>
 
-<main class="form-signin">
-  <form class="container">
-    <img class="imagen" src="assets/images/flags/diken_azulL.png" alt="imagen Diken" width="200" height="60">
+<main class="form-sign-in">
+  <div class="container" fxLayout="row " fxLayoutAlign="center center">
+     <div fxFlex="100" fxFlex.gt-sm="50" class="p-2">
+  <form>
+    <div fxFlex="50" class="text-center">
+    <img class="imagen" src="assets/images/flags/LOGO_DIKEN_2022.jpg" alt="imagen Diken" >
+    </div>
     <h1 class="mat-h3 mb-3 fw-normal text-center text-lg">Por favor introduce tu correo electrónico</h1>
-    <mat-form-field class="mat_form_field" appearance="fill">
+    <mat-form-field class="w-100 mt-2" appearance="outline">
       <mat-label>Correo electrónico</mat-label>
       <input matInput type="email" placeholder="name@example.com" [(ngModel)]="correo" name="correo">
     </mat-form-field>
 
-    <div class="button-group">
+    <div class="button-group text-center">
       <div class="button-row">
         <button mat-raised-button color="primary" [disabled]="correoEnviado" (click)="mandarToken()">Mandar Correo</button>
       </div>
 
-      <div class="button-row">
+      <div class="button-row mt-2 text-center" >
         <button mat-raised-button color="warn" (click)="irASesion()">Iniciar Sesión</button>
       </div>
-    <div class="pie">
+    <div class="pie mt-2 text-center" >
       <p class="mt-5 mb-3 text-muted">© 2014–2023</p>
     </div>
     </div>
 
-  </form>
+    </form>
+    </div>
+
+  </div>
 </main>

@@ -13,7 +13,7 @@
 
 <section  *ngIf="appService.Data.cartList?.length > 0  && mostrarFormAdicional"    class="example-section">
   <label class="example-margin">Cuenta:</label>
-  <mat-radio-group [(ngModel)]="noUsuario" (ngModelChange)="onNoUsuarioChange($event)">
+  <mat-radio-group color= 'primary' [(ngModel)]="noUsuario" (ngModelChange)="onNoUsuarioChange($event)">
 
     <mat-radio-button class="example-margin" value="after">Si</mat-radio-button>
     <mat-radio-button class="example-margin" value="before">No</mat-radio-button>
