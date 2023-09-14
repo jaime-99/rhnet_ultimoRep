@@ -164,7 +164,7 @@
                   <button mat-raised-button color="primary" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Generar OV</button>
                 </div>
                 <div class="boton2">
-                  <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button>
+                  <!-- <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button> -->
                 </div>
               </div>
             </td>
@@ -208,10 +208,10 @@
               <!-- Acciones -->
               <div class="acciones-container">
                 <div class="boton1">
-                  <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
+                  <!-- <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button> -->
                 </div>
                 <div class="boton2">
-                  <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button>
+                  <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado,consolidado.NumeroFactura)" mat-raised-button color="primary">Cotejar</button>
                 </div>
               </div>
             </td>
@@ -225,7 +225,7 @@
   </mat-tab>
 
 
-  <mat-tab  label="CERRADOS">
+  <mat-tab  label="FACTURADOS">
 
     <div class="table-container">
       <table class="table">
@@ -254,10 +254,10 @@
               <!-- Acciones -->
               <div class="acciones-container">
                 <div class="boton1">
-                  <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button>
+                  <!-- <button mat-raised-button color="warn" class="boton_tamaño" (click)="descargarcsv(consolidado.IdConsolidadoVentaEmpleado)">Descargar</button> -->
                 </div>
                 <div class="boton2">
-                  <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button>
+                  <!-- <button (click)="abrirTabla(consolidado.IdConsolidadoVentaEmpleado)" mat-raised-button color="primary">Cotejar</button> -->
                 </div>
               </div>
             </td>
