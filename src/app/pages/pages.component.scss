@@ -26,3 +26,13 @@
     border-radius: 50%;
     font-size: 11px;
 }
+
+
+@media (max-width: 767px) {
+  /* Selector para el input de búsqueda */
+  input[name="searchText2"] {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    font-size: 13px; /* Tamaño de fuente personalizado para dispositivos móviles */
+    padding: 0 300px 0 12px ; /* Espaciado interior personalizado */
+  }
+}

@@ -126,7 +126,7 @@ GotoUniversidadDiken()
   obtenerSubMenuEquipos(){
 
     this.appService1.obtenerSubMenuEquipos().subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
 
       this.menu = res;
 

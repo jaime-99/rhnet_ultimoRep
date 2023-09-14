@@ -157,12 +157,20 @@
                     </span>
                   </ng-template> -->
                 <!-- </mat-menu> -->
-                <input type="text" name="searchText2" placeholder="Escribe para..." fxFlex [(ngModel)]="searchText2"
-                  (click)="stopClickPropagate($event)">
+                <input [matAutocomplete]="auto" type="text" name="searchText2" placeholder="Escribe para..." fxFlex [(ngModel)]="searchText2" (ngModelChange)="onSearchInputChange()"
+                  (click)="stopClickPropagate($event)" (keydown.enter)="search2(searchText2)"  >
+
+                  <mat-autocomplete   #auto="matAutocomplete">
+                    <mat-option *ngFor="let product of  filteredProducts" [value]="product.name">
+                      {{ product.name }}
+                    </mat-option>
+                  </mat-autocomplete>
+
                 <button mat-mini-fab (click)="search2(searchText2)" type="button"
                   class="search-btn mat-elevation-z0 text-muted">
                   <mat-icon>search</mat-icon>
                 </button>
+
 
 
 

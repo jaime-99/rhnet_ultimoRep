@@ -38,7 +38,7 @@ export class VentaEmpleadoComponent implements OnInit {
   mostrarFormAdicional: boolean = true; // Inicialmente visible
   pasoConfirmacionHabilitado: boolean = false; // Inicialmente deshabilitado
 
-  mostrarBox: boolean = true; // es para los que no tienen cuenta, se les desabilitara a los que si tienen
+  mostrarBox: boolean = false; // es para los que no tienen cuenta, se les desabilitara a los que si tienen
   public searchText: string;
   public usuarios = [];
   public settings: Settings;
@@ -75,7 +75,7 @@ export class VentaEmpleadoComponent implements OnInit {
 
     this.verificarCarritoVacio()
 
-    // this.mostrarPerfilNuevo();
+    this.mostrarPerfilNuevo();
 
     if (this.appService.Data.cartList.length === 0) {
       // Carrito vacío, navega a la página de productos y muestra un mensaje de alerta
@@ -310,13 +310,13 @@ export class VentaEmpleadoComponent implements OnInit {
     // });
 
     detalles.forEach(X=>{
-     this.appService.getProductById((r)=>{ 
+     this.appService.getProductById((r)=>{
       let prod=r.shift();
-      if(prod.availibilityCount<X.Cantidad)  
+      if(prod.availibilityCount<X.Cantidad)
       {
         alert("solo quedan "+prod.availibilityCount+ "del producto "+prod.name);
         return;
-      }   
+      }
       })
 
     });
@@ -389,10 +389,10 @@ export class VentaEmpleadoComponent implements OnInit {
     this.appService.obtenerPerfil().subscribe((res) => {
       if (res !== null && res.includes(userauth.data.INUsuarioId)) {
         this.mostrarBox = true;
-        console.log("Mostrar el box para el usuario actual");
+        // console.log("Mostrar el box para el usuario actual");
       } else {
         this.mostrarBox = false;
-        console.log("No mostrar el box para el usuario actual");
+        // console.log("No mostrar el box para el usuario actual");
       }
     });
   }

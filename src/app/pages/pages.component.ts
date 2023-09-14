@@ -229,6 +229,10 @@ onSearchInputChange() {
   this.filteredProducts = this.filterProducts(this.searchText1);
   this.showAutocomplete = !!this.searchText1; // Mostrar el autocompletado si el campo de búsqueda tiene texto
 
+  this.filteredProducts = this.filterProducts(this.searchText2);
+  this.showAutocomplete = !!this.searchText2; // Mostrar el autocompletado si el campo de búsqueda tiene texto
+
+
 }
 
 filterProducts(value: string): string[] {

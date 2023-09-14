@@ -1,8 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { SidenavMenuService } from './sidenav-menu.service';
 import { AppService } from 'src/app/app.service';
-import { Route } from '@angular/router';
+import { Route, Router } from '@angular/router';
 import { SidenavMenu } from './sidenav-menu.model';
+import { MatMenuTrigger } from '@angular/material/menu';
+import { MatMenu } from '@angular/material/menu';
+
+
 
 
 @Component({
@@ -17,15 +21,16 @@ export class SidenavMenuComponent implements OnInit {
   parentMenu:Array<any>;
 
   mostrarApartado: boolean= false;
-  router: any;
   searchText: any;
+  selectedCategory: any;
 
 
-  constructor(private sidenavMenuService:SidenavMenuService, public appService1:AppService ) { }
+  constructor(private sidenavMenuService:SidenavMenuService, public appService1:AppService,  private router: Router ) { }
 
   ngOnInit() {
     // this.parentMenu = this.menuItems.filter(item => item.parentId == this.menuParentId); //!esto muestra las opciones
     this.mostrarAdmin();
+    // this.search();
 
   //   this.mostrarAdmin();
   //   // todo es para mostrar a solo los admin
@@ -45,10 +50,26 @@ export class SidenavMenuComponent implements OnInit {
 
   }
 
-  onClick(menuId){
+  onClick(menuId,title){
     this.sidenavMenuService.toggleMenuItem(menuId);
     this.sidenavMenuService.closeOtherSubMenus(this.menuItems, menuId);
+
+
+
+    // this.searchText = category;
+    // this.search();
+    this.selectedCategory = title;
+
   }
+
+  getSubMenuItems(menuId: number): SidenavMenu[] {
+    const subMenus = this.menuItems.filter(item => item.parentId === menuId);
+    console.log('Submenus:', subMenus);
+    return subMenus;
+
+  }
+
+
 
 
 
@@ -68,7 +89,7 @@ export class SidenavMenuComponent implements OnInit {
 
         this.parentMenu = this.menuItems.filter(
           item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'
-        );
+         );
       }
     });
   }
@@ -82,15 +103,54 @@ export class SidenavMenuComponent implements OnInit {
 
     // Filtrar opciones de menú según el texto de búsqueda
     this.parentMenu = this.menuItems.filter(item =>
-      item.title.includes(this.searchText) || item.title === 'Quimicos' || item.title === 'Equipos'
+      item.title.includes(this.searchText) || item.title === 'Quimico' || item.title === 'Equipos'
     );
 
-    this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
-    this.router.onSameUrlNavigation = 'reload';
+    // this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
+    // this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/productos', this.searchText], { queryParams: queryParams });
   }
 
 
 
+  // isMenuOpen = false;
+
+  // // Referencia al menú desplegable
+  // @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
+
+  // // Función para abrir el menú cuando se hace clic en un elemento del menú
+  // openMenu(): void {
+  //   if (this.menuTrigger) {
+  //     this.menuTrigger.openMenu();
+  //   }
+  // }
+
+
+  //todo nuevo
+  onClickCategory(category: string) {
+    this.searchText = category;
+
+    console.log(category)
+    // this.search();
+
+  }
+
+
+  selectedSubMenuName: string | null = null; // Propiedad para almacenar el nombre del submenú seleccionado
+
+// Función para manejar el clic en un submenú y almacenar su nombre
+onClickSubMenu(subMenuName: string) {
+  this.selectedSubMenuName = subMenuName;
+}
+
+
+
+  //todo se termina
+
 
 }
+
+
+
+
+

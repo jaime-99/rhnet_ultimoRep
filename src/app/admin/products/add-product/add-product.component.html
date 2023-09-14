@@ -127,11 +127,13 @@
                 </div> -->
             </form>
 
+            <!-- <h3 class="text-center">Escribe la descripcion del Producto</h3> -->
+
             <div [fxLayout.xs]="'column'" [fxLayout.gt-sm]="'row'">
 
 
             <div fxLayout="row wrap">
-            <div fxFlex="50" class="px-2">
+            <div fxFlex="70" class="px-1">
         <quill-editor
         [(ngModel)]="htmlText"
         placeholder="Escribir Descripción"
@@ -139,12 +141,14 @@
         (onSelectionChanged)="onSelectionChanged($event)"
         (onContentChanged)="onContentChanged($event)"
         ></quill-editor></div>
-        <div  fxFlex="50" class="px-2">
-        <div fxFlex="50" class="px-2" [innerHTML]="htmlText"></div>
+        <div  fxFlex="100" class="px-2">
+        <div fxFlex="70" class="px-1" [innerHTML]="htmlText"></div>
         </div>
     </div>
+    <!-- <h3 class="text-center">Escribe las caracteristicas del Producto</h3> -->
+
     <div fxLayout="row wrap">
-        <div fxFlex="50" class="px-2">
+        <div fxFlex="100" class="px-1">
     <quill-editor
     [(ngModel)]="htmlTextCaracteristica"
     placeholder="Ecribir las Caracteristicas"
@@ -152,8 +156,8 @@
     (onSelectionChanged)="onSelectionChanged($event)"
     (onContentChanged)="onContentChanged($event)"
     ></quill-editor></div>
-    <div fxFlex="50" class="px-2">
-    <div fxFlex="50" class="px-2"  [innerHTML]="htmlTextCaracteristica"></div>
+    <div fxFlex="100" class="px-1">
+    <div fxFlex="50" class="px-1"  [innerHTML]="htmlTextCaracteristica"></div>
     </div>
 </div>
 </div>
