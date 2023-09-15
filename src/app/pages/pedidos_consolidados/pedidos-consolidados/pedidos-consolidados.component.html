@@ -69,10 +69,10 @@
         <button (click)="cerrarTabla()" mat-raised-button color="primary" > Ocultar Detalles</button>
   </div>
 
-  <div class="text_box_pedido" *ngIf="openTable">
+  <!-- <div class="text_box_pedido" *ngIf="openTable">
 
     <form [formGroup]="numPedido" >
-    <mat-form-field class=" custom-form-field  w-100 mt-1" >
+       <mat-form-field class=" custom-form-field  w-100 mt-1" >
       <input matInput placeholder="Numero de Factura" formControlName="Pedido" required>
       <mat-error class="custom-error" *ngIf="numPedido.get('Pedido').invalid && numPedido.get('Pedido').touched">
         Deben ser solo numeros y letras</mat-error>
@@ -82,7 +82,7 @@
     </form>
 
 
-  </div>
+  </div> -->
 
 
 
@@ -108,9 +108,9 @@
       <tr *ngFor="let detalleVenta of detalleVentasArray;let i = index">
         <td  class="td-2"> {{detalleVenta.codigoDiken}} </td>
         <td  class="td-2">{{detalleVenta.producto}} </td>
-        <td  class="td-2">${{ detalleVenta.precio | number : '1.2-2'  }} </td>
+        <td  class="td-2" style="text-align: right;">${{ detalleVenta.precio | number : '1.2-2'  }} </td>
         <td  class="td-2">{{detalleVenta.cantidad}} </td >
-        <td  class="td-2">{{detalleVenta.importe | number : '1.2-2'}} </td>
+        <td  class="td-2" style="text-align: right;">{{detalleVenta.importe | number : '1.2-2'}} </td>
         <td  class="td-2">{{detalleVenta.empleado}} </td>
         <td  class="td-2">{{detalleVenta.usuario}} </td>
         <td  class="td-2"> <button  mat-raised-button color="warn"     [disabled]="detalleVenta.eliminado ||  numPedido.get('Pedido').invalid"  (click)="eliminarDetalleVenta(i)">Eliminar</button></td>
@@ -153,7 +153,7 @@
             <td class="td-1">{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
             <td class="td-1">{{ consolidado.Empresa +" "+consolidado.IdTipoNomina}}</td>
             <td class="td-1"> {{consolidado.NumPedidos}} </td>
-            <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
+            <td class="td-1"style="text-align: right;">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
             <td class="td-1">{{ consolidado.Fecha  | date: 'dd/MM/yyyy' }}</td>
             <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>
             <td class="td-1">{{ consolidado.NumeroFactura }}</td>
@@ -200,7 +200,7 @@
             <td class="td-1">{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
             <td class="td-1">{{ consolidado.Empresa+" "+consolidado.IdTipoNomina }}</td>
             <td class="td-1"> {{consolidado.NumPedidos}} </td>
-            <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
+            <td class="td-1"style="text-align: right;">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
             <td class="td-1">{{ consolidado.Fecha  | date: 'dd/MM/yyyy' }}</td>
             <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>
             <td class="td-1">{{ consolidado.NumeroFactura }}</td>
@@ -246,7 +246,7 @@
             <td class="td-1">{{ consolidado.IdConsolidadoVentaEmpleado }}</td>
             <td class="td-1">{{ consolidado.Empresa+" "+consolidado.IdTipoNomina }}</td>
             <td class="td-1"> {{consolidado.NumPedidos}} </td>
-            <td class="td-1">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
+            <td class="td-1" style="text-align: right;">${{ consolidado.TotalConsolidado | number: '1.2-2'}}</td>
             <td class="td-1">{{ consolidado.Fecha  | date: 'dd/MM/yyyy' }}</td>
             <td class="td-1"><strong>{{ consolidado.NombreEstatus }}</strong></td>
             <td class="td-1">{{ consolidado.NumeroFactura }}</td>

@@ -541,8 +541,8 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         }
 
         // es para obtener los perfiles que haran las compras por usuarios
-        obtenerPerfil() {
-          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerUsuarioNuevoPerfil.php`; // Reemplaza con la URL de tu API
+        obtenerPerfil(id:any) {
+          const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/obtenerUsuarioNuevoPerfil.php?id=`+id; // Reemplaza con la URL de tu API
 
           return this.http.get<any[]>(url);
         }

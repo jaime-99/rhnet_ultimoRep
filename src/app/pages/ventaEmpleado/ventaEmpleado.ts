@@ -386,7 +386,7 @@ export class VentaEmpleadoComponent implements OnInit {
   mostrarPerfilNuevo() {
     let userauth = JSON.parse(localStorage.getItem("datalogin")!);
     //console.log(userauth);
-    this.appService.obtenerPerfil().subscribe((res) => {
+    this.appService.obtenerPerfil(3).subscribe((res) => {
       if (res !== null && res.includes(userauth.data.INUsuarioId)) {
         this.mostrarBox = true;
         // console.log("Mostrar el box para el usuario actual");

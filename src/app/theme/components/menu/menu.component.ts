@@ -11,6 +11,7 @@ import { AppService } from 'src/app/app.service';
 export class MenuComponent implements OnInit {
   numerodeUsuario: any;
   mostrarApartado = false;
+  mostrarAdministrador = false;
   NumeroEmpleado: any;
   categoriasProducto: any[];
 
@@ -85,12 +86,21 @@ GotoUniversidadDiken()
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
     //console.log(userauth);
 
-    this.appService1.obtenerAdmin().subscribe((res) => {
+    this.appService1.obtenerPerfil(4).subscribe((res) => {
       if (res !== null && res.includes(userauth.data.INUsuarioId)) {
         this.mostrarApartado = true;
         //console.log("Mostrar el apartado para el usuario actual");
-      } else {
+      } else {  
         this.mostrarApartado = false;
+        //console.log("No mostrar el apartado para el usuario actual");
+      }
+    });
+    this.appService1.obtenerPerfil(2).subscribe((res) => {
+      if (res !== null && res.includes(userauth.data.INUsuarioId)) {
+        this.mostrarAdministrador = true;
+        //console.log("Mostrar el apartado para el usuario actual");
+      } else {
+        this.mostrarAdministrador = false;
         //console.log("No mostrar el apartado para el usuario actual");
       }
     });

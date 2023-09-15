@@ -23,8 +23,9 @@
         <th>Numero Empelado</th>
         <th>Nombre</th>
         <th>Fecha de venta</th>
-        <th>Total</th>
+        <th style="text-align: left;">Total</th>
         <th>Estatus de la venta</th>
+        <th>Documento</th>
         <th>Acciones</th>
 
       </tr>
@@ -37,9 +38,9 @@
         <td>{{ NumeroEmpleado }}</td>
         <td>{{ Nombre }}</td>
         <td>{{ venta.Fecha | date :'dd/MM/yyyy' }}</td>
-        <td>${{venta.Total | number : '1.2-2'}}</td>
+        <td style="text-align: right;">${{venta.Total | number : '1.2-2'}}</td>
         <td><strong>{{venta.Estatus}}</strong> </td>
-
+        <td><strong>{{venta.Documento}}</strong> </td>
 
           <!-- Agrega el botón con estilo de Angular Material -->
           <td>
@@ -108,7 +109,7 @@
       <td>{{ ventasColaboradores.Numero_Empleado }}</td>
       <td>{{ ventasColaboradores.Nombre }}</td>
       <td>{{ ventasColaboradores.Fecha | date :'dd/MM/yyyy' }}</td>
-      <td>${{ventasColaboradores.Total | number : '1.2-2'}}</td>
+      <td style="text-align: right;">${{ventasColaboradores.Total | number : '1.2-2'}}</td>
       <td><strong>{{ventasColaboradores.Estatus}}</strong> </td>
 
 
