@@ -5,6 +5,8 @@ import { AppService } from '../app.service';
 import { Category, Product } from '../app.models';
 import { SidenavMenuService } from '../theme/components/sidenav-menu/sidenav-menu.service';
 import { isPlatformBrowser } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { openDialog } from './openDialog.component';
 
 @Component({
   selector: 'app-pages',
@@ -33,10 +35,12 @@ export class PagesComponent implements OnInit {
   @ViewChild('sidenav', { static: true }) sidenav:any;
 
   public settings: Settings;
+  mostrarAlerta: boolean;
   constructor(public appSettings:AppSettings,
               public appService:AppService,
               public sidenavMenuService:SidenavMenuService,
               public router:Router,
+              public dialog: MatDialog,
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;
   }
@@ -131,14 +135,11 @@ export class PagesComponent implements OnInit {
     const productFound = this.products.some(product => product.name.includes(this.searchText1));
 
       if (!productFound) {
-        alert("No se encontraron productos que coincidan con la búsqueda.");
         this.router.navigate(['/productos'])
+        this.abrirDialog();
+
       }
-
   }
-
-
-
 
   // este metodo es para el boton para buscar,
   search1(searchText: string): void {
@@ -157,9 +158,8 @@ export class PagesComponent implements OnInit {
     const productFound = this.products.some(product => product.name.includes(this.searchText1));
 
       if (!productFound) {
-        alert("No se encontraron productos que coincidan con la búsqueda.");
         this.router.navigate(['/productos'])
-
+        this.abrirDialog();
       }
 
   }
@@ -176,6 +176,15 @@ export class PagesComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/productos', this.searchText2], { queryParams: queryParams });
+
+
+    //todo checar esto
+    const productFound = this.products.some(product => product.name.includes(this.searchText2));
+
+      if (!productFound) {
+        this.router.navigate(['/productos'])
+        this.abrirDialog();
+      }
 
     // alert("hola");
   }
@@ -269,4 +278,19 @@ onSearchInputChange2(){
   this.showAutocomplete1 = !!this.searchText2; // Mostrar el a
 }
 
+
+abrirDialog(): void {
+  const dialogRef = this.dialog.open(openDialog, {
+    // Configuración del diálogo (puedes personalizar esto según tus necesidades)
+    width: '300px',
+    data: { mensaje: this.searchText1 } // Puedes enviar datos al diálogo si es necesario
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('El diálogo se cerró');
+    // Puedes manejar la respuesta del diálogo aquí si es necesario
+  });
 }
+
+}
+
