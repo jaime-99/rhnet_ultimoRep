@@ -25,7 +25,9 @@ export class PagesComponent implements OnInit {
 
   public products = [];
   filteredProducts: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
+  filteredProducts1: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
   showAutocomplete: boolean = false; // Variable para controlar la visibilidad del autocompletado
+  showAutocomplete1: boolean = false; // Variable para controlar la visibilidad del autocompletado
 
 
   @ViewChild('sidenav', { static: true }) sidenav:any;
@@ -106,8 +108,8 @@ export class PagesComponent implements OnInit {
     event.preventDefault();
   }
 
+  // es para buscar un producto con enter en el teclado
   public search(event:any){
-
 
     this.searchText = (event.target as HTMLInputElement).value;
     console.log(this.searchText);
@@ -123,7 +125,19 @@ export class PagesComponent implements OnInit {
     // setTimeout(() => {
     //   window.location.reload();
     // }, 500);
+
+    // alerta de no se encontraron productos
+
+    const productFound = this.products.some(product => product.name.includes(this.searchText1));
+
+      if (!productFound) {
+        alert("No se encontraron productos que coincidan con la búsqueda.");
+        this.router.navigate(['/productos'])
+      }
+
   }
+
+
 
 
   // este metodo es para el boton para buscar,
@@ -138,7 +152,16 @@ export class PagesComponent implements OnInit {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/productos', this.searchText1], { queryParams: queryParams });
 
-    // alert("hola");
+
+    // alerta por si no se encuentran los productos de el search1( click con boton )
+    const productFound = this.products.some(product => product.name.includes(this.searchText1));
+
+      if (!productFound) {
+        alert("No se encontraron productos que coincidan con la búsqueda.");
+        this.router.navigate(['/productos'])
+
+      }
+
   }
 
 
@@ -229,8 +252,8 @@ onSearchInputChange() {
   this.filteredProducts = this.filterProducts(this.searchText1);
   this.showAutocomplete = !!this.searchText1; // Mostrar el autocompletado si el campo de búsqueda tiene texto
 
-  this.filteredProducts = this.filterProducts(this.searchText2);
-  this.showAutocomplete = !!this.searchText2; // Mostrar el autocompletado si el campo de búsqueda tiene texto
+  // this.filteredProducts1 = this.filterProducts(this.searchText2);
+  // this.showAutocomplete1 = !!this.searchText2; // Mostrar el autocompletado si el campo de búsqueda tiene texto
 
 
 }
@@ -238,6 +261,12 @@ onSearchInputChange() {
 filterProducts(value: string): string[] {
   const filterValue = value.toLowerCase();
   return this.products.filter((product) => product.TextSearch.toLowerCase().includes(filterValue));
+}
+
+//manejar el valor de busqueda de dispositivos moviles
+onSearchInputChange2(){
+  this.filteredProducts1 = this.filterProducts(this.searchText2);
+  this.showAutocomplete1 = !!this.searchText2; // Mostrar el a
 }
 
 }
