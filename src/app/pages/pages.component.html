@@ -157,11 +157,11 @@
                     </span>
                   </ng-template> -->
                 <!-- </mat-menu> -->
-                <input [matAutocomplete]="auto" type="text" name="searchText2" placeholder="Escribe para..." fxFlex [(ngModel)]="searchText2" (ngModelChange)="onSearchInputChange()"
+                <input [matAutocomplete]="auto" type="text" name="searchText2" placeholder="Escribe para..." fxFlex [(ngModel)]="searchText2" (ngModelChange)="onSearchInputChange2()"
                   (click)="stopClickPropagate($event)" (keydown.enter)="search2(searchText2)"  >
 
                   <mat-autocomplete   #auto="matAutocomplete">
-                    <mat-option *ngFor="let product of  filteredProducts" [value]="product.name">
+                    <mat-option *ngFor="let product of  filteredProducts1" [value]="product.name">
                       {{ product.name }}
                     </mat-option>
                   </mat-autocomplete>

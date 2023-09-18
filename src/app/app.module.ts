@@ -4,6 +4,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { AgmCoreModule } from '@agm/core';
+import { MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import { openDialog } from './pages/openDialog.component';
+
 
 import { OverlayContainer, Overlay } from '@angular/cdk/overlay';
 import { MAT_MENU_SCROLL_STRATEGY } from '@angular/material/menu';
@@ -12,8 +16,8 @@ import { menuScrollStrategy } from './theme/utils/scroll-strategy';
 
 import { environment } from 'src/environments/environment';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader'; 
-export function HttpLoaderFactory(httpClient: HttpClient) { 
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, '/assets/i18n/', '.json');
 }
 
@@ -38,13 +42,15 @@ import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
-   imports: [ 
+   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     HttpClientModule,
     NgxSpinnerModule,
     FormsModule,
-    
+    MatDialogModule,
+    MatButtonModule,
+
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I'
     }),
@@ -68,13 +74,14 @@ import { FormsModule } from '@angular/forms';
     BreadcrumbComponent,
     OptionsComponent,
     FooterComponent,
-        
-  ], 
+    openDialog,
+
+  ],
   schemas:[CUSTOM_ELEMENTS_SCHEMA],
   providers: [
     AppSettings,
-    AppService,   
-    
+    AppService,
+
     { provide: OverlayContainer, useClass: CustomOverlayContainer },
     { provide: MAT_MENU_SCROLL_STRATEGY, useFactory: menuScrollStrategy, deps: [Overlay] },
     { provide: HTTP_INTERCEPTORS, useClass: AppInterceptor, multi: true }

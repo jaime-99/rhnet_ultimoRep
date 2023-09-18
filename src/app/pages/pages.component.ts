@@ -5,6 +5,8 @@ import { AppService } from '../app.service';
 import { Category, Product } from '../app.models';
 import { SidenavMenuService } from '../theme/components/sidenav-menu/sidenav-menu.service';
 import { isPlatformBrowser } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { openDialog } from './openDialog.component';
 
 @Component({
   selector: 'app-pages',
@@ -25,16 +27,20 @@ export class PagesComponent implements OnInit {
 
   public products = [];
   filteredProducts: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
+  filteredProducts1: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
   showAutocomplete: boolean = false; // Variable para controlar la visibilidad del autocompletado
+  showAutocomplete1: boolean = false; // Variable para controlar la visibilidad del autocompletado
 
 
   @ViewChild('sidenav', { static: true }) sidenav:any;
 
   public settings: Settings;
+  mostrarAlerta: boolean;
   constructor(public appSettings:AppSettings,
               public appService:AppService,
               public sidenavMenuService:SidenavMenuService,
               public router:Router,
+              public dialog: MatDialog,
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;
   }
@@ -106,8 +112,8 @@ export class PagesComponent implements OnInit {
     event.preventDefault();
   }
 
+  // es para buscar un producto con enter en el teclado
   public search(event:any){
-
 
     this.searchText = (event.target as HTMLInputElement).value;
     console.log(this.searchText);
@@ -123,8 +129,17 @@ export class PagesComponent implements OnInit {
     // setTimeout(() => {
     //   window.location.reload();
     // }, 500);
-  }
 
+    // alerta de no se encontraron productos
+
+    const productFound = this.products.some(product => product.name.includes(this.searchText1));
+
+      if (!productFound) {
+        this.router.navigate(['/productos'])
+        this.abrirDialog();
+
+      }
+  }
 
   // este metodo es para el boton para buscar,
   search1(searchText: string): void {
@@ -138,7 +153,15 @@ export class PagesComponent implements OnInit {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/productos', this.searchText1], { queryParams: queryParams });
 
-    // alert("hola");
+
+    // alerta por si no se encuentran los productos de el search1( click con boton )
+    const productFound = this.products.some(product => product.name.includes(this.searchText1));
+
+      if (!productFound) {
+        this.router.navigate(['/productos'])
+        this.abrirDialog();
+      }
+
   }
 
 
@@ -153,6 +176,15 @@ export class PagesComponent implements OnInit {
     this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate(['/productos', this.searchText2], { queryParams: queryParams });
+
+
+    //todo checar esto
+    const productFound = this.products.some(product => product.name.includes(this.searchText2));
+
+      if (!productFound) {
+        this.router.navigate(['/productos'])
+        this.abrirDialog();
+      }
 
     // alert("hola");
   }
@@ -229,8 +261,8 @@ onSearchInputChange() {
   this.filteredProducts = this.filterProducts(this.searchText1);
   this.showAutocomplete = !!this.searchText1; // Mostrar el autocompletado si el campo de búsqueda tiene texto
 
-  this.filteredProducts = this.filterProducts(this.searchText2);
-  this.showAutocomplete = !!this.searchText2; // Mostrar el autocompletado si el campo de búsqueda tiene texto
+  // this.filteredProducts1 = this.filterProducts(this.searchText2);
+  // this.showAutocomplete1 = !!this.searchText2; // Mostrar el autocompletado si el campo de búsqueda tiene texto
 
 
 }
@@ -240,4 +272,25 @@ filterProducts(value: string): string[] {
   return this.products.filter((product) => product.TextSearch.toLowerCase().includes(filterValue));
 }
 
+//manejar el valor de busqueda de dispositivos moviles
+onSearchInputChange2(){
+  this.filteredProducts1 = this.filterProducts(this.searchText2);
+  this.showAutocomplete1 = !!this.searchText2; // Mostrar el a
 }
+
+
+abrirDialog(): void {
+  const dialogRef = this.dialog.open(openDialog, {
+    // Configuración del diálogo (puedes personalizar esto según tus necesidades)
+    width: '300px',
+    data: { mensaje: this.searchText1 } // Puedes enviar datos al diálogo si es necesario
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    console.log('El diálogo se cerró');
+    // Puedes manejar la respuesta del diálogo aquí si es necesario
+  });
+}
+
+}
+
