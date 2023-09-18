@@ -97,6 +97,7 @@
       <th>Fecha de venta</th>
       <th>Total</th>
       <th>Estatus de la venta</th>
+      <th>Documento</th>
       <th>Acciones</th>
 
     </tr>
@@ -111,7 +112,7 @@
       <td>{{ ventasColaboradores.Fecha | date :'dd/MM/yyyy' }}</td>
       <td style="text-align: right;">${{ventasColaboradores.Total | number : '1.2-2'}}</td>
       <td><strong>{{ventasColaboradores.Estatus}}</strong> </td>
-
+      <td><strong>{{ventasColaboradores.Documento}}</strong> </td>
 
         <!-- Agrega el botón con estilo de Angular Material -->
         <td>
