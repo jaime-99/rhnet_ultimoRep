@@ -8,6 +8,7 @@ import { TreeMapModule } from '@swimlane/ngx-charts';
 import { AppService } from 'src/app/app.service';
 import { Md5 } from 'ts-md5';
 import { MatSnackBar,MatSnackBarConfig } from '@angular/material/snack-bar';
+import { co } from '@fullcalendar/core/internal-common';
 
 
 @Component({
@@ -40,6 +41,9 @@ export class UserDialogComponent implements OnInit {
   selectedFile: File | null;
   nombreFoto: string;
   nombreImagen: any;
+  tipoPerfil = [];
+  usuariosRegistrados = [];
+  UsuarioId: any;
 
   constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
@@ -65,9 +69,16 @@ export class UserDialogComponent implements OnInit {
         p_Password: [[''], Validators.compose([Validators.required, Validators.minLength(5)]),],
         p_PassRepeat:[[''], Validators.compose([Validators.required, Validators.minLength(5)]),],
         // p_repeatPass:['']
+      }),
+
+      tipoUsuario:this.fb.group({
+        PerfilId: [['']],
+        UsuarioId:data.IdDeUsuario,disabled:true
       })
     });
   }
+
+
 
 
 
@@ -81,7 +92,12 @@ export class UserDialogComponent implements OnInit {
       number: null,
       email: null,
       apellidos: null,
+
+
     });
+
+    this.obtenerTipoPerfil();
+    this.obtenerUsuarioIdPerfil();
 
     //es el formgroup de cambiar contrasenia
 
@@ -157,7 +173,7 @@ export class UserDialogComponent implements OnInit {
   obtenerInformacion() {
     this.supportService.getObtenerUsuarios().subscribe(
       (res) => {
-        console.log(res);
+        // console.log(res);
         this.informacion = res;
         if (res && res.length > 0) {
           this.nombre = this.data.name;
@@ -170,9 +186,9 @@ export class UserDialogComponent implements OnInit {
           this.num_Usuario= this.data.numEmpleado
 
 
-          console.log("Nombre del primer usuario:", this.nombreUsuario);
+          // console.log("Nombre del primer usuario:", this.nombreUsuario);
         } else {
-          console.log("El arreglo de usuarios está vacío.");
+          // console.log("El arreglo de usuarios está vacío.");
         }
       },
       (error) => {
@@ -380,6 +396,83 @@ cambiarImagen(){
 // }
 
 
+// es para cambiar el tipo de perfil a administrador etc..
+
+cambiarPerfil(){
+
+  //obtengo los datos del formulario
+  const formData = this.form.value;
+
+  // console.log(formData.tipoUsuario)
+
+  const tipoUsuario = {
+
+    PerfilId:formData.tipoUsuario.PerfilId,
+    UsuarioId:formData.tipoUsuario.UsuarioId
+
+  }
+  // console.log(tipoUsuario);
+    console.log(tipoUsuario.UsuarioId)
+    console.log(this.usuariosRegistrados);
+
+  if (this.usuariosRegistrados.includes(tipoUsuario.UsuarioId)) {
+    // El valor está en el arreglo, puedes hacer algo aquí
+    console.log('El usuario está registrado. entonces hacer update solamente');
+    // Realiza las acciones que deseas cuando el usuario está registrad
+    this.supportService.updateTipoPerfil(tipoUsuario.PerfilId,this.UsuarioId).subscribe((res)=>{
+      console.log(res)
+    })
+
+  }else{
+
+
+    console.log("El usuario no se repite, entones insertar")
+    this.supportService.cambiarTipoPerfil(tipoUsuario.PerfilId,tipoUsuario.UsuarioId).subscribe((res)=>{
+      console.log(res);
+    })
+  }
+
+}
+
+//obtener los tipos de perfiles que hay
+obtenerTipoPerfil(){
+  this.supportService.getObtenerTipoPerfil().subscribe((res)=>{
+    this.tipoPerfil = res;
+
+  })
+}
+
+// es para obtener los perfiles que ya estan en la tabla de CO_PerfilUsuario
+//para validar que si estan que no se agregue que solo se actualice el tipo de perfil
+obtenerUsuarioIdPerfil(){
+  this.supportService.getObtenerUsuarioIdPerfil().subscribe((res)=>{
+    // this.usuariosRegistrados = res;
+    // console.log(this.usuariosRegistrados)
+
+    //obtengo los usuaarios iD'S con un map
+    const usuarioIds = res.map(usuario => usuario.UsuarioId);
+
+    const perfilId = res.map(perfil => perfil.PerfilUsuarioId);
+    console.log(perfilId)
+
+    console.log(usuarioIds);
+    this.usuariosRegistrados = usuarioIds;
+
+    const todos = res;
+    console.log(res);
+
+    //ejemplo
+
+    //con esto encuentro una sola columna del arreglo con un valor
+    const objetoEncontrado = todos.find(item => item.UsuarioId === this.data.IdDeUsuario);
+
+    console.log(objetoEncontrado.PerfilUsuarioId);
+
+    this.UsuarioId = objetoEncontrado.PerfilUsuarioId
+
+  })
+
+}
 
 
 

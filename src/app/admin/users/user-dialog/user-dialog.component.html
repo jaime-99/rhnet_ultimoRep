@@ -38,7 +38,7 @@
                         <button (click)="modificarUsuario()" mat-raised-button color="primary"  [mat-dialog-close]="form.value" [disabled]=" form.get('usuario.p_Nombre').invalid || form.get('usuario.p_Apellidos').invalid || form.get('usuario.p_Telefono').invalid">
 
                         <span>Actualizar Datos</span> </button>
-                    </div>
+                       </div>
 
                   </div>
               </mat-tab>
@@ -97,6 +97,34 @@
           </div>
 
         </mat-tab>
+
+
+        <mat-tab label="tipo de perfil">
+        <form formGroupName="tipoUsuario">
+          <mat-form-field class="w-100">
+            <input matInput placeholder="Usuario" formControlName="UsuarioId" readonly >
+          </mat-form-field>
+
+          <mat-radio-group color="primary" formControlName="PerfilId">
+              <div *ngFor="let tipo of tipoPerfil" class="w-100">
+              <mat-radio-button [value]="tipo.PerfilId">{{tipo.Perfil}} </mat-radio-button>
+
+            </div>
+          </mat-radio-group>
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="w-100">
+            <button (click)="cambiarPerfil()" mat-raised-button color="primary"  >
+
+            <span>Cambiar Perfil</span> </button>
+           </div>
+        </form>
+
+
+        </mat-tab>
+
+
+
+
+
 
         </mat-tab-group>
         </div>
