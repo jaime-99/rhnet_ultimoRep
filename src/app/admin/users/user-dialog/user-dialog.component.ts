@@ -9,6 +9,7 @@ import { AppService } from 'src/app/app.service';
 import { Md5 } from 'ts-md5';
 import { MatSnackBar,MatSnackBarConfig } from '@angular/material/snack-bar';
 import { co } from '@fullcalendar/core/internal-common';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -44,14 +45,18 @@ export class UserDialogComponent implements OnInit {
   tipoPerfil = [];
   usuariosRegistrados = [];
   UsuarioId: any;
+  TipoDeUsuario: any;
 
   constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public fb: UntypedFormBuilder,
     public supportService: SupportService,
-    public appService:AppService,
+    public appService:AppService,private router:Router
   ) {
+
+
+
     this.form = this.fb.group({
 
     usuario: this.fb.group({
@@ -71,8 +76,10 @@ export class UserDialogComponent implements OnInit {
         // p_repeatPass:['']
       }),
 
+
+
       tipoUsuario:this.fb.group({
-        PerfilId: [['']],
+        PerfilId: [''], //colocar que tipo de usuario es automatiamente
         UsuarioId:data.IdDeUsuario,disabled:true
       })
     });
@@ -94,7 +101,12 @@ export class UserDialogComponent implements OnInit {
       apellidos: null,
 
 
+
     });
+
+
+
+
 
     this.obtenerTipoPerfil();
     this.obtenerUsuarioIdPerfil();
@@ -108,7 +120,7 @@ export class UserDialogComponent implements OnInit {
       });
 
       this.contra = this.form.get('contrasenia.p_UsuarioId').value
-      console.log(this.contra);
+      // console.log(this.contra);
 
 
 
@@ -124,6 +136,8 @@ export class UserDialogComponent implements OnInit {
     // incializar el numero de usuario
 
 
+    // this.form.get('tipoUsuario.PerfilId').setValue(this.UsuarioId);
+    // console.log(this.TipoDeUsuario);
 
 
 
@@ -142,7 +156,7 @@ export class UserDialogComponent implements OnInit {
     // this.initForm();
     this.obtenerInformacion();
     // this.getObtenerUsuarios();
-    console.log(this.data.name);
+    // console.log(this.data.name);
 
     // if(this.user){
     //   this.form.setValue(this.user);
@@ -163,6 +177,8 @@ export class UserDialogComponent implements OnInit {
 
 
   }
+
+
 
   close(): void {
     this.dialogRef.close();
@@ -231,7 +247,7 @@ export class UserDialogComponent implements OnInit {
 
   infoUsuario() {
     this.data = this.informacion;
-    console.log(this.informacion);
+    // console.log(this.informacion);
   }
 
   modificarUsuario() {
@@ -239,7 +255,7 @@ export class UserDialogComponent implements OnInit {
     const formData = this.form.value;
     //obtengo el id
     const p_UsuarioId = this.data.IdDeUsuario;
-    console.log(p_UsuarioId);
+    // console.log(p_UsuarioId);
 
     // const data = {
     //   p_UsuarioId: p_UsuarioId,
@@ -251,7 +267,7 @@ export class UserDialogComponent implements OnInit {
     // Agregar el id al cuerpo de la solicitud
     formData.p_UsuarioId = p_UsuarioId;
 
-    console.log(formData.usuario);
+    // console.log(formData.usuario);
 
     // mandar ahora si el data al servicio
     this.supportService.modificarUsuarios(formData.usuario).subscribe(
@@ -321,7 +337,7 @@ if (pass !== passRepeat) {
 
 
   console.log("Las contraseñas son iguales");
-  console.log(formData);
+  // console.log(formData);
 
   // Aquí puedes continuar con el resto del código
   // Encriptar la contraseña, llamar al servicio, etc.
@@ -333,7 +349,7 @@ if (pass !== passRepeat) {
   formData.p_Password = hashedPassword;
 
   this.appService.cambiarContraseniaNuevo(formData).subscribe((res) => {
-    console.log(res);
+    // console.log(res);
 })
 }
 
@@ -349,7 +365,7 @@ mostrarNotificacionVerde(mensaje: string, config:MatSnackBarConfig) {
 
 onFileSelected(event: any) {
   this.selectedFile = event.target.files[0];
-  console.log(this.selectedFile);
+  // console.log(this.selectedFile);
   this.nombreFoto = this.selectedFile.name
 
 }
@@ -357,7 +373,7 @@ onFileSelected(event: any) {
 onSubmit() {
   if (this.selectedFile) {
     this.supportService.subirImagen(this.selectedFile).subscribe((res) => {
-       console.log(res)
+      //  console.log(res)
        this.cambiarImagen();
 
        this.mostrarNotificacion("se ha cambiado la foto de perfil.",{ panelClass: ['access'],verticalPosition:'top' });
@@ -376,12 +392,12 @@ cambiarImagen(){
   }
   this.nombreImagen = urlImagen.p_NuevaImagen;
 
-  console.log(urlImagen);
+  // console.log(urlImagen);
 
 
 
   this.supportService.seCambiaFoto(urlImagen.p_UsuarioId,urlImagen.p_NuevaImagen).subscribe((res) => {
-    console.log(res)
+    // console.log(res)
   })
 }
 
@@ -417,17 +433,23 @@ cambiarPerfil(){
 
   if (this.usuariosRegistrados.includes(tipoUsuario.UsuarioId)) {
     // El valor está en el arreglo, puedes hacer algo aquí
-    console.log('El usuario está registrado. entonces hacer update solamente');
+    // console.log('El usuario está registrado. entonces hacer update solamente');
     // Realiza las acciones que deseas cuando el usuario está registrad
-    this.supportService.updateTipoPerfil(tipoUsuario.PerfilId,this.UsuarioId).subscribe((res)=>{
+      this.supportService.updateTipoPerfil(tipoUsuario.PerfilId,this.UsuarioId).subscribe((res)=>{
+      this.mostrarNotificacion("se ha actualizado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
+      // this.router.navigate(['/productos']);
+      this.close();
+
       console.log(res)
     })
 
   }else{
 
 
-    console.log("El usuario no se repite, entones insertar")
+    // console.log("El usuario no se repite, entonces insertar")
     this.supportService.cambiarTipoPerfil(tipoUsuario.PerfilId,tipoUsuario.UsuarioId).subscribe((res)=>{
+      this.mostrarNotificacion("se ha actualizado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
+      this.close();
       console.log(res);
     })
   }
@@ -461,14 +483,19 @@ obtenerUsuarioIdPerfil(){
     const todos = res;
     console.log(res);
 
-    //ejemplo
-
     //con esto encuentro una sola columna del arreglo con un valor
     const objetoEncontrado = todos.find(item => item.UsuarioId === this.data.IdDeUsuario);
 
-    console.log(objetoEncontrado.PerfilUsuarioId);
+    // console.log(objetoEncontrado.PerfilUsuarioId);
+    // console.log(objetoEncontrado.PerfilId);
 
     this.UsuarioId = objetoEncontrado.PerfilUsuarioId
+
+    this.TipoDeUsuario = objetoEncontrado.PerfilId
+
+    // console.log(this.TipoDeUsuario);
+
+    this.form.get('tipoUsuario.PerfilId').setValue(this.TipoDeUsuario); // con esto se selecciona automaticamente el radioButton al valor que es
 
   })
 
