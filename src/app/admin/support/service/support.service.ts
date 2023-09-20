@@ -293,6 +293,38 @@ GetLoginAuth(Correo:string,contrasenia:string)
     }
 
 
+    //cambiar tipo Perfil
+
+    cambiarTipoPerfil(PerfilId, UsuarioId){
+      const url =  (`https://www.dikeninternational.com/dikenecommerce/api/ventas/insertarTipoPerfil.php`)
+      const body = {PerfilId,UsuarioId}
+      return this.http.post<any>( url, body );
+    }
+
+    // es para obtener los tipo de perfiles
+
+
+    getObtenerTipoPerfil(){
+      const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/getTipoPerfil.php`;
+      return this.http.get<any>(url)
+    }
+
+    getObtenerUsuarioIdPerfil(){
+      const url = `https://www.dikeninternational.com/dikenecommerce/api/ventas/getUsuarioIdPerfil.php`;
+      return this.http.get<any>(url)
+    }
+
+    updateTipoPerfil(PerfilId,UsuarioId){
+
+      const url =  (`https://www.dikeninternational.com/dikenecommerce/api/ventas/updateTipoPerfil.php`)
+      const body = {PerfilId,UsuarioId}
+      return this.http.post<any>( url, body );
+
+    }
+
+
+
+
 
 
 
