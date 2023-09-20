@@ -252,10 +252,10 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.post<any>( url, body );
         }
 
-        enviarFacturas(numFactura,correoDestino,Fecha,Nombre,Producto){
+        enviarFacturas(ConsolidadoId,numFactura){
 
           const url=`${ this.baseUrl }/tools/enviarFactura.php`;
-          const body={numFactura,correoDestino,Fecha,Nombre,Producto}
+          const body={ConsolidadoId,numFactura}
           return this.http.post<any>( url, body );
         }
 

@@ -255,10 +255,11 @@ export class PedidosConsolidadosComponent implements OnInit {
                 }
     
               }
-              this.appService.UpdateConsolidado(id,Factura,3).subscribe((res)=>{
+              // this.appService.UpdateConsolidado(id,Factura,3).subscribe((res)=>{
 
-                console.log(res);
-              })
+                
+              // })
+              this.appService.enviarFacturas(id,Factura).subscribe();
               this.snackBar.open('La orden de venta: '+ov+" se cotejo con la Factura:"+Factura,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
             }
             else{
@@ -362,44 +363,7 @@ export class PedidosConsolidadosComponent implements OnInit {
 
   //mandar el correo a cada usuario de su venta
 
-  sendMail(index:number){
 
-    if (index >= 0 && index < this.detalleVentasArray.length) {
-      const detalleEliminado = { ...this.detalleVentasArray[index] };
-      this.detalleVentasArray[index].eliminado = true;
-      this.partidas.push(detalleEliminado);
-      //console.log(this.partidas);
-
-      const fecha = this.getCurrentDate();
-      const principalesDatos = {
-        Nombre:detalleEliminado.usuario,
-        numFactura :  this.numPedido.get('Pedido').value,
-        correoDestino:detalleEliminado.correo
-      }
-      //console.log(principalesDatos);
-
-      const datosCorreo = this.partidas.map(partidas => ({
-
-        // Fecha :fecha,
-        // correoDestino:partidas.correo,
-        Producto:partidas.Producto
-
-      }))
-
-      //console.log(datosCorreo);
-      //!Hare lo del correro individualmente con cada detalle y su boton
-
-      // this.appService.enviarFacturas(principalesDatos.numFactura,principalesDatos.Nombre,principalesDatos.correoDestino,datosCorreo).subscribe((res =>{
-      //   //console.log(res);
-      // }))
-
-
-
-
-
-  }
-
-}
 
 
 aplicarFiltro() {
