@@ -296,160 +296,9 @@ export class PedidosConsolidadosComponent implements OnInit {
     }
   }
 
-  //todo para eliminar cada detalle
-  eliminarDetalleVenta(index: number): void {
-    if (index >= 0 && index < this.detalleVentasArray.length) {
-      const detalleEliminado = { ...this.detalleVentasArray[index] };
-      this.detalleVentasArray[index].eliminado = true;
-      this.partidas.push(detalleEliminado);
-      //console.log(this.partidas);
-      //empezare a ir a cada dato
-      const eliminado = detalleEliminado.cantidad; // Cambia esto por el valor específico que deseas // accedo a el valor
-      //console.log(eliminado); // esto te muestra el eliminado en vivo
-      const rhUsuarioId = detalleEliminado.rhUsuarioId; //console.log(rhUsuarioId)
-      const fecha = this.getCurrentDate();
-      const Total = detalleEliminado.precio;
-      //console.log(Total);
-      const VentaDetalleId = detalleEliminado.ventaDetalle;
-      //console.log(VentaDetalleId);
-      const ventaEmpleadoId = detalleEliminado.ventaEmpleadoId;
-      //console.log(ventaEmpleadoId);
-      const correo = detalleEliminado.correo;
-      //console.log(correo);
-
-
-     
-
-      //todo enviar solo 1 conjunto a la vez
-      const ventaEmpleado = {
-        RhUsuarioId : rhUsuarioId,
-        Fecha : fecha,
-        Total : Total,
-      }
-      //console.log(ventaEmpleado)
-      const detalles = [{
-        ProductoId: detalleEliminado.productoId,
-        Precio: detalleEliminado.precio,
-        Cantidad :detalleEliminado.cantidad,
-        Importe:detalleEliminado.importe,
-        CodigoDiken:detalleEliminado.codigoDiken,
-
-      }]
-      //console.log(detalles);
-      //!es para enviar un nuevo ventaEmpleado
-      this.appService.sinDetalles(ventaEmpleado,detalles).subscribe((res)=>{
-        //console.log(res)
-      })
-
-
-
-
-
-//todo Eliminar Detalle
-this.appService.EliminaDetalles(VentaDetalleId).pipe(
-  mergeMap(() => {
-    // Después de eliminar, actualiza el total de ventaEmpleado
-    return this.appService.ActualizaTotal(ventaEmpleadoId);
-  })
-).subscribe((res) => {
-  //console.log(res); // Esto se ejecutará después de que ambas operaciones se completen
-});
-
-// todo mandar correo
-  // const nombres = this.partidas.map(partida => partida.usuario);
-
-    const destino = detalleEliminado.correo;
-    //console.log(destino);
-
-    const informacionCorreo = {
-      numFactura :  this.numPedido.get('Pedido').value,
-      correoDestino: detalleEliminado.correo,
-      Fecha:fecha,
-      Nombre:detalleEliminado.usuario,
-      Producto:detalleEliminado.producto
-    }
-
-
-
-    const datosCorreo = this.partidas.map(partidas => ({
-
-      numFactura :  this.numPedido.get('Pedido').value,
-      Nombre: partidas.usuario,
-      Fecha :fecha,
-      correoDestino:partidas.correo,
-      Producto:partidas.producto,
-
-    }))
-
-    //console.log(datosCorreo);
-
-    this.appService.enviarFacturas(informacionCorreo.numFactura,informacionCorreo.correoDestino,informacionCorreo.Fecha,informacionCorreo.Nombre,informacionCorreo.Producto).subscribe((res)=>{
-      //console.log(res);
-    })
-
-
-
-
-
-
-
-      //todo en esta funcion hace que al darle click se elimine al instante
-    }
-
-  }
-
-
-
-
-  //TODO boton para guardar la factura, guardar los que se eliminaron
-
-
-  guardarFactura(){
-
-    // const ventaEmpelado = {
-    //   RhUsuarioId: this.UsuarioId,
-    //   Total:this.total,
-    //   Fecha:this.fecha,
-    // }
-
-   // Obtener todas las ventaEmpleadoId del arreglo partidas
-  const ventaCanceladaIds = this.partidas.map((detalleEliminado) => detalleEliminado.ventaEmpleadoId);
-
-  //console.log(ventaCanceladaIds);
-
-  this.ventasEmpleado = ventaCanceladaIds
-
-
-
-
-  }
-
-
-  cancelarEstatusConsolidado(id){
-    this.appService.cambiarEstatusConsolidado(id).subscribe((res) =>{
-      //console.log(res)
-    })
-    this.insertarFactura();
-
-  }
-
   
 
 
-  insertarFactura(){
-
-    const numFactura = this.numPedido.get('Pedido').value;
-
-    const factura = {
-      numeroFactura: numFactura,
-      id:   this.IdSeleccionado,
-    }
-
-    this.appService.insertarFactura(factura.numeroFactura,factura.id).subscribe((res)=>{
-      //console.log(res);
-    })
-
-  } //cambiar valores en api
 
 
   descargarcsv(IdConsolidadoVentaEmpleado)
@@ -484,13 +333,7 @@ this.appService.EliminaDetalles(VentaDetalleId).pipe(
    
 
     });
-  //   this.appService.obtenerTablaJunta(IdConsolidadoVentaEmpleado).subscribe((res) => {
-
-  //     const data=res;
-
-  //   var csv = Papa.unparse(data, { encoding: "utf-8" });
-  //   this.downloadCSV(csv, 'csvconsolidadoventaempleado' + IdConsolidadoVentaEmpleado + '.csv');
-  // });
+   
   }
 
   private downloadCSV(csv: string, filename: string): void {
