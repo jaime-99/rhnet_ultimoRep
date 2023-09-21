@@ -336,14 +336,14 @@ if (pass !== passRepeat) {
 
 
 
-  console.log("Las contraseñas son iguales");
+  // console.log("Las contraseñas son iguales");
   // console.log(formData);
 
   // Aquí puedes continuar con el resto del código
   // Encriptar la contraseña, llamar al servicio, etc.
 }
 
- console.log(formData);
+//  console.log(formData);
   const hashedPassword = Md5.hashStr(formData.p_Password).toString();
   //actualizar la contra con la encriptada
   formData.p_Password = hashedPassword;
@@ -376,7 +376,7 @@ onSubmit() {
       //  console.log(res)
        this.cambiarImagen();
 
-       this.mostrarNotificacion("se ha cambiado la foto de perfil.",{ panelClass: ['access'],verticalPosition:'top' });
+       this.mostrarNotificacion("se ha cambiado la foto de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
 
     }
 
@@ -412,8 +412,8 @@ cambiarImagen(){
 // }
 
 
-// es para cambiar el tipo de perfil a administrador etc..
 
+// es para cambiar el tipo de perfil a administrador etc..
 cambiarPerfil(){
 
   //obtengo los datos del formulario
@@ -475,13 +475,13 @@ obtenerUsuarioIdPerfil(){
     const usuarioIds = res.map(usuario => usuario.UsuarioId);
 
     const perfilId = res.map(perfil => perfil.PerfilUsuarioId);
-    console.log(perfilId)
+    // console.log(perfilId)
 
-    console.log(usuarioIds);
+    // console.log(usuarioIds);
     this.usuariosRegistrados = usuarioIds;
 
     const todos = res;
-    console.log(res);
+    // console.log(res);
 
     //con esto encuentro una sola columna del arreglo con un valor
     const objetoEncontrado = todos.find(item => item.UsuarioId === this.data.IdDeUsuario);
@@ -500,8 +500,6 @@ obtenerUsuarioIdPerfil(){
   })
 
 }
-
-
 
 
 }
