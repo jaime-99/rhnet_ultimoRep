@@ -255,10 +255,10 @@ export class PedidosConsolidadosComponent implements OnInit {
                 }
     
               }
-              // this.appService.UpdateConsolidado(id,Factura,3).subscribe((res)=>{
+              this.appService.UpdateConsolidado(id,Factura,3).subscribe((res)=>{
 
                 
-              // })
+              })
               this.appService.enviarFacturas(id,Factura).subscribe();
               this.snackBar.open('La orden de venta: '+ov+" se cotejo con la Factura:"+Factura,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
             }

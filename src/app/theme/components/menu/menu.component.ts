@@ -98,10 +98,10 @@ GotoUniversidadDiken()
     this.appService1.obtenerPerfil(2).subscribe((res) => {
       if (res !== null && res.includes(userauth.data.INUsuarioId)) {
         this.mostrarAdministrador = true;
-        //console.log("Mostrar el apartado para el usuario actual");
+         
       } else {
         this.mostrarAdministrador = false;
-        //console.log("No mostrar el apartado para el usuario actual");
+         
       }
     });
   }
@@ -109,7 +109,7 @@ GotoUniversidadDiken()
   mostrarConfigurarion(){
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-    //console.log(userauth);
+    
 
   }
 
@@ -124,7 +124,7 @@ GotoUniversidadDiken()
     //se obtendran las categorias dinamicamente
 
       this.appService1.obtenerCategoriasProducto().subscribe((res) =>{
-      // console.log(res);
+      
 
       this.categoriasProducto = res;
 
@@ -136,7 +136,7 @@ GotoUniversidadDiken()
   obtenerSubMenuEquipos(){
 
     this.appService1.obtenerSubMenuEquipos().subscribe((res)=>{
-      // console.log(res)
+
 
       this.menu = res;
 
