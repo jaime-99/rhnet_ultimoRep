@@ -225,13 +225,13 @@ export class PedidosConsolidadosComponent implements OnInit {
               let Factura="";
               for (const det of data)
               {
-                
-                
+
+
                 if(data2.filter(x=>x.memo==det.producto+" "+det.Numero_Empleado+" "+det.Usuario)[0])
                 {
                   let xd=data2.filter(x=>x.memo==det.producto+" "+det.Numero_Empleado+" "+det.Usuario)[0];
                   if(xd.quantity!=det.Cantidad)
-                  {  
+                  {
                     Factura=xd.tranid;
                       det.Cantidad=xd.quantity;
                       console.log(det.Cantidad);
@@ -253,11 +253,11 @@ export class PedidosConsolidadosComponent implements OnInit {
                     console.log(res);
                   })
                 }
-    
+
               }
               // this.appService.UpdateConsolidado(id,Factura,3).subscribe((res)=>{
 
-                
+
               // })
               this.appService.enviarFacturas(id,Factura).subscribe();
               this.snackBar.open('La orden de venta: '+ov+" se cotejo con la Factura:"+Factura,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
@@ -265,15 +265,15 @@ export class PedidosConsolidadosComponent implements OnInit {
             else{
               this.snackBar.open('La orden de Venta no se encutra facturada ' ,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
             }
-  
+
             })
-           
+
 
           });
-          
-          
-          
-          
+
+
+
+
 
       }
     }
@@ -297,7 +297,7 @@ export class PedidosConsolidadosComponent implements OnInit {
     }
   }
 
-  
+
 
 
 
@@ -305,7 +305,7 @@ export class PedidosConsolidadosComponent implements OnInit {
   descargarcsv(IdConsolidadoVentaEmpleado)
   {
     this.appService.getdataconsolidadobyid(IdConsolidadoVentaEmpleado).subscribe((res) => {
-      
+
       this.appService.GenerarOrdenDeventa(res).subscribe((result)=>{
         this.snackBar.open('Se creo la orden de venta: '+result.tranid,  '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
@@ -314,27 +314,27 @@ export class PedidosConsolidadosComponent implements OnInit {
           this.consolidados = res.filter((consolidado) =>consolidado);
           // obtener los id's
           this.consolidadoIds = this.consolidados.map((consolidado) => consolidado.IdConsolidadoVentaEmpleado);
-  
+
           this.consolidadosPendiente = res.filter((consolidado) => consolidado.NombreEstatus === 'PENDIENTE');
           // console.log(this.consolidadosPendiente)
-  
+
           this.consolidadosProceso = res.filter((consolidado) => consolidado.NombreEstatus === 'EN PROCESO');
-  
+
           this.consolidadosCerrado = res.filter((consolidado) => consolidado.NombreEstatus === 'FACTURADO');
           // console.log(this.consolidadosPendiente)
-  
-  
-  
+
+
+
           // console.log(res); // para ver los consolidados
       })
-  
-        
+
+
       });
-     
-   
+
+
 
     });
-   
+
   }
 
   private downloadCSV(csv: string, filename: string): void {

@@ -132,7 +132,14 @@ export class PagesComponent implements OnInit {
 
     // alerta de no se encontraron productos
 
-    const productFound = this.products.some(product => product.name.includes(this.searchText1));
+    const searchTextLowerCase = this.searchText1.toLowerCase(); // Convertir el texto de búsqueda a minúsculas
+
+    const productFound = this.products.some(product => {
+    const nameLowerCase = product.name.toLowerCase(); // Convertir el nombre del producto a minúsculas
+    const codigoDikenLowerCase = product.CodigoDiken.toLowerCase(); // Convertir el códigoDiken a minúsculas
+
+    return nameLowerCase.includes(searchTextLowerCase) || codigoDikenLowerCase.includes(searchTextLowerCase);
+});
 
       if (!productFound) {
         this.router.navigate(['/productos'])
@@ -144,7 +151,7 @@ export class PagesComponent implements OnInit {
   // este metodo es para el boton para buscar,
   search1(searchText: string): void {
     this.searchText1 = searchText;
-    console.log(this.searchText1);
+    // console.log(this.searchText1);
     this.appService.search.next(this.searchText1);
 
     let queryParams: any = {};
@@ -155,11 +162,19 @@ export class PagesComponent implements OnInit {
 
 
     // alerta por si no se encuentran los productos de el search1( click con boton )
-    const productFound = this.products.some(product => product.name.includes(this.searchText1));
+    const searchTextLowerCase = this.searchText1.toLowerCase(); // Convertir el texto de búsqueda a minúsculas
+
+    const productFound = this.products.some(product => {
+    const nameLowerCase = product.name.toLowerCase(); // Convertir el nombre del producto a minúsculas
+    const codigoDikenLowerCase = product.CodigoDiken.toLowerCase(); // Convertir el códigoDiken a minúsculas
+
+    return nameLowerCase.includes(searchTextLowerCase) || codigoDikenLowerCase.includes(searchTextLowerCase);
+});
 
       if (!productFound) {
         this.router.navigate(['/productos'])
         this.abrirDialog();
+
       }
 
   }
@@ -178,12 +193,20 @@ export class PagesComponent implements OnInit {
     this.router.navigate(['/productos', this.searchText2], { queryParams: queryParams });
 
 
-    //todo checar esto
-    const productFound = this.products.some(product => product.name.includes(this.searchText2));
+    //todo checar esto , falta solo que diga el nombre del producto en responsive
+    const searchTextLowerCase = this.searchText2.toLowerCase(); // Convertir el texto de búsqueda a minúsculas
+
+    const productFound = this.products.some(product => {
+    const nameLowerCase = product.name.toLowerCase(); // Convertir el nombre del producto a minúsculas
+    const codigoDikenLowerCase = product.CodigoDiken.toLowerCase(); // Convertir el códigoDiken a minúsculas
+
+    return nameLowerCase.includes(searchTextLowerCase) || codigoDikenLowerCase.includes(searchTextLowerCase);
+});
 
       if (!productFound) {
         this.router.navigate(['/productos'])
         this.abrirDialog();
+
       }
 
     // alert("hola");
