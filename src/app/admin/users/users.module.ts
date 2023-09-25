@@ -11,6 +11,7 @@ import { UsersComponent } from './users.component';
 import { UsersData } from './users.data';
 import { UserDialogComponent } from './user-dialog/user-dialog.component';
 
+
 export const routes: Routes = [
   { path: '', component: UsersComponent, pathMatch: 'full' }
 ];

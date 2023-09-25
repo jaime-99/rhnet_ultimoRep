@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { UntypedFormGroup, UntypedFormBuilder, Validators, FormGroup} from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators, FormGroup,FormArray} from '@angular/forms';
 import { User, UserProfile, UserWork, UserContacts, UserSocial, UserSettings,Usuario1,Usuario} from '../user.model';
 import { UsersComponent } from '../users.component';
 import { SupportService } from '../../support/service/support.service';
@@ -42,10 +42,16 @@ export class UserDialogComponent implements OnInit {
   selectedFile: File | null;
   nombreFoto: string;
   nombreImagen: any;
-  tipoPerfil = [];
+  tipoPerfil:number[] = [];
+
   usuariosRegistrados = [];
   UsuarioId: any;
   TipoDeUsuario: any;
+
+
+  selectedPerfilIds: number[] = [];
+
+  valoresSeleccionados= []
 
   constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
@@ -79,8 +85,9 @@ export class UserDialogComponent implements OnInit {
 
 
       tipoUsuario:this.fb.group({
-        PerfilId: [''], //colocar que tipo de usuario es automatiamente
-        UsuarioId:data.IdDeUsuario,disabled:true
+        PerfilId: this.fb.array([]), //colocar que tipo de usuario es automatiamente
+        UsuarioId:[data.IdDeUsuario, {disabled:true}],
+
       })
     });
   }
@@ -102,6 +109,12 @@ export class UserDialogComponent implements OnInit {
 
 
 
+
+
+
+
+
+
     });
 
 
@@ -109,7 +122,7 @@ export class UserDialogComponent implements OnInit {
 
 
     this.obtenerTipoPerfil();
-    this.obtenerUsuarioIdPerfil();
+    // this.obtenerUsuarioIdPerfil();
 
     //es el formgroup de cambiar contrasenia
 
@@ -427,32 +440,55 @@ cambiarPerfil(){
     UsuarioId:formData.tipoUsuario.UsuarioId
 
   }
-  // console.log(tipoUsuario);
-    console.log(tipoUsuario.UsuarioId)
-    console.log(this.usuariosRegistrados);
+  console.log(tipoUsuario);
+  // console.log(this.usuariosRegistrados);
 
-  if (this.usuariosRegistrados.includes(tipoUsuario.UsuarioId)) {
-    // El valor está en el arreglo, puedes hacer algo aquí
-    // console.log('El usuario está registrado. entonces hacer update solamente');
-    // Realiza las acciones que deseas cuando el usuario está registrad
-      this.supportService.updateTipoPerfil(tipoUsuario.PerfilId,this.UsuarioId).subscribe((res)=>{
-      this.mostrarNotificacion("se ha actualizado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
-      // this.router.navigate(['/productos']);
-      this.close();
+    // console.log(tipoUsuario.UsuarioId)
+    // console.log(tipoUsuario.PerfilId)
 
-      console.log(res)
-    })
+  // if (this.usuariosRegistrados.includes(tipoUsuario.UsuarioId)) {
+  //   // El valor está en el arreglo, puedes hacer algo aquí
+  //   // console.log('El usuario está registrado. entonces hacer update solamente');
+  //   // Realiza las acciones que deseas cuando el usuario está registrad
+  //     this.supportService.updateTipoPerfil(tipoUsuario.PerfilId,this.UsuarioId).subscribe((res)=>{
+  //     this.mostrarNotificacion("se ha actualizado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
+  //     // this.router.navigate(['/productos']);
+  //     this.close();
 
-  }else{
+  //     console.log(res)
+  //   })
 
+  // }else{
+
+
+    const perfilId = this.form.get('tipoUsuario.PerfilId').value;
+
+    const usuarioId = this.form.get('tipoUsuario.UsuarioId').value;
 
     // console.log("El usuario no se repite, entonces insertar")
-    this.supportService.cambiarTipoPerfil(tipoUsuario.PerfilId,tipoUsuario.UsuarioId).subscribe((res)=>{
-      this.mostrarNotificacion("se ha actualizado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
-      this.close();
-      console.log(res);
-    })
-  }
+    // this.supportService.cambiarTipoPerfil(tipoUsuario.PerfilId,tipoUsuario.UsuarioId).subscribe((res)=>{
+    //   this.mostrarNotificacion("se ha actualizado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
+    //   this.close();
+    //   console.log(res);
+    // })
+
+    this.valoresSeleccionados.forEach((perfilId: number) => {
+      // Llama al servicio para insertar un perfil a la vez
+      this.supportService.cambiarTipoPerfil(perfilId, usuarioId).subscribe(response => {
+        // Manejar la respuesta del servidor si es necesario
+        console.log(`Perfil ${perfilId} insertado.`);
+        console.log(response)
+      });
+    });
+
+
+
+
+    console.log(this.valoresSeleccionados)
+
+
+
+
 
 }
 
@@ -460,6 +496,14 @@ cambiarPerfil(){
 obtenerTipoPerfil(){
   this.supportService.getObtenerTipoPerfil().subscribe((res)=>{
     this.tipoPerfil = res;
+
+    console.log(this.tipoPerfil)
+
+    // const perfiles = res.map(perfiles => perfiles.PerfilId);
+
+    // console.log(perfiles)
+
+
 
   })
 }
@@ -484,7 +528,10 @@ obtenerUsuarioIdPerfil(){
     // console.log(res);
 
     //con esto encuentro una sola columna del arreglo con un valor
-    const objetoEncontrado = todos.find(item => item.UsuarioId === this.data.IdDeUsuario);
+    const objetoEncontrado = todos.filter(item => item.UsuarioId === this.data.IdDeUsuario);
+    const perfilesIds = objetoEncontrado.map(item => item.PerfilId);
+    console.log(perfilesIds)
+
 
     // console.log(objetoEncontrado.PerfilUsuarioId);
     // console.log(objetoEncontrado.PerfilId);
@@ -493,13 +540,35 @@ obtenerUsuarioIdPerfil(){
 
     this.TipoDeUsuario = objetoEncontrado.PerfilId
 
+
+    this.valoresSeleccionados = perfilesIds
+
     // console.log(this.TipoDeUsuario);
 
-    this.form.get('tipoUsuario.PerfilId').setValue(this.TipoDeUsuario); // con esto se selecciona automaticamente el radioButton al valor que es
+    // this.form.get('tipoUsuario.PerfilId').setValue(this.TipoDeUsuario); // con esto se selecciona automaticamente el radioButton al valor que es
 
   })
 
 }
+
+// con esto ya guardo el arreglo de cada checkBox, ahora falta seleccionarlos y mandar al servicio
+toggleSeleccion(tipo: any) {
+  const index = this.valoresSeleccionados.findIndex((valor) => valor === tipo);
+  if (index !== -1) {
+    // Si ya está seleccionado, quítalo de la matriz
+    this.valoresSeleccionados.splice(index, 1);
+  } else {
+    // Si no está seleccionado, agrégalo a la matriz
+    this.valoresSeleccionados.push(tipo);
+  }
+
+
+
+  console.log(this.valoresSeleccionados);
+}
+
+
+
 
 
 }
