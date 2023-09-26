@@ -54,7 +54,7 @@ export class UserDialogComponent implements OnInit {
   valoresSeleccionados= []
   valoresEnCheckBox: any;
   noSeleccionados: number[];
-  perfilesDelUsuario: any;
+  perfilesDelUsuario: number[];
 
   constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
@@ -101,6 +101,7 @@ export class UserDialogComponent implements OnInit {
 
   ngOnInit() {
 
+
     this.usuarioForm = this.fb.group({
       name: [
         null,
@@ -113,11 +114,6 @@ export class UserDialogComponent implements OnInit {
 
 
 
-
-
-
-
-
     });
 
 
@@ -126,6 +122,7 @@ export class UserDialogComponent implements OnInit {
 
     this.obtenerTipoPerfil();
     this.obtenerUsuarioIdPerfil();
+
 
     //es el formgroup de cambiar contrasenia
 
@@ -432,10 +429,12 @@ cambiarImagen(){
 // es para cambiar el tipo de perfil a administrador etc..
 cambiarPerfil(){
 
+
   //validacion de eliminar perfil, deben estar lleno el arrelgo
   if(this.noSeleccionados.length > 0){
   this.EliminarPerfil();
   }
+
   //obtengo los datos del formulario
   const formData = this.form.value;
 
@@ -497,11 +496,9 @@ cambiarPerfil(){
   // else {
 
 
-    const perfilId = this.form.get('tipoUsuario.PerfilId').value;
 
 
-
-    console.log("valoresSeleccionados:", this.valoresSeleccionados);
+    // console.log("valoresSeleccionados:", this.valoresSeleccionados);
     console.log("perfilesDelUsuario:", this.perfilesDelUsuario);
 
 
@@ -520,9 +517,8 @@ cambiarPerfil(){
     });
 
 
-
-
-    console.log(this.valoresSeleccionados)
+    // console.log(this.valoresSeleccionados)
+    this.close()
 
 
 }
@@ -595,13 +591,17 @@ obtenerUsuarioIdPerfil(){
 
 
 
+
     // this.valoresEnCheckBox = perfilesIds // con esto ya se colocan automaticamente
     this.perfilesDelUsuario = perfilesIds
+
     console.log( "perfiles del usuario " + this.perfilesDelUsuario)
     // console.log(this.valoresEnCheckBox.length)
 
 
     // this.valoresSeleccionados = perfilesIds
+    this.valoresSeleccionados = objetoEncontrado.map(item => item.PerfilId);
+
 
 
 
