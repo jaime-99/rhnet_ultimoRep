@@ -45,13 +45,16 @@ export class UserDialogComponent implements OnInit {
   tipoPerfil:number[] = [];
 
   usuariosRegistrados = [];
-  UsuarioId: any;
+  UsuarioId: [];
   TipoDeUsuario: any;
 
 
   selectedPerfilIds: number[] = [];
 
   valoresSeleccionados= []
+  valoresEnCheckBox: any;
+  noSeleccionados: number[];
+  perfilesDelUsuario: any;
 
   constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
@@ -122,7 +125,7 @@ export class UserDialogComponent implements OnInit {
 
 
     this.obtenerTipoPerfil();
-    // this.obtenerUsuarioIdPerfil();
+    this.obtenerUsuarioIdPerfil();
 
     //es el formgroup de cambiar contrasenia
 
@@ -429,6 +432,10 @@ cambiarImagen(){
 // es para cambiar el tipo de perfil a administrador etc..
 cambiarPerfil(){
 
+  //validacion de eliminar perfil, deben estar lleno el arrelgo
+  if(this.noSeleccionados.length > 0){
+  this.EliminarPerfil();
+  }
   //obtengo los datos del formulario
   const formData = this.form.value;
 
@@ -440,45 +447,76 @@ cambiarPerfil(){
     UsuarioId:formData.tipoUsuario.UsuarioId
 
   }
-  console.log(tipoUsuario);
+  // console.log(tipoUsuario);
   // console.log(this.usuariosRegistrados);
 
     // console.log(tipoUsuario.UsuarioId)
     // console.log(tipoUsuario.PerfilId)
+    const usuarioId = this.form.get('tipoUsuario.UsuarioId').value;
 
-  // if (this.usuariosRegistrados.includes(tipoUsuario.UsuarioId)) {
-  //   // El valor está en el arreglo, puedes hacer algo aquí
-  //   // console.log('El usuario está registrado. entonces hacer update solamente');
-  //   // Realiza las acciones que deseas cuando el usuario está registrad
-  //     this.supportService.updateTipoPerfil(tipoUsuario.PerfilId,this.UsuarioId).subscribe((res)=>{
-  //     this.mostrarNotificacion("se ha actualizado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
-  //     // this.router.navigate(['/productos']);
-  //     this.close();
+    // if (this.valoresSeleccionados.length <= this.valoresEnCheckBox.length) {
+    //   let ultimoUsuarioIndex = 0; // Índice del último UsuarioId utilizado
 
-  //     console.log(res)
-  //   })
+    //   // Itera a través de los perfiles seleccionados
+    //   this.valoresSeleccionados.forEach((perfilId: number) => {
+    //     if (ultimoUsuarioIndex < this.UsuarioId.length) {
+    //       // Obtiene el próximo UsuarioId disponible
+    //       const usuarioId = this.UsuarioId[ultimoUsuarioIndex];
 
-  // }else{
+    //       // Llama al servicio para actualizar el perfil para el usuario
+    //       this.supportService.updateTipoPerfil(perfilId, usuarioId).subscribe(response => {
+    //         // Manejar la respuesta del servidor si es necesario
+    //         console.log(`Perfil ${perfilId} actualizado para UsuarioId: ${usuarioId}`);
+    //         console.log(response);
+    //       });
+
+    //       // Incrementa el índice del último UsuarioId utilizado
+    //       ultimoUsuarioIndex++;
+    //     }
+    //   });
+    // }
+
+
+  // else if(this.valoresSeleccionados.length > this.valoresEnCheckBox.length){
+  //   console.log("los valores seleccionados son mayores a los datos del usuario")
+
+
+  //   // this.valoresSeleccionados =[]
+  //   this.valoresSeleccionados.forEach((perfilId: number) => {
+  //     // Llama al servicio para insertar un perfil a la vez
+  //     this.supportService.cambiarTipoPerfil(perfilId, usuarioId).subscribe(response => {
+  //       // Manejar la respuesta del servidor si es necesario
+
+  //       console.log(" se supone que se inserta aun cuando ya tiene perfil ")
+  //     });
+  //   });
+
+
+  // }
+
+  // else {
 
 
     const perfilId = this.form.get('tipoUsuario.PerfilId').value;
 
-    const usuarioId = this.form.get('tipoUsuario.UsuarioId').value;
 
-    // console.log("El usuario no se repite, entonces insertar")
-    // this.supportService.cambiarTipoPerfil(tipoUsuario.PerfilId,tipoUsuario.UsuarioId).subscribe((res)=>{
-    //   this.mostrarNotificacion("se ha actualizado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
-    //   this.close();
-    //   console.log(res);
-    // })
+
+    console.log("valoresSeleccionados:", this.valoresSeleccionados);
+    console.log("perfilesDelUsuario:", this.perfilesDelUsuario);
+
 
     this.valoresSeleccionados.forEach((perfilId: number) => {
-      // Llama al servicio para insertar un perfil a la vez
-      this.supportService.cambiarTipoPerfil(perfilId, usuarioId).subscribe(response => {
-        // Manejar la respuesta del servidor si es necesario
-        console.log(`Perfil ${perfilId} insertado.`);
-        console.log(response)
-      });
+      // Verifica si el perfil ya está en perfilesDelUsuario
+      if (!this.perfilesDelUsuario.includes(perfilId)) {
+        // Llama al servicio solo si el perfil no está en perfilesDelUsuario
+        this.supportService.cambiarTipoPerfil(perfilId, usuarioId).subscribe(response => {
+          // Manejar la respuesta del servidor si es necesario
+          console.log(`Perfil ${perfilId} insertado.`);
+          console.log(response);
+        });
+      } else {
+        console.log(`El perfil ${perfilId} ya está en perfilesDelUsuario.`);
+      }
     });
 
 
@@ -487,10 +525,19 @@ cambiarPerfil(){
     console.log(this.valoresSeleccionados)
 
 
-
-
-
 }
+
+
+EliminarPerfil(){
+  const Id = this.form.get('tipoUsuario.UsuarioId').value;
+
+
+  for (const perfilId of this.noSeleccionados) {
+  this.supportService.eliminarTipoPerfil(Id,perfilId).subscribe((res)=>{
+
+    console.log(res)
+  })
+}}
 
 //obtener los tipos de perfiles que hay
 obtenerTipoPerfil(){
@@ -530,18 +577,33 @@ obtenerUsuarioIdPerfil(){
     //con esto encuentro una sola columna del arreglo con un valor
     const objetoEncontrado = todos.filter(item => item.UsuarioId === this.data.IdDeUsuario);
     const perfilesIds = objetoEncontrado.map(item => item.PerfilId);
-    console.log(perfilesIds)
+    console.log(perfilesIds) // para ver los tipo Perfiles' que tiene
+
+    const perfilUsuarioId = objetoEncontrado.map(item => item.PerfilUsuarioId);
+    console.log( "perfilUsuarioId " + perfilUsuarioId);
+
+    this.UsuarioId = perfilUsuarioId
+
 
 
     // console.log(objetoEncontrado.PerfilUsuarioId);
     // console.log(objetoEncontrado.PerfilId);
 
-    this.UsuarioId = objetoEncontrado.PerfilUsuarioId
+    // this.UsuarioId = objetoEncontrado.PerfilUsuarioId // es para el PerfilUsuarioId de la tabla
 
     this.TipoDeUsuario = objetoEncontrado.PerfilId
 
 
-    this.valoresSeleccionados = perfilesIds
+
+    // this.valoresEnCheckBox = perfilesIds // con esto ya se colocan automaticamente
+    this.perfilesDelUsuario = perfilesIds
+    console.log( "perfiles del usuario " + this.perfilesDelUsuario)
+    // console.log(this.valoresEnCheckBox.length)
+
+
+    // this.valoresSeleccionados = perfilesIds
+
+
 
     // console.log(this.TipoDeUsuario);
 
@@ -551,7 +613,7 @@ obtenerUsuarioIdPerfil(){
 
 }
 
-// con esto ya guardo el arreglo de cada checkBox, ahora falta seleccionarlos y mandar al servicio
+//con esto ya guardo el arreglo de cada checkBox, ahora falta seleccionarlos y mandar al servicio
 toggleSeleccion(tipo: any) {
   const index = this.valoresSeleccionados.findIndex((valor) => valor === tipo);
   if (index !== -1) {
@@ -561,11 +623,23 @@ toggleSeleccion(tipo: any) {
     // Si no está seleccionado, agrégalo a la matriz
     this.valoresSeleccionados.push(tipo);
   }
+  const numeros =[1,2,3,4]
+
+  // this.noSeleccionados = numeros.filter((tipo) => !this.valoresSeleccionados.includes(this.valoresEnCheckBox));
+
+  this.noSeleccionados = numeros.filter((numero) => !this.valoresSeleccionados.includes(numero));
 
 
-
-  console.log(this.valoresSeleccionados);
+  console.log( "valores que se seleccionan "+ this.valoresSeleccionados);
+  console.log( "valores que no se seleccionan en checbox " + this.noSeleccionados)
 }
+
+
+
+
+
+
+
 
 
 

@@ -322,6 +322,11 @@ GetLoginAuth(Correo:string,contrasenia:string)
 
     }
 
+    eliminarTipoPerfil(Id,Perfil){
+      const url =  (`https://www.dikeninternational.com/dikenecommerce/api/ventas/eliminarTipoPerfil.php`)
+      const body = {Id,Perfil}
+      return this.http.post<any>( url, body );
+    }
 
 
 

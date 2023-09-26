@@ -110,7 +110,7 @@
 
           <div formArrayName="PerfilId">
             <div *ngFor="let tipo of tipoPerfil; let i = index;" class="w-100">
-              <mat-checkbox color="primary"  [value]="tipo.PerfilId" (click)="toggleSeleccion(tipo.PerfilId)" [checked]="valoresSeleccionados.includes(tipo.PerfilId)">
+              <mat-checkbox color="primary"  [value]="tipo.PerfilId" (change)="toggleSeleccion(tipo.PerfilId)" [checked]="valoresSeleccionados.includes(tipo.PerfilId)" >
                 {{ tipo.Perfil }}
               </mat-checkbox>
             </div>
