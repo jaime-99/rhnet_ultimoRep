@@ -453,48 +453,11 @@ cambiarPerfil(){
     // console.log(tipoUsuario.PerfilId)
     const usuarioId = this.form.get('tipoUsuario.UsuarioId').value;
 
-    // if (this.valoresSeleccionados.length <= this.valoresEnCheckBox.length) {
-    //   let ultimoUsuarioIndex = 0; // Índice del último UsuarioId utilizado
 
-    //   // Itera a través de los perfiles seleccionados
-    //   this.valoresSeleccionados.forEach((perfilId: number) => {
-    //     if (ultimoUsuarioIndex < this.UsuarioId.length) {
-    //       // Obtiene el próximo UsuarioId disponible
-    //       const usuarioId = this.UsuarioId[ultimoUsuarioIndex];
-
-    //       // Llama al servicio para actualizar el perfil para el usuario
-    //       this.supportService.updateTipoPerfil(perfilId, usuarioId).subscribe(response => {
-    //         // Manejar la respuesta del servidor si es necesario
-    //         console.log(`Perfil ${perfilId} actualizado para UsuarioId: ${usuarioId}`);
-    //         console.log(response);
-    //       });
-
-    //       // Incrementa el índice del último UsuarioId utilizado
-    //       ultimoUsuarioIndex++;
-    //     }
-    //   });
-    // }
-
-
-  // else if(this.valoresSeleccionados.length > this.valoresEnCheckBox.length){
-  //   console.log("los valores seleccionados son mayores a los datos del usuario")
-
-
-  //   // this.valoresSeleccionados =[]
-  //   this.valoresSeleccionados.forEach((perfilId: number) => {
-  //     // Llama al servicio para insertar un perfil a la vez
-  //     this.supportService.cambiarTipoPerfil(perfilId, usuarioId).subscribe(response => {
-  //       // Manejar la respuesta del servidor si es necesario
-
-  //       console.log(" se supone que se inserta aun cuando ya tiene perfil ")
-  //     });
-  //   });
-
-
-  // }
-
-  // else {
-
+    if(this.valoresSeleccionados.length ===0){
+      alert("debes seleccionar el tipo de perfil")
+      return;
+    }else {
 
 
 
@@ -515,7 +478,7 @@ cambiarPerfil(){
         console.log(`El perfil ${perfilId} ya está en perfilesDelUsuario.`);
       }
     });
-
+  }
 
     // console.log(this.valoresSeleccionados)
     this.close()
