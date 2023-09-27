@@ -288,10 +288,10 @@ export class UserDialogComponent implements OnInit {
     // mandar ahora si el data al servicio
     this.supportService.modificarUsuarios(formData.usuario).subscribe(
       (res) => {
-        console.log("Respuesta de la api " + res);
+        // console.log("Respuesta de la api " + res);
       },
       (error) => {
-        console.error("Error al llamar a la API:", error);
+        // console.error("Error al llamar a la API:", error);
       }
 
     ),
@@ -338,7 +338,7 @@ export class UserDialogComponent implements OnInit {
 const passRepeat = this.form.get('contrasenia.p_PassRepeat').value; // Obtener el valor del campo de contraseña repetida
 
 if (pass !== passRepeat) {
-  console.log("Las contraseñas no coinciden");
+  // console.log("Las contraseñas no coinciden");
    const config: MatSnackBarConfig = {
         panelClass: ['green-snackbar'],
         duration: 4000
@@ -465,7 +465,7 @@ cambiarPerfil(){
 
 
     // console.log("valoresSeleccionados:", this.valoresSeleccionados);
-    console.log("perfilesDelUsuario:", this.perfilesDelUsuario);
+    // console.log("perfilesDelUsuario:", this.perfilesDelUsuario);
 
 
     this.valoresSeleccionados.forEach((perfilId: number) => {
@@ -474,18 +474,18 @@ cambiarPerfil(){
         // Llama al servicio solo si el perfil no está en perfilesDelUsuario
         this.supportService.cambiarTipoPerfil(perfilId, usuarioId).subscribe(response => {
           // Manejar la respuesta del servidor si es necesario
-          console.log(`Perfil ${perfilId} insertado.`);
-          console.log(response);
+          // console.log(`Perfil ${perfilId} insertado.`);
+          // console.log(response);
         });
       } else {
-        console.log(`El perfil ${perfilId} ya está en perfilesDelUsuario.`);
+        // console.log(`El perfil ${perfilId} ya está en perfilesDelUsuario.`);
       }
     });
   }
 
   // this.mostrarMensajeAlerta()
     // console.log(this.valoresSeleccionados)
-    // this.close()
+    this.close()
 }
 
 
@@ -496,7 +496,7 @@ EliminarPerfil(){
   for (const perfilId of this.noSeleccionados) {
   this.supportService.eliminarTipoPerfil(Id,perfilId).subscribe((res)=>{
 
-    console.log(res)
+    // console.log(res)
   })
 }}
 
@@ -538,14 +538,12 @@ obtenerUsuarioIdPerfil(){
     //con esto encuentro una sola columna del arreglo con un valor
     const objetoEncontrado = todos.filter(item => item.UsuarioId === this.data.IdDeUsuario);
     const perfilesIds = objetoEncontrado.map(item => item.PerfilId);
-    console.log(perfilesIds) // para ver los tipo Perfiles' que tiene
+    // console.log(perfilesIds) // para ver los tipo Perfiles' que tiene
 
     const perfilUsuarioId = objetoEncontrado.map(item => item.PerfilUsuarioId);
-    console.log( "perfilUsuarioId " + perfilUsuarioId);
+    // console.log( "perfilUsuarioId " + perfilUsuarioId);
 
     this.UsuarioId = perfilUsuarioId
-
-
 
     // console.log(objetoEncontrado.PerfilUsuarioId);
     // console.log(objetoEncontrado.PerfilId);
@@ -554,26 +552,16 @@ obtenerUsuarioIdPerfil(){
 
     this.TipoDeUsuario = objetoEncontrado.PerfilId
 
-
-
-
     // this.valoresEnCheckBox = perfilesIds // con esto ya se colocan automaticamente
-    this.perfilesDelUsuario = perfilesIds
+    this.perfilesDelUsuario = perfilesIds // es para obtener los tipo de perfiles que hay en un usuario
 
-    console.log( "perfiles del usuario " + this.perfilesDelUsuario)
+    // console.log( "perfiles del usuario " + this.perfilesDelUsuario)
     // console.log(this.valoresEnCheckBox.length)
 
-
     // this.valoresSeleccionados = perfilesIds
-    this.valoresSeleccionados = objetoEncontrado.map(item => item.PerfilId);
-
-
-
+    this.valoresSeleccionados = objetoEncontrado.map(item => item.PerfilId); //es para obtener los perfiles que tiene un usuario
 
     // console.log(this.TipoDeUsuario);
-
-    // this.form.get('tipoUsuario.PerfilId').setValue(this.TipoDeUsuario); // con esto se selecciona automaticamente el radioButton al valor que es
-
   })
 
 }
@@ -592,13 +580,11 @@ toggleSeleccion(tipo: any) {
 
   this.noSeleccionados = numeros.filter((numero) => !this.valoresSeleccionados.includes(numero));
 
-
-  console.log( "valores que se seleccionan "+ this.valoresSeleccionados);
-  console.log( "valores que no se seleccionan en checbox " + this.noSeleccionados)
+  // console.log( "valores que se seleccionan "+ this.valoresSeleccionados);
+  // console.log( "valores que no se seleccionan en checbox " + this.noSeleccionados)
 }
 
-// Es un confirmDialog
-
+// Es un confirmDialog opcional para el cambio de tipo de perfil
 mostrarMensajeAlerta(){
   const dialogRef = this.dialog.open(ConfirmDialogComponent, {
     maxWidth: "400px",
@@ -609,23 +595,10 @@ mostrarMensajeAlerta(){
   });
   dialogRef.afterClosed().subscribe(result => {
     if (result) {
-      this.close();
+      this.cambiarPerfil(); //todo checar esto
     }
   });
 
 }
 
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
