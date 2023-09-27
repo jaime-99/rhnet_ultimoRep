@@ -129,7 +129,9 @@ export class AddProductComponent implements OnInit {
   public dataSubFamilia:SubFamilia[];
   cantidadFraccionar: any;
   FraccionIsActive: any;
+  NuloMovimiento: any;
 
+  // nuloMovimiento =false;
 
   constructor(public snackBar: MatSnackBar,public appService:AppService,public prodservice: ProductserviceService, public formBuilder: UntypedFormBuilder, private activatedRoute: ActivatedRoute,private router:Router ) { }
 
@@ -164,8 +166,8 @@ export class AddProductComponent implements OnInit {
 
   ngOnInit(): void {
 
-   
-    
+
+
     this.form = this.formBuilder.group({
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
       'images': [null,Validators.required],
@@ -180,7 +182,8 @@ export class AddProductComponent implements OnInit {
       "ParaVentaEmpleado":null,
       "availibilityCount": null,
       "SePuedeFraccionar":false,
-      "CantidadFraccionar":0
+      "CantidadFraccionar":0,
+       "NuloMovimiento":0
 
     });
     this.form.get('SePuedeFraccionar').valueChanges.subscribe(value => {
@@ -189,6 +192,11 @@ export class AddProductComponent implements OnInit {
     this.form.get('CantidadFraccionar').valueChanges.subscribe(value => {
       this.cantidadFraccionar = value;
     });
+
+    this.form.get('NuloMovimiento').valueChanges.subscribe(value => {
+      this.NuloMovimiento = value ? 1 : 0 ;
+    });
+
 
 
 
@@ -254,11 +262,19 @@ export class AddProductComponent implements OnInit {
 
       });
       this.htmlText=data.description;
-   
+
       this.FraccionIsActive = data.SePuedeFraccionar;
       this.cantidadFraccionar=data.CantidadFracionar;
       this.htmlTextCaracteristica=data.PrettyText;
-     
+
+      // this.nuloMovimiento = data.NuloMovimiento;
+
+      // console.log(this.nuloMovimiento);
+
+       // Convierte true a 1 y false a 0
+
+
+
       this.form.patchValue(data);
       this.selectedColors = data.color;
 
@@ -296,12 +312,16 @@ export class AddProductComponent implements OnInit {
 
   public onSubmit(){
 
+    // Convierte NuloMovimiento en 1 o 0 según si es true o false
     const formData = new FormData();
+
 
     const formDataM = new FormData();
 
     const formDataB = new FormData();
-    const {name,newPrice,TextSearch,ClaseId,FamiliaId,SubFamiliaId, images,imagesM,imagesB,CodigoDiken,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar } = this.form.value;
+    const {name,newPrice,TextSearch,ClaseId,FamiliaId,SubFamiliaId, images,imagesM,imagesB,CodigoDiken,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar,NuloMovimiento } = this.form.value;
+    const NuloMovimientoValue = NuloMovimiento ? 1 : 0;
+
 if (this.form.invalid)
 {
   this.snackBar.open("Las imagenes son requeridas", '×', { panelClass: "error", verticalPosition: 'top', duration: 3000 })
@@ -316,7 +336,7 @@ if (this.id!=undefined){
 
     // console.log(famdes);
     // this.paginaProductos();
-    this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar).subscribe();
+    this.appService.UpdateProducto(this.id,name,newPrice,this.htmlText,famdes.Clase,famdes.Familia,famdes.SubFamilia,TextSearch,CodigoDiken,this.htmlTextCaracteristica,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar,NuloMovimientoValue).subscribe();
     //todo ir a inicio
 
 
@@ -419,14 +439,14 @@ if (this.id!=undefined){
 
         }
 
-        
+
         // this.paginaProductos(); //todo con esto ya me voy al inicio de productos
 
         //colocar algo para saber que este esta en activo para fraccionado
 
 
-       
-        
+
+
 
       })
 

@@ -81,6 +81,11 @@
                             <mat-checkbox  formControlName="SePuedeFraccionar"  class="primary"  color= 'primary'>Se puede fraccionar</mat-checkbox>
 
                     </div>
+                    <div fxFlex="100" fxFlex.gt-sm="100" class="px-1">
+
+                            <mat-checkbox  formControlName="NuloMovimiento"  class="primary"  color= 'primary'>Movimiento Nulo</mat-checkbox>
+
+                    </div>
 
                     <div *ngIf="this.sePuedeFraccionar" fxFlex="100" fxFlex.gt-sm="100" class="px-1">
                       <mat-form-field appearance="outline" class="w-100">
