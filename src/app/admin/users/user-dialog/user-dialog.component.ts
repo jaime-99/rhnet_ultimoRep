@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { UntypedFormGroup, UntypedFormBuilder, Validators, FormGroup,FormArray} from '@angular/forms';
 import { User, UserProfile, UserWork, UserContacts, UserSocial, UserSettings,Usuario1,Usuario} from '../user.model';
 import { UsersComponent } from '../users.component';
@@ -10,6 +10,8 @@ import { Md5 } from 'ts-md5';
 import { MatSnackBar,MatSnackBarConfig } from '@angular/material/snack-bar';
 import { co } from '@fullcalendar/core/internal-common';
 import { Router } from '@angular/router';
+
+import { ConfirmDialogComponent } from 'src/app/shared/confirm-dialog/confirm-dialog.component';
 
 
 @Component({
@@ -51,9 +53,9 @@ export class UserDialogComponent implements OnInit {
 
   selectedPerfilIds: number[] = [];
 
-  valoresSeleccionados= []
+  valoresSeleccionados:number[] = []
   valoresEnCheckBox: any;
-  noSeleccionados: number[];
+  noSeleccionados: number[] =[];
   perfilesDelUsuario: number[];
 
   constructor(private _snackBar: MatSnackBar,
@@ -61,7 +63,9 @@ export class UserDialogComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public fb: UntypedFormBuilder,
     public supportService: SupportService,
-    public appService:AppService,private router:Router
+    public appService:AppService,private router:Router,
+    private dialog: MatDialog,
+
   ) {
 
 
@@ -110,11 +114,8 @@ export class UserDialogComponent implements OnInit {
       number: null,
       email: null,
       apellidos: null,
-
-
-
-
     });
+
 
 
 
@@ -134,6 +135,8 @@ export class UserDialogComponent implements OnInit {
 
       this.contra = this.form.get('contrasenia.p_UsuarioId').value
       // console.log(this.contra);
+
+
 
 
 
@@ -454,7 +457,7 @@ cambiarPerfil(){
     const usuarioId = this.form.get('tipoUsuario.UsuarioId').value;
 
 
-    if(this.valoresSeleccionados.length ===0){
+    if(this.valoresSeleccionados.length === 0){
       alert("debes seleccionar el tipo de perfil")
       return;
     }else {
@@ -480,10 +483,9 @@ cambiarPerfil(){
     });
   }
 
+  // this.mostrarMensajeAlerta()
     // console.log(this.valoresSeleccionados)
-    this.close()
-
-
+    // this.close()
 }
 
 
@@ -588,8 +590,6 @@ toggleSeleccion(tipo: any) {
   }
   const numeros =[1,2,3,4]
 
-  // this.noSeleccionados = numeros.filter((tipo) => !this.valoresSeleccionados.includes(this.valoresEnCheckBox));
-
   this.noSeleccionados = numeros.filter((numero) => !this.valoresSeleccionados.includes(numero));
 
 
@@ -597,18 +597,32 @@ toggleSeleccion(tipo: any) {
   console.log( "valores que no se seleccionan en checbox " + this.noSeleccionados)
 }
 
+// Es un confirmDialog
 
+mostrarMensajeAlerta(){
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    maxWidth: "400px",
+    data: {
+      title: "Cambio del Tipo de Perfil",
+      message: "Quieres cambias los tipos de perfil?"
+    }
+  });
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.close();
+    }
+  });
 
-
-
-
-
-
-
+}
 
 
 
 }
+
+
+
+
+
 
 
 

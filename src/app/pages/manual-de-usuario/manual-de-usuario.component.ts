@@ -17,13 +17,7 @@ export class ManualDeUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
 
-
     this.irDireccion();
-
-
-
-
-
 
   }
 
@@ -32,7 +26,6 @@ export class ManualDeUsuarioComponent implements OnInit {
     const urlExterna = 'https://www.dikeninternational.com/PDFS/Manual_de_usuario.pdf'; // Reemplaza con la URL externa a la que deseas redirigir
     window.location.href = urlExterna;
   }
-
 
 
 }
