@@ -12,6 +12,7 @@ export class MenuComponent implements OnInit {
   numerodeUsuario: any;
   mostrarApartado = false;
   mostrarAdministrador = false;
+  mostrarMovimientosNulo = false;
   NumeroEmpleado: any;
   categoriasProducto: any[];
 
@@ -90,7 +91,7 @@ GotoUniversidadDiken()
       if (res !== null && res.includes(userauth.data.INUsuarioId)) {
         this.mostrarApartado = true;
         //console.log("Mostrar el apartado para el usuario actual");
-      } else {  
+      } else {
         this.mostrarApartado = false;
         //console.log("No mostrar el apartado para el usuario actual");
       }
@@ -98,10 +99,19 @@ GotoUniversidadDiken()
     this.appService1.obtenerPerfil(2).subscribe((res) => {
       if (res !== null && res.includes(userauth.data.INUsuarioId)) {
         this.mostrarAdministrador = true;
-         
+
       } else {
         this.mostrarAdministrador = false;
-         
+
+      }
+    });
+    this.appService1.obtenerPerfil(5).subscribe((res) => {
+      if (res !== null && res.includes(userauth.data.INUsuarioId)) {
+        this.mostrarMovimientosNulo =true
+
+      } else {
+        this.mostrarMovimientosNulo = false;
+
       }
     });
   }
@@ -109,7 +119,7 @@ GotoUniversidadDiken()
   mostrarConfigurarion(){
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-    
+
 
   }
 
@@ -124,7 +134,7 @@ GotoUniversidadDiken()
     //se obtendran las categorias dinamicamente
 
       this.appService1.obtenerCategoriasProducto().subscribe((res) =>{
-      
+
 
       this.categoriasProducto = res;
 

@@ -57,6 +57,7 @@ export class UserDialogComponent implements OnInit {
   valoresEnCheckBox: any;
   noSeleccionados: number[] =[];
   perfilesDelUsuario: number[];
+  numeroDePerfiles: any;
 
   constructor(private _snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<UserDialogComponent>,
@@ -505,7 +506,13 @@ obtenerTipoPerfil(){
   this.supportService.getObtenerTipoPerfil().subscribe((res)=>{
     this.tipoPerfil = res;
 
-    console.log(this.tipoPerfil)
+    // console.log(this.tipoPerfil) // se ven los perfiles que hay, los tipo 5
+
+
+    const numeroDePerfiles = res.map(perfiles => perfiles.PerfilId);
+    this.numeroDePerfiles = numeroDePerfiles
+
+    // console.log(numeroDePerfiles)
 
     // const perfiles = res.map(perfiles => perfiles.PerfilId);
 
@@ -576,7 +583,8 @@ toggleSeleccion(tipo: any) {
     // Si no está seleccionado, agrégalo a la matriz
     this.valoresSeleccionados.push(tipo);
   }
-  const numeros =[1,2,3,4]
+  const numeros = this.numeroDePerfiles
+
 
   this.noSeleccionados = numeros.filter((numero) => !this.valoresSeleccionados.includes(numero));
 
