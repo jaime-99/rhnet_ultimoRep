@@ -110,7 +110,7 @@ export class SidenavMenuComponent implements OnInit {
             }
             titulosAMostrar.push(perfil.titulo);
             this.parentMenu = this.menuItems.filter(item => {
-              return item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion' || titulosAMostrar.includes(item.title);
+              return item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion' || item.title==='ola' || titulosAMostrar.includes(item.title);
             });
           }
         });
@@ -118,57 +118,6 @@ export class SidenavMenuComponent implements OnInit {
 
       });
     }
-
-
-
-
-
-    // let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-    // //mostrar admin
-    // this.appService1.obtenerPerfil(2).subscribe((res) => {
-    //   if (res !== null && res.includes(userauth.data.INUsuarioId)) {
-    //     this.mostrarApartado = true;
-
-    //     this.parentMenu = this.menuItems.filter(
-    //       item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'|| item.title ==='ADMINISTRACION'
-    //      );
-
-    //   } else {
-    //     this.mostrarApartado = false;
-    //   }
-    // });
-
-    // //mostrar nulo ventas
-    // this.appService1.obtenerPerfil(5).subscribe((res) => {
-    //   if (res !== null && res.includes(userauth.data.INUsuarioId)) {
-    //     this.mostrarNuloMovimiento =true;
-    //     this.parentMenu = this.menuItems.filter(
-    //       item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'|| item.title ==='NULO MOVIMIENTO'
-    //      );
-    //   }else{
-    //     this.mostrarNuloMovimiento=false;
-    //   }
-    // });
-
-    // //mostar consolidados
-    // this.appService1.obtenerPerfil(4).subscribe((res)=>{
-    //   // console.log(res)
-    //   if (res !== null && res.includes(userauth.data.INUsuarioId)) {
-    //     this.mostrarConsolidados=true;
-
-    //     this.parentMenu = this.menuItems.filter(
-    //       item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'|| item.title ==='CONSOLIDADOS'
-    //      );
-    //   }else{
-    //     this.mostrarConsolidados= false;
-    //   }
-    // })
-
-
-
-
-
-
 
 
 
@@ -219,6 +168,12 @@ export class SidenavMenuComponent implements OnInit {
 onClickSubMenu(subMenuName: string) {
   this.selectedSubMenuName = subMenuName;
 }
+
+
+getSubMenuItemsByCategory(category: string): SidenavMenu[] {
+  return this.menuItems.filter(item => item.parentId === category);
+}
+
 
 
 

@@ -21,11 +21,13 @@ export const sidenavMenuItems = [
     //new SidenavMenu (10, 'Químicos', null, null, null, false, 2),
 
 
-    new SidenavMenu (4, 'Categorias', null, null, null, true, 0,null),
-    new SidenavMenu (41, 'Químicos', "/productos", null, null, false, 4,null),
-    new SidenavMenu (22, 'Equipos', "/productos", null, null, false, 4,null),
+    new SidenavMenu (6, 'Categorias', null, null, null, true, 0,null),
+    new SidenavMenu (41, 'Químicos', "/productos", null, null, false, 0,null),
+    new SidenavMenu (22, 'Equipos', "/productos", null, null, false, 0,null),
+
 
     // new SidenavMenu (10, 'Químicos', null, null, null, false, 4),
+
 
 
 

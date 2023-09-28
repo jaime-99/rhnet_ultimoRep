@@ -15,12 +15,12 @@
         <span class="menu-title">{{ menu.title | translate }}</span>
     </a> -->
 
-    <a *ngIf="menu.hasSubMenu" mat-button
+    <!-- <a *ngIf="menu.hasSubMenu" mat-button
         fxLayout="row" fxLayoutAlign="start center"
         (click)="onClick(menu.id,menu.title)" [id]="'menu-item-'+menu.id">
         <span class="menu-title">{{ menu.title | translate }}</span>
         <mat-icon class="menu-expand-icon transition-2">arrow_drop_down</mat-icon>
-    </a>
+    </a> -->
 
 
     <!-- todo esto es nuevo  -->
@@ -34,6 +34,8 @@
 
 
   <!-- Bucle para los submenús relacionados -->
+
+
 
 
 
@@ -56,4 +58,19 @@
     </div>
 </div>
 
+
+
+
+<!-- todo podria funcionar para las categorias opcional -->
+
+<!-- <div *ngIf="menu.hasSubMenu" class="sub-menu" [id]="'sub-menu-'+menu.id">
+  <ng-container *ngFor="let submenu of getSubMenuItemsByCategory(menu.category)">
+      <a mat-button
+          fxLayout="row" fxLayoutAlign="start center"
+          [routerLink]="[submenu.routerLink]" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"
+          (click)="onClick(submenu.id)" [id]="'menu-item-'+submenu.id">
+          <span class="menu-title">{{ submenu.title | translate }}</span>
+      </a>
+  </ng-container>
+</div> -->
 
