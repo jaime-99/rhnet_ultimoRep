@@ -21,8 +21,12 @@ export class SidenavMenuComponent implements OnInit {
   parentMenu:Array<any>;
 
   mostrarApartado: boolean= false;
+  mostrarConsolidados = false;
+  mostrarNuloMovimiento = false;
   searchText: any;
   selectedCategory: any;
+
+
 
 
   constructor(private sidenavMenuService:SidenavMenuService, public appService1:AppService,  private router: Router ) { }
@@ -74,25 +78,98 @@ export class SidenavMenuComponent implements OnInit {
 
 
   mostrarAdmin() {
-    let userauth = JSON.parse(localStorage.getItem('datalogin')!);
 
-    this.appService1.obtenerAdmin().subscribe((res) => {
-      if (res !== null && res.includes(userauth.data.INUsuarioId)) {
-        this.mostrarApartado = true;
-        //console.log("Mostrar el apartado para el usuario actual");
-        if (this.mostrarApartado) {
-          this.parentMenu = this.menuItems.filter(item => item.parentId === this.menuParentId);
-        }
-      } else {
-        this.mostrarApartado = false;
-        //console.log("No mostrar el apartado para el usuario actual");
 
-        this.parentMenu = this.menuItems.filter(
-          item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'
-         );
-      }
-    });
-  }
+    const perfilesAMostrar = [
+      { perfil: 2, titulo: 'ADMINISTRACION' },
+      { perfil: 4, titulo: 'CONSOLIDADOS' },
+      { perfil: 5, titulo: 'NULO MOVIMIENTO' },
+    ];
+
+
+      let userauth = JSON.parse(localStorage.getItem('datalogin')!);
+
+      // Inicializa las variables en false por defecto
+      this.mostrarApartado = false;
+      this.mostrarNuloMovimiento = false;
+      this.mostrarConsolidados = false;
+
+      const titulosAMostrar: string[] = [];
+
+
+      // Filtra los perfiles a mostrar en base al usuario
+      perfilesAMostrar.forEach((perfil) => {
+        this.appService1.obtenerPerfil(perfil.perfil).subscribe((res) => {
+          if (res !== null && res.includes(userauth.data.INUsuarioId)) {
+            if (perfil.titulo === 'ADMINISTRACION') {
+              this.mostrarApartado = true;
+            } else if (perfil.titulo === 'NULO MOVIMIENTO') {
+              this.mostrarNuloMovimiento = true;
+            } else if (perfil.titulo === 'CONSOLIDADOS') {
+              this.mostrarConsolidados = true;
+            }
+            titulosAMostrar.push(perfil.titulo);
+            this.parentMenu = this.menuItems.filter(item => {
+              return item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion' || titulosAMostrar.includes(item.title);
+            });
+          }
+        });
+
+
+      });
+    }
+
+
+
+
+
+    // let userauth = JSON.parse(localStorage.getItem('datalogin')!);
+    // //mostrar admin
+    // this.appService1.obtenerPerfil(2).subscribe((res) => {
+    //   if (res !== null && res.includes(userauth.data.INUsuarioId)) {
+    //     this.mostrarApartado = true;
+
+    //     this.parentMenu = this.menuItems.filter(
+    //       item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'|| item.title ==='ADMINISTRACION'
+    //      );
+
+    //   } else {
+    //     this.mostrarApartado = false;
+    //   }
+    // });
+
+    // //mostrar nulo ventas
+    // this.appService1.obtenerPerfil(5).subscribe((res) => {
+    //   if (res !== null && res.includes(userauth.data.INUsuarioId)) {
+    //     this.mostrarNuloMovimiento =true;
+    //     this.parentMenu = this.menuItems.filter(
+    //       item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'|| item.title ==='NULO MOVIMIENTO'
+    //      );
+    //   }else{
+    //     this.mostrarNuloMovimiento=false;
+    //   }
+    // });
+
+    // //mostar consolidados
+    // this.appService1.obtenerPerfil(4).subscribe((res)=>{
+    //   // console.log(res)
+    //   if (res !== null && res.includes(userauth.data.INUsuarioId)) {
+    //     this.mostrarConsolidados=true;
+
+    //     this.parentMenu = this.menuItems.filter(
+    //       item => item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion'|| item.title ==='CONSOLIDADOS'
+    //      );
+    //   }else{
+    //     this.mostrarConsolidados= false;
+    //   }
+    // })
+
+
+
+
+
+
+
 
 
   // para buscar en la categoria
