@@ -5,7 +5,7 @@ import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ValidarTokenGuard } from './guards/validarlogin.guard';
 import { misPedidosModule } from './pages/misPedidos/misPedidos.component.module';
-import { modificarPass } from './pages/modificarPass/modificarPass.component';
+// import { modificarPass } from './pages/modificarPass/modificarPass.component';
 import { modificarPassModule } from './pages/modificarPass/modificarPass.module';
 import { formularioPassModule } from './pages/formularioPass/formularioPass.component.module';
 import { pedidosConsolidadosModule } from './pages/pedidos_consolidados/pedidos-consolidados/pedidos.component.module';

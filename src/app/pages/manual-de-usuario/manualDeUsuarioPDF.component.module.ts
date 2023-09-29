@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { CommonModule } from '@angular/common';
+// import { PdfViewerModule } from 'ngx-extended-pdf-viewer';
 
 
 
