@@ -12,11 +12,13 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./manual-de-usuario.component.scss']
 })
 export class ManualDeUsuarioComponent implements OnInit {
-  pdfUrl:any=''
+  // pdfUrl:any=''
+  pdfUrl: string = 'assets/Manual.pdf'; // Ruta al archivo PDF en tu carpeta "assets"
+
 
   constructor(    public router:Router, private sanitizer: DomSanitizer
     ) {
-      this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('assets/Manual.pdf');
+      // this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl('assets/Manual.pdf');
 
     }
 
@@ -34,6 +36,16 @@ export class ManualDeUsuarioComponent implements OnInit {
   }
 
   // pdfUrl: string = '/assets/Manual.pdf'; // Ruta al archivo PDF en tu aplicación
+
+
+  descargarPDF() {
+    const a = document.createElement('a');
+    a.href = this.pdfUrl;
+    a.download = 'Manual.pdf';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
 
 
 
