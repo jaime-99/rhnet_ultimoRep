@@ -23,7 +23,10 @@ export class MenuComponent implements OnInit {
   constructor(public appService:MaService,public router:Router,
    public appService1: AppService) { }
 
-  ngOnInit()  { this.mostrarAdmin();
+  ngOnInit()  {
+    this.mostrarAdmin();
+
+
 
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
@@ -135,7 +138,6 @@ GotoUniversidadDiken()
 
       this.appService1.obtenerCategoriasProducto().subscribe((res) =>{
 
-
       this.categoriasProducto = res;
 
     })
@@ -147,18 +149,15 @@ GotoUniversidadDiken()
 
     this.appService1.obtenerSubMenuEquipos().subscribe((res)=>{
 
-
       this.menu = res;
-
+      // console.log(this.menu)
     })
-
-
   }
 
 
-  openSubMenu(categoria: any) {
-    this.selectedCategoria = categoria;
-  }
+  // openSubMenu(categoria: any) {
+  //   this.selectedCategoria = categoria;
+  // }
 
 
 }

@@ -10,7 +10,7 @@ export class NuloMovimientoComponent implements OnInit {
   movimientosNulos: any;
   dataSource: any;
 
-  displayedColumns: string[] = ['Producto', 'Cantidad', 'Precio', 'Importe'];
+  displayedColumns: string[] = ['Numero','Producto', 'Nombre', 'Cantidad', 'Precio', 'Importe',];
 
 
 

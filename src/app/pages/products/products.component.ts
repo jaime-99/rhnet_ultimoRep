@@ -104,12 +104,12 @@ export class ProductsComponent implements OnInit,OnChanges {
 
   ngOnInit() {
 
-    
+
         // this.appService.getperiodosventa().subscribe(res=>{
         //   console.log(res);
         //   console.log(res.DentroPeriodo);
         //   //localStorage.setItem('Esdiadeventa',JSON.stringify( res.DentroPeriodo))
-          
+
         // });
     let userauth=JSON.parse(localStorage.getItem('datalogin')!);
     if(userauth!=undefined){
@@ -241,9 +241,12 @@ export class ProductsComponent implements OnInit,OnChanges {
       this.appService.getProductsApiEmpleado(this.searchText).subscribe(data=>{
       this.products = data;
       // console.log(data)
+        // console.log(this.products)
 
     });
   }
+
+
 
 
   //cambiar a español los coontroles next
