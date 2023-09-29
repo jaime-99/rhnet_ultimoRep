@@ -440,7 +440,7 @@ if (this.id!=undefined){
         }
 
 
-        // this.paginaProductos(); //todo con esto ya me voy al inicio de productos
+        this.paginaProductos(); //todo con esto ya me voy al inicio de productos
 
         //colocar algo para saber que este esta en activo para fraccionado
 
@@ -480,7 +480,7 @@ if (this.id!=undefined){
 
 
     paginaProductos(){
-      this.router.navigate(['/productos']); // esto es para que me redireccione a ventas cuando inicio sesion
+      this.router.navigate(['/admin/products/product-list']); // esto es para que me redireccione a ventas cuando inicio sesion
     }
 
 
