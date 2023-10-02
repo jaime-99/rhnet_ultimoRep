@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-    console.log(userauth);
+    // console.log(userauth);
 
     this.nombre = userauth.Nombre;
     this.correo = userauth.Correo

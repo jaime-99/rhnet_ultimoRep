@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, Routes } from '@angular/router'; 
+import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../../shared/shared.module';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { AnalyticsComponent } from './analytics.component';
@@ -27,7 +27,7 @@ export const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild(routes), 
+    RouterModule.forChild(routes),
     SharedModule,
     NgxChartsModule
   ]

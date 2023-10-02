@@ -33,7 +33,7 @@ export class CproductlistComponent implements OnInit {
   constructor(public appSettings:AppSettings,public appService:AppService, public snackBar:MatSnackBar, ) {this.settings = this.appSettings.settings; }
 
   ngOnInit(): void {
-    console.log(this.EsRelacionado);
+    // console.log(this.EsRelacionado);
     // this.verRelacionados();
   }
   agrega()
@@ -134,8 +134,8 @@ export class CproductlistComponent implements OnInit {
       const id = this.idRelacionado
     console.log(' es relacionado')
     this.appService.eliminarRelacionado(id).subscribe((res)=>{
-      console.log(res)
-      console.log(this.idRelacionado)
+      // console.log(res)
+      // console.log(this.idRelacionado)
       this.snackBar.open('se elimino el producto relacionado '  ,  '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
 
     })

@@ -459,7 +459,9 @@ cambiarPerfil(){
 
 
     if(this.valoresSeleccionados.length === 0){
-      alert("debes seleccionar el tipo de perfil")
+      // alert("debes seleccionar el tipo de perfil")
+      this.mostrarNotificacion("Debes seleccionar el tipo de perfil.",{ panelClass: ['mat-toolbar', 'mat-warn'],verticalPosition:'top' });
+
       return;
     }else {
 
@@ -486,6 +488,8 @@ cambiarPerfil(){
 
   // this.mostrarMensajeAlerta()
     // console.log(this.valoresSeleccionados)
+    this.mostrarNotificacion("se ha cambiado el tipo de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
+
     this.close()
 }
 
@@ -517,8 +521,6 @@ obtenerTipoPerfil(){
     // const perfiles = res.map(perfiles => perfiles.PerfilId);
 
     // console.log(perfiles)
-
-
 
   })
 }

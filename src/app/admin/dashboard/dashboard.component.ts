@@ -18,12 +18,12 @@ export class DashboardComponent implements OnInit {
   public yAxisLabel = 'Transactions';
   public colorScheme = {
     domain: ['#3F51B5', '#E91E63', '#43A047', '#FDD835', '#F4511E', '#606060']
-  };   
-  constructor(appservice:AppService) { 
+  };
+  constructor(appservice:AppService) {
     appservice.GetCarteraAntiguedad('','','','').subscribe((res)=>{
       appservice.datacarteraChart.porAntiguedadChar=res;
       console.log(appservice.datacarteraChart.porAntiguedadChar);
-    }) 
+    })
 }
 
 public onSelect(event) {
