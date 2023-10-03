@@ -1,3 +1,16 @@
+<button mat-raised-button color="primary" [matMenuTriggerFor]="menu">Ver Por:</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="menuItemClick($event,1)" >Todos</button>
+  <button mat-menu-item (click)="menuItemClick($event,2)">VentaEmpleados</button>
+  <button mat-menu-item (click)="menuItemClick($event,3)">Nulo Movimiento</button>
+</mat-menu>
+
+<div fxLayout="row" fxLayoutAlign="space-between-center" class="p-1">
+
+  <h3> Productos de: <span *ngIf="!this.seVeNombre"> Todos los Productos </span> <span *ngIf="this.seVeNombre">  {{this.nombreCategoria}} </span>  </h3>
+
+</div>
+
 <div fxLayout="row" fxLayoutAlign="space-between center" class="p-1">
     <div fxLayout="row">
         <mat-button-toggle-group #controls="matButtonToggleGroup" appearance="legacy">
