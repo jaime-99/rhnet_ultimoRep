@@ -56,14 +56,14 @@ export class AddressesComponent implements OnInit {
       'address': ['', Validators.required]
     });
 
-    console.log('Aqui estaran los datos')
+    // console.log('Aqui estaran los datos')
 
 
     // obtendre los datos de el usuario que esta logeado
 
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-    console.log(userauth);
+    // console.log(userauth);
 
 
 
@@ -73,7 +73,7 @@ export class AddressesComponent implements OnInit {
     this.imagen = userauth.Imagen;
     this.numEmpleado = userauth.data.Numero_Empleado;
     this.p_UsuarioId = userauth.data.INUsuarioId;
-    console.log(this.p_UsuarioId);
+    // console.log(this.p_UsuarioId);
 
     this.obtenerDatos();
 
@@ -81,7 +81,7 @@ export class AddressesComponent implements OnInit {
     if(this.imagen === 'https://dikeninternational.com/rhnet/uploads/default.png'){
      this.noEliminar = false;
     }
-    console.log(this.imagen);
+    // console.log(this.imagen);
 
   }
 
@@ -101,7 +101,7 @@ export class AddressesComponent implements OnInit {
   getDatos(){
 
     this.supportService.getObtenerUsuarios().subscribe((res) =>{
-      console.log(res)
+      // console.log(res)
     })
   }
 
@@ -118,7 +118,7 @@ export class AddressesComponent implements OnInit {
   obtenerDatos(){
   const p_UsuarioId = this.p_UsuarioId
   this.appService.obtenerTodosDatos(this.p_UsuarioId).subscribe((res)=>{
-    console.log(res);
+    // console.log(res);
 
     this.apellidoUsuario = res.Apellidos
     this.direccion = res.Direccion
@@ -154,11 +154,11 @@ export class AddressesComponent implements OnInit {
 
       console.log('Nombre de la imagen seleccionada:', file.name);
       this.nombreFoto = file.name;
-      console.log(this.nombreFoto);
+      // console.log(this.nombreFoto);
 
       // Llamar al servicio para subir la imagen
      this.supportService.cambiarImagen(file).subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
       this.cambiarImagen();
      })
     }
@@ -172,10 +172,10 @@ export class AddressesComponent implements OnInit {
     }
     this.nombreFoto = urlImagen.p_NuevaImagen; // conseguir el nombre de la imagen
 
-    console.log(urlImagen);
+    // console.log(urlImagen);
 
     this.supportService.seCambiaFoto(urlImagen.p_UsuarioId,urlImagen.p_NuevaImagen).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
     })
 
     this.mostrarNotificacion("se ha cambiado la foto de perfil.",{ panelClass: ['success'],verticalPosition:'top' });
@@ -189,14 +189,13 @@ export class AddressesComponent implements OnInit {
       p_NuevaImagen :'https://dikeninternational.com/rhnet/uploads/default.png',
       p_UsuarioId : this.p_UsuarioId
 
-
     }
 
 
     this.imagen='https://dikeninternational.com/rhnet/uploads/default.png';
 
     this.supportService.seCambiaFoto(info.p_UsuarioId,info.p_NuevaImagen).subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
 
       this.mostrarNotificacion("se ha eliminado tu foto.",{ panelClass: ['want'],verticalPosition:'top' });
 

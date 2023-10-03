@@ -5,11 +5,12 @@ import { PagesComponent } from './pages/pages.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { ValidarTokenGuard } from './guards/validarlogin.guard';
 import { misPedidosModule } from './pages/misPedidos/misPedidos.component.module';
-import { modificarPass } from './pages/modificarPass/modificarPass.component';
+// import { modificarPass } from './pages/modificarPass/modificarPass.component';
 import { modificarPassModule } from './pages/modificarPass/modificarPass.module';
 import { formularioPassModule } from './pages/formularioPass/formularioPass.component.module';
 import { pedidosConsolidadosModule } from './pages/pedidos_consolidados/pedidos-consolidados/pedidos.component.module';
 import { ManualDeUsuarioModule } from './pages/manual-de-usuario/manualDeUsuarioPDF.component.module';
+import { NuloMovimientoModule } from './pages/nuloMovimiento/nulo-movimiento/nulo-movimiento.module';
 
 
 export const routes: Routes = [
@@ -50,6 +51,7 @@ export const routes: Routes = [
             { path: 'misPedidos', loadChildren: () => import('./pages/misPedidos/misPedidos.component.module').then(m => misPedidosModule), data: { breadcrumb: 'Todos Mis Pedidos' } },
             { path: 'pedidosConsolidados', loadChildren: () => import('./pages/pedidos_consolidados/pedidos-consolidados/pedidos.component.module').then(m => pedidosConsolidadosModule), data: { breadcrumb: 'Pedidos consolidados' } },
             { path: 'manualDeUsuario', loadChildren: () => import('./pages/manual-de-usuario/manualDeUsuarioPDF.component.module').then(m => ManualDeUsuarioModule), data: { breadcrumb: 'Manual De Usuario' } },
+            { path: 'nuloMovimiento', loadChildren: () => import('./pages/nuloMovimiento/nulo-movimiento/nulo-movimiento.module').then(m => NuloMovimientoModule), data: { breadcrumb: 'Nulo Movimiento' } },
 
 
             { path: 'plataformas',loadChildren:()=>import('./pages/plataformas/plataformas.module').then(m=>m.PlataformasModule),

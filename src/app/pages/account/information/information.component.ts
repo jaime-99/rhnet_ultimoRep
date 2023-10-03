@@ -21,10 +21,12 @@ export class InformationComponent implements OnInit {
     contrasenia:string = ''
     id = '';
 
+    AvisoContrasenia = false;
+    AvisoDatos = false;
   ngOnInit() {
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-    console.log(userauth);
+    // console.log(userauth);
 
     this.usuarioId = userauth.data.INUsuarioId;
 
@@ -77,9 +79,11 @@ export class InformationComponent implements OnInit {
     formData.p_Password = hashedPassword;
 
     this.appService.cambiarContraseniaNuevo(formData).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.passwordForm.reset();
     });
+
+    this.AvisoContrasenia =true;
 
   }
 
@@ -102,8 +106,13 @@ export class InformationComponent implements OnInit {
     }
 
     this.supportService.modificarUsuarios(formData).subscribe((res) => {
-      console.log(res)
+      // console.log(res)
       this.infoForm.reset
+      this.AvisoDatos= true;
     })
   }
+
+
+
+
 }

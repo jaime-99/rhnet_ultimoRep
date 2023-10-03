@@ -77,15 +77,17 @@
 
                     <h5 *ngIf="product.availabilityCount <= 5" class="category text-muted">
                       <span style="color: red;">disponibilidad: {{product.availabilityCount}}</span>
-                  </h5>
+                    </h5>
 
 
-                    <h5 class="category text-muted">{{product.CodigoDiken}}</h5>
+                    <h5  class="category text-muted">{{product.CodigoDiken}}</h5>
                     <!-- <h5 class="category text-muted">{{product.SePuedeFraccionar}}</h5> -->
                     <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>
-                    <a  matTooltip="{{product.name}}" [routerLink]="['/productos', product.id, product.name]" class="title text-truncate">
-                        {{product.name}}
+
+                    <a [matTooltip]="product.NuloMovimiento === 1 ? 'NULO MOVIMIENTO || ' + product.name : product.name" [routerLink]="['/productos', product.id, product.name]" class="title text-truncate">
+                      <span  [ngStyle]="{'color': product.NuloMovimiento === 1 ? 'red' : 'inherit'}">  {{product.name}} </span>
                     </a>
+
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
                         <div fxLayout="column" fxLayoutAlign="center start">
                             <p class="old-price text-muted"><span *ngIf="product.oldPrice">${{product.oldPrice | number : '1.2-2'}}</span></p>

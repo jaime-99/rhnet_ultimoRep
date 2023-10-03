@@ -21,11 +21,13 @@ export const sidenavMenuItems = [
     //new SidenavMenu (10, 'Químicos', null, null, null, false, 2),
 
 
-    new SidenavMenu (4, 'Categorias', null, null, null, true, 0,null),
-    new SidenavMenu (41, 'Químicos', "/productos", null, null, false, 4,null),
-    new SidenavMenu (22, 'Equipos', "/productos", null, null, false, 4,null),
+    new SidenavMenu (6, 'Categorias', null, null, null, true, 0,null),
+    new SidenavMenu (41, 'Químicos', "/productos", null, null, false, 0,null),
+    new SidenavMenu (22, 'Equipos', "/productos", null, null, false, 0,null),
+
 
     // new SidenavMenu (10, 'Químicos', null, null, null, false, 4),
+
 
 
 
@@ -39,7 +41,8 @@ export const sidenavMenuItems = [
     // new SidenavMenu (54, 'PRODUCTOS', '/productos', null, null, false, 0),
     new SidenavMenu (54, 'MIS PEDIDOS', '/misPedidos', null, null, false, 0,null),
     new SidenavMenu (54, 'CONSOLIDADOS', '/pedidosConsolidados', null, null, false, 0,null),
-    new SidenavMenu (1, 'Administracion', '/admin/products/product-list', null, null, false, 0,null),
+    new SidenavMenu (1, 'ADMINISTRACION', '/admin/products/product-list', null, null, false, 0,null),
+    new SidenavMenu (5, 'NULO MOVIMIENTO', '/nuloMovimiento', null, null, false, 0,null),
 
     new SidenavMenu (1, 'Cerrar Sesion', '/', null, null, false, 0,null),
 

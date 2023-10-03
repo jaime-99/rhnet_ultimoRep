@@ -192,7 +192,7 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
 
         UPVentaEmpleadoDetalle(detalleid:any,ventaid:any,cantidad:any,NumeroFactura:any)
         {
-        
+
           const url=`${ this.baseUrl }/ventas/actualizardetalleventa.php`;
           const body={detalleid,ventaid,cantidad,NumeroFactura}
           return this.http.post<any>( url, body );
@@ -373,6 +373,12 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         }
 
 
+        // es para obtener los movimientos nulos
+        getMovimientosNulos(){
+
+          let apiurl = 'https://www.dikeninternational.com/dikenecommerce/api/ventas/getNuloMovimiento.php';
+          return this.http.get<any>(apiurl);
+        }
 
 
 
@@ -642,12 +648,12 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
         return this.http.get<Product>(apiurl );
     }
 
-    UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clase:any,Familia:any,SubFamilia:any,TextSearch:any,CodigoDiken:any,PrettyText:any,ParaVentaEmpleado:any,SePuedeFraccionar:any,CantidadFraccionar:any)
+    UpdateProducto(ProductoId:any,Producto:any,PrecioActual:any,Descripcion:any,Clase:any,Familia:any,SubFamilia:any,TextSearch:any,CodigoDiken:any,PrettyText:any,ParaVentaEmpleado:any,SePuedeFraccionar:any,CantidadFraccionar:any,NuloMovimiento:any)
     {
       const url=`${ this.baseUrl }/producto/UpdateProducto.php`;
 
 
-      const body={ProductoId,Producto,PrecioActual,Descripcion,Clase,Familia,SubFamilia,TextSearch,CodigoDiken,PrettyText,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar}
+      const body={ProductoId,Producto,PrecioActual,Descripcion,Clase,Familia,SubFamilia,TextSearch,CodigoDiken,PrettyText,ParaVentaEmpleado,SePuedeFraccionar,CantidadFraccionar,NuloMovimiento}
       return this.http.put<any>( url, body );
 
     }

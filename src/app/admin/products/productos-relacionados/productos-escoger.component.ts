@@ -51,7 +51,7 @@ export class EscogerProductos implements OnInit {
     this.verIdProductoPadre();
 
     // console.log(this.esRelacionado);
-    console.log(this.esRelacionado);
+    // console.log(this.esRelacionado);
 
     this.cambiarCadena();
    }
@@ -124,7 +124,7 @@ export class EscogerProductos implements OnInit {
         this.ProductoPadreId=params['id']
         this.getProductById(params['id']);
 
-        console.log(this.ProductoId)
+        // console.log(this.ProductoId)
       }
       else{
         //colocar algun error
