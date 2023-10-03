@@ -15,6 +15,9 @@ export class ProductListComponent implements OnInit {
   public page: any;
   public count = 12;
   public searchText:string="";
+  categoria: any;
+  nombreCategoria: string;
+  seVeNombre: boolean = false;
   constructor(public appService:AppService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -23,6 +26,9 @@ export class ProductListComponent implements OnInit {
     };
     this.getAllProducts();
   }
+
+
+
   public search(event:any){
 
 
@@ -32,7 +38,15 @@ export class ProductListComponent implements OnInit {
 
     let queryParams: any = {};
     queryParams.textSearch=this.searchText;
+
+    if(this.categoria ==1){
     this.getAllProducts();
+    }else if(this.categoria==2){
+      this.verProductosVentaEmpleado();
+    }
+    else if(this.categoria ==3){
+      this.verProductosNuloMovimiento();
+    }
 
     // setTimeout(() => {
     //   window.location.reload();
@@ -77,4 +91,61 @@ export class ProductListComponent implements OnInit {
       }
     });
   }
+
+
+  verProductosVentaEmpleado(){
+    this.appService.getProductsApiEmpleado(this.searchText).subscribe(data=>{
+      // console.log(data)
+
+      this.products= data;
+    })
+  }
+
+  verProductosNuloMovimiento(){
+    this.appService.getProductsApiNuloMovimiento(this.searchText).subscribe(data=>{
+      console.log(data)
+      this.products = data;
+      this.categoria = 3
+    })
+  }
+
+//todo nuevo
+  escogerCategoria(){
+    //aqui escogera la categoria para mostrar solo esos productos
+
+  }
+
+  menuItemClick(event,menu){
+
+    // console.log(menu)
+
+    if(menu==1){
+      this.getAllProducts();
+      this.categoria =1;
+      // console.log(this.categoria)
+      this.nombreCategoria='Todos los productos'
+      this.seVeNombre = true
+
+
+    }
+    else if(menu ==2){
+      this.verProductosVentaEmpleado();
+      this.categoria =2
+      // console.log(this.categoria)
+      this.nombreCategoria='Venta Empleado '
+      this.seVeNombre = true
+
+
+    }
+    else if(menu ==3){
+      this.verProductosNuloMovimiento();
+      this.categoria =3
+      this.nombreCategoria='Nulo  Movimiento'
+      this.seVeNombre = true
+      // console.log(this.categoria)
+
+    }
+
+  }
+
 }

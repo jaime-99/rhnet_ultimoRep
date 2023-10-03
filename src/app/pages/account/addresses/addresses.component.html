@@ -171,7 +171,7 @@
         <mat-icon>face</mat-icon>
         <span>Cambiar foto de perfil</span>
         </label>
-        <input id="file-input" type="file" (change)="onFileSelected($event)" style="display:none;">
+        <input id="file-input" type="file" (change)="onFileSelected($event)" style="display:none;" accept="image/*">
       </button>
       <button mat-menu-item (click)="eliminarImagen()" [disabled]="!noEliminar" >
         <mat-icon>clear</mat-icon>

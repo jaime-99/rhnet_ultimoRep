@@ -1,28 +1,7 @@
-<!--
-
- <h1>Aqui iran los productos que se vendieron y que estan en nulo Movimiento </h1>
-
-
- <table>
-  <thead>
-    <tr>
-      <th>Prodcuto</th>
-      <th>Precio</th>
-      <th>Importe</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of movimientosNulos">
-      <td>{{ item.Producto }}</td>
-      <td>{{ item.Precio }}</td>
-      <td>{{ item.Importe }}</td>
-    </tr>
-  </tbody>
-</table> -->
 
 
 
-<table mat-table [dataSource]="movimientosNulos" class="mat-elevation-z8">
+<table mat-table [dataSource]="movimientosNulos" class=" mat-elevation-z8">
 
   <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->

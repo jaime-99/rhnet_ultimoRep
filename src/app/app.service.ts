@@ -497,6 +497,15 @@ public GetCarteraPorFactura(id:any,division:any,oficina:any,asesor:any,cliente:a
           return this.http.get<Product[]>(apiurl,{params}   );
         }
 
+        // se inicia la llamada para productos solo movimientoNulo
+        getProductsApiNuloMovimiento(type):Observable<Product[]>{
+          let apiurl='https://www.dikeninternational.com/dikenecommerce/api/ventas/getProductsByNuloMovimiento.php?';
+          const params=new HttpParams().set("TextSearch",type);
+          return this.http.get<Product[]>(apiurl,{params}   );
+        }
+
+
+
         //Aqui se termina la llamada de searchApi
 
         //todo aqui esta lo de cambiar contraseña
