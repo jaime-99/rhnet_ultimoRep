@@ -38,8 +38,8 @@
       </div>
       <div *ngFor="let detalle of detalles" class="mat-row">
         <div class="mat-cell">{{detalle.Producto}}</div>
-        <div class="mat-cell"style="text-align: right;">${{detalle.Precio | number: '1.2-2'}}</div>
-        <div class="mat-cell">{{detalle.Cantidad}}</div>
+        <div class="mat-cell"style="text-align:right ">${{detalle.Precio | number: '1.2-2'}}</div>
+        <div class="mat-cell" style="margin-left: 80px;">{{detalle.Cantidad|number:'1.2-2'}}</div>
         <div class="mat-cell"style="text-align: right;">${{detalle.Importe| number: '1.2-2'}}</div>
       </div>
     </div>
