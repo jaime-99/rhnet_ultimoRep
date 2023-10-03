@@ -45,7 +45,7 @@
 
 <mat-menu #equiposSubMenu="matMenu" [overlapTrigger]="false" class="app-dropdown sub-menu">
   <ng-container *ngFor="let categoria of menu">
-    <button [matMenuTriggerFor]="equiposSubMenu2" (mouseenter)="selectedCategoria = categoria"  mat-menu-item>{{ categoria.Familia }}</button>
+    <button [matMenuTriggerFor]="equiposSubMenu2" (click)="search(categoria.Familia)" (mouseenter)="selectedCategoria = categoria"  mat-menu-item>{{ categoria.Familia }}</button>
   </ng-container>
 </mat-menu>
 
