@@ -19,6 +19,8 @@
     <!-- <button mat-icon-button matTooltip="Comparar" (click)="addToCompare(product)"><mat-icon>compare</mat-icon></button> -->
     <button mat-icon-button  mat-raised-button color="primary"  *ngIf="type!='all'" mat-icon-button matTooltip="Vista previa"
       (click)="openProductDialog(product)" style="color: white;"><mat-icon>remove_red_eye</mat-icon></button>
+
+      <img *ngIf="product?.NuloMovimiento" src="https://dikeninternational.com/assets/images/mitiendita.png" width="50px" alt="">
   </div>
 </div>
 <div *ngIf="product?.availibilityCount == 0 && type=='all'" class="bg-warn p-1 mt-2">
