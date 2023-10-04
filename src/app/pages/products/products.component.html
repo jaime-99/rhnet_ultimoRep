@@ -79,6 +79,9 @@
                       <span style="color: red;">disponibilidad: {{product.availabilityCount}}</span>
                     </h5>
 
+                    <div>
+                      <button (click)="mensaje()">click </button>
+                    </div>
 
                     <h5  class="category text-muted">{{product.CodigoDiken}}</h5>
                     <!-- <h5 class="category text-muted">{{product.SePuedeFraccionar}}</h5> -->
@@ -87,6 +90,7 @@
                     <a [matTooltip]="product.NuloMovimiento === 1 ? 'NULO MOVIMIENTO || ' + product.name : product.name" [routerLink]="['/productos', product.id, product.name]" class="title text-truncate">
                       <span  [ngStyle]="{'color': product.NuloMovimiento === 1 ? 'red' : 'inherit'}">  {{product.name}} </span>
                     </a>
+
 
                     <div fxLayout="row" fxLayoutAlign="space-between center" class="prices">
                         <div fxLayout="column" fxLayoutAlign="center start">
@@ -99,9 +103,9 @@
                     <div class="icons">
                       <!-- con esto de abajo mandad el producto completo con el input o output a la clase app-controls -->
                         <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
-                        
+
                     </div>
-                    
+
                 </mat-card>
             </div>
         </div>
@@ -134,7 +138,7 @@
                             <div class="divider"></div>
                             <div class="icons">
                                 <app-controls [product]="product" (onOpenProductDialog)="openProductDialog(product)"></app-controls>
-                                 
+
                             </div>
 
                         </div>

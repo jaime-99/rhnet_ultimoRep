@@ -4,6 +4,12 @@
   font-weight: 500;
 }
 
+body{
+  background-color: #3386FF !important;
+  margin: 0 !important; /* Elimina los márgenes predeterminados del body */
+  padding: 0 !important;
+}
+
 
 //lo que esta debajo de los inputs
 .pie{
@@ -95,6 +101,10 @@ font-size: 20px;
 }
 
 
+//nuevo 03/10/2023
+
+
+
 
 
 
@@ -137,7 +147,8 @@ font-size: 20px;
 
   body{
     background-color: #3386FF !important;
-
+    margin: 0; /* Elimina los márgenes predeterminados del body */
+    padding: 0;
   }
 
 }

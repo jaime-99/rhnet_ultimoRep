@@ -37,6 +37,9 @@ import { AppInterceptor } from './theme/utils/app-interceptor';
 import { OptionsComponent } from './theme/components/options/options.component';
 import { FooterComponent } from './theme/components/footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { ProductComponent } from './pages/products/product/product.component';
+import { ProductsModule } from './admin/products/products.module';
+import { MensajeNuloMovimientoService } from './pages/products/mensaje-nulo-movimiento.service';
 
 
 
@@ -50,6 +53,9 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     MatDialogModule,
     MatButtonModule,
+
+
+
 
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I'

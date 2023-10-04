@@ -58,6 +58,7 @@ import { ConfirmInputDialogComponent } from './confirm-input-dialog/confirm-inpu
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CproductlistComponent } from './cproductlist/cproductlist.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { ProductsModule } from '../pages/products/products.module';
 
 
 @NgModule({
@@ -103,8 +104,10 @@ import { NgxPaginationModule } from 'ngx-pagination';
     PipesModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-
     FormsModule,
+    // ProductsModule
+
+
   ],
   exports: [
     RouterModule,
@@ -154,7 +157,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CategoryListComponent,
     ConfirmDialogComponent,
     LangComponent,
-    CproductlistComponent
+    CproductlistComponent,
+
   ],
   declarations: [
     RatingComponent,
@@ -168,8 +172,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     ConfirmDialogComponent,
     LangComponent,
     ConfirmInputDialogComponent,
-    CproductlistComponent
-
+    CproductlistComponent,
 
   ],
   providers:[

@@ -3,6 +3,8 @@ import { Router, NavigationEnd } from '@angular/router';
 import { MaService } from 'src/app/admin-mesadeayuda/ma.service';
 import { AppService } from 'src/app/app.service';
 
+import { MensajeNuloMovimientoService } from 'src/app/pages/products/mensaje-nulo-movimiento.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -19,14 +21,16 @@ export class MenuComponent implements OnInit {
   menu: any[];
   selectedCategoria: string[] ; // Variable para almacenar la categoría seleccionada
 
+  mensaje = "ola"
+
+
 
   constructor(public appService:MaService,public router:Router,
-   public appService1: AppService) { }
+   public appService1: AppService,
+   private mensajeNuloMovimientoService:MensajeNuloMovimientoService) { }
 
   ngOnInit()  {
     this.mostrarAdmin();
-
-
 
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!)
@@ -78,9 +82,7 @@ GotoUniversidadDiken()
 
     this.router.onSameUrlNavigation='reload';
     this.router.navigate(['/productos',searchText],{queryParams:queryParams});
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 500);
+
   }
 
 
@@ -122,8 +124,6 @@ GotoUniversidadDiken()
   mostrarConfigurarion(){
 
     let userauth = JSON.parse(localStorage.getItem('datalogin')!);
-
-
   }
 
   equiposMenuVisible = false;
@@ -137,18 +137,14 @@ GotoUniversidadDiken()
     //se obtendran las categorias dinamicamente
 
       this.appService1.obtenerCategoriasProducto().subscribe((res) =>{
-
       this.categoriasProducto = res;
-
     })
   }
 
 
 
   obtenerSubMenuEquipos(){
-
     this.appService1.obtenerSubMenuEquipos().subscribe((res)=>{
-
       this.menu = res;
       // console.log(this.menu)
     })
@@ -159,5 +155,11 @@ GotoUniversidadDiken()
   //   this.selectedCategoria = categoria;
   // }
 
+
+  //colocar el nuloMovimeinto
+  sendMessage() {
+    const mensaje = 'hola'
+    this.mensajeNuloMovimientoService.setMessage();
+  }
 
 }

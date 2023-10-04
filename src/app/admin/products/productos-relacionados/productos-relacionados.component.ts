@@ -34,6 +34,8 @@ export class ProductosRelacionadosComponent implements OnInit {
   public searchText:string="";
   public ProductoId:any;
 
+
+  subCategoria = '';
   // public esRelacionado: boolean = false;
 
   // @ViewChild('esRelacionado') esRelacionado: EscogerProductos;
@@ -68,6 +70,9 @@ export class ProductosRelacionadosComponent implements OnInit {
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
       'email': [null, Validators.compose([Validators.required, emailValidator])]
     });
+
+
+    this.enviarValor();
   }
 
   ngAfterViewInit(){
@@ -234,6 +239,12 @@ export class ProductosRelacionadosComponent implements OnInit {
     }
 
 
+
+  }
+
+  enviarValor() {
+    // Aquí estás emitiendo el valor al evento personalizado 'enviarValorA'
+    this.subCategoria = this.product.SubFamilia
 
   }
 

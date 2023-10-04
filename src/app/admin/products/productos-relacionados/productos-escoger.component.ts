@@ -35,6 +35,9 @@ export class EscogerProductos implements OnInit {
   esRelacionado: boolean;
   sutitutos =[]
   relacionados=[]
+
+  @Input() subFamilia:string;
+
   constructor(public appService: AppService,private activatedRoute: ActivatedRoute,public snackBar: MatSnackBar,
     private sharedService:SharedService
 

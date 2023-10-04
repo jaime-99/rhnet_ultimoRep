@@ -7,6 +7,8 @@ import { Product, Category } from "../../app.models";
 import { Settings, AppSettings } from 'src/app/app.settings';
 import { isPlatformBrowser } from '@angular/common';
 
+import { MensajeNuloMovimientoService } from './mensaje-nulo-movimiento.service';
+
 
 
 @Component({
@@ -33,6 +35,8 @@ export class ProductsComponent implements OnInit,OnChanges {
   filteredProducts: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
 
   @Input() product: Product;
+
+
 
 
   public colors = [
@@ -73,12 +77,17 @@ export class ProductsComponent implements OnInit,OnChanges {
   public settings: Settings;
   public searchText: string="";
   public viewprice:boolean=false;
+  mensajeRecibido:any;
+
+  verSoloNulo = false;
+
   constructor(public appSettings:AppSettings,
               private activatedRoute: ActivatedRoute,
               public appService:AppService,
               public dialog: MatDialog,
               private router: Router,
               private route: ActivatedRoute,
+              private mensajeNuloMovimientoService: MensajeNuloMovimientoService,
 
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;
@@ -89,20 +98,27 @@ export class ProductsComponent implements OnInit,OnChanges {
 
         this.searchText = (this.route.snapshot.queryParamMap.get('textSearch')
 
+
         );
 
       }
 
+      this.mensajeRecibido = this.mensajeNuloMovimientoService.getMessage();
 
 
     }
 
   }
+
   ngOnChanges(changes: SimpleChanges): void {
 
   }
 
   ngOnInit() {
+
+
+
+    // this.mensaje();
 
 
         // this.appService.getperiodosventa().subscribe(res=>{
@@ -134,9 +150,16 @@ export class ProductsComponent implements OnInit,OnChanges {
     this.getCategories();
     this.getBrands();
    //this.getAllProducts(); // hace que muestre todos los productos
-    //this.getProductsEmpleado();
-    this.getProductsEmpleado();
 
+    // this.getProductsEmpleado(); //muestra solo los productos de venta empleado
+    // this.soloNuloMovimiento(); // muestra solo los productos de nulo Movimiento
+
+
+    if(this.verSoloNulo){
+      this.soloNuloMovimiento();
+    }else{
+      this.getProductsEmpleado();
+    }
 
 
   }
@@ -219,7 +242,7 @@ export class ProductsComponent implements OnInit,OnChanges {
 
   public onPageChanged(event){
     this.page = event;
-    this.getProductsEmpleado();
+    this.soloNuloMovimiento();
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0,0);
     }
@@ -246,16 +269,38 @@ export class ProductsComponent implements OnInit,OnChanges {
     });
   }
 
-
-
-
   //cambiar a español los coontroles next
 
-    itemsPerPageLabel = 'Items por página'; // Opcional: Cambia la etiqueta de "Items per page"
-    nextPageLabel = 'Siguiente'; // Cambia el texto de "Next"
-    previousPageLabel = 'Anterior'; // Cambia el texto de "Previous"
+    // itemsPerPageLabel = 'Items por página'; // Opcional: Cambia la etiqueta de "Items per page"
+    // nextPageLabel = 'Siguiente'; // Cambia el texto de "Next"
+    // previousPageLabel = 'Anterior'; // Cambia el texto de "Previous"
 
-  }
+
+
+    soloNuloMovimiento(){
+      this.appService.getProductsApiNuloMovimiento(this.searchText).subscribe(data=>{
+        this.products = data
+      })
+    }
+
+
+
+
+
+
+
+    mensaje(){
+
+      this.mensajeRecibido = this.mensajeNuloMovimientoService.getMessage();
+
+    }
+    }
+
+
+
+
+
+
 
 
 

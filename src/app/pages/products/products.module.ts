@@ -10,6 +10,8 @@ import { ProductsComponent } from './products.component';
 import { ProductComponent } from './product/product.component';
 import { ProductZoomComponent } from './product/product-zoom/product-zoom.component';
 import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { MatIconModule } from '@angular/material/icon';
+import { MensajeNuloMovimientoService } from './mensaje-nulo-movimiento.service';
 
 
 
@@ -29,13 +31,25 @@ export const routes: Routes = [
         SwiperModule,
         NgxPaginationModule,
         SharedModule,
-        PipesModule
+        PipesModule,
+        MatIconModule,
+
+
     ],
     declarations: [
         ProductsComponent,
         ProductComponent,
         ProductZoomComponent
     ],
+
+    exports:[
+      ProductsComponent
+    ],
+
+    providers:[
+      MensajeNuloMovimientoService
+    ]
+
 
 
 
