@@ -2,12 +2,14 @@
 
 
 <div *ngFor="let menu of parentMenu" class="menu-item">
-    <a *ngIf="menu.routerLink && !menu.hasSubMenu" mat-button
-        fxLayout="row" fxLayoutAlign="start center"
-        [routerLink]="[menu.routerLink]" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"
-        (click)="search1(menu.textSearch)" [id]="'menu-item-'+menu.id">
-        <span class="menu-title">{{ menu.title | translate }}</span>
-    </a>
+
+  <a *ngIf="menu.routerLink && !menu.hasSubMenu" mat-button
+  fxLayout="row" fxLayoutAlign="start center"
+  [routerLink]="[menu.routerLink]" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact:true}"
+  (click)="onClick(menu.id)" [id]="'menu-item-'+menu.id">
+  <span class="menu-title">{{ menu.title | translate }}</span>
+</a>
+
 
     <!-- <a *ngIf="menu.href && !menu.subMenu" mat-button
         fxLayout="row" fxLayoutAlign="start center"
@@ -25,7 +27,7 @@
 
 
     <!-- En tu componente HTML -->
-<a *ngIf="menu.hasSubMenu" mat-button [matMenuTriggerFor]="subMenu" [id]="'menu-item-'+menu.id" fxLayout="row" fxLayoutAlign="start center">
+<a *ngIf="menu.hasSubMenu" mat-button [matMenuTriggerFor]="subMenu" fxLayout="row" fxLayoutAlign="start center">
   <span class="menu-title">{{ menu.title | translate }}</span>
   <mat-icon class="menu-expand-icon transition-2">arrow_drop_down</mat-icon>
 </a>
@@ -33,8 +35,8 @@
 <mat-menu #subMenu="matMenu">
   <!-- Contenido del submenú -->
 
-  <button mat-menu-item (click)="search1()" [id]="'menu-item-'+menu.id">TODOS LOS PRODUCTOS </button>
-  <button mat-menu-item (click)="search1('nulo movimiento')" [id]="'menu-item-'+menu.id">TIENDITA VENTA EMPLEADO   </button>
+  <button mat-menu-item (click)="search1()">TODOS LOS PRODUCTOS </button>
+  <button mat-menu-item (click)="search1('nulo movimiento')">TIENDITA VENTA EMPLEADO   </button>
 
 
 </mat-menu>

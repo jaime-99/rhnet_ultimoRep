@@ -137,7 +137,7 @@ export class SidenavMenuComponent implements OnInit {
     this.router.navigate(['/productos', 'nulo movimiento'], { queryParams: queryParams });
   }
 
-  search1(textSearch: string | null) {
+  search1(textSearch: string | null,menuId) {
     if (textSearch) {
       // Realiza la búsqueda utilizando el valor de textSearch
       // Por ejemplo, puedes navegar a la página de resultados de búsqueda y pasar textSearch como parámetro en la URL.
@@ -148,9 +148,11 @@ export class SidenavMenuComponent implements OnInit {
 
       this.router.onSameUrlNavigation='reload';
 
-      this.router.navigate(['/productos'], { queryParams: queryParams });
+      this.router.navigate(['/productos',textSearch], { queryParams: queryParams });
 
     }
+
+
     else{
 
       this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
@@ -158,9 +160,11 @@ export class SidenavMenuComponent implements OnInit {
       this.router.onSameUrlNavigation='reload';
       this.router.navigate(['/productos']);
 
-
+      // this.onClick(menuId)
     }
   }
+
+
 
 
 
