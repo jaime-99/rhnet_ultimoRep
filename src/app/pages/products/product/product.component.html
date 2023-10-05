@@ -32,7 +32,8 @@
             <mat-card *ngIf="zoomImage" class="zoom-viewer mat-elevation-z18" [ngStyle]="{'background-image': 'url(' + zoomImage + ')'}"></mat-card>
         </div>
 
-        <h2>{{product?.name}}</h2>
+        <h2 [ngStyle]="{'color': product?.NuloMovimiento === 1 ? 'red' : 'inherit'}">  {{product?.name}}</h2>
+
         <div class="py-1 lh">
             <p><span class="text-muted fw-500">Clase: </span><span>{{  product?.Clase  }}</span></p>
             <p><span class="text-muted fw-500">Familia: </span><span>{{  product?.Familia  }}</span></p>

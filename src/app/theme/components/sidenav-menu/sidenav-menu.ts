@@ -8,7 +8,9 @@ export const sidenavMenuItems = [
 
     // new SidenavMenu (1, 'PRODUCTOS', '/productos', null, null, false, 0),
 
-    new SidenavMenu (1, 'PRODUCTOS', '/productos', null, null, false, 0,null),
+    new SidenavMenu (1, 'PRODUCTOS', '/productos', null, null, true, 0,''),
+
+    // new SidenavMenu (2, 'TIENDITA VENTA EMPLEADO', '/productos=textSearch=nulo movimiento', null, null, false, 1,'nulo movimiento'),
 
 
     //   new SidenavMenu (2, 'Divisiones de Negocio', null, null, null, true, 0),
@@ -21,9 +23,9 @@ export const sidenavMenuItems = [
     //new SidenavMenu (10, 'Químicos', null, null, null, false, 2),
 
 
-    new SidenavMenu (6, 'Categorias', null, null, null, true, 0,null),
-    new SidenavMenu (41, 'Químicos', "/productos", null, null, false, 0,null),
-    new SidenavMenu (22, 'Equipos', "/productos", null, null, false, 0,null),
+    new SidenavMenu (3, 'Categorias', null, null, null, true, 0,null),
+    new SidenavMenu (4, 'Químicos', "/productos", null, null, false,0, null),
+    new SidenavMenu (5, 'Equipos', "/productos", null, null, false, 0,null),
 
 
     // new SidenavMenu (10, 'Químicos', null, null, null, false, 4),
@@ -39,12 +41,12 @@ export const sidenavMenuItems = [
     // new SidenavMenu (54, 'Intranet', '/plataformas', null, null, false, 0),
 
     // new SidenavMenu (54, 'PRODUCTOS', '/productos', null, null, false, 0),
-    new SidenavMenu (54, 'MIS PEDIDOS', '/misPedidos', null, null, false, 0,null),
-    new SidenavMenu (54, 'CONSOLIDADOS', '/pedidosConsolidados', null, null, false, 0,null),
-    new SidenavMenu (1, 'ADMINISTRACION', '/admin/products/product-list', null, null, false, 0,null),
-    new SidenavMenu (5, 'NULO MOVIMIENTO', '/nuloMovimiento', null, null, false, 0,null),
+    new SidenavMenu (6, 'MIS PEDIDOS', '/misPedidos', null, null, false, 0,null),
+    new SidenavMenu (7, 'CONSOLIDADOS', '/pedidosConsolidados', null, null, false, 0,null),
+    new SidenavMenu (8, 'ADMINISTRACION', '/admin/products/product-list', null, null, false, 0,null),
+    new SidenavMenu (9, 'NULO MOVIMIENTO', '/nuloMovimiento', null, null, false, 0,null),
 
-    new SidenavMenu (1, 'Cerrar Sesion', '/', null, null, false, 0,null),
+    new SidenavMenu (10, 'Cerrar Sesion', '/', null, null, false, 0,null),
 
 
 
