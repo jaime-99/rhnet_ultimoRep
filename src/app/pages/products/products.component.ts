@@ -32,6 +32,7 @@ export class ProductsComponent implements OnInit,OnChanges {
   public brands = [];
   public priceFrom: number = 750;
   public priceTo: number = 1599;
+  public banners = [];
   filteredProducts: string[] = []; // Lista filtrada de productos basada en la entrada del usuario
 
   @Input() product: Product;
@@ -76,6 +77,7 @@ export class ProductsComponent implements OnInit,OnChanges {
   public page:any;
   public settings: Settings;
   public searchText: string="";
+  public banervisible:boolean=false;
   public viewprice:boolean=false;
   mensajeRecibido:any;
 
@@ -113,10 +115,14 @@ export class ProductsComponent implements OnInit,OnChanges {
   ngOnChanges(changes: SimpleChanges): void {
 
   }
-
+  public getBanners(){
+    this.appService.getBanners().subscribe(data=>{
+      this.banners = data;
+    })
+  }
   ngOnInit() {
 
-
+this. getBanners();
 
     // this.mensaje();
 
@@ -260,7 +266,12 @@ export class ProductsComponent implements OnInit,OnChanges {
 
   //para buscar en la barra y solo salgan los productos de empleados
   public getProductsEmpleado(){
-
+ 
+    if(this.searchText.toUpperCase()=='NULO MOVIMIENTO')
+    {
+      
+      this.banervisible=true;
+    }
       this.appService.getProductsApiEmpleado(this.searchText).subscribe(data=>{
       this.products = data;
       // console.log(data)

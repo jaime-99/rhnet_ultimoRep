@@ -1,4 +1,6 @@
+
 <mat-sidenav-container>
+    
     <!-- <mat-sidenav #sidenav [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="filter-sidenav" perfectScrollbar>
 
         <mat-accordion displayMode="flat" multi="true">
@@ -18,6 +20,7 @@
 
     </mat-sidenav> -->
     <mat-sidenav-content class="all-products" ngClass.gt-sm="p-left">
+        <app-banners *ngIf="banervisible" [banners]="banners"></app-banners>
         <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" class="filter-row mat-elevation-z1 text-muted">
             <button *ngIf="!sidenavOpen" mat-icon-button (click)="sidenav.toggle()">
                 <mat-icon>more_vert</mat-icon>
