@@ -67,7 +67,8 @@ export class Product {
               public FamiliaId:number,
               public SubFamiliaId:number,
               public SePuedeFraccionar:number, // esta linea es nueva
-              public CantidadFraccion:number // esta es nueva tambien
+              public CantidadFraccion:number, // esta es nueva tambien
+              public NuloMovimiento:number
               ){ }
 }
 

@@ -54,7 +54,7 @@ export class SidenavMenuComponent implements OnInit {
 
   }
 
-  onClick(menuId,title){
+  onClick(menuId){
     this.sidenavMenuService.toggleMenuItem(menuId);
     this.sidenavMenuService.closeOtherSubMenus(this.menuItems, menuId);
 
@@ -62,7 +62,7 @@ export class SidenavMenuComponent implements OnInit {
 
     // this.searchText = category;
     // this.search();
-    this.selectedCategory = title;
+    // this.selectedCategory = title;
 
   }
 
@@ -110,7 +110,7 @@ export class SidenavMenuComponent implements OnInit {
             }
             titulosAMostrar.push(perfil.titulo);
             this.parentMenu = this.menuItems.filter(item => {
-              return item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion' || item.title==='ola' || titulosAMostrar.includes(item.title);
+              return item.title === 'PRODUCTOS' || item.title === 'MIS PEDIDOS' || item.title === 'Cerrar Sesion' || item.title==='TIENDITA VENTA EMPLEADO' || titulosAMostrar.includes(item.title);
             });
           }
         });
@@ -134,8 +134,38 @@ export class SidenavMenuComponent implements OnInit {
 
     // this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
     // this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate(['/productos', this.searchText], { queryParams: queryParams });
+    this.router.navigate(['/productos', 'nulo movimiento'], { queryParams: queryParams });
   }
+
+  search1(textSearch: string | null,menuId) {
+    if (textSearch) {
+      // Realiza la búsqueda utilizando el valor de textSearch
+      // Por ejemplo, puedes navegar a la página de resultados de búsqueda y pasar textSearch como parámetro en la URL.
+      let queryParams: any = {};
+      queryParams.textSearch = textSearch;
+
+      this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
+
+      this.router.onSameUrlNavigation='reload';
+
+      this.router.navigate(['/productos',textSearch], { queryParams: queryParams });
+
+    }
+
+
+    else{
+
+      this.router.routeReuseStrategy.shouldReuseRoute = function () { return false; }
+
+      this.router.onSameUrlNavigation='reload';
+      this.router.navigate(['/productos']);
+
+      // this.onClick(menuId)
+    }
+  }
+
+
+
 
 
 

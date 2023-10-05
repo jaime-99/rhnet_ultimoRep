@@ -137,12 +137,11 @@ export class PagesComponent implements OnInit {
     const productFound = this.products.some(product => {
     const nameLowerCase = product.name.toLowerCase(); // Convertir el nombre del producto a minúsculas
     const codigoDikenLowerCase = product.CodigoDiken.toLowerCase(); // Convertir el códigoDiken a minúsculas
-    const nuloMovimiento = product.NuloMovimiento; // Verificar si NuloMovimiento es igual a 1
+    const textSearch = product.TextSearch.toLowerCase();
 
-
-    return nameLowerCase.includes(searchTextLowerCase) || codigoDikenLowerCase.includes(searchTextLowerCase)  ||
-    nuloMovimiento.includes(searchTextLowerCase);
-});
+    return nameLowerCase.includes(searchTextLowerCase) || codigoDikenLowerCase.includes(searchTextLowerCase)
+    || textSearch.includes(searchTextLowerCase)
+      });
 
       if (!productFound) {
         this.router.navigate(['/productos'])
@@ -202,8 +201,10 @@ export class PagesComponent implements OnInit {
     const productFound = this.products.some(product => {
     const nameLowerCase = product.name.toLowerCase(); // Convertir el nombre del producto a minúsculas
     const codigoDikenLowerCase = product.CodigoDiken.toLowerCase(); // Convertir el códigoDiken a minúsculas
+    const textSearch = (product.TextSearch || '').toLowerCase(); // Convertir TextSearch a minúsculas, o usar una cadena vacía si es nulo
 
-    return nameLowerCase.includes(searchTextLowerCase) || codigoDikenLowerCase.includes(searchTextLowerCase);
+    return nameLowerCase.includes(searchTextLowerCase) || codigoDikenLowerCase.includes(searchTextLowerCase)
+    || textSearch.includes(searchTextLowerCase);
 });
 
       if (!productFound) {
