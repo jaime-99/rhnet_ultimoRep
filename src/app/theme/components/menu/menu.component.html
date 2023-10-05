@@ -33,7 +33,13 @@
 
 
   </mat-menu> -->
-  <a mat-button routerLink="/productos" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">Productos</a>
+  <!-- <a mat-button routerLink="/productos" routerLinkActive="horizontal-active-link" [routerLinkActiveOptions]="{exact:true}">Productos</a> -->
+
+  <a mat-button [matMenuTriggerFor]="opciones">PRODUCTOS<mat-icon class="caret">arrow_drop_down</mat-icon></a>
+<mat-menu #opciones="matMenu" [overlapTrigger]="false" class="app-dropdown">
+  <button  routerLink="/productos" mat-menu-item>TODOS LOS PRODUCTOS</button>
+  <button (click)="search('nulo movimiento')" mat-menu-item>TIENDITA VENTA EMPLEADO</button>
+</mat-menu>
 
 
 <a mat-button [matMenuTriggerFor]="categorias">Categorías<mat-icon class="caret">arrow_drop_down</mat-icon></a>
@@ -62,10 +68,7 @@
 
 <!-- segundo Menu con subMenu  -->
 
-<a mat-button [matMenuTriggerFor]="opciones">opciones<mat-icon class="caret">arrow_drop_down</mat-icon></a>
-<mat-menu #opciones="matMenu" [overlapTrigger]="false" class="app-dropdown">
-  <button (click)="sendMessage()" mat-menu-item>NULO MOVIMIENTO</button>
-</mat-menu>
+
 
 
 

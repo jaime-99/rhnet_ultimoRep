@@ -12,6 +12,7 @@ export class MensajeNuloMovimientoService {
     console.log('Mensaje establecido:', this.message);
   }
 
+
   getMessage() {
     console.log('Mensaje obtenido:', this.message); // Agrega este console.log
     return this.message;

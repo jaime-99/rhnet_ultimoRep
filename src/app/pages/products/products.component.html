@@ -79,10 +79,6 @@
                       <span style="color: red;">disponibilidad: {{product.availabilityCount}}</span>
                     </h5>
 
-                    <div>
-                      <button (click)="mensaje()">click </button>
-                    </div>
-
                     <h5  class="category text-muted">{{product.CodigoDiken}}</h5>
                     <!-- <h5 class="category text-muted">{{product.SePuedeFraccionar}}</h5> -->
                     <h4 class="category text-muted">{{ ( appService.Data.categories | filterById : product.categoryId )?.name }}</h4>

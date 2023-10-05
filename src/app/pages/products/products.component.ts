@@ -87,7 +87,7 @@ export class ProductsComponent implements OnInit,OnChanges {
               public dialog: MatDialog,
               private router: Router,
               private route: ActivatedRoute,
-              private mensajeNuloMovimientoService: MensajeNuloMovimientoService,
+              // private mensajeNuloMovimientoService: MensajeNuloMovimientoService,
 
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;
@@ -103,7 +103,7 @@ export class ProductsComponent implements OnInit,OnChanges {
 
       }
 
-      this.mensajeRecibido = this.mensajeNuloMovimientoService.getMessage();
+      // this.mensajeRecibido = this.mensajeNuloMovimientoService.getMessage();
 
 
     }
@@ -151,15 +151,15 @@ export class ProductsComponent implements OnInit,OnChanges {
     this.getBrands();
    //this.getAllProducts(); // hace que muestre todos los productos
 
-    // this.getProductsEmpleado(); //muestra solo los productos de venta empleado
+    this.getProductsEmpleado(); //muestra solo los productos de venta empleado
     // this.soloNuloMovimiento(); // muestra solo los productos de nulo Movimiento
 
 
-    if(this.verSoloNulo){
-      this.soloNuloMovimiento();
-    }else{
-      this.getProductsEmpleado();
-    }
+    // if(this.verSoloNulo){
+    //   this.soloNuloMovimiento();
+    // }else{
+    //   this.getProductsEmpleado();
+    // }
 
 
   }
@@ -242,7 +242,7 @@ export class ProductsComponent implements OnInit,OnChanges {
 
   public onPageChanged(event){
     this.page = event;
-    this.soloNuloMovimiento();
+    this.getProductsEmpleado();
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0,0);
     }
@@ -284,16 +284,10 @@ export class ProductsComponent implements OnInit,OnChanges {
     }
 
 
+    // mensaje(){
+    //   this.mensajeRecibido = this.mensajeNuloMovimientoService.getMessage();
+    // }
 
-
-
-
-
-    mensaje(){
-
-      this.mensajeRecibido = this.mensajeNuloMovimientoService.getMessage();
-
-    }
     }
 
 
