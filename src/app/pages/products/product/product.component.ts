@@ -145,7 +145,10 @@ export class ProductComponent implements OnInit {
 
   goBackToList() {
     // this.router.navigate(['/productos']);
-    this.router.navigate(['/productos'], { queryParams: { page: this.numeroPagina } });
+    // this.router.navigate(['/productos'], { queryParams: { page: this.numeroPagina } });
+
+    window.history.back();
+
 
   }
 }

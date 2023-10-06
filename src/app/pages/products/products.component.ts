@@ -114,6 +114,8 @@ export class ProductsComponent implements OnInit,OnChanges {
 
   }
 
+
+
   ngOnChanges(changes: SimpleChanges): void {
 
   }
@@ -126,15 +128,16 @@ export class ProductsComponent implements OnInit,OnChanges {
   ngOnInit() {
 
 
+
+
+
     const currentPage = localStorage.getItem('currentPage');
 
   if (currentPage) {
     this.page = +currentPage; // Convierte el valor almacenado en número
-    this.numeroPagina = +currentPage;
   } else {
     // Si no hay valor en localStorage, establece un valor predeterminado
     this.page = 1;
-    this.numeroPagina = 1;
   }
 
 this. getBanners();
@@ -263,12 +266,11 @@ this. getBanners();
 
   public onPageChanged(event){
     this.page = event;
-    this.numeroPagina = event
 
     localStorage.setItem('currentPage', event);
 
 
-    this.router.navigate(['/productos'], { queryParams: { page: event } });
+    // this.router.navigate(['/productos'], { queryParams: { page: event } });
 
     this.getProductsEmpleado();
     if (isPlatformBrowser(this.platformId)) {
