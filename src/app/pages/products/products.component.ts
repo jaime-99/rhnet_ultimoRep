@@ -37,6 +37,8 @@ export class ProductsComponent implements OnInit,OnChanges {
 
   @Input() product: Product;
 
+  numeroPagina= 0
+
 
 
 
@@ -118,9 +120,22 @@ export class ProductsComponent implements OnInit,OnChanges {
   public getBanners(){
     this.appService.getBanners().subscribe(data=>{
       this.banners = data;
+
     })
   }
   ngOnInit() {
+
+
+    const currentPage = localStorage.getItem('currentPage');
+
+  if (currentPage) {
+    this.page = +currentPage; // Convierte el valor almacenado en número
+    this.numeroPagina = +currentPage;
+  } else {
+    // Si no hay valor en localStorage, establece un valor predeterminado
+    this.page = 1;
+    this.numeroPagina = 1;
+  }
 
 this. getBanners();
 
@@ -248,6 +263,13 @@ this. getBanners();
 
   public onPageChanged(event){
     this.page = event;
+    this.numeroPagina = event
+
+    localStorage.setItem('currentPage', event);
+
+
+    this.router.navigate(['/productos'], { queryParams: { page: event } });
+
     this.getProductsEmpleado();
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo(0,0);
@@ -266,10 +288,10 @@ this. getBanners();
 
   //para buscar en la barra y solo salgan los productos de empleados
   public getProductsEmpleado(){
- 
+
     if(this.searchText.toUpperCase()=='NULO MOVIMIENTO')
     {
-      
+
       this.banervisible=true;
     }
       this.appService.getProductsApiEmpleado(this.searchText).subscribe(data=>{
@@ -298,6 +320,12 @@ this. getBanners();
     // mensaje(){
     //   this.mensajeRecibido = this.mensajeNuloMovimientoService.getMessage();
     // }
+
+
+
+    accederAPaginate(){
+
+    }
 
     }
 

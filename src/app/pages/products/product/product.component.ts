@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { UntypedFormBuilder, UntypedFormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { SwiperConfigInterface, SwiperDirective } from 'ngx-swiper-wrapper';
@@ -25,7 +25,11 @@ export class ProductComponent implements OnInit {
   public relatedProducts: Array<Product>;
   public ProductosSustitutos:Array<Product>;
   public viewprice:boolean=false;
-  constructor(public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: UntypedFormBuilder) {  }
+
+  public numeroPagina: any = 4;
+
+  constructor(public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: UntypedFormBuilder
+    , private router:Router) {  }
 
   ngOnInit() {
     let userauth=JSON.parse(localStorage.getItem('datalogin')!);
@@ -37,12 +41,16 @@ export class ProductComponent implements OnInit {
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.getProductById(params['id']);
       this.getRelatedProducts(params['id']);
+      const numeroPagina = (params['numeroPagina'])
+      this.numeroPagina = numeroPagina
     });
     this.form = this.formBuilder.group({
       'review': [null, Validators.required],
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
       'email': [null, Validators.compose([Validators.required, emailValidator])]
     });
+
+
 
   }
 
@@ -133,5 +141,11 @@ export class ProductComponent implements OnInit {
     if (this.form.valid) {
       //email sent
     }
+  }
+
+  goBackToList() {
+    // this.router.navigate(['/productos']);
+    this.router.navigate(['/productos'], { queryParams: { page: this.numeroPagina } });
+
   }
 }

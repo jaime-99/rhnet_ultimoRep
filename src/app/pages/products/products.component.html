@@ -1,6 +1,6 @@
 
 <mat-sidenav-container>
-    
+
     <!-- <mat-sidenav #sidenav [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="filter-sidenav" perfectScrollbar>
 
         <mat-accordion displayMode="flat" multi="true">
@@ -70,7 +70,7 @@
                     <mat-chip-list *ngIf="product.discount">
                         <mat-chip color="warn" selected="true">{{product.discount}}% OFF</mat-chip>
                     </mat-chip-list>
-                    <a [routerLink]="['/productos', product.id, product.name]" class="image-link">
+                    <a [routerLink]="['/productos', product.id, product.name,numeroPagina]" class="image-link">
                         <img [src]="product.images[0].small" alt="">
                     </a>
                     <h5 *ngIf="product.SePuedeFraccionar" class="category text-muted">Se pide por pieza : {{product.SePuedeFraccionar?"Si":"NO"}} </h5>
@@ -154,6 +154,8 @@
                 </mat-card>
             </div>
         </div>
+
+
 
     </mat-sidenav-content>
 </mat-sidenav-container>

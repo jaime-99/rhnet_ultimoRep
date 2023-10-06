@@ -33,6 +33,11 @@
         </div>
 
         <h2 [ngStyle]="{'color': product?.NuloMovimiento === 1 ? 'red' : 'inherit'}">  {{product?.name}}</h2>
+        <button mat-raised-button (click)="goBackToList()"> <mat-icon color="primary">arrow_back</mat-icon>
+          Volver a la lista de productos</button>
+
+
+
 
         <div class="py-1 lh">
             <p><span class="text-muted fw-500">Clase: </span><span>{{  product?.Clase  }}</span></p>
