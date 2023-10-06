@@ -103,7 +103,7 @@ export class ProductListComponent implements OnInit {
 
   verProductosNuloMovimiento(){
     this.appService.getProductsApiNuloMovimiento(this.searchText).subscribe(data=>{
-      console.log(data)
+      // console.log(data)
       this.products = data;
       this.categoria = 3
     })

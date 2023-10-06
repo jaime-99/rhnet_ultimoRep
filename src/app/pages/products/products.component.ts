@@ -140,7 +140,7 @@ export class ProductsComponent implements OnInit,OnChanges {
     this.page = 1;
   }
 
-this. getBanners();
+  this. getBanners();
 
     // this.mensaje();
 
