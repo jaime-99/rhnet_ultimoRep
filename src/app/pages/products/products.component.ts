@@ -131,14 +131,6 @@ export class ProductsComponent implements OnInit,OnChanges {
 
 
 
-    const currentPage = localStorage.getItem('currentPage');
-
-  if (currentPage) {
-    this.page = +currentPage; // Convierte el valor almacenado en número
-  } else {
-    // Si no hay valor en localStorage, establece un valor predeterminado
-    this.page = 1;
-  }
 
   this. getBanners();
 
