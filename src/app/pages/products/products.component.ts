@@ -76,7 +76,7 @@ export class ProductsComponent implements OnInit,OnChanges {
     { name: "21\"", selected: false },
     { name: "23.4\"", selected: false }
   ];
-  public page:any;
+  public page:any = 1;
   public settings: Settings;
   public searchText: string="";
   public banervisible:boolean=false;
@@ -91,7 +91,6 @@ export class ProductsComponent implements OnInit,OnChanges {
               public dialog: MatDialog,
               private router: Router,
               private route: ActivatedRoute,
-              // private mensajeNuloMovimientoService: MensajeNuloMovimientoService,
 
               @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;
@@ -107,7 +106,6 @@ export class ProductsComponent implements OnInit,OnChanges {
 
       }
 
-      // this.mensajeRecibido = this.mensajeNuloMovimientoService.getMessage();
 
 
     }
@@ -127,6 +125,16 @@ export class ProductsComponent implements OnInit,OnChanges {
   }
   ngOnInit() {
 
+
+    this.route.params.subscribe(params => {
+      const page = +params['page'];
+      if (!isNaN(page)) {
+        // Actualiza la variable de página en el componente
+        this.page = page;
+        // Realiza cualquier acción necesaria con la página, como cargar datos
+        this.getProductsEmpleado();
+      }
+    });
 
 
 
@@ -263,6 +271,8 @@ export class ProductsComponent implements OnInit,OnChanges {
 
 
     // this.router.navigate(['/productos'], { queryParams: { page: event } });
+    this.router.navigate(['/productos', this.page]);
+
 
     this.getProductsEmpleado();
     if (isPlatformBrowser(this.platformId)) {
@@ -291,7 +301,7 @@ export class ProductsComponent implements OnInit,OnChanges {
       this.appService.getProductsApiEmpleado(this.searchText).subscribe(data=>{
       this.products = data;
       // console.log(data)
-        // console.log(this.products)
+        // console.log( "producto que se manda desde products" + this.products)
 
     });
   }

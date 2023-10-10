@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   public ProductosSustitutos:Array<Product>;
   public viewprice:boolean=false;
 
+
   public numeroPagina: any = 4;
 
   constructor(public appService:AppService, private activatedRoute: ActivatedRoute, public dialog: MatDialog, public formBuilder: UntypedFormBuilder
@@ -41,8 +42,9 @@ export class ProductComponent implements OnInit {
     this.sub = this.activatedRoute.params.subscribe(params => {
       this.getProductById(params['id']);
       this.getRelatedProducts(params['id']);
-      const numeroPagina = (params['numeroPagina'])
+      const numeroPagina = (params['page'])
       this.numeroPagina = numeroPagina
+
     });
     this.form = this.formBuilder.group({
       'review': [null, Validators.required],
@@ -79,6 +81,7 @@ export class ProductComponent implements OnInit {
   public getProductById(id){
     this.appService.getProductsByIdApi(id).subscribe(data=>{
       this.product = data;
+      // console.log(data)
       this.product.CantidadFraccion=data.CantidadFraccionar;
       this.image = data.images[0].medium;
       this.zoomImage = data.images[0].big;
@@ -148,6 +151,9 @@ export class ProductComponent implements OnInit {
     // this.router.navigate(['/productos'], { queryParams: { page: this.numeroPagina } });
 
     window.history.back();
+
+    this.router.navigate(['/productos',this.numeroPagina]);
+
 
 
   }
