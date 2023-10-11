@@ -34,11 +34,14 @@
 
         <h2 [ngStyle]="{'color': product?.NuloMovimiento === 1 ? 'red' : 'inherit'}">  {{product?.name}}</h2>
 
-         <button *ngIf="product?.NuloMovimiento" mat-raised-button (click)="goBackToList()"> <mat-icon color="primary">arrow_back</mat-icon>
+          <button *ngIf="product?.NuloMovimiento" mat-raised-button (click)="goBackToList()"> <mat-icon color="primary">arrow_back</mat-icon>
           Volver a la lista de productos</button>
 
-        <button *ngIf="!product?.NuloMovimiento"  mat-raised-button  [routerLink]="['/productos',this.numeroPagina]"> <mat-icon color="primary">arrow_back</mat-icon>
+          <button *ngIf="!product?.NuloMovimiento"  mat-raised-button  [routerLink]="['/productos',this.numeroPagina]"> <mat-icon color="primary">arrow_back</mat-icon>
           Volver a la lista de productos</button>
+
+
+
 
 
 

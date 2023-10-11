@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router} from '@angular/router';
 import { UntypedFormBuilder, UntypedFormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -26,6 +26,7 @@ export class ProductComponent implements OnInit {
   public ProductosSustitutos:Array<Product>;
   public viewprice:boolean=false;
 
+  @Input() searchText
 
   public numeroPagina: any = 4;
 
@@ -51,6 +52,9 @@ export class ProductComponent implements OnInit {
       'name': [null, Validators.compose([Validators.required, Validators.minLength(4)])],
       'email': [null, Validators.compose([Validators.required, emailValidator])]
     });
+
+
+    console.log( "datos del componete padre al hijo " ,this.searchText)
 
 
 

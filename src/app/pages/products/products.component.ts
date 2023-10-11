@@ -103,6 +103,8 @@ export class ProductsComponent implements OnInit,OnChanges {
 
 
         );
+        console.log(this.searchText)
+
 
       }
 
@@ -267,11 +269,17 @@ export class ProductsComponent implements OnInit,OnChanges {
   public onPageChanged(event){
     this.page = event;
 
-    localStorage.setItem('currentPage', event);
 
 
     // this.router.navigate(['/productos'], { queryParams: { page: event } });
+
+    if(!this.searchText){
     this.router.navigate(['/productos', this.page]);
+    }
+    // else{
+    //   this.onChangeCategory(event);
+
+    // }
 
 
     this.getProductsEmpleado();
