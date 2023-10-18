@@ -26,14 +26,14 @@
         </div>
         <div fxLayout="row" fxLayoutAlign="end center">
             <div fxLayout="row" fxLayoutAlign="start center" fxShow="false" fxShow.gt-xs class="search-bar">
-                <form method="get">
+                <!-- <form method="get">
                     <input type="text" placeholder="Buscar..." class="mat-elevation-z3"  [class.show]="toggleSearchBar">
                     <button mat-icon-button (click)="toggleSearchBar = !toggleSearchBar" type="button">
                         <mat-icon>search</mat-icon>
                     </button>
-                </form>
+                </form> -->
             </div>
-            <app-lang fxShow="false" fxShow.gt-xs></app-lang>
+            <!-- <app-lang fxShow="false" fxShow.gt-xs></app-lang> -->
             <app-fullscreen></app-fullscreen>
             <app-messages fxShow="false" fxShow.gt-xs></app-messages>
             <app-user-menu></app-user-menu>
@@ -47,8 +47,8 @@
                 <div fxLayout="row" fxLayoutAlign="space-around center" class="user-info-wrapper">
                     <img [src]="userImage" alt="user-image">
                     <div class="user-info">
-                        <p class="name">Emilio Verdines</p>
-                        <p class="position">General Manager <br> <small class="muted-text">Member since May. 2016</small></p>
+                        <p class="name">{{userLogged}} </p>
+                        <!-- <p class="position">General Manager <br> <small class="muted-text">Member since May. 2016</small></p> -->
                     </div>
                 </div>
                 <div fxLayout="row" fxLayoutAlign="space-around center" class="w-100 muted-text">

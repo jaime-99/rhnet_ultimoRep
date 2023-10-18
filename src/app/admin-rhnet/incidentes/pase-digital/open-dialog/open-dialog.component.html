@@ -1,0 +1,51 @@
+
+
+<h1 mat-dialog-title>Crear Pase Digital </h1>
+<div mat-dialog-content>
+  <div class="row">
+    <div class="col-md-5">
+  <mat-form-field class="custom-input">
+    <mat-label>Fecha del pase</mat-label>
+    <input matInput [(ngModel)]="data.fecha" [value]="this.data.fecha" type="date">
+  </mat-form-field>
+  <!-- </div> -->
+  <mat-form-field class="custom-input">
+    <mat-label>Tipo</mat-label>
+    <mat-select [(ngModel)]="data.tipo" name="tipo">
+      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
+        {{tipo.nombre}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  </div>
+  </div>
+  <div class="row">
+  <div class="col">
+  <mat-form-field  class="custom-input">
+    <mat-label>Hora</mat-label>
+    <input matInput [(ngModel)]="data.hora" [value]="this.data.hora" type="time">
+  </mat-form-field>
+  </div>
+  <div *ngIf="data.tipo==1 || data.tipo ==3"  class="col">
+  <mat-form-field class="custom-input">
+    <mat-label>Hora entrada</mat-label>
+    <input matInput [(ngModel)]="data.horaEntrada" [value]="this.data.horaEntrada" type="time">
+  </mat-form-field>
+  </div>
+  <div *ngIf="data.tipo==2 || data.tipo ==3"  class="col">
+  <mat-form-field class="custom-input">
+    <mat-label>Hora Salida</mat-label>
+    <input matInput [(ngModel)]="data.horaSalida" [value]="this.data.horaSalida" type="time">
+  </mat-form-field>
+  </div>
+  </div>
+  <mat-form-field class="custom-input">
+    <mat-label>Observaciones || Motivo</mat-label>
+    <textarea matInput [(ngModel)]="data.observaciones"></textarea>
+  </mat-form-field>
+<!-- </div> -->
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Enviar Datos </button>
+  <button mat-button [mat-dialog-close]="data.fecha" cdkFocusInitial>Ok</button>
+</div>

@@ -1,5 +1,20 @@
 import { RhMenu } from "./rhmenu-model"
-export const RHmenuItems = [ 
-    
-    new RhMenu (200, 'ADMIN_NAV.EXTERNAL_LINK', null, 'http://themeseason.com', 'open_in_new', '_blank', false, 0)
+export const RHmenuItems = [
+
+
+
+
+
+    new RhMenu (30, 'MI PERFIL', '/rhnet/perfil', null, 'support', null, false, 0),
+    new RhMenu (31, 'GENERAR PASE', '/rhnet/pase', null, 'grid_on', null, false, 0),
+
+    new RhMenu (31, 'INCIDENCIAS', null, null, 'grid_on', null, true, 0),
+    new RhMenu (33, 'GENERAR PASE DIGITAL', 'rhnet/pase', null, 'grid_on', null, false, 31),
+
+
+
+
+
+
+
 ]

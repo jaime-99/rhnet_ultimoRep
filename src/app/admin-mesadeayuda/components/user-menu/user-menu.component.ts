@@ -17,7 +17,7 @@ export class UserMenuComponent implements OnInit {
 
     let userauth=JSON.parse(localStorage.getItem('datalogin')!);
     this.userImage=userauth.Imagen;
-   
+
     this.userLogged=userauth.data.Usuario;
     let puesto:string;
     puesto=userauth.data.Puesto;
