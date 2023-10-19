@@ -43,11 +43,20 @@ export class RhnetService {
       const body={fecha,numeroEmpleado,motivo,nombre}
       return this.http.post<any>( url, body );
     }
-
-    getPases(){
+    //obtiene los datos de la tabla pases
+    getPases():any{
       const apiUrl = `https://www.dikeninternational.com/angular_service/api/usuario/getPasesDigitales.php`;
       return this.http.get(apiUrl);
     }
+
+    updatePases(p_Autorizado,p_AutorizadoSalida, p_PaseDigitalId){
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/updatePases.php`;
+      const body={p_Autorizado,p_AutorizadoSalida, p_PaseDigitalId}
+      return this.http.put( url, body );
+    }
+
+
+
 
 
 

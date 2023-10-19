@@ -76,14 +76,14 @@
             <th scope="col">Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr *ngFor="let pase of pases">
+        <tbody *ngFor="let pase of pases$ | async">
+          <tr *ngIf="pase.Autorizado ===1">
             <th scope="row"> {{pase.PaseDigitalId}} </th>
-            <td>Mark</td>
-            <td>Ottoo</td>
-            <td>agosto-septiembre</td>
+            <td> {{pase.NOMBRE}} {{pase.APELLIDO_PATERNO}}  </td>
+            <td>{{this.usuarioJefe}} </td>
+            <td> {{pase.Fecha}} </td>
             <td>pendiente</td>
-            <td>     <button mat-raised-button color="primary">Autorizar</button>
+             <td>     <button mat-raised-button color="warn">Eliminar</button>
 
             </td>
           </tr>
@@ -114,30 +114,24 @@
 
       <table class="table table-striped">
         <thead>
-          <tr>
+          <tr >
             <th scope="col">#Empleado</th>
             <th scope="col">Nombre</th>
             <th scope="col">Jefe</th>
             <th scope="col">Periodo</th>
+            <th scope="col">Acciones</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>agosto-septiembre</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>octubre-noviembre</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>diciembre-feberero</td>
+
+        <tbody *ngFor="let pase of pases$ | async">
+          <tr *ngIf="pase.Autorizado ===0">
+            <th scope="row">{{pase.PaseDigitalId}} </th>
+            <td>{{pase.NOMBRE}} {{pase.APELLIDO_PATERNO}}  </td>
+            <td> {{this.usuarioJefe}} </td>
+            <td> {{pase.Fecha}} </td>
+            <td>     <button (click)="autorizarPase(pase.PaseDigitalId)" mat-raised-button color="primary">Autorizar</button>
+
+            </td>
           </tr>
         </tbody>
       </table>

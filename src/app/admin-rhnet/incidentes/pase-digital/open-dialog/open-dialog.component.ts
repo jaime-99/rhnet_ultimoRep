@@ -99,7 +99,7 @@ export class OpenDialogComponent implements OnInit {
     p_Fecha:this.data.fecha,
     p_Tipo:this.data.tipo,
     p_Motivo:this.data.observaciones,
-    p_Autorizado : 1, // contesta el jefe
+    p_Autorizado : 0, // contesta el jefe
     p_Empresa: this.empresa,
     p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
     p_Hora: this.data.hora,
@@ -113,7 +113,7 @@ export class OpenDialogComponent implements OnInit {
       console.log(res)
     })
 
-    this.sendMailToBoss();
+    // this.sendMailToBoss();
 
 
   }

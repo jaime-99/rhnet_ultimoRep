@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { OpenDialogComponent } from './open-dialog/open-dialog.component';
 import { useAnimation } from '@angular/animations';
 import { ServicioCompartidoService } from '../../components/servicio-compartido.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pase-digital',
@@ -23,7 +24,10 @@ export class PaseDigitalComponent implements OnInit {
   id_jefe: any;
   numeroEmpleadoJefe: number;
 
-  pases = []
+  // pases = []
+
+  pases$: Observable<any[]>; // Declarar un observable
+
 
 
   constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService) {
@@ -96,16 +100,31 @@ export class PaseDigitalComponent implements OnInit {
 
 
   getPases(){
-    this.rhService.getPases().subscribe((data:any)=>{
-      console.log(data)
-      this.pases = data;
+    // this.rhService.getPases().subscribe((data:any)=>{
+    //   // console.log(data)
+    //   this.pases$ = data;
+    //   console.log(this.pases$)
+    // })
 
-
-
-    })
-
+    this.pases$ = this.rhService.getPases(); // Asignar el observable
 
   }
 
 
+  autorizarPase(id){
+    const res = {
+      p_PaseAutorizado: 1,
+      p_PaseAutorizadoSalida: 1,
+      p_PaseDigitalId:id
+    }
+
+    this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
+      // console.log(res)
+    })
+
+    this.getPases();
+  }
+
 }
+
+//construir arreglo de mis datos con un arreglo para que se actualize
