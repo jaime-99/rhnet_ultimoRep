@@ -55,6 +55,7 @@ export class RhnetService {
       return this.http.put( url, body );
     }
 
+    // getAllInfoUsers(id:boolean):
 
 
 

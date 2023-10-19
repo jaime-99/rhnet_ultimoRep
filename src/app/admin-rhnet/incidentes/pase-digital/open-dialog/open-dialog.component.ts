@@ -113,7 +113,7 @@ export class OpenDialogComponent implements OnInit {
       console.log(res)
     })
 
-    // this.sendMailToBoss();
+    this.sendMailToBoss();
 
 
   }

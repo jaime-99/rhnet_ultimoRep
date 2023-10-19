@@ -33,18 +33,22 @@
                           </div>
                           <div class="row">
                               <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
-                                  <input matInput placeholder="Correo" type="email" placeholder="{{correo}}">
-                                </mat-form-field>
+                                <!-- <mat-form-field class="example-full-width"> -->
+                                  <!-- <input matInput placeholder="Correo" type="email" placeholder="{{correo}}"> -->
+                                  <label for="exampleFormControlInput1" class="form-label">Correo</label>
+                                  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="{{correo}}">
+                                <!-- </mat-form-field> -->
                               </div>
                               <div class="col-md-6">
-                                <mat-form-field class="example-full-width">
+                                <!-- <mat-form-field class="example-full-width">
                                   <input matInput placeholder="{{password}}" type="password">
-                                </mat-form-field>
+                                </mat-form-field> -->
+                                <label for="exampleFormControlInput1" class="form-label">Contraseña</label>
+                                  <input type="password" class="form-control" id="exampleFormControlInput1" placeholder="********">
                               </div>
                           </div>
 
-                          <div class="row">
+                          <div class="row mt-4" >
                               <div class="col-md-4">
                                 <div class="form-group">
                                   <label>Empresa</label>
