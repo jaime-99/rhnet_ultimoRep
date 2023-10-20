@@ -40,6 +40,7 @@ export class InicioComponent implements OnInit {
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
     console.log(usuarioAuth)
 
+
     this.empresa = usuarioAuth.data.Empresa
     this.correo = usuarioAuth.Correo
     this.numEmpleado = usuarioAuth.data.Numero_Empleado

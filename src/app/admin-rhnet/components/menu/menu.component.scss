@@ -16,7 +16,7 @@
         border-radius: 0;
         .menu-icon{
             margin-right: 12px;
-            padding: 7px;
+            padding: 0px;
             border-radius: 50%;
         }
         &.expanded{
@@ -30,6 +30,10 @@
     .mat-button-wrapper{
         padding-left: 16px;
     }
+}
+
+.menu-title{
+  margin-left: 15px
 }
 
 .sub-menu{
