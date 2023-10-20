@@ -61,6 +61,7 @@ export class OpenDialogComponent implements OnInit {
 
 
 
+
     //conseguir la fecha
     const fechaActual = new Date();
     const año = fechaActual.getFullYear();
@@ -113,7 +114,7 @@ export class OpenDialogComponent implements OnInit {
       console.log(res)
     })
 
-    this.sendMailToBoss();
+    // this.sendMailToBoss();
 
 
   }

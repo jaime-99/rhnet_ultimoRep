@@ -44,21 +44,26 @@ export class RhnetService {
       return this.http.post<any>( url, body );
     }
     //obtiene los datos de la tabla pases
-    getPases():any{
-      const apiUrl = `https://www.dikeninternational.com/angular_service/api/usuario/getPasesDigitales.php`;
+    getPases(numUsuario):any{
+      const apiUrl = `https://www.dikeninternational.com/angular_service/api/usuario/getPasesDigitales.php?numUsuario=${numUsuario}`;
       return this.http.get(apiUrl);
     }
-
+    //actualiza la tabla
     updatePases(p_Autorizado,p_AutorizadoSalida, p_PaseDigitalId){
       const url=`https://www.dikeninternational.com/angular_service/api/usuario/updatePases.php`;
       const body={p_Autorizado,p_AutorizadoSalida, p_PaseDigitalId}
       return this.http.put( url, body );
     }
 
-    // getAllInfoUsers(id:boolean):
+    getPasesJefe(idUsu):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getPasesJefe.php?idUsu=${idUsu}`;
+      return this.http.get(url);
+    }
 
-
-
+    getAllInfoEmpleados(nameId):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getAllInfoUsuario.php?nameId=${nameId}`;
+      return this.http.get(url);
+    }
 
 
 }

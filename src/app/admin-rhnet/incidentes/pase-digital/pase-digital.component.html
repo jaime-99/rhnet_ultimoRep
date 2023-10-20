@@ -15,13 +15,13 @@
                   <div class="col-md-5">
                     <div class="form-group">
                       <label>Empleado </label>
-                      <input class="form-control" type="text" placeholder="{{usuario}}" disabled readonly>
+                      <input class="form-control" type="text" placeholder="{{NombreCompleto}}" disabled readonly>
                     </div>
                   </div>
-                  <div class="col-md-5">
+                  <div class="col-md-7">
                     <div class="form-group">
                       <label>JEFE </label>
-                      <input class="form-control" type="text" placeholder="{{usuarioJefe}}" disabled readonly>
+                      <input class="form-control" type="text" placeholder="{{nombreJefe}}" disabled readonly>
                     </div>
                   </div>
                 </div>
@@ -72,17 +72,19 @@
             <th scope="col">Nombre</th>
             <th scope="col">Jefe</th>
             <th scope="col">Periodo</th>
-            <th scope="col">Estatus</th>
+            <!-- <th scope="col">Estatus</th> -->
+            <th scope="col">Autorizado</th>
+
             <th scope="col">Acciones</th>
           </tr>
         </thead>
         <tbody *ngFor="let pase of pases$ | async">
-          <tr *ngIf="pase.Autorizado ===1">
+          <tr>
             <th scope="row"> {{pase.PaseDigitalId}} </th>
             <td> {{pase.NOMBRE}} {{pase.APELLIDO_PATERNO}}  </td>
-            <td>{{this.usuarioJefe}} </td>
+            <td>{{nombreJefe}} </td>
             <td> {{pase.Fecha}} </td>
-            <td>pendiente</td>
+            <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }} </td>
              <td>     <button mat-raised-button color="warn">Eliminar</button>
 
             </td>
@@ -117,21 +119,28 @@
           <tr >
             <th scope="col">#Empleado</th>
             <th scope="col">Nombre</th>
+            <th scope="col"> Numero Empleado</th>
             <th scope="col">Jefe</th>
             <th scope="col">Periodo</th>
+            <th scope="col">Autorizado</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
 
-        <tbody *ngFor="let pase of pases$ | async">
-          <tr *ngIf="pase.Autorizado ===0">
+        <!-- <tbody *ngFor="let pase of pases$ | async"> -->
+        <tbody *ngFor="let pase of pasesJefe$ | async">
+          <tr>
             <th scope="row">{{pase.PaseDigitalId}} </th>
-            <td>{{pase.NOMBRE}} {{pase.APELLIDO_PATERNO}}  </td>
-            <td> {{this.usuarioJefe}} </td>
+            <td> {{pase.NombreDelEmpleado}} </td>
+            <td> {{pase.NumeroEmpleado}} </td>
+            <td> {{pase.NombreDelJefe}} </td>
             <td> {{pase.Fecha}} </td>
-            <td>     <button (click)="autorizarPase(pase.PaseDigitalId)" mat-raised-button color="primary">Autorizar</button>
+            <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }}</td>
 
+            <td>
+              <button (click)="autorizarPase(pase.PaseDigitalId)" mat-raised-button color="primary" [disabled]="pase.Autorizado === 1">Autorizar</button>
             </td>
+
           </tr>
         </tbody>
       </table>

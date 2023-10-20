@@ -6,6 +6,7 @@ import { OpenDialogComponent } from './open-dialog/open-dialog.component';
 import { useAnimation } from '@angular/animations';
 import { ServicioCompartidoService } from '../../components/servicio-compartido.service';
 import { Observable } from 'rxjs';
+import { array } from '@amcharts/amcharts5';
 
 @Component({
   selector: 'app-pase-digital',
@@ -27,7 +28,21 @@ export class PaseDigitalComponent implements OnInit {
   // pases = []
 
   pases$: Observable<any[]>; // Declarar un observable
+  // pasesJefe: Object;
+  pasesJefe$:Observable<any[]>;
 
+  nombreJefe: any;
+  NombreCompleto: any;
+  nombreDelJefe: any;
+
+
+  datosPases = {
+    nombreDelJefe : '',
+    idDelJefe : '',
+    nombreCompleto: ''
+
+  }
+  pasesJefe: any;
 
 
   constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService) {
@@ -44,17 +59,17 @@ export class PaseDigitalComponent implements OnInit {
   ngOnInit(): void {
 
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
-    // console.log(usuarioAuth)
+    console.log(usuarioAuth)
     this.usuario = usuarioAuth.data.Usuario
     this.numUsuario = usuarioAuth.data.Numero_Empleado
 
-    this.rhService.getUsuariosPorId(this.usuario).subscribe((res:any)=>{
-      // console.log(res)
+    this.rhService.getAllInfoEmpleados(this.numUsuario).subscribe((res:any)=>{
+      console.log(res)
       this.datosUsuario = res
-      this.id_jefe = this.datosUsuario.id_jefe
+      this.id_jefe = this.datosUsuario.NUMERO_EMPLEADO_JEFE
       // console.log(this.id_jefe)
-      this.fecha_alta = this.datosUsuario.fecha_alta
-
+      this.fecha_alta = this.datosUsuario.FECHA_ALTA
+      this.NombreCompleto = this.datosUsuario.nombre
       this.getNameBoss();
       this.getPases();
 
@@ -64,11 +79,19 @@ export class PaseDigitalComponent implements OnInit {
 
   //obtener los datos del jefe de un usuario
   getNameBoss(){
-    this.rhService.getUsuariosPorId1(this.id_jefe).subscribe((res:any)=>{
-      // console.log(res)
-      const usuarioJefe = res
-      this.usuarioJefe = usuarioJefe.usuario
-      this.numeroEmpleadoJefe = usuarioJefe.numero_empleado
+    // this.rhService.getUsuariosPorId1(this.id_jefe).subscribe((res:any)=>{
+    //   // console.log(res)
+    //   const usuarioJefe = res
+    //   this.usuarioJefe = usuarioJefe.usuario
+    //   this.numeroEmpleadoJefe = usuarioJefe.numero_empleado
+    // })
+    this.rhService.getAllInfoEmpleados(this.id_jefe).subscribe((res:any)=>{
+      console.log(this.id_jefe)
+      console.log(res)
+         const usuarioJefe = res
+      this.nombreJefe = usuarioJefe.nombre
+      // this.numeroEmpleadoJefe = usuarioJefe.numero_empleado
+
     })
   }
 
@@ -95,7 +118,7 @@ export class PaseDigitalComponent implements OnInit {
       console.log(resultado)
     });
 
-    this.weService.setVariable(this.numeroEmpleadoJefe);
+    this.weService.setVariable(this.id_jefe);
   }
 
 
@@ -105,8 +128,21 @@ export class PaseDigitalComponent implements OnInit {
     //   this.pases$ = data;
     //   console.log(this.pases$)
     // })
+    const usuarioId = {
+      numUsuario :this.numUsuario
+    }
 
-    this.pases$ = this.rhService.getPases(); // Asignar el observable
+    this.pases$ = this.rhService.getPases(usuarioId.numUsuario); // Asignar el observable
+
+    this.getPasesJefe();
+  }
+
+  //es para obtener los pases que debe autorizar
+  getPasesJefe(){
+
+
+    this.pasesJefe$ = this.rhService.getPasesJefe(this.numUsuario);
+
 
   }
 
