@@ -72,7 +72,7 @@ export class PaseDigitalComponent implements OnInit {
       this.NombreCompleto = this.datosUsuario.nombre
       this.getNameBoss();
       this.getPases();
-
+      this.getPasesJefe();
     })
 
   }
@@ -114,8 +114,12 @@ export class PaseDigitalComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('el dialogo se ha cerrado');
-      const resultado = result;
-      console.log(resultado)
+      // const resultado = result;
+      // console.log(resultado)
+
+
+      this.getPases();
+
     });
 
     this.weService.setVariable(this.id_jefe);
@@ -134,7 +138,7 @@ export class PaseDigitalComponent implements OnInit {
 
     this.pases$ = this.rhService.getPases(usuarioId.numUsuario); // Asignar el observable
 
-    this.getPasesJefe();
+    // this.getPasesJefe();
   }
 
   //es para obtener los pases que debe autorizar
@@ -142,7 +146,6 @@ export class PaseDigitalComponent implements OnInit {
 
 
     this.pasesJefe$ = this.rhService.getPasesJefe(this.numUsuario);
-
 
   }
 
@@ -155,10 +158,11 @@ export class PaseDigitalComponent implements OnInit {
     }
 
     this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
+
+      this.getPasesJefe();
       // console.log(res)
     })
 
-    this.getPases();
   }
 
 }

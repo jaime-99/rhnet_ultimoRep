@@ -68,12 +68,14 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">#Empleado</th>
+            <th scope="col">Numero de pase</th>
             <th scope="col">Nombre</th>
             <th scope="col">Jefe</th>
             <th scope="col">Periodo</th>
             <!-- <th scope="col">Estatus</th> -->
             <th scope="col">Autorizado</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estatus</th>
 
             <th scope="col">Acciones</th>
           </tr>
@@ -85,7 +87,11 @@
             <td>{{nombreJefe}} </td>
             <td> {{pase.Fecha}} </td>
             <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }} </td>
-             <td>     <button mat-raised-button color="warn">Eliminar</button>
+            <td> {{pase.tipo}} </td>
+            <td> <strong> {{pase.estatus}} </strong> </td>
+
+
+             <td><button mat-raised-button color="warn">Eliminar</button>
 
             </td>
           </tr>
@@ -117,12 +123,14 @@
       <table class="table table-striped">
         <thead>
           <tr >
-            <th scope="col">#Empleado</th>
+            <th scope="col">Numero de pase</th>
             <th scope="col">Nombre</th>
             <th scope="col"> Numero Empleado</th>
             <th scope="col">Jefe</th>
             <th scope="col">Periodo</th>
             <th scope="col">Autorizado</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Estatus</th>
             <th scope="col">Acciones</th>
           </tr>
         </thead>
@@ -136,6 +144,9 @@
             <td> {{pase.NombreDelJefe}} </td>
             <td> {{pase.Fecha}} </td>
             <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }}</td>
+            <td> {{pase.tipo}} </td>
+            <td> <strong> {{pase.estatus}} </strong> </td>
+
 
             <td>
               <button (click)="autorizarPase(pase.PaseDigitalId)" mat-raised-button color="primary" [disabled]="pase.Autorizado === 1">Autorizar</button>

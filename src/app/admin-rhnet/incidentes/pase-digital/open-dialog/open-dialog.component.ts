@@ -2,6 +2,8 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
 import { ServicioCompartidoService } from 'src/app/admin-rhnet/components/servicio-compartido.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface DialogData { // colocar en otra clase particulas de interfaces
   fecha: string;
@@ -13,9 +15,8 @@ export interface DialogData { // colocar en otra clase particulas de interfaces
 
 }
 
-export interface tipoEntrada {
 
-}
+
 
 
 @Component({
@@ -29,23 +30,48 @@ export class OpenDialogComponent implements OnInit {
   empresa: any;
   @Input() numeroEmpleado:number
 
+  generacionPase: FormGroup;
+
+
   public tipos = [
-    { id:1, nombre: 'entrada' },
-    { id:2, nombre: 'salida' },
-    { id:3, nombre: 'entrada y salida' }
+    { id:1, nombre: 'entrada y salida' },
+    { id:2, nombre: 'entrada' },
+    { id:3, nombre: 'salida' }
   ];
   numeroEmpleadoJefe: number;
 
-  constructor(
+  constructor(private fb:FormBuilder,public snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<OpenDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private rhService:RhnetService, public weService:ServicioCompartidoService
-  ) {}
+  ) {
 
-  onNoClick(): void {
-    this.dialogRef.close();
+  }
 
-    this.enviarDatos();
-    console.log(this.data.tipo)
+  onNoClick(values:Object): void {
+
+    // console.log(this.generacionPase.value); // Muestra los datos del formulario en la consola
+
+    if(this.generacionPase.valid){
+      const {p_NumeroEmpleado,p_Fecha,p_Tipo,p_Motivo,p_Autorizado,p_Empresa,p_NumeroEmpleadoJefe,p_Hora,
+        p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida} = this.generacionPase.value
+      this.rhService.InsertarPase(p_NumeroEmpleado,p_Fecha,p_Tipo,p_Motivo,p_Autorizado,p_Empresa,p_NumeroEmpleadoJefe,
+        p_Hora,p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida).subscribe((res)=>{
+        })
+
+        this.dialogRef.close();
+        this.snackBar.open('has creado una generacion de pase', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+
+
+    }else{
+
+      // console.log("te faltan datos que llenar")
+      this.snackBar.open('Te faltan datos que llenar', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
+
+    }
+
+    // this.enviarDatos();
+
+    // console.log(this.data.tipo)
 
   }
 
@@ -53,13 +79,27 @@ export class OpenDialogComponent implements OnInit {
   ngOnInit(): void {
 
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
-    console.log(usuarioAuth)
+    // console.log(usuarioAuth)
     this.usuario = usuarioAuth.data.Usuario
     this.numUsuario = usuarioAuth.data.Numero_Empleado
     this.empresa = usuarioAuth.data.Empresa,
     this.numeroEmpleadoJefe = this.weService.miVariable
 
 
+    this.generacionPase = this.fb.group({
+      p_NumeroEmpleado:this.numUsuario , // Campo de usuario, requerido
+      p_Fecha: ['', Validators.compose([Validators.required])], // Campo de contraseña, requerido
+      p_Tipo: ['', Validators.compose([Validators.required])], // Campo de contraseña, requerido
+      p_Motivo: ['', Validators.compose([Validators.required])],
+      p_Autorizado: 0, // Campo de contraseña, requerido
+      p_Empresa: this.empresa,
+      p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
+      p_Hora: ['', Validators.compose([Validators.required])],
+      p_AutorizadoSalida: 0,
+      p_HoraEntrada: [ null],
+      p_HoraSalida: [ null],
+
+    });
 
 
     //conseguir la fecha
@@ -131,12 +171,16 @@ export class OpenDialogComponent implements OnInit {
     }
 
     this.rhService.sendToBoss(data.fecha,data.numeroEmpleado,data.motivo,data.nombre).subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
     })
-
 
   }
 
+  volver(){
+    //es solo una alternativa para volver sin datos
+    this.dialogRef.close();
+
+  }
 
 
 

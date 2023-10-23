@@ -1,18 +1,23 @@
 
 
 <h1 mat-dialog-title>Crear Pase Digital </h1>
+<form [formGroup]="generacionPase">
+
 <div mat-dialog-content>
   <div class="row">
     <div class="col-md-5">
   <mat-form-field class="custom-input">
     <mat-label>Fecha del pase</mat-label>
-    <input matInput [(ngModel)]="data.fecha" [value]="this.data.fecha" type="date">
+    <input matInput [(ngModel)]="data.fecha" formControlName="p_Fecha" [value]="this.data.fecha" type="date">
+    <mat-error *ngIf="generacionPase.controls.p_Fecha.errors?.required">la tipo de fecha es requerida</mat-error>
+
   </mat-form-field>
   <!-- </div> -->
   <mat-form-field class="custom-input">
     <mat-label>Tipo</mat-label>
-    <mat-select [(ngModel)]="data.tipo" name="tipo">
-      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
+    <mat-error *ngIf="generacionPase.controls.p_Tipo.errors?.required">el tipo de pase es requeirido</mat-error>
+    <mat-select [(ngModel)]="data.tipo" formControlName="p_Tipo" name="tipo">
+      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id" >
         {{tipo.nombre}}
       </mat-option>
     </mat-select>
@@ -23,29 +28,40 @@
   <div class="col">
   <mat-form-field  class="custom-input">
     <mat-label>Hora</mat-label>
-    <input matInput [(ngModel)]="data.hora" [value]="this.data.hora" type="time">
+    <input matInput [(ngModel)]="data.hora" formControlName="p_Hora" [value]="this.data.hora" type="time">
+    <mat-error *ngIf="generacionPase.controls.p_Hora.errors?.required">La hora es requerida</mat-error>
+
   </mat-form-field>
   </div>
-  <div *ngIf="data.tipo==1 || data.tipo ==3"  class="col">
+  <div *ngIf="data.tipo==2 || data.tipo ==1"  class="col">
   <mat-form-field class="custom-input">
     <mat-label>Hora entrada</mat-label>
-    <input matInput [(ngModel)]="data.horaEntrada" [value]="this.data.horaEntrada" type="time">
+    <input matInput [(ngModel)]="data.horaEntrada" formControlName="p_HoraEntrada" [value]="this.data.horaEntrada" type="time">
   </mat-form-field>
   </div>
-  <div *ngIf="data.tipo==2 || data.tipo ==3"  class="col">
+  <div *ngIf="data.tipo==3 || data.tipo ==1"  class="col">
   <mat-form-field class="custom-input">
     <mat-label>Hora Salida</mat-label>
-    <input matInput [(ngModel)]="data.horaSalida" [value]="this.data.horaSalida" type="time">
+    <input matInput [(ngModel)]="data.horaSalida" formControlName="p_HoraSalida" [value]="this.data.horaSalida" type="time">
   </mat-form-field>
   </div>
   </div>
   <mat-form-field class="custom-input">
     <mat-label>Observaciones || Motivo</mat-label>
-    <textarea matInput [(ngModel)]="data.observaciones"></textarea>
+    <textarea matInput [(ngModel)]="data.observaciones" formControlName="p_Motivo" ></textarea>
+    <mat-error *ngIf="generacionPase.controls.p_Motivo.errors?.required">El motivo es requerido</mat-error>
+
   </mat-form-field>
-<!-- </div> -->
+
+  <div mat-dialog-actions>
+    <button mat-raised-button color="primary"  (click)="onNoClick(generacionPase.value)" >Enviar Datos </button>
+    <!-- <button mat-raised-button color="warn" [mat-dialog-close]="data.fecha" cdkFocusInitial>Volver</button> -->
+    <button mat-raised-button color="warn" (click)="volver()"> Volver</button>
+
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">Enviar Datos </button>
+</form>
+<!-- <div mat-dialog-actions>
+  <button mat-button  (click)="onNoClick(generacionPase.value)" >Enviar Datos </button>
   <button mat-button [mat-dialog-close]="data.fecha" cdkFocusInitial>Ok</button>
-</div>
+</div> -->
