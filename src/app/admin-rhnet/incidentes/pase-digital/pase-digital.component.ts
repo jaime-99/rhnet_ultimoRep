@@ -56,8 +56,6 @@ export class PaseDigitalComponent implements OnInit {
   }
 
 
-
-
   ngOnInit(): void {
 
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
@@ -167,6 +165,16 @@ export class PaseDigitalComponent implements OnInit {
 
       this.getPasesJefe();
       // console.log(res)
+    })
+
+  }
+
+  eliminarPase(id){
+
+    this.rhService.eliminarPaseDigital(id).subscribe((res)=>{
+      this.getPases();
+
+
     })
 
   }

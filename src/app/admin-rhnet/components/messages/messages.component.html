@@ -13,7 +13,7 @@
                 </ng-template>
                 <mat-card class="content" perfectScrollbar>
                   <div fxLayout="column" fxLayoutAlign="none">
-                      <button mat-button *ngFor="let message of messages">
+                      <button routerLink="/rhnet/MENSAJES" mat-button *ngFor="let message of messages">
                           <!-- <img src="{{ ( message.image || (message.name | profilePicture)) }}" width="50"> -->
                           <div fxLayout="column" fxLayoutAlign="none" class="w-100">
                               <div fxLayout="row" fxLayoutAlign="space-between start">
