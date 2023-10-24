@@ -17,6 +17,9 @@ import { InicioComponent } from './inicio/inicio.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaseDigitalComponent } from './incidentes/pase-digital/pase-digital.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { MessagesComponent } from './components/messages/messages.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import { MensajesComponent } from './mensajes/mensajes.component';
 
 export const routes = [
   {
@@ -25,8 +28,9 @@ export const routes = [
       { path:'',loadChildren:()=>import('./inicio/inicio.module').then(m=>m.InicioModule)},
 
 
-      { path:'perfil',loadChildren:()=>import('./inicio/inicio.module').then(m=>m.InicioModule),data: { breadcrumb: 'Inicio' }},
-      { path:'pase',loadChildren:()=>import('./incidentes/pase-digital/pase-digital.module').then(m=>m.PaseDigitalModule),data: { breadcrumb: 'pase' }},
+      { path:'PERFIL',loadChildren:()=>import('./inicio/inicio.module').then(m=>m.InicioModule),data: { breadcrumb: 'INICIO' }},
+      { path:'PASE',loadChildren:()=>import('./incidentes/pase-digital/pase-digital.module').then(m=>m.PaseDigitalModule),data: { breadcrumb: 'PASE' }},
+      { path:'MENSAJES',loadChildren:()=>import('./mensajes/mensajes.module').then(m=>m.MensajesModule),data: { breadcrumb: 'MENSAJES' }},
 
 
 
@@ -44,6 +48,7 @@ export const routes = [
     FullScreenComponent,
     InicioComponent,
     // PaseDigitalComponent
+    MessagesComponent,
   ],
   imports: [
     CommonModule,
@@ -52,7 +57,10 @@ export const routes = [
     InputFileModule.forRoot(config),
     FormsModule,
     ReactiveFormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatBadgeModule
+
+
   ]
 })
 export class AdminRhnetModule { }

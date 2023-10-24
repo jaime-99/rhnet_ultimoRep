@@ -5,7 +5,8 @@ import { ServicioCompartidoService } from 'src/app/admin-rhnet/components/servic
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-export interface DialogData { // colocar en otra clase particulas de interfaces
+export interface DialogData {
+  correo: string; // colocar en otra clase particulas de interfaces
   fecha: string;
   tipo: number;
   hora:string;
@@ -32,13 +33,15 @@ export class OpenDialogComponent implements OnInit {
 
   generacionPase: FormGroup;
 
-
+  //esta en estatico los tipo de pases
   public tipos = [
     { id:1, nombre: 'entrada y salida' },
     { id:2, nombre: 'entrada' },
     { id:3, nombre: 'salida' }
   ];
   numeroEmpleadoJefe: number;
+  correo: any;
+  correoJefe: string;
 
   constructor(private fb:FormBuilder,public snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<OpenDialogComponent>,
@@ -60,6 +63,8 @@ export class OpenDialogComponent implements OnInit {
 
         this.dialogRef.close();
         this.snackBar.open('has creado una generacion de pase', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+        this.sendMailToBoss();
+        this.insertarNotificacion();
 
 
     }else{
@@ -83,7 +88,9 @@ export class OpenDialogComponent implements OnInit {
     this.usuario = usuarioAuth.data.Usuario
     this.numUsuario = usuarioAuth.data.Numero_Empleado
     this.empresa = usuarioAuth.data.Empresa,
-    this.numeroEmpleadoJefe = this.weService.miVariable
+    this.correo = usuarioAuth.Correo
+    this.numeroEmpleadoJefe = this.weService.miVariable // de aqui saco el jefe
+    this.correoJefe = this.weService.correoJefe
 
 
     this.generacionPase = this.fb.group({
@@ -133,34 +140,37 @@ export class OpenDialogComponent implements OnInit {
 
 
 
-  enviarDatos(){
+  // enviarDatos(){
 
-    let data = {
-    p_NumeroEmpleado: this.numUsuario,
-    p_Fecha:this.data.fecha,
-    p_Tipo:this.data.tipo,
-    p_Motivo:this.data.observaciones,
-    p_Autorizado : 0, // contesta el jefe
-    p_Empresa: this.empresa,
-    p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
-    p_Hora: this.data.hora,
-    p_AutorizadoSalida: 0, // contesta el jefe
-    p_HoraEntrada: this.data.horaEntrada || null, //de donde agarro este dato
-    p_HoraSalida: this.data.horaSalida || null // de donde agarro este dato
+  //   let data = {
+  //   p_NumeroEmpleado: this.numUsuario,
+  //   p_Fecha:this.data.fecha,
+  //   p_Tipo:this.data.tipo,
+  //   p_Motivo:this.data.observaciones,
+  //   p_Autorizado : 0, // contesta el jefe
+  //   p_Empresa: this.empresa,
+  //   p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
+  //   p_Hora: this.data.hora,
+  //   p_AutorizadoSalida: 0, // contesta el jefe
+  //   p_HoraEntrada: this.data.horaEntrada || null, //de donde agarro este dato
+  //   p_HoraSalida: this.data.horaSalida || null // de donde agarro este dato
 
-    }
-    this.rhService.InsertarPase(data.p_NumeroEmpleado,data.p_Fecha,data.p_Tipo,data.p_Motivo,data.p_Autorizado,
-      data.p_Empresa,data.p_NumeroEmpleadoJefe,data.p_Hora,data.p_AutorizadoSalida,data.p_HoraEntrada,data.p_HoraSalida).subscribe((res)=>{
-      console.log(res)
-    })
+  //   }
+  //   this.rhService.InsertarPase(data.p_NumeroEmpleado,data.p_Fecha,data.p_Tipo,data.p_Motivo,data.p_Autorizado,
+  //     data.p_Empresa,data.p_NumeroEmpleadoJefe,data.p_Hora,data.p_AutorizadoSalida,data.p_HoraEntrada,data.p_HoraSalida).subscribe((res)=>{
+  //     console.log(res)
+  //   })
 
-    // this.sendMailToBoss();
+  //   // this.sendMailToBoss();
 
 
-  }
+  // }
 
 
   sendMailToBoss(){
+
+    const tipo = this.generacionPase.get('p_Tipo').value;
+
 
     const data = {
       // correo:'practicante.sistemas@dikeninternational.com', // al correo que se le mandara
@@ -168,10 +178,23 @@ export class OpenDialogComponent implements OnInit {
       numeroEmpleado: this.numUsuario,
       motivo: this.data.observaciones,
       nombre: this.usuario,
+      correo:'practicante.sistemas@dikeninternational.com',
+      // correo:this.correoJefe
+      tipoDePase: ''
     }
 
-    this.rhService.sendToBoss(data.fecha,data.numeroEmpleado,data.motivo,data.nombre).subscribe((res)=>{
-      // console.log(res)
+    if(tipo===1){
+      data.tipoDePase="entrada y salida "
+    }
+    if(tipo===2){
+      data.tipoDePase="Entrada"
+    }
+    if(tipo===3){
+      data.tipoDePase="Salida"
+    }
+
+    this.rhService.sendToBoss(data.fecha,data.numeroEmpleado,data.motivo,data.nombre,data.correo,data.tipoDePase).subscribe((res)=>{
+      console.log(res)
     })
 
   }
@@ -179,6 +202,24 @@ export class OpenDialogComponent implements OnInit {
   volver(){
     //es solo una alternativa para volver sin datos
     this.dialogRef.close();
+  }
+
+  // es para insertar una notificacion al jefe cada vez que autorize un mensaje
+  insertarNotificacion(){
+
+    const notificaciones={
+      p_usuario_id:this.numeroEmpleadoJefe,
+      p_mensaje:'se le ha enviado un pase para autorizar',
+      p_tipo:'Incidencias'
+    }
+
+    this.rhService.insertarNotificacion(notificaciones.p_usuario_id,notificaciones.p_mensaje,notificaciones.p_tipo).subscribe((res)=>{
+
+      if(res===true){
+
+      }
+    })
+
 
   }
 

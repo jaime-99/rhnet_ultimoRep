@@ -9,7 +9,9 @@ export class ServicioCompartidoService {
 
   constructor() { }
   miVariable:number
-  setVariable(valor: number) {
+  correoJefe:string
+  setVariable(valor: number,correoJefe:string) {
     this.miVariable = valor;
+    this.correoJefe = correoJefe
   }
 }

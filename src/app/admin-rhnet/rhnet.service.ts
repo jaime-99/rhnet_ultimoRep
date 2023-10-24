@@ -38,9 +38,9 @@ export class RhnetService {
     }
 
     //es para enviar el pase al jefe
-    sendToBoss(fecha,numeroEmpleado,motivo,nombre){
+    sendToBoss(fecha,numeroEmpleado,motivo,nombre,correo,tipoDePase){
       const url=`${ this.baseUrl }/tools/enviarPaseJefe.php`;
-      const body={fecha,numeroEmpleado,motivo,nombre}
+      const body={fecha,numeroEmpleado,motivo,nombre,correo,tipoDePase}
       return this.http.post<any>( url, body );
     }
     //obtiene los datos de la tabla pases
@@ -54,15 +54,35 @@ export class RhnetService {
       const body={p_Autorizado,p_AutorizadoSalida, p_PaseDigitalId}
       return this.http.put( url, body );
     }
-
+    // para ver los pases por autorizar que tiene el usuario
     getPasesJefe(idUsu):any{
       const url=`https://www.dikeninternational.com/angular_service/api/usuario/getPasesJefe.php?idUsu=${idUsu}`;
       return this.http.get(url);
     }
-
+    // para ver la informacion de los empleados
     getAllInfoEmpleados(nameId):any{
       const url=`https://www.dikeninternational.com/angular_service/api/usuario/getAllInfoUsuario.php?nameId=${nameId}`;
       return this.http.get(url);
+    }
+    // para ver las notificaciones que tiene cada usuario
+    getNotificaciones(id):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getNotificaciones.php?id=${id}`;
+      return this.http.get(url);
+    }
+
+    //insertarNotificaciones
+
+    insertarNotificacion(p_usuario_id,p_mensaje,p_tipo){
+      const url=`${ this.baseUrl }/usuario/insertarNotificacion.php`;
+      const body={p_usuario_id,p_mensaje,p_tipo}
+      return this.http.post<any>( url, body );
+    }
+
+    //es para marcar el mensaje como leido solamente
+    marcarComoLeido(mensaje_id){
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/actualizarMensajeLeido.php`;
+      const body={mensaje_id}
+      return this.http.put( url, body );
     }
 
 

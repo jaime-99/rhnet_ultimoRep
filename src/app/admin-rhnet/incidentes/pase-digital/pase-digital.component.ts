@@ -43,6 +43,8 @@ export class PaseDigitalComponent implements OnInit {
 
   }
   pasesJefe: any;
+  correo: any;
+  correoJefe: any;
 
 
   constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService) {
@@ -59,10 +61,10 @@ export class PaseDigitalComponent implements OnInit {
   ngOnInit(): void {
 
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
-    console.log(usuarioAuth)
+    // console.log(usuarioAuth)
     this.usuario = usuarioAuth.data.Usuario
-    this.numUsuario = usuarioAuth.data.Numero_Empleado
-
+    this.numUsuario = usuarioAuth.data.Numero_Empleado,
+    this.correo = usuarioAuth.Correo
     this.rhService.getAllInfoEmpleados(this.numUsuario).subscribe((res:any)=>{
       console.log(res)
       this.datosUsuario = res
@@ -87,9 +89,13 @@ export class PaseDigitalComponent implements OnInit {
     // })
     this.rhService.getAllInfoEmpleados(this.id_jefe).subscribe((res:any)=>{
       console.log(this.id_jefe)
-      console.log(res)
+      // console.log("informacion del jefe", res)
          const usuarioJefe = res
       this.nombreJefe = usuarioJefe.nombre
+      this.correoJefe = usuarioJefe.EMAIL
+      console.log("correo del jefe",this.correoJefe);
+
+
       // this.numeroEmpleadoJefe = usuarioJefe.numero_empleado
 
     })
@@ -109,7 +115,7 @@ export class PaseDigitalComponent implements OnInit {
   openDialog(): void {
     const dialogRef = this.dialog.open(OpenDialogComponent, {
       data: {p_NumeroEmpleado: this.numUsuario, p_Fecha: '', p_Tipo:'', p_Motivo:'',p_Autorizado: '', p_Empresa:'',
-      p_NumeroEmpleadoJefe:'',p_Hora:'', p_AutorizadoSalida:'', p_HoraEntrada:'',p_HoraSalida:''},
+      p_NumeroEmpleadoJefe:'',p_Hora:'', p_AutorizadoSalida:'', p_HoraEntrada:'',p_HoraSalida:'',correo:this.correo},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -122,7 +128,7 @@ export class PaseDigitalComponent implements OnInit {
 
     });
 
-    this.weService.setVariable(this.id_jefe);
+    this.weService.setVariable(this.id_jefe,this.correoJefe);
   }
 
 
