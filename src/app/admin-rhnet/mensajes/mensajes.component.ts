@@ -21,9 +21,8 @@ export class MensajesComponent implements OnInit {
     this.messages = this.rhService.getNotificaciones(this.idUsuario)
     // console.log(this.messages)
 
-    this.rhService.getNotificaciones(this.idUsuario).subscribe((res)=>{
-      this.mensajes = res
-    })
+    this.getNotificaciones();
+
 
   }
 
@@ -32,10 +31,16 @@ export class MensajesComponent implements OnInit {
 
     this.rhService.marcarComoLeido(id).subscribe((res)=>{
 
+      this.getNotificaciones();
+
     })
-
-
   }
 
+
+  getNotificaciones(){
+    this.rhService.getNotificaciones(this.idUsuario).subscribe((res)=>{
+      this.mensajes = res
+    })
+  }
 
 }

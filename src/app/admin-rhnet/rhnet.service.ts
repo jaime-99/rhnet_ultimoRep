@@ -87,7 +87,6 @@ export class RhnetService {
 
     // es para eliminar un pase
 
-
     eliminarPaseDigital(id: number) {
       const url = `https://www.dikeninternational.com/angular_service/api/usuario/deletePaseDigital.php?id=${id}`;
       return this.http.delete(url);

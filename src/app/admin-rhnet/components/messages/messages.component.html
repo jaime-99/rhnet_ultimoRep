@@ -3,9 +3,9 @@
     <mat-badge *ngIf="cantidadMensajesNoLeidos"  [matBadge]=cantidadMensajesNoLeidos matBadgeColor="warn"></mat-badge>
 
 </button>
-<mat-menu #messagesMenu="matMenu" [overlapTrigger]="false" class="toolbar-dropdown-menu messages">
+<mat-menu  #messagesMenu="matMenu" [overlapTrigger]="false" class="toolbar-dropdown-menu messages">
     <span (mouseleave)="messagesMenuTrigger.closeMenu()">
-        <mat-tab-group backgroundColor="primary" (click)="stopClickPropagate($event)" [selectedIndex]="selectedTab">
+        <mat-tab-group  backgroundColor="primary" (click)="stopClickPropagate($event)" [selectedIndex]="selectedTab">
             <mat-tab>
                 <ng-template mat-tab-label>
                     <!-- <mat-icon>message</mat-icon> -->
@@ -13,7 +13,7 @@
                 </ng-template>
                 <mat-card class="content" perfectScrollbar>
                   <div fxLayout="column" fxLayoutAlign="none">
-                      <button routerLink="/rhnet/MENSAJES" mat-button *ngFor="let message of messages">
+                      <button *ngFor="let message of messages" routerLink="/rhnet/MENSAJES" mat-button >
                           <!-- <img src="{{ ( message.image || (message.name | profilePicture)) }}" width="50"> -->
                           <div fxLayout="column" fxLayoutAlign="none" class="w-100">
                               <div fxLayout="row" fxLayoutAlign="space-between start">
@@ -29,45 +29,41 @@
                     </div>
                 </mat-card>
             </mat-tab>
-              <mat-tab>
-                <ng-template mat-tab-label>
-                    <!-- <mat-icon>description</mat-icon> -->
-                    Leidos
-                </ng-template>
-                <mat-card class="content" perfectScrollbar>
-                  <div fxLayout="column" fxLayoutAlign="none">
-                      <button mat-button >
-                          <div fxLayout="column" fxLayoutAlign="none" class="w-100">
-                              <div fxLayout="row" fxLayoutAlign="space-between start">
-                                  <!-- <span class="name">{{file.text}}</span>
-                                  <span class="info">{{file.size}}</span> -->
-                              </div>
-                              <!-- <mat-progress-bar
-                                  class="example-margin"
-                                  [color]="file.color"
-                                  mode="indeterminate"
-                                  [value]="file.value">
-                              </mat-progress-bar> -->
-                          </div>
-                      </button>
-                    </div>
-                </mat-card>
-            </mat-tab>
+            <mat-tab>
+              <ng-template mat-tab-label>
+                  <!-- <mat-icon>event</mat-icon> -->
+                      Leidos
+              </ng-template>
+              <mat-card   class="content" perfectScrollbar>
+                <div fxLayout="column" fxLayoutAlign="none">
+                    <button *ngFor="let message of mensajesLeidos" mat-button routerLink="/rhnet/MENSAJES">
+                        <!-- <div fxLayout="column" fxLayoutAlign="center center" class="row-1"> -->
+                            <!-- <span class="name">{{message.tipo}}</span> -->
+                            <!-- <span class="name">{{meeting.month}}</span> -->
+                        <!-- </div> -->
+                        <div fxLayout="column" fxLayoutAlign="none">
+                            <span class="name">{{message.tipo}}</span>
+                            <span class="text text-muted">{{message.mensaje}}</span>
+                        </div>
+                    </button>
+                  </div>
+              </mat-card>
+          </mat-tab>
             <mat-tab>
                 <ng-template mat-tab-label>
                     <!-- <mat-icon>event</mat-icon> -->
                         No Leidos
                 </ng-template>
-                <mat-card class="content" perfectScrollbar>
+                <mat-card   class="content" perfectScrollbar>
                   <div fxLayout="column" fxLayoutAlign="none">
-                      <button mat-button *ngFor="let meeting of meetings">
-                          <div fxLayout="column" fxLayoutAlign="center center" class="row-1">
-                              <!-- <span class="name">{{meeting.day}}</span> -->
+                      <button *ngFor="let message of mensajesNoLeidos2" mat-button routerLink="/rhnet/MENSAJES">
+                          <!-- <div fxLayout="column" fxLayoutAlign="center center" class="row-1"> -->
+                              <!-- <span class="name">{{message.tipo}}</span> -->
                               <!-- <span class="name">{{meeting.month}}</span> -->
-                          </div>
+                          <!-- </div> -->
                           <div fxLayout="column" fxLayoutAlign="none">
-                              <!-- <span class="name">{{meeting.title}}</span> -->
-                              <!-- <span class="text text-muted">{{meeting.text}}</span> -->
+                              <span class="name">{{message.tipo}}</span>
+                              <span class="text text-muted">{{message.mensaje}}</span>
                           </div>
                       </button>
                     </div>
