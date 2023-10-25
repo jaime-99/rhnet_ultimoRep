@@ -179,7 +179,7 @@ export class OpenDialogComponent implements OnInit {
       motivo: this.data.observaciones,
       nombre: this.usuario,
       correo:'practicante.sistemas@dikeninternational.com',
-      // correo:this.correoJefe
+      // correo:this.correoJefe,
       tipoDePase: ''
     }
 
@@ -194,7 +194,7 @@ export class OpenDialogComponent implements OnInit {
     }
 
     this.rhService.sendToBoss(data.fecha,data.numeroEmpleado,data.motivo,data.nombre,data.correo,data.tipoDePase).subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
     })
 
   }

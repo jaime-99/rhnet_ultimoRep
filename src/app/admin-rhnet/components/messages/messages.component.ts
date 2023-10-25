@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
 import { MatMenuTrigger } from '@angular/material/menu';
 import { MessagesService } from './messages.service';
 import { RhnetService } from '../../rhnet.service';
+import { ServicioCompartidoService } from '../servicio-compartido.service';
 
 @Component({
   selector: 'app-messages',
@@ -24,7 +25,7 @@ export class MessagesComponent implements OnInit {
   mensajesLeidos: any;
   mensajesNoLeidos: any;
   mensajesNoLeidos2: any;
-  constructor(private messagesService:MessagesService,private rhService:RhnetService) {
+  constructor(private messagesService:MessagesService,private rhService:RhnetService, private servicio:ServicioCompartidoService) {
     // this.messages = messagesService.getMessages();
     this.files = messagesService.getFiles();
     this.meetings = messagesService.getMeetings();
@@ -37,6 +38,10 @@ export class MessagesComponent implements OnInit {
 
     this.getmessages();
 
+    this.servicio.getEvent().subscribe(()=>{
+
+      this.getmessages();
+    });
 
   }
 
@@ -78,9 +83,10 @@ export class MessagesComponent implements OnInit {
     })
 
 
+  }
 
-
-
+  ejemplo(ejemplo){
+    console.log(ejemplo)
   }
 
 }

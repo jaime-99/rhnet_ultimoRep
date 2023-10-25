@@ -2,17 +2,24 @@
 <div *ngIf="mensajes?.length>0" class="container">
   <h2>Bandeja de Entrada</h2>
   <div *ngFor="let mensaje of mensajes" class="row">
-    <div class="col-7">
+    <div class="col-8">
       <ul class="list-group">
         <li class="list-group-item">
           <div class="row">
-            <div class="col-8">
+            <div class="col-6">
               <h5 class="list-group-item-heading">Tipo de mensaje: {{mensaje.tipo}}</h5>
               <p class="list-group-item-text">Mensaje: {{mensaje.mensaje}}</p>
             </div>
-            <div class="col-4">
+            <div class="col-2">
               <p class="text-muted" *ngIf="mensaje.leida==1">Leido</p>
               <p class="text-muted" *ngIf="mensaje.leida===0">No Leido</p>
+            </div>
+            <div class="col-3">
+              <button mat-icon-button color="warn" matTooltip="eliminar" (click)="eliminarMensaje(mensaje.id)">
+                <mat-icon>highlight_off</mat-icon>
+            </button>
+
+
             </div>
           </div>
         </li>
@@ -21,8 +28,12 @@
 
     <div class="col-3">
       <button class="btn btn-primary" [disabled]="mensaje.leida===1" (click)="marcarMensajeLeido(mensaje.id)">Marcar como leído</button>
+
       <!-- <button routerLink="" class="btn btn-primary" [disabled]="mensaje.leida===1" >Ir</button> -->
     </div>
+
+
+
 
   </div>
 </div>

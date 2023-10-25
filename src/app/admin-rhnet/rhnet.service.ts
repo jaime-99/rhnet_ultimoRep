@@ -92,5 +92,15 @@ export class RhnetService {
       return this.http.delete(url);
     }
 
+    eliminarMensaje(idMensaje:number){
+      const url = `https://www.dikeninternational.com/angular_service/api/usuario/deleteMensaje.php?idMensaje=${idMensaje}`;
+      return this.http.delete(url);
+    }
 
+
+    sendEmail(fecha,numeroEmpleado,motivo,nombre,correo,tipoDePase,nombreDelJefe){
+      const url=`${ this.baseUrl }/tools/enviarCorreoCaseta.php`;
+      const body={fecha,numeroEmpleado,motivo,nombre,correo,tipoDePase,nombreDelJefe}
+      return this.http.post<any>( url, body );
+    }
 }

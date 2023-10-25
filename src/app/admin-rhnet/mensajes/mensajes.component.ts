@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { RhnetService } from '../rhnet.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ServicioCompartidoService } from '../components/servicio-compartido.service';
 
 @Component({
   selector: 'app-mensajes',
@@ -11,7 +13,10 @@ export class MensajesComponent implements OnInit {
   messages=[];
   mensajes: any;
 
-  constructor(private rhService:RhnetService) { }
+  ejemplo: string = "hola";
+
+
+  constructor(private rhService:RhnetService, private mat:MatSnackBar, private servicio:ServicioCompartidoService) { }
 
   ngOnInit(): void {
 
@@ -23,7 +28,6 @@ export class MensajesComponent implements OnInit {
 
     this.getNotificaciones();
 
-
   }
 
 
@@ -33,14 +37,28 @@ export class MensajesComponent implements OnInit {
 
       this.getNotificaciones();
 
+
     })
   }
-
 
   getNotificaciones(){
     this.rhService.getNotificaciones(this.idUsuario).subscribe((res)=>{
       this.mensajes = res
+      this.servicio.emitEvent();
     })
+  }
+
+  eliminarMensaje(id){
+
+    this.rhService.eliminarMensaje(id).subscribe(()=>{
+
+      this.getNotificaciones();
+      this.mat.open('se ha eliminado el mensaje', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+
+
+    })
+
+
   }
 
 }

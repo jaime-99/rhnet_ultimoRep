@@ -49,6 +49,7 @@ export const routes = [
     InicioComponent,
     // PaseDigitalComponent
     MessagesComponent,
+    MensajesComponent
   ],
   imports: [
     CommonModule,

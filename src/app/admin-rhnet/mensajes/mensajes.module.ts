@@ -11,7 +11,7 @@ export const routes: Routes = [
 
 
 @NgModule({
-  declarations: [MensajesComponent],
+  declarations: [],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

@@ -7,6 +7,7 @@ import { useAnimation } from '@angular/animations';
 import { ServicioCompartidoService } from '../../components/servicio-compartido.service';
 import { Observable } from 'rxjs';
 import { array } from '@amcharts/amcharts5';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pase-digital',
@@ -42,12 +43,18 @@ export class PaseDigitalComponent implements OnInit {
     nombreCompleto: ''
 
   }
-  pasesJefe: any;
+  pasesJefe= [];
   correo: any;
   correoJefe: any;
+  idDelEmpleadoDelJefe: any;
+  nombreDelEmpleado: string;
+  fechaDelPase: any;
+  nombreDelJefe2: any;
+  tipoDePase: any;
 
 
-  constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService) {
+  constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService,
+    private mat:MatSnackBar) {
 
     this.pase = this.fb.group({
       username: ['', Validators.required], // Campo de usuario, requerido
@@ -86,12 +93,12 @@ export class PaseDigitalComponent implements OnInit {
     //   this.numeroEmpleadoJefe = usuarioJefe.numero_empleado
     // })
     this.rhService.getAllInfoEmpleados(this.id_jefe).subscribe((res:any)=>{
-      console.log(this.id_jefe)
+      // console.log(this.id_jefe)
       // console.log("informacion del jefe", res)
          const usuarioJefe = res
       this.nombreJefe = usuarioJefe.nombre
       this.correoJefe = usuarioJefe.EMAIL
-      console.log("correo del jefe",this.correoJefe);
+      // console.log("correo del jefe",this.correoJefe);
 
 
       // this.numeroEmpleadoJefe = usuarioJefe.numero_empleado
@@ -140,6 +147,7 @@ export class PaseDigitalComponent implements OnInit {
       numUsuario :this.numUsuario
     }
 
+
     this.pases$ = this.rhService.getPases(usuarioId.numUsuario); // Asignar el observable
 
     // this.getPasesJefe();
@@ -147,6 +155,24 @@ export class PaseDigitalComponent implements OnInit {
 
   //es para obtener los pases que debe autorizar
   getPasesJefe(){
+
+    //todo crear un bucle para que me genere todos los datos del pase del jefe
+
+    this.rhService.getPasesJefe(this.numUsuario).subscribe((res)=>{
+      this.pasesJefe = res
+
+
+    this.pasesJefe.forEach(mensaje => {
+      this.idDelEmpleadoDelJefe = mensaje.NumeroEmpleado,
+      this.nombreDelEmpleado = mensaje.NombreDelEmpleado,
+      this.fechaDelPase = mensaje.Fecha,
+      this.nombreDelJefe2 = mensaje.NombreDelJefe
+      this.tipoDePase = mensaje.tipo
+
+
+
+      });
+    })
 
 
     this.pasesJefe$ = this.rhService.getPasesJefe(this.numUsuario);
@@ -164,6 +190,10 @@ export class PaseDigitalComponent implements OnInit {
     this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
 
       this.getPasesJefe();
+      this.insertarNotificacion();
+      this.sendEmail();
+
+      // crear para mandar mensaje
       // console.log(res)
     })
 
@@ -174,10 +204,47 @@ export class PaseDigitalComponent implements OnInit {
     this.rhService.eliminarPaseDigital(id).subscribe((res)=>{
       this.getPases();
 
+      this.mat.open('se ha eliminado el pase', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+
+
+    })
+  }
+
+  insertarNotificacion(){
+
+    const notificaciones={
+      p_usuario_id:this.idDelEmpleadoDelJefe,
+      p_mensaje:'se le ha autorizado su pase',
+      p_tipo:'Incidencias'
+    }
+
+    this.rhService.insertarNotificacion(notificaciones.p_usuario_id,notificaciones.p_mensaje,notificaciones.p_tipo).subscribe((res)=>{
+
+      if(res===true){
+
+      }
+    })
+  }
+
+
+  sendEmail(){
+
+    const datos = {
+      fecha:this.fechaDelPase ,
+      numeroEmpleado: '222',
+      motivo : '',
+      nombre : this.nombreDelEmpleado,
+      nombreDelJefe:this.nombreDelJefe2,
+      correo : 'practicante.sistemas@dikeninternational.com',
+      tipoDePase: this.tipoDePase
+    }
+
+    this.rhService.sendEmail(datos.fecha,datos.numeroEmpleado,datos.motivo,datos.nombre,datos.correo,datos.tipoDePase,datos.nombreDelJefe).subscribe(()=>{
 
     })
 
   }
+
 
 }
 
