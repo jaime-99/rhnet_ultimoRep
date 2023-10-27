@@ -149,12 +149,13 @@
             <td> {{pase.tipo}} </td>
             <td> <strong> {{pase.EstatusNombre}} </strong> </td>
 
-
             <td>
-              <button (click)="autorizarPase(pase.PaseDigitalId)" mat-raised-button color="primary" [disabled]="pase.Autorizado === 1">Autorizar</button>
+              <button (click)="autorizarPase(pase.PaseDigitalId,1)" mat-raised-button color="primary" [disabled]="pase.Autorizado === 1 || pase.Autorizado ===0">Autorizar</button>
+              <button class="mt-1" (click)="autorizarPase(pase.PaseDigitalId,2)" mat-raised-button color="warn" [disabled]="pase.Autorizado === 0 || pase.Autorizado===1">No Autorizar</button>
             </td>
-
           </tr>
+
+
         </tbody>
       </table>
 

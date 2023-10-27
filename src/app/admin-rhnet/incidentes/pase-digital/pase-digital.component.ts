@@ -183,22 +183,50 @@ export class PaseDigitalComponent implements OnInit {
   }
 
 
-  autorizarPase(id){
+  autorizarPase(id,numero){
+
+    if(numero===1){
     const res = {
       p_PaseAutorizado: 1,
       p_PaseAutorizadoSalida: 1,
       p_PaseDigitalId:id
     }
 
+
     this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
 
       this.getPasesJefe();
       this.insertarNotificacion();
       this.sendEmail();
-
       // crear para mandar mensaje
       // console.log(res)
     })
+  }else{
+
+    const res = {
+      p_PaseAutorizado: 0,
+      p_PaseAutorizadoSalida: 0,
+      p_PaseDigitalId:id
+    }
+
+
+    this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
+
+      this.getPasesJefe();
+      this.insertarNotificacion();
+      this.sendEmail();
+      // crear para mandar mensaje
+      // console.log(res)
+    })
+
+
+
+
+
+  }
+
+
+
 
   }
 
