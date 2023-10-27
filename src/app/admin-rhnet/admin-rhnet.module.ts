@@ -21,6 +21,7 @@ import { MessagesComponent } from './components/messages/messages.component';
 import {MatBadgeModule} from '@angular/material/badge';
 import { MensajesComponent } from './mensajes/mensajes.component';
 import { PasesAutorizadosComponent } from './pases-autorizados/pases-autorizados.component';
+import { TodoLosPasesComponent } from './todo-los-pases/todo-los-pases.component';
 
 export const routes = [
   {
@@ -33,9 +34,7 @@ export const routes = [
       { path:'PASE',loadChildren:()=>import('./incidentes/pase-digital/pase-digital.module').then(m=>m.PaseDigitalModule),data: { breadcrumb: 'PASE' }},
       { path:'MENSAJES',loadChildren:()=>import('./mensajes/mensajes.module').then(m=>m.MensajesModule),data: { breadcrumb: 'MENSAJES' }},
       { path:'PASES_AUTORIZADOS',loadChildren:()=>import('./pases-autorizados/pases-autorizados.module').then(m=>m.PasesAutorizadosModule),data: { breadcrumb: 'PASES AUTORIZADOS' }},
-
-
-
+      { path:'PASES_GENERADOS',loadChildren:()=>import('./todo-los-pases/todo-los-pases.module').then(m=>m.TodoLosPasesModule),data: { breadcrumb: 'PASES GENERADOS' }},
 
     ]
   }
@@ -52,7 +51,8 @@ export const routes = [
     // PaseDigitalComponent
     MessagesComponent,
     MensajesComponent,
-    PasesAutorizadosComponent
+    PasesAutorizadosComponent,
+    TodoLosPasesComponent
   ],
   imports: [
     CommonModule,

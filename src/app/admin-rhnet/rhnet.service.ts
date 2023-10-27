@@ -118,5 +118,9 @@ export class RhnetService {
       return this.http.get(url);
     }
 
+    getTodosLosEmpleados():any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/obtenerTodosLosPases.php`;
+      return this.http.get(url);
+    }
 
 }
