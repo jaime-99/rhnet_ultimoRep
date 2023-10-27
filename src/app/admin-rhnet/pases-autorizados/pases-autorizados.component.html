@@ -1,0 +1,47 @@
+<div class="card mt-4">
+  <div class="card-header card-header-azure">
+               <button (click)="recargar()"  mat-raised-button color="primary">Recargar</button>
+
+    <h4 class="card-title mt-4">Listado de pases autorizados</h4>
+  </div>
+  <div class="card-body bg-light">
+    <!-- Contenido del nuevo card -->
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Numero de pase</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Jefe</th>
+          <th scope="col">Periodo</th>
+          <th scope="col">Autorizado</th>
+          <th scope="col">Tipo de pase</th>
+          <th scope="col">Hora</th>
+
+          <th scope="col">Estatus</th>
+
+          <!-- <th scope="col">Acciones</th> -->
+        </tr>
+      </thead>
+      <tbody *ngFor="let pase of pasesAutorizados">
+        <tr>
+          <th scope="row"> {{pase.PaseDigitalId}} </th>
+          <td>  {{pase.NombreDelEmpleado}} </td>
+          <td> {{pase.NombreDelJefe}} </td>
+          <td> {{pase.Fecha}} </td>
+          <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }} </td>
+          <td>  {{pase.tipoEntrada}}  </td>
+          <td> {{ pase.Tipo === 2 ? pase.HoraEntrada : (pase.Tipo === 3 ? pase.HoraSalida : pase.HoraEntrada + ' - ' + pase.HoraSalida) }}</td>
+          <td>  <strong> {{pase.estatusDelPase}} </strong> </td>
+
+
+           <!-- <td><button (click)="eliminarPase(pase.PaseDigitalId)" mat-raised-button color="warn">Eliminar</button> -->
+
+          <!-- </td> -->
+        </tr>
+
+      </tbody>
+    </table>
+
+  </div>
+</div>

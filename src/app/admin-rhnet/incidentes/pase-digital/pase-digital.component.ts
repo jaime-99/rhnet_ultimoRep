@@ -26,6 +26,8 @@ export class PaseDigitalComponent implements OnInit {
   id_jefe: any;
   numeroEmpleadoJefe: number;
 
+  esColaborador =false;
+
   // pases = []
 
   pases$: Observable<any[]>; // Declarar un observable
@@ -51,6 +53,7 @@ export class PaseDigitalComponent implements OnInit {
   fechaDelPase: any;
   nombreDelJefe2: any;
   tipoDePase: any;
+  numeroDelEmpleado2: any;
 
 
   constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService,
@@ -117,10 +120,10 @@ export class PaseDigitalComponent implements OnInit {
 
 
   //es para enviar los datos
-  openDialog(): void {
+  openDialog(colaborador): void {
     const dialogRef = this.dialog.open(OpenDialogComponent, {
       data: {p_NumeroEmpleado: this.numUsuario, p_Fecha: '', p_Tipo:'', p_Motivo:'',p_Autorizado: '', p_Empresa:'',
-      p_NumeroEmpleadoJefe:'',p_Hora:'', p_AutorizadoSalida:'', p_HoraEntrada:'',p_HoraSalida:'',correo:this.correo},
+      p_NumeroEmpleadoJefe:'',p_Hora:'', p_AutorizadoSalida:'', p_HoraEntrada:'',p_HoraSalida:'',correo:this.correo,colaborador},
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -168,7 +171,7 @@ export class PaseDigitalComponent implements OnInit {
       this.fechaDelPase = mensaje.Fecha,
       this.nombreDelJefe2 = mensaje.NombreDelJefe
       this.tipoDePase = mensaje.tipo
-
+      this.numeroDelEmpleado2 = mensaje.NumeroEmpleado
 
 
       });
@@ -231,7 +234,7 @@ export class PaseDigitalComponent implements OnInit {
 
     const datos = {
       fecha:this.fechaDelPase ,
-      numeroEmpleado: '222',
+      numeroEmpleado: this.numeroDelEmpleado2,
       motivo : '',
       nombre : this.nombreDelEmpleado,
       nombreDelJefe:this.nombreDelJefe2,

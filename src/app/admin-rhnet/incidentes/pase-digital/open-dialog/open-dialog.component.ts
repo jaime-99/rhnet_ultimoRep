@@ -2,7 +2,7 @@ import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
 import { ServicioCompartidoService } from 'src/app/admin-rhnet/components/servicio-compartido.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 export interface DialogData {
@@ -13,6 +13,7 @@ export interface DialogData {
   horaEntrada:string;
   horaSalida:string;
   observaciones:string;
+  colaborador:number;
 
 }
 
@@ -33,6 +34,7 @@ export class OpenDialogComponent implements OnInit {
 
   generacionPase: FormGroup;
 
+
   //esta en estatico los tipo de pases
   public tipos = [
     { id:1, nombre: 'entrada y salida' },
@@ -42,13 +44,17 @@ export class OpenDialogComponent implements OnInit {
   numeroEmpleadoJefe: number;
   correo: any;
   correoJefe: string;
+  empleadosDelJefe: any;
+  numEmpleadoColaborador: any;
+  empresaColaborador: any;
 
   constructor(private fb:FormBuilder,public snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<OpenDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData, private rhService:RhnetService, public weService:ServicioCompartidoService
   ) {
-
   }
+
+
 
   onNoClick(values:Object): void {
 
@@ -77,11 +83,15 @@ export class OpenDialogComponent implements OnInit {
     // this.enviarDatos();
 
     // console.log(this.data.tipo)
-
   }
 
 
   ngOnInit(): void {
+
+
+
+
+
 
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
     // console.log(usuarioAuth)
@@ -94,13 +104,13 @@ export class OpenDialogComponent implements OnInit {
 
 
     this.generacionPase = this.fb.group({
-      p_NumeroEmpleado:this.numUsuario , // Campo de usuario, requerido
+      // p_NumeroEmpleado:this.numUsuario || this.numEmpleadoColaborador, // Campo de usuario, requerido
       p_Fecha: ['', Validators.compose([Validators.required])], // Campo de contraseña, requerido
       p_Tipo: ['', Validators.compose([Validators.required])], // Campo de contraseña, requerido
       p_Motivo: ['', Validators.compose([Validators.required])],
-      p_Autorizado: 0, // Campo de contraseña, requerido
-      p_Empresa: this.empresa,
-      p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
+      // p_Autorizado: 0, // Campo de contraseña, requeridox
+      p_Empresa: this.empresa || this.empresaColaborador,
+      // p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
       p_Hora: ['', Validators.compose([Validators.required])],
       p_AutorizadoSalida: 0,
       p_HoraEntrada: [ null],
@@ -108,7 +118,19 @@ export class OpenDialogComponent implements OnInit {
 
     });
 
+    if (this.data.colaborador === 1) {
+      this.generacionPase.addControl('p_NumeroEmpleado', new FormControl(this.numUsuario, Validators.required));
+      this.generacionPase.addControl('p_NumeroEmpleadoJefe', new FormControl(this.numeroEmpleadoJefe, Validators.required));
+      this.generacionPase.addControl('p_Autorizado', new FormControl(0, Validators.required));
+    } else if (this.data.colaborador === 2) {
+      this.generacionPase.addControl('p_NumeroEmpleado', new FormControl(this.numEmpleadoColaborador, Validators.required));
+      this.generacionPase.addControl('p_NumeroEmpleadoJefe', new FormControl(this.numUsuario, Validators.required));
+      this.generacionPase.addControl('p_Autorizado', new FormControl(1, Validators.required));
 
+    }
+
+
+    this.generarPaseDesdeJefe()
     //conseguir la fecha
     const fechaActual = new Date();
     const año = fechaActual.getFullYear();
@@ -135,8 +157,22 @@ export class OpenDialogComponent implements OnInit {
 
   this.data.hora = horaFormateada
 
+    // es para la generacion de pase de colaboradores
+  this.generacionPase.get('p_NumeroEmpleado').valueChanges.subscribe((valorSeleccionado) => {
+    console.log('Valor seleccionado en tiempo real:', valorSeleccionado);
+    this.numEmpleadoColaborador = valorSeleccionado
+    // Puedes realizar acciones con el valor seleccionado aquí.
+    const empleadosConEmpresaA = this.empleadosDelJefe.filter(empleado => empleado.numEmpleado === this.numEmpleadoColaborador);
+    console.log(empleadosConEmpresaA)
+    this.empresaColaborador = empleadosConEmpresaA.EMPRESA
+
+  });
+
+
 
 }
+
+
 
 
 
@@ -220,12 +256,33 @@ export class OpenDialogComponent implements OnInit {
       }
     })
 
+  }
+
+  //todo ver si es colaborador o no
+  enviarPase(){
+    if(this.data.colaborador ===1){
+      this.onNoClick(this.generacionPase.value)
+    }else{
+
+    }
+  }
+
+  generarPaseDesdeJefe(){
+
+    this.rhService.getEmpleadosJefe(this.numUsuario).subscribe((res)=>{
+      console.log( "estos son mis empleados",res)
+      this.empleadosDelJefe = res
+
+      // this.empleadosDelJefe.forEach(mensaje => {
+      // this.empresaColaborador =  mensaje.empresa
+
+      // })
+
+
+
+    })
 
   }
 
-
-
-
-  //es solo para commit
 
 }

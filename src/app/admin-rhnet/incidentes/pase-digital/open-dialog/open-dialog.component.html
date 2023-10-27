@@ -10,14 +10,21 @@
     <mat-label>Fecha del pase</mat-label>
     <input matInput [(ngModel)]="data.fecha" formControlName="p_Fecha" [value]="this.data.fecha" type="date">
     <mat-error *ngIf="generacionPase.controls.p_Fecha.errors?.required">la tipo de fecha es requerida</mat-error>
-
   </mat-form-field>
+
+    <p *ngIf="this.data.colaborador===2" class="text-secondary"> Pase para : </p>
+    <div *ngFor="let empleados of empleadosDelJefe" >
+    <mat-radio-group color="primary" *ngIf="this.data.colaborador ===2" formControlName="p_NumeroEmpleado" name="empleado" aria-label="Select an option">
+      <mat-radio-button value={{empleados.numEmpleado}}>{{empleados.nombreCompleto}} </mat-radio-button>
+    </mat-radio-group>
+    </div>
+
   <!-- </div> -->
   <mat-form-field class="custom-input">
     <mat-label>Tipo</mat-label>
     <mat-error *ngIf="generacionPase.controls.p_Tipo.errors?.required">el tipo de pase es requeirido</mat-error>
-    <mat-select [(ngModel)]="data.tipo" formControlName="p_Tipo" name="tipo">
-      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id" >
+    <mat-select [(ngModel)]="data.tipo" formControlName="p_Tipo" name="tipo"  >
+      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id"   >
         {{tipo.nombre}}
       </mat-option>
     </mat-select>
@@ -54,7 +61,7 @@
   </mat-form-field>
 
   <div mat-dialog-actions>
-    <button mat-raised-button color="primary"  (click)="onNoClick(generacionPase.value)" >Enviar Datos </button>
+    <button mat-raised-button color="primary"  (click)="onNoClick(generacionPase.value)">Enviar Datos </button>
     <!-- <button mat-raised-button color="warn" [mat-dialog-close]="data.fecha" cdkFocusInitial>Volver</button> -->
     <button mat-raised-button color="warn" (click)="volver()"> Volver</button>
 

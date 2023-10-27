@@ -103,4 +103,20 @@ export class RhnetService {
       const body={fecha,numeroEmpleado,motivo,nombre,correo,tipoDePase,nombreDelJefe}
       return this.http.post<any>( url, body );
     }
+
+    //obtener todos los pases que son autorizados
+
+    getPasesAutorizados():any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/pasesAutorizados.php`;
+      return this.http.get(url);
+    }
+
+    // VER LOS EMPLEADOS DE UN JEFE
+
+    getEmpleadosJefe(id):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/verEmpleadosJefe.php?id=${id}`;
+      return this.http.get(url);
+    }
+
+
 }

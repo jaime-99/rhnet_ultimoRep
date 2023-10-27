@@ -7,6 +7,7 @@ import { OpenDialogComponent } from './open-dialog/open-dialog.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatRadioModule} from '@angular/material/radio';
 
 export const routes: Routes = [
   { path: '', component: PaseDigitalComponent, pathMatch: 'full' }
@@ -28,6 +29,8 @@ export const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     MatFormFieldModule,
+    MatRadioModule
+
 
 
   ]
