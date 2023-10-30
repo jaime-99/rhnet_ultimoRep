@@ -2,6 +2,7 @@ import { useAnimation } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RhnetService } from '../rhnet.service';
+import { AccesoService } from 'src/app/guards/acceso.service';
 
 
 @Component({
@@ -20,11 +21,13 @@ export class InicioComponent implements OnInit {
   fechaAlta = ''
 
 
+
+
   info: FormGroup; // es del formgroup
 
 
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private accesoService:AccesoService) {
 
     this.info = this.fb.group({
       username: ['', Validators.required], // Campo de usuario, requerido
@@ -38,7 +41,10 @@ export class InicioComponent implements OnInit {
   ngOnInit(): void {
 
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
-    console.log(usuarioAuth)
+    // console.log(usuarioAuth)
+
+    this.accesoService.resetAcceso;
+
 
 
     this.empresa = usuarioAuth.data.Empresa

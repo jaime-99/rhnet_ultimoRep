@@ -117,10 +117,22 @@ export class RhnetService {
       const url=`https://www.dikeninternational.com/angular_service/api/usuario/verEmpleadosJefe.php?id=${id}`;
       return this.http.get(url);
     }
-
+    // ver todos los empleados
     getTodosLosEmpleados():any{
       const url=`https://www.dikeninternational.com/angular_service/api/usuario/obtenerTodosLosPases.php`;
       return this.http.get(url);
     }
+
+    getPerfilVigilancia():any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getPerfilVigilancia.php`;
+      return this.http.get(url);
+    }
+
+
+
+
+
+
+
 
 }
