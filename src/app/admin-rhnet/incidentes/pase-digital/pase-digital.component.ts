@@ -54,6 +54,7 @@ export class PaseDigitalComponent implements OnInit {
   nombreDelJefe2: any;
   tipoDePase: any;
   numeroDelEmpleado2: any;
+  botonesAutorizados: boolean = false;
 
 
   constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService,
@@ -192,11 +193,14 @@ export class PaseDigitalComponent implements OnInit {
       p_PaseDigitalId:id
     }
 
+    this.botonesAutorizados= true;
+
+
 
     this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
 
       this.getPasesJefe();
-      this.insertarNotificacion();
+      this.insertarNotificacion(numero);
       this.sendEmail();
       // crear para mandar mensaje
       // console.log(res)
@@ -213,20 +217,13 @@ export class PaseDigitalComponent implements OnInit {
     this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
 
       this.getPasesJefe();
-      this.insertarNotificacion();
+      this.insertarNotificacion(numero);
       this.sendEmail();
       // crear para mandar mensaje
       // console.log(res)
     })
 
-
-
-
-
   }
-
-
-
 
   }
 
@@ -241,8 +238,9 @@ export class PaseDigitalComponent implements OnInit {
     })
   }
 
-  insertarNotificacion(){
+  insertarNotificacion(numero){
 
+    if(numero==1){
     const notificaciones={
       p_usuario_id:this.idDelEmpleadoDelJefe,
       p_mensaje:'se le ha autorizado su pase',
@@ -254,7 +252,30 @@ export class PaseDigitalComponent implements OnInit {
       if(res===true){
 
       }
+    })}
+    else{
+
+
+
+    const notificaciones={
+      p_usuario_id:this.idDelEmpleadoDelJefe,
+      p_mensaje:'se le ha denegado su pase',
+      p_tipo:'Incidencias'
+    }
+
+    this.rhService.insertarNotificacion(notificaciones.p_usuario_id,notificaciones.p_mensaje,notificaciones.p_tipo).subscribe((res)=>{
+
+      if(res===true){
+
+      }
     })
+
+
+
+
+
+    }
+
   }
 
 
