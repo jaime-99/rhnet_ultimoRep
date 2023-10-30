@@ -8,6 +8,11 @@ import { RhnetService } from '../rhnet.service';
 })
 export class TodoLosPasesComponent implements OnInit {
   pases: any;
+  filtroTexto: any;
+  pasesEncontrados: any[] = [];
+
+  alerta = false;
+  texto: any;
 
   constructor(private  rhService:RhnetService) { }
 
@@ -15,8 +20,35 @@ export class TodoLosPasesComponent implements OnInit {
 
     this.rhService.getTodosLosEmpleados().subscribe((res)=>{
       this.pases = res
+      this.buscarPases();
     })
 
+
   }
+
+  buscarPases(){
+
+
+    if(this.filtroTexto){
+    this.pasesEncontrados = this.pases.filter((empleado) =>
+    empleado.NumeroEmpleado.toLowerCase().includes(this.filtroTexto.toLowerCase())
+    );
+    this.texto = this.filtroTexto
+
+
+    if(this.pasesEncontrados.length ===0){
+      this.alerta = true
+    }else{
+      this.alerta = false
+    }
+
+  } else{
+
+    this.pasesEncontrados = this.pases
+
+  }
+
+}
+
 
 }

@@ -1,11 +1,25 @@
 <div class="card mt-4">
-  <div class="card-header card-header-azure">
 
+  <div class="row">
+
+  <div class="card-header card-header-azure col-6 " >
     <h4 class="card-title mt-4">Lista de todos los pases generados</h4>
   </div>
+  <div class=" card-header card-header-azure col-4 mb-0">
+    <mat-form-field >
+      <mat-label>Buscar por numero de Empleado</mat-label>
+      <input matInput [(ngModel)]="filtroTexto"  placeholder="Empresa o número de pedido" />
+    </mat-form-field>
+    <button class="ml-2" (click)="buscarPases()"  mat-raised-button color="primary">Buscar</button>
+
+  </div>
+
+  </div>
+
   <div class="card-body bg-light">
     <!-- Contenido del nuevo card -->
 
+    <div class="table-responsive">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -17,21 +31,21 @@
           <th scope="col">Tipo de pase</th>
           <th scope="col">Hora</th>
 
-          <th scope="col">Estatus</th>
+          <!-- <th scope="col">Estatus</th> -->
 
           <!-- <th scope="col">Acciones</th> -->
         </tr>
       </thead>
-      <tbody *ngFor="let pase of pases">
+      <tbody *ngFor="let pase of pasesEncontrados">
         <tr>
           <th scope="row"> {{pase.PaseDigitalId}} </th>
           <td>  {{pase.NumeroEmpleado}} </td>
           <td> {{pase.Numero_EmpleadoJefe}} </td>
           <td> {{pase.Fecha}} </td>
           <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }} </td>
-          <td>  {{pase.tipoEntrada}}  </td>
+          <td>  {{pase.tipo}}  </td>
           <td> {{ pase.Tipo === 2 ? pase.HoraEntrada : (pase.Tipo === 3 ? pase.HoraSalida : pase.HoraEntrada + ' - ' + pase.HoraSalida) }}</td>
-          <td>  <strong> {{pase.estatusDelPase}} </strong> </td>
+          <!-- <td>  <strong> {{pase.estatusDelPase}} </strong> </td> -->
 
 
            <!-- <td><button (click)="eliminarPase(pase.PaseDigitalId)" mat-raised-button color="warn">Eliminar</button> -->
@@ -41,6 +55,12 @@
 
       </tbody>
     </table>
+    </div>
 
+  </div>
+
+
+  <div *ngIf="alerta" class="alert alert-danger" role="alert">
+    No se encontraron pases con el numero  <span>{{this.texto}} </span>
   </div>
 </div>
