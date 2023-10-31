@@ -28,7 +28,7 @@
           <th scope="row"> {{pase.PaseDigitalId}} </th>
           <td>  {{pase.NombreDelEmpleado}} </td>
           <td> {{pase.NombreDelJefe}} </td>
-          <td> {{pase.Fecha}} </td>
+          <td> {{pase.Fecha | date: 'dd/MM/yyyy'}} </td>
           <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }} </td>
           <td>  {{pase.tipoEntrada}}  </td>
           <td> {{ pase.Tipo === 2 ? pase.HoraEntrada : (pase.Tipo === 3 ? pase.HoraSalida : pase.HoraEntrada + ' - ' + pase.HoraSalida) }}</td>

@@ -24,6 +24,7 @@ export class PasesAutorizadosComponent implements OnInit {
 
     this.rhnetService.getPasesAutorizados().subscribe((res=>{
       this.pasesAutorizados = res
+      console.log(this.pasesAutorizados)
     }))
 
   }
