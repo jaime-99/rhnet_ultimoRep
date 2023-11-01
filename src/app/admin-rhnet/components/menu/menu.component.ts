@@ -20,17 +20,16 @@ export class RhMenuComponent implements OnInit {
   perfiles: any
   usuarioId
   perfilVigilante:any[];
+  mostrarApartado: boolean;
   constructor(public appSettings:AppSettings, public menuService:RhMenuService, private acceso:AccesoService,
     private rhService:RhnetService) {
     this.settings = this.appSettings.settings;
-    this.parentMenu = [];
 
   }
 
   ngOnInit() {
-  this.parentMenu = this.menuItems.filter(item => item.parentId == this.menuParentId);
+  // this.parentMenu = this.menuItems.filter(item => item.parentId == this.menuParentId);
 
-    console.log(this.parentMenu)
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
     // this.usuarioId = usuarioAuth.data.Numero_Empleado
     this.usuarioId = parseInt(usuarioAuth.data.Numero_Empleado, 10); // El segundo argumento, 10, es la base numérica (decimal).
@@ -54,30 +53,46 @@ export class RhMenuComponent implements OnInit {
 
 
   obtenerPerfil(){
+
+    const perfilesAMostrar = [
+      { perfil: 2, titulo: 'PASES AUTORIZADOS' }
+    ];
+
+    const titulosAMostrar: string[] = [];
+
+
+
     this.rhService.getPerfilVigilancia().subscribe((res:any)=>{
       this.perfiles = res
-      console.log(this.perfiles)
+
+
 
       const perfilUsuarioIds = this.perfiles.map((perfil) => perfil.perfilUsuarioId);
       console.log(perfilUsuarioIds)
 
 
-      // if (perfilUsuarioIds.includes(this.usuarioId)) {
-      //   // El usuarioId está en perfilVigilante
-      //   // Agrega el menú a this.menuItems
 
-      //   this.parentMenu.push(new RhMenu (32, 'PASES AUTORIZADOS', '/rhnet/PASES_AUTORIZADOS', null, 'alarm_on', null, false, 0)),
-
-      //   this.parentMenu.push(new RhMenu (33, 'PASES GENERADOS', '/rhnet/PASES_GENERADOS', null, 'receipt', null, false, 0)),
-
-      //   console.log(this.parentMenu)
+      if (perfilUsuarioIds.includes(this.usuarioId)) {
+        // El usuarioId está en perfilVigilante
+        // Agrega el menú a this.menuItems
 
 
-      //   console.log("si se incluye")
-      // }else{
-      //   console.log("No se incluye el perfil de vigilante")
-      //   // console.log(this.usuarioId)
-      // }
+        this.parentMenu = this.menuItems.filter(item => {
+          return item.title === 'PASES AUTORIZADOS' || item.title === 'PASES'||  titulosAMostrar.includes(item.title);
+        });
+
+        // this.parentMenu.push(new RhMenu (32, 'PASES AUTORIZADOS', '/rhnet/PASES_AUTORIZADOS', null, 'alarm_on', null, false, 0)),
+
+        // this.parentMenu.push(new RhMenu (33, 'PASES GENERADOS', '/rhnet/PASES_GENERADOS', null, 'receipt', null, false, 0)),
+
+        console.log(this.parentMenu)
+
+
+        console.log("si se incluye")
+      }else{
+        console.log("No se incluye el perfil de vigilante")
+        // console.log(this.usuarioId)
+      }
     })
 
 
