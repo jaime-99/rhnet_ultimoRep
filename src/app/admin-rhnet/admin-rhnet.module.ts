@@ -28,7 +28,8 @@ export const routes = [
   {
     path: '',
     component: AdminRhnetComponent, children: [
-      { path:'',loadChildren:()=>import('./inicio/inicio.module').then(m=>m.InicioModule)},
+      // { path:'',loadChildren:()=>import('./inicio/inicio.module').then(m=>m.InicioModule)},
+      { path:'',loadChildren:()=>import('./incidentes/pase-digital/pase-digital.module').then(m=>m.PaseDigitalModule)},
 
 
       { path:'PERFIL',loadChildren:()=>import('./inicio/inicio.module').then(m=>m.InicioModule),data: { breadcrumb: 'INICIO' }, canActivate: [AccesoGuard] },

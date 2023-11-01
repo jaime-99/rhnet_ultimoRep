@@ -33,12 +33,11 @@
   </div>
   <div class="row">
   <div class="col">
-  <mat-form-field  class="custom-input">
+  <!-- <mat-form-field  class="custom-input">
     <mat-label>Hora</mat-label>
     <input matInput [(ngModel)]="data.hora" formControlName="p_Hora" [value]="this.data.hora" type="time">
     <mat-error *ngIf="generacionPase.controls.p_Hora.errors?.required">La hora es requerida</mat-error>
-
-  </mat-form-field>
+  </mat-form-field> -->
   </div>
   <div *ngIf="data.tipo==2 || data.tipo ==1"  class="col">
   <mat-form-field class="custom-input">

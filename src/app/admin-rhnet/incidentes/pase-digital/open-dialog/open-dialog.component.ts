@@ -62,9 +62,9 @@ export class OpenDialogComponent implements OnInit {
 
     if(this.generacionPase.valid){
       const {p_NumeroEmpleado,p_Fecha,p_Tipo,p_Motivo,p_Autorizado,p_Empresa,p_NumeroEmpleadoJefe,p_Hora,
-        p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida} = this.generacionPase.value
+        p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida,p_estatus} = this.generacionPase.value
       this.rhService.InsertarPase(p_NumeroEmpleado,p_Fecha,p_Tipo,p_Motivo,p_Autorizado,p_Empresa,p_NumeroEmpleadoJefe,
-        p_Hora,p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida).subscribe((res)=>{
+        p_Hora,p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida,p_estatus).subscribe((res)=>{
         })
 
         this.dialogRef.close();
@@ -88,49 +88,6 @@ export class OpenDialogComponent implements OnInit {
 
   ngOnInit(): void {
 
-
-
-
-
-
-    let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
-    // console.log(usuarioAuth)
-    this.usuario = usuarioAuth.data.Usuario
-    this.numUsuario = usuarioAuth.data.Numero_Empleado
-    this.empresa = usuarioAuth.data.Empresa,
-    this.correo = usuarioAuth.Correo
-    this.numeroEmpleadoJefe = this.weService.miVariable // de aqui saco el jefe
-    this.correoJefe = this.weService.correoJefe
-
-
-    this.generacionPase = this.fb.group({
-      // p_NumeroEmpleado:this.numUsuario || this.numEmpleadoColaborador, // Campo de usuario, requerido
-      p_Fecha: ['', Validators.compose([Validators.required])], // Campo de contraseña, requerido
-      p_Tipo: ['', Validators.compose([Validators.required])], // Campo de contraseña, requerido
-      p_Motivo: ['', Validators.compose([Validators.required])],
-      // p_Autorizado: 0, // Campo de contraseña, requeridox
-      p_Empresa: this.empresa || this.empresaColaborador,
-      // p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
-      p_Hora: ['', Validators.compose([Validators.required])],
-      p_AutorizadoSalida: 0,
-      p_HoraEntrada: [ null],
-      p_HoraSalida: [ null],
-
-    });
-
-    if (this.data.colaborador === 1) {
-      this.generacionPase.addControl('p_NumeroEmpleado', new FormControl(this.numUsuario, Validators.required));
-      this.generacionPase.addControl('p_NumeroEmpleadoJefe', new FormControl(this.numeroEmpleadoJefe, Validators.required));
-      this.generacionPase.addControl('p_Autorizado', new FormControl(0, Validators.required));
-    } else if (this.data.colaborador === 2) {
-      this.generacionPase.addControl('p_NumeroEmpleado', new FormControl(this.numEmpleadoColaborador, Validators.required));
-      this.generacionPase.addControl('p_NumeroEmpleadoJefe', new FormControl(this.numUsuario, Validators.required));
-      this.generacionPase.addControl('p_Autorizado', new FormControl(1, Validators.required));
-
-    }
-
-
-    this.generarPaseDesdeJefe()
     //conseguir la fecha
     const fechaActual = new Date();
     const año = fechaActual.getFullYear();
@@ -157,13 +114,56 @@ export class OpenDialogComponent implements OnInit {
 
   this.data.hora = horaFormateada
 
+
+    let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
+    // console.log(usuarioAuth)
+    this.usuario = usuarioAuth.data.Usuario
+    this.numUsuario = usuarioAuth.data.Numero_Empleado
+    this.empresa = usuarioAuth.data.Empresa,
+    this.correo = usuarioAuth.Correo
+    this.numeroEmpleadoJefe = this.weService.miVariable // de aqui saco el jefe
+    this.correoJefe = this.weService.correoJefe
+
+
+    this.generacionPase = this.fb.group({
+      // p_NumeroEmpleado:this.numUsuario || this.numEmpleadoColaborador, // Campo de usuario, requerido
+      p_Fecha: ['', Validators.compose([Validators.required])], // Campo de contraseña, requerido
+      p_Tipo: ['', Validators.compose([Validators.required])], // Campo de contraseña, requerido
+      p_Motivo: ['', Validators.compose([Validators.required])],
+      // p_Autorizado: 0, // Campo de contraseña, requeridox
+      p_Empresa: this.empresa || this.empresaColaborador,
+      // p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
+      p_Hora: [this.data.hora,],
+      p_AutorizadoSalida: 0,
+      p_HoraEntrada: [ null],
+      p_HoraSalida: [ null],
+
+    });
+
+    if (this.data.colaborador === 1) {
+      this.generacionPase.addControl('p_NumeroEmpleado', new FormControl(this.numUsuario, Validators.required));
+      this.generacionPase.addControl('p_NumeroEmpleadoJefe', new FormControl(this.numeroEmpleadoJefe, Validators.required));
+      this.generacionPase.addControl('p_Autorizado', new FormControl(0, Validators.required));
+      this.generacionPase.addControl('p_estatus', new FormControl(1, Validators.required));
+
+    } else if (this.data.colaborador === 2) {
+      this.generacionPase.addControl('p_NumeroEmpleado', new FormControl(this.numEmpleadoColaborador, Validators.required));
+      this.generacionPase.addControl('p_NumeroEmpleadoJefe', new FormControl(this.numUsuario, Validators.required));
+      this.generacionPase.addControl('p_Autorizado', new FormControl(1, Validators.required));
+      this.generacionPase.addControl('p_estatus', new FormControl(2, Validators.required));
+
+    }
+
+
+    this.generarPaseDesdeJefe()
+
     // es para la generacion de pase de colaboradores
   this.generacionPase.get('p_NumeroEmpleado').valueChanges.subscribe((valorSeleccionado) => {
-    console.log('Valor seleccionado en tiempo real:', valorSeleccionado);
+    // console.log('Valor seleccionado en tiempo real:', valorSeleccionado);
     this.numEmpleadoColaborador = valorSeleccionado
     // Puedes realizar acciones con el valor seleccionado aquí.
     const empleadosConEmpresaA = this.empleadosDelJefe.filter(empleado => empleado.numEmpleado === this.numEmpleadoColaborador);
-    console.log(empleadosConEmpresaA)
+    // console.log(empleadosConEmpresaA)
     this.empresaColaborador = empleadosConEmpresaA.EMPRESA
 
   });

@@ -55,6 +55,7 @@ export class PaseDigitalComponent implements OnInit {
   tipoDePase: any;
   numeroDelEmpleado2: any;
   botonesAutorizados: boolean = false;
+  correoDelEmpelado: any;
 
 
   constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService,
@@ -168,11 +169,13 @@ export class PaseDigitalComponent implements OnInit {
 
     this.pasesJefe.forEach(mensaje => {
       this.idDelEmpleadoDelJefe = mensaje.NumeroEmpleado,
-      this.nombreDelEmpleado = mensaje.NombreDelEmpleado,
+      this.nombreDelEmpleado = mensaje.TuNombre,
       this.fechaDelPase = mensaje.Fecha,
       this.nombreDelJefe2 = mensaje.NombreDelJefe
-      this.tipoDePase = mensaje.tipo
+      this.tipoDePase = mensaje.tipoDeEntrada
       this.numeroDelEmpleado2 = mensaje.NumeroEmpleado
+      this.correoDelEmpelado = mensaje.EMAIL
+      console.log("correo del empleado del jefe", this.correoDelEmpelado)
 
 
       });
@@ -199,13 +202,14 @@ export class PaseDigitalComponent implements OnInit {
 
     this.rhService.updatePases(res.p_Autorizado,res.p_AutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
 
+      this.mat.open('COMPLETADO', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       this.getPasesJefe();
       this.insertarNotificacion(numero);
       this.sendEmail();
       // crear para mandar mensaje
       // console.log(res)
     })
-  }else{
+  }if(numero==2){
 
     const res = {
       p_Autorizado: 0,
@@ -216,12 +220,19 @@ export class PaseDigitalComponent implements OnInit {
 
     this.rhService.updatePases(res.p_Autorizado,res.p_AutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
 
+      console.log("escogiste eliminar pase")
       this.getPasesJefe();
       this.insertarNotificacion(numero);
-      this.sendEmail();
+      this.sendEmail2();
+
+      this.mat.open('COMPLETADO', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+
       // crear para mandar mensaje
       // console.log(res)
     })
+
+
+
 
   }
 
@@ -253,7 +264,7 @@ export class PaseDigitalComponent implements OnInit {
 
       }
     })}
-    else{
+    if(numero==2){
 
 
 
@@ -270,17 +281,13 @@ export class PaseDigitalComponent implements OnInit {
       }
     })
 
-
-
-
-
     }
 
   }
 
 
   sendEmail(){
-
+// para cuando se autoriza un pase del jefe
     const datos = {
       fecha:this.fechaDelPase ,
       numeroEmpleado: this.numeroDelEmpleado2,
@@ -288,12 +295,36 @@ export class PaseDigitalComponent implements OnInit {
       nombre : this.nombreDelEmpleado,
       nombreDelJefe:this.nombreDelJefe2,
       correo : 'practicante.sistemas@dikeninternational.com', // colocar el correo de alguien mas
+      // correo: this.correo, // es el correo del empleado del jefe
       tipoDePase: this.tipoDePase
     }
 
     this.rhService.sendEmail(datos.fecha,datos.numeroEmpleado,datos.motivo,datos.nombre,datos.correo,datos.tipoDePase,datos.nombreDelJefe).subscribe(()=>{
 
     })
+
+  }
+
+  // es para enviar el mensaje no autorizado
+  sendEmail2(){
+
+    const datos = {
+      fecha:this.fechaDelPase ,
+      numeroEmpleado: this.numeroDelEmpleado2,
+      motivo : '',
+      nombre : this.nombreDelEmpleado,
+      nombreDelJefe:this.nombreDelJefe2,
+      // correo : 'practicante.sistemas@dikeninternatisssonal.com', // colocar el correo de alguien mas
+      correo: this.correoDelEmpelado, // es el correo del empleado del jefe
+      tipoDePase: this.tipoDePase
+    }
+    console.log(this.correoDelEmpelado)
+
+    this.rhService.sendEmpleado(datos.fecha,datos.numeroEmpleado,datos.motivo,datos.nombre,datos.correo,datos.tipoDePase,datos.nombreDelJefe).subscribe(()=>{
+
+    })
+
+
 
   }
 

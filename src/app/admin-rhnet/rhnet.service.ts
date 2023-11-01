@@ -16,12 +16,12 @@ export class RhnetService {
 // es para insertar el pase
   InsertarPase(
     p_NumeroEmpleado,p_Fecha,p_Tipo,p_Motivo,p_Autorizado,
-      p_Empresa,p_NumeroEmpleadoJefe,p_Hora,p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida
+      p_Empresa,p_NumeroEmpleadoJefe,p_Hora,p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida,p_estatus
   )
         {
           const url=`${ this.baseUrl }/usuario/paseDigital.php`;
           const body={p_NumeroEmpleado,p_Fecha,p_Tipo,p_Motivo,p_Autorizado,
-            p_Empresa,p_NumeroEmpleadoJefe,p_Hora,p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida}
+            p_Empresa,p_NumeroEmpleadoJefe,p_Hora,p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida,p_estatus}
           return this.http.post<any>( url, body );
 
         }
@@ -128,6 +128,14 @@ export class RhnetService {
       return this.http.get(url);
     }
 
+
+    //enviar mensaje de no autorizado al empleado y desarrollo humano
+
+    sendEmpleado(fecha,numeroEmpleado,motivo,nombre,correo,tipoDePase,nombreDelJefe){
+      const url=`${ this.baseUrl }/tools/enviarCorreoNoAutorizado.php`;
+      const body={fecha,numeroEmpleado,motivo,nombre,correo,tipoDePase,nombreDelJefe}
+      return this.http.post<any>( url, body );
+    }
 
 
 
