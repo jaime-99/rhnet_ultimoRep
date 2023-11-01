@@ -134,6 +134,7 @@
             <th scope="col">Periodo</th>
             <th scope="col">Autorizado</th>
             <th scope="col">Tipo</th>
+            <th scope="col">Hora</th>
             <th scope="col">Estatus</th>
             <th scope="col">Acciones</th>
           </tr>
@@ -149,6 +150,8 @@
             <td> {{pase.Fecha}} </td>
             <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }}</td>
             <td> {{pase.tipoDeEntrada}} </td>
+            <td> {{ pase.Tipo === 2 ? pase.HoraEntrada : (pase.Tipo === 3 ? pase.HoraSalida : pase.HoraEntrada + ' - ' + pase.HoraSalida) }}</td>
+
             <td> <strong> {{pase.EstatusNombre}} </strong> </td>
 
             <td>

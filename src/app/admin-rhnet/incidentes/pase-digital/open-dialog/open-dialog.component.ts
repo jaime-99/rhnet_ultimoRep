@@ -214,8 +214,8 @@ export class OpenDialogComponent implements OnInit {
       numeroEmpleado: this.numUsuario,
       motivo: this.data.observaciones,
       nombre: this.usuario,
-      correo:'practicante.sistemas@dikeninternational.com',
-      // correo:this.correoJefe,
+      // correo:'practicante.sistemas@dikeninternational.com',
+      correo:this.correoJefe,
       tipoDePase: ''
     }
 
