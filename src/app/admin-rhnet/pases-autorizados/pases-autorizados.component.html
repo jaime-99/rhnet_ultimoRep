@@ -26,18 +26,18 @@
       <tbody *ngFor="let pase of pasesAutorizados">
         <tr>
           <th scope="row"> {{pase.PaseDigitalId}} </th>
-          <td>  {{pase.NombreDelEmpleado}} </td>
+          <td>  {{pase.TuNombre}} </td>
           <td> {{pase.NombreDelJefe}} </td>
           <td> {{pase.Fecha | date: 'dd/MM/yyyy'}} </td>
           <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }} </td>
-          <td>  {{pase.tipoEntrada}}  </td>
+          <td>  {{pase.tipoDeEntrada}}  </td>
           <td> {{ pase.Tipo === 2 ? pase.HoraEntrada : (pase.Tipo === 3 ? pase.HoraSalida : pase.HoraEntrada + ' - ' + pase.HoraSalida) }}</td>
-          <td>  <strong> {{pase.estatusDelPase}} </strong> </td>
+          <td>  <strong> {{pase.EstatusNombre}} </strong> </td>
 
 
            <!-- <td><button (click)="eliminarPase(pase.PaseDigitalId)" mat-raised-button color="warn">Eliminar</button> -->
 
-          <!-- </td> -->
+            <!-- </td> -->
         </tr>
 
       </tbody>

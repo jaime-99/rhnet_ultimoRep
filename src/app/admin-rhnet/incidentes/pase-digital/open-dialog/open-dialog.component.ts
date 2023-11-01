@@ -270,7 +270,7 @@ export class OpenDialogComponent implements OnInit {
   generarPaseDesdeJefe(){
 
     this.rhService.getEmpleadosJefe(this.numUsuario).subscribe((res)=>{
-      console.log( "estos son mis empleados",res)
+      // console.log( "estos son mis empleados",res)
       this.empleadosDelJefe = res
 
       // this.empleadosDelJefe.forEach(mensaje => {

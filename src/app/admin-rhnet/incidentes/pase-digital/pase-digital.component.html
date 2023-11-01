@@ -85,7 +85,7 @@
         <tbody *ngFor="let pase of pases$ | async">
           <tr>
             <th scope="row"> {{pase.PaseDigitalId}} </th>
-            <td> {{pase.NOMBRE}} {{pase.APELLIDO_PATERNO}}  </td>
+            <td> {{NombreCompleto}} </td>
             <td>{{nombreJefe}} </td>
             <td> {{pase.Fecha}} </td>
             <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }} </td>
@@ -143,12 +143,12 @@
         <tbody *ngFor="let pase of pasesJefe$ | async">
           <tr>
             <th scope="row">{{pase.PaseDigitalId}} </th>
-            <td> {{pase.NombreDelEmpleado}} </td>
+            <td> {{pase.TuNombre}} </td>
             <td> {{pase.NumeroEmpleado}} </td>
             <td> {{pase.NombreDelJefe}} </td>
             <td> {{pase.Fecha}} </td>
             <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }}</td>
-            <td> {{pase.tipo}} </td>
+            <td> {{pase.tipoDeEntrada}} </td>
             <td> <strong> {{pase.EstatusNombre}} </strong> </td>
 
             <td>

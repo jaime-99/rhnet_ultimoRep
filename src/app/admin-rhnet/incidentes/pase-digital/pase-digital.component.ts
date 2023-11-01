@@ -188,8 +188,8 @@ export class PaseDigitalComponent implements OnInit {
 
     if(numero===1){
     const res = {
-      p_PaseAutorizado: 1,
-      p_PaseAutorizadoSalida: 1,
+      p_Autorizado: 1,
+      p_AutorizadoSalida: 1,
       p_PaseDigitalId:id
     }
 
@@ -197,7 +197,7 @@ export class PaseDigitalComponent implements OnInit {
 
 
 
-    this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
+    this.rhService.updatePases(res.p_Autorizado,res.p_AutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
 
       this.getPasesJefe();
       this.insertarNotificacion(numero);
@@ -208,13 +208,13 @@ export class PaseDigitalComponent implements OnInit {
   }else{
 
     const res = {
-      p_PaseAutorizado: 0,
-      p_PaseAutorizadoSalida: 0,
+      p_Autorizado: 0,
+      p_AutorizadoSalida: 0,
       p_PaseDigitalId:id
     }
 
 
-    this.rhService.updatePases(res.p_PaseAutorizado,res.p_PaseAutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
+    this.rhService.updatePases(res.p_Autorizado,res.p_AutorizadoSalida,res.p_PaseDigitalId).subscribe((res)=>{
 
       this.getPasesJefe();
       this.insertarNotificacion(numero);
@@ -287,7 +287,7 @@ export class PaseDigitalComponent implements OnInit {
       motivo : '',
       nombre : this.nombreDelEmpleado,
       nombreDelJefe:this.nombreDelJefe2,
-      correo : 'practicante.sistemas@dikeninternational.com',
+      correo : 'practicante.sistemas@dikeninternational.com', // colocar el correo de alguien mas
       tipoDePase: this.tipoDePase
     }
 
