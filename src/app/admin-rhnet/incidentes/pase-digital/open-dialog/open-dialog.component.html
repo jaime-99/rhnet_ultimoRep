@@ -2,7 +2,7 @@
 
 <h1 mat-dialog-title>Crear Pase Digital </h1>
 <form [formGroup]="generacionPase">
-
+<div class="container">
 <div mat-dialog-content>
   <div class="row">
     <div class="col">
@@ -56,15 +56,16 @@
     <mat-label>Observaciones || Motivo</mat-label>
     <textarea matInput [(ngModel)]="data.observaciones" formControlName="p_Motivo" ></textarea>
     <mat-error *ngIf="generacionPase.controls.p_Motivo.errors?.required">El motivo es requerido</mat-error>
-
   </mat-form-field>
+
 
   <div mat-dialog-actions>
     <button mat-raised-button color="primary"  (click)="onNoClick(generacionPase.value)">Enviar Datos </button>
     <!-- <button mat-raised-button color="warn" [mat-dialog-close]="data.fecha" cdkFocusInitial>Volver</button> -->
     <button mat-raised-button color="warn" (click)="volver()"> Volver</button>
-
   </div>
+
+</div>
 </div>
 </form>
 <!-- <div mat-dialog-actions>
