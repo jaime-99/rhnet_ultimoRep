@@ -76,21 +76,24 @@ export class RhMenuComponent implements OnInit {
         // El usuarioId está en perfilVigilante
         // Agrega el menú a this.menuItems
 
+        this.parentMenu = this.menuItems.filter(item => item.parentId == this.menuParentId);
 
-        this.parentMenu = this.menuItems.filter(item => {
-          return item.title === 'PASES AUTORIZADOS' || item.title === 'PASES'||  titulosAMostrar.includes(item.title);
-        });
+
+        // this.parentMenu = this.menuItems.filter(item => {
+        //   return item.title === 'PASES AUTORIZADOS' || item.title === 'PASE DIGITAL'|| item.title === 'VACACIONES'||  titulosAMostrar.includes(item.title);
+        // });
 
         // this.parentMenu.push(new RhMenu (32, 'PASES AUTORIZADOS', '/rhnet/PASES_AUTORIZADOS', null, 'alarm_on', null, false, 0)),
 
         // this.parentMenu.push(new RhMenu (33, 'PASES GENERADOS', '/rhnet/PASES_GENERADOS', null, 'receipt', null, false, 0)),
 
-        console.log(this.parentMenu)
-
 
         console.log("si se incluye")
       }else{
         console.log("No se incluye el perfil de vigilante")
+          this.parentMenu = this.menuItems.filter(item => item.parentId == this.menuParentId);
+
+
         // console.log(this.usuarioId)
       }
     })
