@@ -3,7 +3,6 @@ import { AppSettings, Settings } from 'src/app/app.settings';
 import { RhMenuService } from './rhmenu.service';
 import { AccesoService } from 'src/app/guards/acceso.service';
 import { RhnetService } from '../../rhnet.service';
-import { RhMenu } from './rhmenu-model';
 
 @Component({
   selector: 'app-menu',
@@ -92,7 +91,6 @@ export class RhMenuComponent implements OnInit {
       }else{
         console.log("No se incluye el perfil de vigilante")
           this.parentMenu = this.menuItems.filter(item => item.parentId == this.menuParentId);
-
 
         // console.log(this.usuarioId)
       }

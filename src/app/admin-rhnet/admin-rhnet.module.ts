@@ -23,6 +23,7 @@ import { MensajesComponent } from './mensajes/mensajes.component';
 import { PasesAutorizadosComponent } from './pases-autorizados/pases-autorizados.component';
 import { TodoLosPasesComponent } from './todo-los-pases/todo-los-pases.component';
 import { AccesoGuard } from './guards/acceso.guard';
+import { CrearSolicitudComponent } from './vacaciones/pages/crear-solicitud/crear-solicitud.component';
 
 export const routes = [
   {
@@ -38,6 +39,7 @@ export const routes = [
       { path:'PASES_AUTORIZADOS',loadChildren:()=>import('./pases-autorizados/pases-autorizados.module').then(m=>m.PasesAutorizadosModule),data: { breadcrumb: 'PASES AUTORIZADOS' },
       canActivate: [AccesoGuard] },
       { path:'PASES_GENERADOS',loadChildren:()=>import('./todo-los-pases/todo-los-pases.module').then(m=>m.TodoLosPasesModule),data: { breadcrumb: 'PASES GENERADOS' }},
+      { path:'CREAR_SOLICITUD',loadChildren:()=>import('./vacaciones/pages/crear-solicitud/crear-solicitud.module').then(m=>m.CrearSolicitudModule),data: { breadcrumb: 'CREAR SOLICITUD' }},
 
     ],
 
@@ -56,7 +58,7 @@ export const routes = [
     MessagesComponent,
     MensajesComponent,
     PasesAutorizadosComponent,
-    TodoLosPasesComponent
+    TodoLosPasesComponent,
   ],
   imports: [
     CommonModule,
