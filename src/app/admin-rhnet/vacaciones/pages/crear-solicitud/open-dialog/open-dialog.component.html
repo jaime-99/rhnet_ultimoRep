@@ -1,0 +1,45 @@
+
+
+<h1 mat-dialog-title>Crear Solicitud Vacaciones</h1>
+<form [formGroup]="generacionVacaciones">
+
+<div class="container">
+  <div class="row">
+<div class="mb-3 col-md-3 ">
+  <label for="e" class="form-label">Fecha de inicio</label>
+  <input type="date" class="form-control" formControlName="Fecha_inicio" name="diaInicio" >
+  <mat-error *ngIf="generacionVacaciones.controls.Fecha_inicio.errors?.required">La fecha de inicio es requerida</mat-error>
+
+</div>
+<div class="mb-3 col-md-3">
+  <label for="" class="form-label">Fecha de Fin</label>
+  <input type="date" class="form-control" formControlName="FechaFin" name="diaFin">
+  <mat-error *ngIf="generacionVacaciones.controls.FechaFin.errors?.required">La fecha fin es requerida</mat-error>
+
+</div>
+<div class="mb-3 col-md-3">
+  <label for="" class="form-label">Dias solicitados</label>
+  <input type="number" class="form-control" formControlName="DiasSolicitados" name="diaSolicitados">
+  <mat-error *ngIf="generacionVacaciones.controls.DiasSolicitados.errors?.required">dias solicitados requerido</mat-error>
+
+</div>
+<div class="mb-3 col-md-3">
+  <label for="" class="form-label">Periodo</label>
+  <input type="text" class="form-control" formControlName="Periodo" name="Periodo">
+  <mat-error *ngIf="generacionVacaciones.controls.Periodo.errors?.required">Periodo requerido</mat-error>
+</div>
+</div>
+<!-- <div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+</div> -->
+
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary"  (click)="insertarSolicitud(generacionVacaciones.value)">Enviar Datos </button>
+  <!-- <button mat-raised-button color="warn" [mat-dialog-close]="data.fecha" cdkFocusInitial>Volver</button> -->
+  <!-- <button mat-raised-button color="warn" (click)="volver()"> Volver</button> -->
+</div>
+
+</div>
+</form>

@@ -137,6 +137,18 @@ export class RhnetService {
       return this.http.post<any>( url, body );
     }
 
+    //! Empezamos con VACACIONES
+
+
+
+    insertarSolicitud(EmpleadoId,Numero_empleado,Fecha_inicio,FechaFin,DiasSolicitados,Periodo,
+      Id_Jefe,Id_autorizoRH,IdEstatusSolicitudVaciones,Observaciones,Observaciones_jefe){
+      const url=`${ this.baseUrl }/Vacaciones/insertarSolicitud.php`;
+      const body={EmpleadoId,Numero_empleado,Fecha_inicio,FechaFin,DiasSolicitados,Periodo,
+        Id_Jefe,Id_autorizoRH,IdEstatusSolicitudVaciones,Observaciones,Observaciones_jefe}
+      return this.http.post<any>( url, body );
+    }
+
 
 
 
