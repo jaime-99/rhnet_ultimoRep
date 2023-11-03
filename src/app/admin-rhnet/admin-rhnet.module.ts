@@ -24,6 +24,7 @@ import { PasesAutorizadosComponent } from './pases-autorizados/pases-autorizados
 import { TodoLosPasesComponent } from './todo-los-pases/todo-los-pases.component';
 import { AccesoGuard } from './guards/acceso.guard';
 import { CrearSolicitudComponent } from './vacaciones/pages/crear-solicitud/crear-solicitud.component';
+import { ReporteIncidenciasComponent } from './incidentes/reporteIncidencias/reporte-incidencias/reporte-incidencias.component';
 
 export const routes = [
   {
@@ -40,6 +41,7 @@ export const routes = [
       canActivate: [AccesoGuard] },
       { path:'PASES_GENERADOS',loadChildren:()=>import('./todo-los-pases/todo-los-pases.module').then(m=>m.TodoLosPasesModule),data: { breadcrumb: 'PASES GENERADOS' }},
       { path:'CREAR_SOLICITUD',loadChildren:()=>import('./vacaciones/pages/crear-solicitud/crear-solicitud.module').then(m=>m.CrearSolicitudModule),data: { breadcrumb: 'CREAR SOLICITUD' }},
+      { path:'REPORTE_INCIDENCIAS',loadChildren:()=>import('./incidentes/reporteIncidencias/reporte-incidencias/reporte-incidencias.module').then(m=>m.ReporteIncidenciasModule),data: { breadcrumb: 'REPORTE INCIDENCIAS' }},
 
     ],
 
