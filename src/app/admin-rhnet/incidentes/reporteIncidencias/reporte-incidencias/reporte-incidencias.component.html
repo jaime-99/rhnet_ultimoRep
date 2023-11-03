@@ -1,2 +1,58 @@
-<p>reporte-incidencias works!</p>
+<div class="container-fluid">
 
+
+  <div class="card">
+    <div class="card-header card-header-azure ">
+      <div class="row">
+      <div class="col-6">
+      <h4 class="card-title">Reporte de faltas e incidencias</h4>
+      </div>
+      <!-- <p class="card-category">Mi Informacion</p> -->
+    <div class="col-6">
+
+      <button mat-raised-button color="primary" class="">Buscar</button>
+
+    </div>
+    </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#Empleado</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Departamento</th>
+              <th scope="col">Empresa</th>
+              <th scope="col">Fecha Alta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let incidencias of incidenciasEmpleado | paginate: { itemsPerPage: count, currentPage: page }">
+              <th scope="row"> {{incidencias.NO_EMPLEADO}} </th>
+              <td> {{incidencias.NOMBRE}} </td>
+              <td> {{incidencias.DEPARTAMENTO}} </td>
+              <td> {{incidencias.EMPRESA}} </td>
+              <td>{{incidencias.fecha_alta}} </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <mat-card class="p-0 text-center">
+          <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
+            maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+        </mat-card>
+      </div>
+
+
+    </div>
+
+
+
+
+  </div>
+
+</div>

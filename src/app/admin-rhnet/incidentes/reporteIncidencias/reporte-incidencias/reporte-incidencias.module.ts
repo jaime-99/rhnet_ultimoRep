@@ -4,6 +4,7 @@ import { ReporteIncidenciasComponent } from './reporte-incidencias.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
+    NgxPaginationModule
   ]
 })
 export class ReporteIncidenciasModule { }

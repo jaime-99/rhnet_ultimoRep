@@ -141,6 +141,7 @@ export class RhnetService {
 
 
 
+    // para insertar una solicitud en la tabla de vacaciones
     insertarSolicitud(EmpleadoId,Numero_empleado,Fecha_inicio,FechaFin,DiasSolicitados,Periodo,
       Id_Jefe,Id_autorizoRH,IdEstatusSolicitudVaciones,Observaciones,Observaciones_jefe){
       const url=`${ this.baseUrl }/Vacaciones/insertarSolicitud.php`;
@@ -148,6 +149,14 @@ export class RhnetService {
         Id_Jefe,Id_autorizoRH,IdEstatusSolicitudVaciones,Observaciones,Observaciones_jefe}
       return this.http.post<any>( url, body );
     }
+
+
+    // para obtener la tabla de incidencias_empleados
+    getIncidenciasEmpleados():any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getIncidenciasEmpleados.php`;
+      return this.http.get(url);
+    }
+
 
 
 
