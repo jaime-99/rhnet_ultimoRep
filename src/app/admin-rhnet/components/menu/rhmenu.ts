@@ -13,6 +13,7 @@ export const RHmenuItems = [
     new RhMenu (33, 'VACACIONES', "/rhnet/CREAR_SOLICITUD", null, 'airplanemode_active', null, false, 0),
 
     new RhMenu (33, 'ROPORTE INCIDENCIAS', "/rhnet/REPORTE_INCIDENCIAS", null, 'assignment_late', null, false, 0),
+    new RhMenu (34, 'RELOJ CHECADOR', "/rhnet/RELOJ_CHECADOR", null, 'assignment_late', null, false, 0),
     // new RhMenu (35, 'VACACIONES 2', '', null, 'receipt', null, false, 33),
 
 
