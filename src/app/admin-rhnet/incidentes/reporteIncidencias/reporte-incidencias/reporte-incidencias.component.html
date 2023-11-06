@@ -4,15 +4,23 @@
   <div class="card">
     <div class="card-header card-header-azure ">
       <div class="row">
-      <div class="col-6">
+      <div class="col-md-5">
       <h4 class="card-title">Reporte de faltas e incidencias</h4>
       </div>
       <!-- <p class="card-category">Mi Informacion</p> -->
-    <div class="col-6">
 
-      <button mat-raised-button color="primary" class="">Buscar</button>
+      <div class="col-md-3 mb-2">
+      <input matInput class="form-control" [(ngModel)]="filtroTexto"   placeholder="Nombre" />
+      </div>
+      <div class="col-md-2 mb-2 ">
+        <button mat-raised-button color="primary" (click)="buscarIncidencias()" class="">Buscar</button>
+      </div>
+      <div class="col-md-2 ">
+        <button type="button" class="btn btn-success">Exportar a excel</button>
+      </div>
 
-    </div>
+
+
     </div>
     </div>
 
@@ -30,22 +38,22 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let incidencias of incidenciasEmpleado | paginate: { itemsPerPage: count, currentPage: page }">
+            <tr *ngFor="let incidencias of incidenciasEncontradas | paginate: { itemsPerPage: count, currentPage: page }">
               <th scope="row"> {{incidencias.NO_EMPLEADO}} </th>
               <td> {{incidencias.NOMBRE}} </td>
               <td> {{incidencias.DEPARTAMENTO}} </td>
               <td> {{incidencias.EMPRESA}} </td>
-              <td>{{incidencias.fecha_alta}} </td>
+              <td>{{incidencias.fecha_alta |date:"d/m/Y"}} </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div>
-        <mat-card class="p-0 text-center">
-          <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
-            maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
-        </mat-card>
       </div>
+      <mat-card class="p-0 text-center">
+        <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
+          maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+      </mat-card>
 
 
     </div>

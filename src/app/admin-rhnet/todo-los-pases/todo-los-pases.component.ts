@@ -26,10 +26,9 @@ export class TodoLosPasesComponent implements OnInit {
 
   }
 
+
   buscarPases(){
-
-
-    if(this.filtroTexto){
+  if(this.filtroTexto){
     this.pasesEncontrados = this.pases.filter((empleado) =>
     empleado.NumeroEmpleado.toLowerCase().includes(this.filtroTexto.toLowerCase())
     );
