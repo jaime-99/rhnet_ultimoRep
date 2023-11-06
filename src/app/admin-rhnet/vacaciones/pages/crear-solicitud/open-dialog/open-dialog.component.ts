@@ -17,22 +17,11 @@ export class OpenDialogComponent implements OnInit {
   datosEmpleado:any
   usuarioIdEmpleado: any;
   numeroEmpleadoJefe: any;
-
-  constructor(private fb:FormBuilder, private rhService:RhnetService, private mat:MatSnackBar) { }
-
-  ngOnInit(): void {
+  diasDiferencia: number;
 
 
-    let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
-    // console.log(usuarioAuth)
-    this.usuario = usuarioAuth.data.Usuario
-    this.numUsuario = usuarioAuth.data.Numero_Empleado,
-    this.correo = usuarioAuth.Correo
-    console.log(this.numUsuario)
 
-    // generar el formulario de vacaciones
-
-    this.verDatosEmpleado();
+  constructor(private fb:FormBuilder, private rhService:RhnetService, private mat:MatSnackBar) {
 
 
     this.generacionVacaciones = this.fb.group({
@@ -41,7 +30,7 @@ export class OpenDialogComponent implements OnInit {
       Numero_empleado: [2222], // Campo de contraseña, requerido
       Fecha_inicio: ['', Validators.compose([Validators.required])],
       FechaFin: ['', Validators.compose([Validators.required])],
-      DiasSolicitados: ['', Validators.compose([Validators.required])],
+      DiasSolicitados: [''],
       Periodo: ['', Validators.compose([Validators.required])],
       Id_Jefe: [222],
       Id_autorizoRH: [1],
@@ -52,13 +41,30 @@ export class OpenDialogComponent implements OnInit {
 
   }
 
+  ngOnInit(): void {
+
+
+    let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
+    // console.log(usuarioAuth)
+    this.usuario = usuarioAuth.data.Usuario
+    this.numUsuario = usuarioAuth.data.Numero_Empleado,
+    this.correo = usuarioAuth.Correo
+    // console.log(this.numUsuario)
+
+    // generar el formulario de vacaciones
+
+
+
+    this.verDatosEmpleado();
+    this.calcularDiasSolicitados()
+
+  }
+
 
 
 
   //funcion para insertar la solicitud del usuario
   insertarSolicitud(values:Object){
-
-
 
 
     if(this.generacionVacaciones.valid){
@@ -71,6 +77,7 @@ export class OpenDialogComponent implements OnInit {
           this.mat.open('COMPLETADO', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
         })
+        this.calcularDiasSolicitados()
     }else{
 
       this.mat.open('TE FALTAN DATOS', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
@@ -88,8 +95,25 @@ export class OpenDialogComponent implements OnInit {
       this.numeroEmpleadoJefe = this.datosEmpleado.NUMERO_EMPLEADO_JEFE
     })
 
+  }
+
+  calcularDiasSolicitados() {
+    const fechaInicio = new Date(this.generacionVacaciones.value.Fecha_inicio);
+    const fechaFin = new Date(this.generacionVacaciones.value.FechaFin);
 
 
+    // Calculamos la diferencia en milisegundos y la convertimos a días
+    const diferenciaEnTiempo = fechaFin.getTime() - fechaInicio.getTime();
+    const diasDiferencia = Math.ceil(diferenciaEnTiempo / (1000 * 3600 * 24));
+
+    console.log(diasDiferencia)
+
+    this.diasDiferencia = diasDiferencia
+
+    // Asignamos el valor calculado a DiasSolicitados
+    this.generacionVacaciones.patchValue({
+      DiasSolicitados: diasDiferencia
+    });
   }
 
 
