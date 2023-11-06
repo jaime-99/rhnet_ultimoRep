@@ -3,15 +3,121 @@
   <div class="card">
     <div class="card-header card-header-azure">
 
-      <h4 class="card-title">Mis registros del relojo checador</h4>
+      <div class="row">
+        <div class="col-auto">
+      <h4 class="card-title">Mis Registros del Reloj Checador</h4>
+      </div>
+      <div class="col-auto">
+
+        <button mat-raised-button color="primary" (click)="obtenerChecadaDeHoy()">Hoy</button>
+      </div>
+
+      </div>
+      <div class="row g-3 align-items-center">
+
+        <div class="col-auto">
+          <label for="exampleFormControlInput1" class="col-form-label">Busqueda por dia</label>
+
+        </div>
+
+        <div class="col-auto">
+          <input type="date" class="form-control"  [(ngModel)]="filtroTexto" id="exampleFormControlInput1" placeholder="06/11/2023">
+        </div>
+        <div class="col-auto">
+
+          <button mat-raised-button color="primary"  (click)="buscarPorFecha()" >Buscar</button>
+
+        </div>
+
+      </div>
 
 
     </div>
 
     <div class="card-body">
-      <h2>Aqui va le cuerpo del card</h2>
+
+      <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"># Empleado</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dia</th>
+            <th scope="col">Entrada</th>
+            <th scope="col">Salida</th>
+            <th scope="col">Minutos retardo</th>
+            <th scope="col">Estatus</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ch of checadasEncontradas ">
+            <th scope="row" > {{ch.Numero_empleado}}</th>
+            <th>jose</th>
+            <td>{{ ch.Fecha | date:'d/MM/y' }}</td>
+            <td>{{ch.Entrada | date:'h:mm a'}} </td>
+            <td>{{ch.Salida | date:'h:mm a'}} </td>
+
+            <td> {{ch.minutos_tarde}} </td>
+            <td> {{ch.Estatus}} </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
 
     </div>
+
+  </div>
+
+
+  <hr>
+
+  <div class="card">
+
+    <div class="card-header card-header-azure">
+
+      <h4 class="card-title"> Incidencias Colaboradores   (incompleto) </h4>
+
+      <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"># Empleado</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Dia</th>
+            <th scope="col">Entrada</th>
+            <th scope="col">Salida</th>
+            <th scope="col">Minutos retardo</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Opciones</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">11</th>
+            <th>Jaime</th>
+            <td>17/12/1999</td>
+            <td>10:12</td>
+            <td>10:12</td>
+            <td>222</td>
+            <td>222</td>
+            <div>
+            <td> <button class="btn btn-success btn-sm">Justificar</button>  </td>
+            <td> <button class="btn btn-danger btn-sm">No Justificar</button>  </td>
+            </div>
+
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+
+
+
+
+
+
 
   </div>
 

@@ -157,6 +157,13 @@ export class RhnetService {
       return this.http.get(url);
     }
 
+    getRelojChecador(id):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getRelojChecador.php?id=${id}`;
+      return this.http.get(url);
+    }
+
+
+
 
 
 
