@@ -7,6 +7,7 @@ import { OpenDialogComponent } from './open-dialog/open-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRadioModule } from '@angular/material/radio';
+import { SolicitudesColaboradorComponent } from './solicitudes-colaborador/solicitudes-colaborador.component';
 
 export const routes: Routes = [
   { path: '', component: CrearSolicitudComponent, pathMatch: 'full' }
@@ -15,7 +16,7 @@ export const routes: Routes = [
 
 
 @NgModule({
-  declarations: [CrearSolicitudComponent, OpenDialogComponent],
+  declarations: [CrearSolicitudComponent, OpenDialogComponent, SolicitudesColaboradorComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

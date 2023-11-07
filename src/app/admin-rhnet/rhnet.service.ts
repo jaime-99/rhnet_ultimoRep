@@ -168,13 +168,18 @@ export class RhnetService {
       return this.http.get(url);
     }
 
-
-
     cancelarSolicitud(id){
       const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/updateEstatusSolicitud.php?id=${id}`;
       const body={id}
       return this.http.put( url, body );
     }
+
+    getSolicitudesColaborador(id):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/getSolicitudesColaborador.php?id=${id}`;
+      return this.http.get(url);
+    }
+
+
 
 
 

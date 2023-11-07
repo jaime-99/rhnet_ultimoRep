@@ -31,16 +31,6 @@ export class CrearSolicitudComponent implements OnInit {
 
   }
 
-
-
-
-
-
-
-
-
-
-
   openDialog(): void {
     const dialogRef = this.dialog.open(OpenDialogComponent, {
       data: {},
