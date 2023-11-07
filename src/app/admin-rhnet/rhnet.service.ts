@@ -170,6 +170,14 @@ export class RhnetService {
 
 
 
+    cancelarSolicitud(id){
+      const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/updateEstatusSolicitud.php?id=${id}`;
+      const body={id}
+      return this.http.put( url, body );
+    }
+
+
+
 
 
 
