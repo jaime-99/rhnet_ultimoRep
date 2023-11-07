@@ -173,10 +173,16 @@ export class RhnetService {
       const body={id}
       return this.http.put( url, body );
     }
-
+    //ver las solicitudes de tus empleado
     getSolicitudesColaborador(id):any{
       const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/getSolicitudesColaborador.php?id=${id}`;
       return this.http.get(url);
+    }
+
+    sendVacaciones(fecha,numeroEmpleado,nombre,correo){
+      const url=`${ this.baseUrl }/enviarCorreoSolicitudVacaciones.php`;
+      const body={fecha,numeroEmpleado,nombre,correo}
+      return this.http.post<any>( url, body );
     }
 
 

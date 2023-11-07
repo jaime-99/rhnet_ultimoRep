@@ -14,6 +14,10 @@ export class CrearSolicitudComponent implements OnInit {
   Solicitudes: any;
   numEmpleado: any;
   usuario: any;
+  infoEmpleado: any;
+  fechaAlta: any;
+  public año: any;
+  anio: any
 
   constructor( public dialog: MatDialog, private rhService: RhnetService ) { }
 
@@ -23,7 +27,7 @@ export class CrearSolicitudComponent implements OnInit {
     // console.log(usuarioAuth)
     this.usuario = usuarioAuth.data.Usuario
     this.numEmpleado = usuarioAuth.data.Numero_Empleado,
-
+    this.getDatosEmpleado()
 
 
     this.obtenerDatosSolicitud();
@@ -46,7 +50,7 @@ export class CrearSolicitudComponent implements OnInit {
     });
 
 }
-
+  //obtener datos de la solicitud
   obtenerDatosSolicitud(){
     this.rhService.getSolicitudes(this.numEmpleado).subscribe((res)=>{
       this.Solicitudes= res
@@ -54,11 +58,48 @@ export class CrearSolicitudComponent implements OnInit {
     })
   }
 
+  // cancelar la solicitud
   cancelarSolicitud(id){
     this.rhService.cancelarSolicitud(id).subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
       this.obtenerDatosSolicitud();
     })
+  }
+
+  //obtener datos del empleado
+
+  getDatosEmpleado (){
+    this.rhService.getAllInfoEmpleados(this.numEmpleado).subscribe((res)=>{
+      this.infoEmpleado = res
+      this.fechaAlta = this.infoEmpleado.FECHA_ALTA
+      console.log(this.fechaAlta)
+      this.calcularAñosCumplidos()
+    })
+  }
+
+
+  calcularAñosCumplidos() {
+    // Verifica si la fecha de alta está definida
+    if (this.fechaAlta) {
+      // Convierte la fecha de alta de formato yyyy-mm-dd a un objeto Date
+      const fechaAlta = new Date(this.fechaAlta);
+
+      // Obtiene la fecha actual
+      const fechaActual = new Date();
+
+      // Calcula la diferencia en milisegundos entre las dos fechas
+      const diferenciaEnMilisegundos = fechaActual.getTime() - fechaAlta.getTime();
+
+      // Convierte la diferencia en milisegundos a años
+      const añosTranscurridos = diferenciaEnMilisegundos / (1000 * 60 * 60 * 24 * 365.25);
+
+      // Redondea el resultado a un número entero de años
+      const añosRedondeados = Math.floor(añosTranscurridos);
+
+      // Almacena el resultado en la variable 'año'
+      this.anio = añosRedondeados;
+      // console.log(this.año)
+    }
   }
 
 

@@ -72,6 +72,7 @@ export class OpenDialogComponent implements OnInit {
           Id_Jefe,Id_autorizoRH,IdEstatusSolicitudVaciones,Observaciones,Observaciones_jefe).subscribe((res)=>{
           console.log(res)
           this.mat.open('COMPLETADO', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+          // this.enviarCorreo();
 
         })
     }else{
@@ -120,6 +121,28 @@ export class OpenDialogComponent implements OnInit {
     // console.log(this.generacionVacaciones.value);
   }
 
+
+
+  // es para enviar correo a tu jefe cuando envies la solicitud
+  enviarCorreo(){
+
+    const datosCorreo = {
+      Fecha: '',
+      fechaInicio:'' ,
+      fechaFin : '',
+      dias : '',
+      numeroEmpelado: ' ',
+      nombre: ' '
+
+    }
+
+    this.rhService.sendVacaciones("07/11/2023", this.numUsuario,"jose jaime,", "practicante.sistemas@dikeninternational.com").subscribe((res)=>{
+      console.log(res)
+    })
+
+
+
+  }
 
 
 
