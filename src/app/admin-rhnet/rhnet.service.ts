@@ -162,6 +162,14 @@ export class RhnetService {
       return this.http.get(url);
     }
 
+    //solicitudes de vacaciones para cada empelado
+    getSolicitudes(Empleado_id):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/getSolicitudesPorId.php?Numero_empleado=${Empleado_id}`;
+      return this.http.get(url);
+    }
+
+
+
 
 
 

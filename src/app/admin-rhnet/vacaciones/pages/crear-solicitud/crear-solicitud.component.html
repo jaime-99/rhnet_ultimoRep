@@ -71,19 +71,7 @@
                   <div class="col-md-6">
                     <button type="button" mat-raised-button color="primary" (click)="openDialog()" >Nueva Solicitud</button>
                   </div>
-
-
-
-
-
-
-
               </div>
-
-
-
-
-
 
             </form>
 
@@ -94,5 +82,73 @@
     </div>
 
   </div>
+
+
+
+
+<!-- nueva card -->
+
+<div class="card mt-2">
+
+  <div class="card-header card-header-azure">
+    <h4 class="card-title">Mis Solicitudes</h4>
+    <!-- <p class="card-category">Mi Informacion</p> -->
+  </div>
+
+  <div class="card-body">
+
+
+
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col"># Empleado</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Jefe</th>
+          <th scope="col">Periodo</th>
+          <th scope="col">Dias Solicitados</th>
+          <th scope="col">Fecha Inicio</th>
+          <th scope="col">Fecha Fin</th>
+          <th scope="col">Estatus</th>
+          <th scope="col">Acciones</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>jaime</td>
+          <td>jose gomez</td>
+          <td>2023</td>
+          <td>5</td>
+          <td>17/12/2023</td>
+          <td>19/12/2023</td>
+          <td>Pendiente</td>
+          <td>
+            <button class="btn btn-info"> Cancelar </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
 
 </div>
