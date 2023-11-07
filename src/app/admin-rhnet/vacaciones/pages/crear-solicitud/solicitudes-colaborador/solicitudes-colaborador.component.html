@@ -14,15 +14,15 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th scope="col-md"># Empleado</th>
-              <th scope="col-md">Nombre</th>
-              <th scope="col-md">Jefe</th>
-              <th scope="col-md">Periodo</th>
-              <th scope="col-md">Dias Solicitados</th>
-              <th scope="col-md">Fecha Inicio</th>
-              <th scope="col-md">Fecha Fin</th>
-              <th scope="col-md">Estatus</th>
-              <th scope="col-md">Acciones</th>
+              <th scope="col"># Empleado</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Jefe</th>
+              <th scope="col">Periodo</th>
+              <th scope="col">Dias Solicitados</th>
+              <th scope="col">Fecha Inicio</th>
+              <th scope="col">Fecha Fin</th>
+              <th scope="col">Estatus</th>
+              <th scope="col">Acciones</th>
 
             </tr>
           </thead>
@@ -37,11 +37,14 @@
               <td> {{solicitud.FechaFin}} </td>
               <td> <strong> {{solicitud.Estatus}}  </strong> </td>
               <td>
-                <button class="btn btn-info btn-sm .d-lg-none .d-xl-block
-                " > Aprobar </button>
-                <button class="btn btn-danger btn-sm .d-lg-none .d-xl-block
-                " > Rechazar </button>
-              </td>
+                <div class="row">
+                  <div class="col-md-6 ">
+                    <button class="btn btn-info btn-sm  ">Aprobar</button>
+                  </div>
+                  <div class="col-md-6 ">
+                    <button class="btn btn-danger btn-sm  ">Rechazar</button>
+                  </div>
+                </div>
             </tr>
           </tbody>
         </table>
