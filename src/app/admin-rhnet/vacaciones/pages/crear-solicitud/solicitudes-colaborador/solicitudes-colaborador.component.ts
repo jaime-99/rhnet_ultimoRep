@@ -24,13 +24,26 @@ export class SolicitudesColaboradorComponent implements OnInit {
 
   }
 
-
+  // ver las colictudes que tienes como jefe
   solicitudesColaborador(){
-
     this.rhService.getSolicitudesColaborador(this.numEmpleado).subscribe((res)=>{
       this.solicitudesCol = res
-      console.log("solicitudes colaboradores",res)
     })
   }
+
+  // es para autorizar un solicitud de vacaciones en 2
+  updateAutorizar(id){
+    this.rhService.updateAutorizar(id).subscribe((res)=>{
+
+      this.solicitudesColaborador()
+
+      })
+  }
+
+  updateRechazar(){
+
+  }
+
+
 
 }

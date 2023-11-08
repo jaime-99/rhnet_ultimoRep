@@ -179,11 +179,21 @@ export class RhnetService {
       return this.http.get(url);
     }
 
-    sendVacaciones(fecha,numeroEmpleado,nombre,correo){
-      const url=`${ this.baseUrl }/enviarCorreoSolicitudVacaciones.php`;
-      const body={fecha,numeroEmpleado,nombre,correo}
+    // es para enviar el correo al jefe de la solicitud de vacaciones
+    sendVacaciones(fecha,fechaInicio,fechaFin,dias,numeroEmpelado,nombre,correo){
+      const url=`https://www.dikeninternational.com/angular_service/api/tools/enviarCorreoSolicitudVacaciones.php`;
+      const body={fecha,fechaInicio,fechaFin,dias,numeroEmpelado,nombre,correo}
       return this.http.post<any>( url, body );
     }
+
+    // es para actualizat la columna estatus de la tabla solicitud de vacaciones a 2
+    updateAutorizar(id){
+      const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/updateAutorizado.php`;
+      const body={id}
+      return this.http.put<any>( url, body );
+    }
+
+
 
 
 

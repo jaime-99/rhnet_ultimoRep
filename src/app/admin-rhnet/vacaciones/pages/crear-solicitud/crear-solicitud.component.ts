@@ -18,6 +18,7 @@ export class CrearSolicitudComponent implements OnInit {
   fechaAlta: any;
   public año: any;
   anio: any
+  correoJefe: any;
 
   constructor( public dialog: MatDialog, private rhService: RhnetService ) { }
 
@@ -37,18 +38,14 @@ export class CrearSolicitudComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(OpenDialogComponent, {
-      data: {},
+      data: {correoJefe:this.correoJefe},
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('el dialogo se ha cerrado');
       // const resultado = result;
       // console.log(resultado)
 
-
-
     });
-
 }
   //obtener datos de la solicitud
   obtenerDatosSolicitud(){
@@ -72,7 +69,7 @@ export class CrearSolicitudComponent implements OnInit {
     this.rhService.getAllInfoEmpleados(this.numEmpleado).subscribe((res)=>{
       this.infoEmpleado = res
       this.fechaAlta = this.infoEmpleado.FECHA_ALTA
-      console.log(this.fechaAlta)
+      this.correoJefe = this.infoEmpleado.correoDelJefe
       this.calcularAñosCumplidos()
     })
   }

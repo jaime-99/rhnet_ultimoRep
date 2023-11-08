@@ -25,4 +25,9 @@ export class ServicioCompartidoService {
   getEvent() {
     return this.eventSubject.asObservable();
   }
+
+
+
+
+
 }
