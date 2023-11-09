@@ -199,6 +199,21 @@ export class RhnetService {
       return this.http.get(url);
     }
 
+    updateRechazar(id){
+      const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/updateRechazado.php`;
+      const body={id}
+      return this.http.put<any>( url, body );
+    }
+
+    mensajeDinamico(destinatario,mensaje,subtitulo,titulo1){
+      const url=`https://www.dikeninternational.com/angular_service/api/tools/mensajeDinamico.php`;
+      const body={mensaje,destinatario,subtitulo,titulo1}
+      return this.http.post<any>( url, body );
+    }
+
+
+
+
 
 
 

@@ -113,7 +113,6 @@ export class CrearSolicitudComponent implements OnInit {
       const diasDisponibles = this.informacionVacaciones.DiasDisponibles
       const diasUtilizados= 12 - diasDisponibles
 
-
       this.diasUtilizados = diasUtilizados;
 
     });

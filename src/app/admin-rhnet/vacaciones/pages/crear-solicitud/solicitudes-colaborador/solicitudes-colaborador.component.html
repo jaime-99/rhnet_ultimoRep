@@ -33,18 +33,18 @@
               <td>{{solicitud.NombreDelJefe}} </td>
               <td> {{solicitud.Periodo}}  </td>
               <td> {{solicitud.DiasSolicitados}} </td>
-              <td> {{solicitud.Fecha_inicio}}  </td>
-              <td> {{solicitud.FechaFin}} </td>
+              <td> {{solicitud.Fecha_inicio |  date:'d/MM/y'}}  </td>
+              <td> {{solicitud.FechaFin |  date:'d/MM/y'}} </td>
               <td> <strong> {{solicitud.Estatus}}  </strong> </td>
               <td>
                 <div class="row">
                   <div class="col-md-12 ">
-                    <button class="btn btn-info btn-sm my-2 " (click)="updateAutorizar(solicitud.Id)">Aprobar</button>
+                    <button class="btn btn-info btn-sm my-2 " (click)="updateAutorizar(solicitud.Id)" [disabled]="solicitud.IdEstatusSolicitudVaciones !=1">Aprobar</button>
                   </div>
                   </div>
                   <div class="row">
                   <div class="col-md-12 ">
-                    <button class="btn btn-danger btn-sm">Rechazar</button>
+                    <button class="btn btn-danger btn-sm" (click)="updateRechazar(solicitud.Id)" [disabled]="solicitud.IdEstatusSolicitudVaciones !=1" >Rechazar</button>
                   </div>
                   </div>
 

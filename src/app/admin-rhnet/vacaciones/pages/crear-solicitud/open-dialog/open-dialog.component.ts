@@ -77,7 +77,7 @@ export class OpenDialogComponent implements OnInit {
 
         this.rhService.insertarSolicitud(EmpleadoId,Numero_empleado,Fecha_inicio,FechaFin,DiasSolicitados,Periodo,
           Id_Jefe,Id_autorizoRH,IdEstatusSolicitudVaciones,Observaciones,Observaciones_jefe).subscribe((res)=>{
-          console.log(res)
+          // console.log(res)
           this.mat.open('COMPLETADO', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
           this.enviarCorreo();
 
