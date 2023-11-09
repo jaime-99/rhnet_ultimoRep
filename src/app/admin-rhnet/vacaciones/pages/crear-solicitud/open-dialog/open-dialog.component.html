@@ -41,8 +41,8 @@
 
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary"  (click)="insertarSolicitud(generacionVacaciones.value)">Enviar Datos </button>
-  <button mat-raised-button color="warn" [mat-dialog-close] cdkFocusInitial>Volver</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="this.generacionVacaciones.value"(click)="insertarSolicitud(generacionVacaciones.value)">Enviar Datos </button>
+  <button mat-raised-button color="warn" [mat-dialog-close]="this.generacionVacaciones.value" cdkFocusInitial>Volver</button>
   <!-- <button mat-raised-button color="warn" (click)="volver()"> Volver</button> -->
 </div>
 

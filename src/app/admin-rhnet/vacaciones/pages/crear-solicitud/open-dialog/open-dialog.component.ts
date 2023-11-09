@@ -21,6 +21,7 @@ export class OpenDialogComponent implements OnInit {
   diasDiferencia: number;
   fechaHoy: string;
   fechaInicio: any;
+  fechaFin: any;
 
 
 
@@ -110,7 +111,11 @@ export class OpenDialogComponent implements OnInit {
     const fechaInicio = new Date(this.generacionVacaciones.value.Fecha_inicio);
     const fechaFin = new Date(this.generacionVacaciones.value.FechaFin);
 
+    this.fechaInicio = this.generacionVacaciones.value.Fecha_inicio;
+    this.fechaFin = this.generacionVacaciones.value.FechaFiin;
     // Calculamos la diferencia en milisegundos y la convertimos a días
+
+
     const diferenciaEnTiempo = fechaFin.getTime() - fechaInicio.getTime();
     const diasDiferencia = Math.ceil(diferenciaEnTiempo / (1000 * 3600 * 24));
 

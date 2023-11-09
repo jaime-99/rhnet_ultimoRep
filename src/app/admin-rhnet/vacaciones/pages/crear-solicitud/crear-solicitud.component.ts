@@ -21,6 +21,8 @@ export class CrearSolicitudComponent implements OnInit {
   correoJefe: any;
   informacionVacaciones:any
   diasUtilizados: number;
+  fechas: { fechaInicio: any; fechaFin: any; };
+  public ejemplo= "ola"
 
   constructor( public dialog: MatDialog, private rhService: RhnetService ) { }
 
@@ -44,8 +46,14 @@ export class CrearSolicitudComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      // const resultado = result;
-      // console.log(resultado)
+      const fechaInicio = result.Fecha_inicio;
+      const fechaFin = result.FechaFin
+      console.log("resultado al cerrar openDialog",fechaInicio)
+
+      this.fechas = {fechaInicio,fechaFin}
+      console.log(this.fechas)
+
+
 
     });
 }

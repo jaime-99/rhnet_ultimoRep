@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
 
@@ -11,6 +11,11 @@ export class SolicitudesColaboradorComponent implements OnInit {
   solicitudesCol: any;
   numEmpleado: any;
 
+  @Input() fecha:any
+  fechaInicio: any;
+  fechaFin: any;
+
+
   constructor(private rhService: RhnetService, private snackBar:MatSnackBar) { }
 
   ngOnInit(): void {
@@ -19,6 +24,8 @@ export class SolicitudesColaboradorComponent implements OnInit {
     // console.log(usuarioAuth)
     this.numEmpleado = usuarioAuth.data.Numero_Empleado
     this.solicitudesColaborador();
+
+
   }
 
   // ver las colictudes que tienes como jefe
@@ -29,11 +36,13 @@ export class SolicitudesColaboradorComponent implements OnInit {
   }
 
   // es para autorizar un solicitud de vacaciones en 2
-  updateAutorizar(id){
+  updateAutorizar(id,fechaInicio,FechaFin){
     this.rhService.updateAutorizar(id).subscribe((res)=>{
 
+      this.fechaInicio = fechaInicio
+      this.fechaFin = FechaFin
       this.solicitudesColaborador()
-      this.mensajeAutorizado();
+      this.mensajeAutorizado(fechaInicio,FechaFin);
 
       this.snackBar.open('has Autorizado las Vacaciones', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       })
@@ -51,16 +60,17 @@ export class SolicitudesColaboradorComponent implements OnInit {
 
   }
 
-  mensajeAutorizado(){
+  mensajeAutorizado(fechaInicio,fechaFin1){
 
-    const fecha = '17/12/99'
-    const fechaFin = '12/12/23'
+    const fecha = fechaInicio
+    const fechaFin = fechaFin1
     const res = {
       destinatario: 'practicante.sistemas@dikeninternational.com',
-      mensaje: 'Tus vacaciones del día ' + fecha + ' hasta el día ' + fechaFin + 'han sido autorizadas' ,
+      mensaje: 'Tus vacaciones de la fecha  ' + fecha + ' hasta el  ' + fechaFin + '  han sido autorizadas' ,
       titulo1: 'Vacaciones Autorizadas',
       subtitulo: 'Vacaciones'
     }
+    console.log(fecha)
 
     this.rhService.mensajeDinamico(res.destinatario,res.mensaje,res.subtitulo,res.titulo1).subscribe(()=>{
 
