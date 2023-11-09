@@ -193,6 +193,14 @@ export class RhnetService {
       return this.http.put<any>( url, body );
     }
 
+    // es para obtener informacion adicional como el periodo, dias disponibles
+    getInfoVacaciones(numero_empleado):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/getInfoVacaciones.php?numero_empleado=${numero_empleado}`;
+      return this.http.get(url);
+    }
+
+
+
 
 
 

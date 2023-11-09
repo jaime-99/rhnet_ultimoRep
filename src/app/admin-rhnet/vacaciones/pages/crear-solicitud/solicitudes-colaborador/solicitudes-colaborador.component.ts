@@ -20,8 +20,6 @@ export class SolicitudesColaboradorComponent implements OnInit {
     this.numEmpleado = usuarioAuth.data.Numero_Empleado
     console.log( "numero de empleado desde colaborador ",this.numEmpleado)
     this.solicitudesColaborador();
-
-
   }
 
   // ver las colictudes que tienes como jefe

@@ -10,15 +10,17 @@ import { resolve6 } from 'dns/promises';
   styleUrls: ['./crear-solicitud.component.scss']
 })
 export class CrearSolicitudComponent implements OnInit {
-  Empleado_id: any;
-  Solicitudes: any;
-  numEmpleado: any;
+  Empleado_id: number;
+  Solicitudes: any[] = [];
+  numEmpleado: number;
   usuario: any;
   infoEmpleado: any;
-  fechaAlta: any;
+  fechaAlta: string;
   public año: any;
   anio: any
   correoJefe: any;
+  informacionVacaciones:any
+  diasUtilizados: number;
 
   constructor( public dialog: MatDialog, private rhService: RhnetService ) { }
 
@@ -71,6 +73,7 @@ export class CrearSolicitudComponent implements OnInit {
       this.fechaAlta = this.infoEmpleado.FECHA_ALTA
       this.correoJefe = this.infoEmpleado.correoDelJefe
       this.calcularAñosCumplidos()
+      this.getInfoAdicional();
     })
   }
 
@@ -100,4 +103,23 @@ export class CrearSolicitudComponent implements OnInit {
   }
 
 
+  // es para obtener informacion adicional de vacaciones
+  getInfoAdicional(){
+
+    this.rhService.getInfoVacaciones(this.numEmpleado).subscribe((res)=>{
+
+      this.informacionVacaciones = res
+
+      const diasDisponibles = this.informacionVacaciones.DiasDisponibles
+      const diasUtilizados= 12 - diasDisponibles
+
+
+      this.diasUtilizados = diasUtilizados;
+
+    });
+  }
+
+
 }
+
+
