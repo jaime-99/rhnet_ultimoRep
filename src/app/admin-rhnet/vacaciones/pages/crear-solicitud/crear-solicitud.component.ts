@@ -24,7 +24,10 @@ export class CrearSolicitudComponent implements OnInit {
   fechas: { fechaInicio: any; fechaFin: any; };
   public ejemplo= "ola"
 
-  constructor( public dialog: MatDialog, private rhService: RhnetService ) { }
+  constructor( public dialog: MatDialog, private rhService: RhnetService ) {
+
+
+  }
 
   ngOnInit(): void {
 
