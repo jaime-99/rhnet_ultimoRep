@@ -38,14 +38,14 @@
               <td> <strong> {{solicitud.Estatus}}  </strong> </td>
               <td>
                 <div class="row">
-                  <div class="col-md-12 ">
-                    <button class="btn btn-info btn-sm my-2 " (click)="updateAutorizar(solicitud.Id,solicitud.Fecha_Inicio,solicitud.FechaFin)" [disabled]="solicitud.IdEstatusSolicitudVaciones !=1">Aprobar</button>
+                  <div class="col-md-12">
+                    <button class="btn btn-info btn-sm my-2 " (click)="updateAutorizar(solicitud.Id,solicitud.Fecha_inicio,solicitud.FechaFin,solicitud.EMAIL)" [disabled]="solicitud.IdEstatusSolicitudVaciones !=1">Aprobar</button>
                     <!-- <button class="btn btn-info btn-sm my-2 " (click)="mensajeAutorizado(solicitud.Fecha_inicio,solicitud.FechaFin)">Aprobar</button> -->
                   </div>
                   </div>
                   <div class="row">
                   <div class="col-md-12 ">
-                    <button class="btn btn-danger btn-sm" (click)="updateRechazar(solicitud.Id)" [disabled]="solicitud.IdEstatusSolicitudVaciones !=1" >Rechazar</button>
+                    <button class="btn btn-danger btn-sm" (click)="updateRechazar(solicitud.Id,solicitud.Fecha_inicio,solicitud.FechaFin,solicitud.EMAIL)" [disabled]="solicitud.IdEstatusSolicitudVaciones !=1" >Rechazar</button>
                   </div>
                   </div>
 

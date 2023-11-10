@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-solicitudes-colaborador',
@@ -36,45 +37,69 @@ export class SolicitudesColaboradorComponent implements OnInit {
   }
 
   // es para autorizar un solicitud de vacaciones en 2
-  updateAutorizar(id,fechaInicio,FechaFin){
+  updateAutorizar(id,fechaInicio,FechaFin,email){
     this.rhService.updateAutorizar(id).subscribe((res)=>{
 
-      this.fechaInicio = fechaInicio
-      this.fechaFin = FechaFin
+      const fechaIncioF = formatDate(fechaInicio, 'dd/MM/yyyy', 'en-US');
+      const fechaFinF = formatDate(FechaFin, 'dd/MM/yyyy', 'en-US');
+
+
+
       this.solicitudesColaborador()
-      this.mensajeAutorizado(fechaInicio,FechaFin);
+      this.mensajeAutorizado(fechaIncioF,fechaFinF,email);
 
       this.snackBar.open('has Autorizado las Vacaciones', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
       })
   }
 
   // es para rechazar la solicitud
-  updateRechazar(id){
+  updateRechazar(id,fechaInicio,FechaFin,email){
 
     this.rhService.updateRechazar(id).subscribe(()=>{
       this.solicitudesColaborador();
 
-      this.snackBar.open('has denegado las vacaciones', '×', { panelClass: 'warn', verticalPosition: 'top', duration: 3000 });
+      const fechaIncioF = formatDate(fechaInicio, 'dd/MM/yyyy', 'en-US');
+      const fechaFinF = formatDate(FechaFin, 'dd/MM/yyyy', 'en-US');
+
+      this.snackBar.open('has denegado las vacaciones', '×', { panelClass: 'alert', verticalPosition: 'top', duration: 3000 });
+      this.mensajeRechazado(fechaIncioF,fechaFinF,email)
 
     })
-
   }
 
-  mensajeAutorizado(fechaInicio,fechaFin1){
+  mensajeAutorizado(fechaInicio,fechaFin1,email){
 
     const fecha = fechaInicio
     const fechaFin = fechaFin1
     const res = {
-      destinatario: 'practicante.sistemas@dikeninternational.com',
+      destinatario: email,
       mensaje: 'Tus vacaciones de la fecha  ' + fecha + ' hasta el  ' + fechaFin + '  han sido autorizadas' ,
       titulo1: 'Vacaciones Autorizadas',
       subtitulo: 'Vacaciones'
     }
-    console.log(fecha)
-
     this.rhService.mensajeDinamico(res.destinatario,res.mensaje,res.subtitulo,res.titulo1).subscribe(()=>{
 
     })
+  }
+
+  mensajeRechazado(fechaInicio,FechaFin,email){
+
+    const fecha = fechaInicio
+    const fechaFin = FechaFin
+    const res = {
+      destinatario : email,
+      mensaje: 'Tus vacaciones de la fecha  ' + fecha + ' hasta el  ' + fechaFin + '  han sido RECHAZADAS' ,
+      titulo1: 'Vacaciones Rechazadas',
+      subtitulo: 'Vacaciones',
+
+    }
+
+    this.rhService.mensajeDinamico(res.destinatario,res.mensaje,res.subtitulo,res.titulo1).subscribe(()=>{
+
+
+
+    })
+
   }
 
 
