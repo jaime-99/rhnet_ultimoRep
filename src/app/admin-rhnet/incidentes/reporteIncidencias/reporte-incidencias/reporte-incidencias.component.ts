@@ -40,7 +40,6 @@ public onPageChanged(event){
   this.page = event;
 }
 
-
 // es para buscar incidencias de los empleados
 buscarIncidencias(){
   if(this.filtroTexto){
@@ -50,8 +49,8 @@ buscarIncidencias(){
     this.texto = this.filtroTexto
 
 
-    console.log(this.filtroTexto)
-    console.log(this.incidenciasEncontradas)
+    // console.log(this.filtroTexto)
+    // console.log(this.incidenciasEncontradas)
 
 
   } else{

@@ -11,13 +11,11 @@
 
         <button mat-raised-button color="primary" (click)="obtenerChecadaDeHoy()">Hoy</button>
       </div>
-
       </div>
       <div class="row g-3 align-items-center">
 
         <div class="col-auto">
           <label for="exampleFormControlInput1" class="col-form-label">Busqueda por dia</label>
-
         </div>
 
         <div class="col-auto">
@@ -102,13 +100,17 @@
             <td>10:12</td>
             <td>222</td>
             <td>222</td>
-            <div>
-            <td class="">
-              <button class="btn btn-success btn-sm  mx-1">Justificar</button>
-              <button class="btn btn-danger btn-sm ">No Justificar</button>
+            <td>
+
+              <div class="btn-group">
+
+                <button type="button" class="btn btn-primary btn-sm">Aceptar</button>
+                <button type="button" class="btn btn-danger btn-sm">Rechazar</button>
+
+              </div>
+
             </td>
 
-            </div>
 
           </tr>
         </tbody>

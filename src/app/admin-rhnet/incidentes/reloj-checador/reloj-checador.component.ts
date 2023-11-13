@@ -22,6 +22,8 @@ export class RelojChecadorComponent implements OnInit {
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
     this.numUsuario = usuarioAuth.data.Numero_Empleado
 
+    this.filtroTexto = '2023-11-06';
+
 
     // console.log(usuarioAuth)
     this.obtenerChecadas();
@@ -49,7 +51,6 @@ export class RelojChecadorComponent implements OnInit {
 
     });
     this.checadasEncontradas = this.checadaHoy
-
   }
 
   buscarPorFecha(){
@@ -59,8 +60,6 @@ export class RelojChecadorComponent implements OnInit {
       );
       this.texto = this.filtroTexto
 
-
-
     } else{
 
       this.checadasEncontradas = this.checadas
@@ -68,10 +67,5 @@ export class RelojChecadorComponent implements OnInit {
     }
 
   }
-
-
-
-
-
 
 }

@@ -198,19 +198,23 @@ export class RhnetService {
       const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/getInfoVacaciones.php?numero_empleado=${numero_empleado}`;
       return this.http.get(url);
     }
-
+    // es para que rechaze la solicitud de vacaciones
     updateRechazar(id){
       const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/updateRechazado.php`;
       const body={id}
       return this.http.put<any>( url, body );
     }
-
+    // es para mandar correo pero se usa solo una clase de php
     mensajeDinamico(destinatario,mensaje,subtitulo,titulo1){
       const url=`https://www.dikeninternational.com/angular_service/api/tools/mensajeDinamico.php`;
       const body={mensaje,destinatario,subtitulo,titulo1}
       return this.http.post<any>( url, body );
     }
-
+    // es para ver las solicitudes que ya estan aprobadas por el jefe
+    getSolicitudesRH():any{
+      const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/getSolicitudesAceptadas.php`;
+      return this.http.get(url);
+    }
 
 
 

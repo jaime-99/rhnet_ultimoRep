@@ -12,12 +12,12 @@
 
         <div class=" col-md-1 col-6">
 
-          <button class="btn btn-primary btn-sm"> PDF </button>
+          <button class="btn btn-primary btn-sm" (click)="exportarAPDF()" > PDF </button>
 
         </div>
         <div class=" col-md-1 col-6 " >
 
-          <button class="btn btn-success btn-sm"> EXCEL </button>
+          <button class="btn btn-success btn-sm" (click)="exportarAExcel()"> EXCEL </button>
 
         </div>
 
@@ -30,7 +30,7 @@
 
       <div class="table-responsive">
 
-        <table class="table table-striped">
+        <table #tabla class="table table-striped">
 
 
           <thead>
@@ -47,20 +47,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>jaime</td>
-              <td>jose</td>
-              <td>2023</td>
-              <td>3</td>
-              <td>17/22/2</td>
-              <td>20/22/3</td>
-              <td>Abierto</td>
+            <tr *ngFor="let soli of solicitudesRH">
+              <th scope="row">{{soli.Numero_empleado}} </th>
+              <td> {{soli.TuNombre}} </td>
+              <td>{{soli.NombreDelJefe}} </td>
+              <td> {{soli.Periodo}} </td>
+              <td>{{soli.DiasSolicitados}} </td>
+              <td>{{soli.Fecha_inicio | date:'dd/MM/yyyy'}} </td>
+              <td> {{soli.FechaFin | date:'dd/MM/yyyy'}} </td>
+              <td>{{soli.Estatus}} </td>
               <td>
 
 
-                <button class="btn btn-primary btn-sm mx-1">Aceptar</button>
-                <button class="btn btn-danger btn-sm">Denegar</button>
+                <!-- <button class="btn btn-primary btn-sm mx-1">Aceptar</button>
+                <button class="btn btn-danger btn-sm">Denegar</button> -->
+
+
+                <div class="btn-group">
+                  <button type="button" class="btn btn-primary btn-sm">Aceptar</button>
+                  <button type="button" class="btn btn-danger btn-sm">Rechazar</button>
+                </div>
 
               </td>
               </tr>
