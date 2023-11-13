@@ -13,14 +13,25 @@
       <input class="form-control" [(ngModel)]="filtroTexto"   placeholder="Nombre"/>
       </div>
       <div class="col-md-2 mb-2 ">
-        <button mat-raised-button color="primary" (click)="buscarIncidencias()" class="">Buscar</button>
+        <button class="btn btn-primary btn-sm" (click)="buscarIncidencias()">Buscar por nombre</button>
       </div>
       <div class="col-md-2 ">
         <button type="button" class="btn btn-success">Exportar a excel</button>
       </div>
 
+    </div>
 
+   <div class="row">
+    <div class="input-group mb-3 col-md-10" >
+      <span class="input-group-text">Inicio</span>
+      <input #fechaInicioInput type="date" class="form-control" [value]="fechaActual.toISOString().split('T')[0]" aria-label="Fecha de Inicio">
+      <span class="input-group-text">Fin</span>
+      <input #fechaFinInput type="date" class="form-control" [value]="fechaActual.toISOString().split('T')[0]" placeholder="Server">
+    </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary btn-sm" (click)="obtenerPorFecha()">buscar por fecha</button>
 
+    </div>
     </div>
     </div>
 
@@ -35,32 +46,54 @@
               <th scope="col">Departamento</th>
               <th scope="col">Empresa</th>
               <th scope="col">Fecha Alta</th>
+              <th scope="col">Asis.</th>
+              <th scope="col">Faltas</th>
+              <th scope="col">Incap</th>
+              <th scope="col">Retardo</th>
+              <th scope="col">Falta Salida</th>
+              <th scope="col">Jornada inc.</th>
+              <th scope="col">Justificado</th>
+              <th scope="col">No Justificado</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let incidencias of incidenciasEncontradas | paginate: { itemsPerPage: count, currentPage: page }">
-              <th scope="row"> {{incidencias.NO_EMPLEADO}} </th>
-              <td> {{incidencias.NOMBRE}} </td>
-              <td> {{incidencias.DEPARTAMENTO}} </td>
-              <td> {{incidencias.EMPRESA}} </td>
-              <td>{{incidencias.fecha_alta |date:"d/m/Y"}} </td>
+              <th scope="row"> {{incidencias.Numero_empleado}} </th>
+              <td> {{incidencias.nombre}} </td>
+              <td> {{incidencias.AREA}} </td>
+              <td> {{incidencias.Empresa}} </td>
+              <td>{{incidencias.FECHA_ALTA |date:"d/m/Y"}} </td>
+              <td>{{incidencias.Asistencias}} </td>
+              <td>{{incidencias.Falta}} </td>
+              <td>{{incidencias.incapacidad}} </td>
+              <td>{{incidencias.retardo}} </td>
+              <td>{{incidencias.falta_salida}} </td>
+              <td>{{incidencias.jornada_incompleta}} </td>
+              <td>{{incidencias.justificado}} </td>
+              <td>{{incidencias.no_justificado}} </td>
             </tr>
           </tbody>
         </table>
       </div>
       <div>
       </div>
-      <mat-card class="p-0 text-center">
+      <!-- <mat-card class="p-0 text-center">
         <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
           maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
-      </mat-card>
+      </mat-card> -->
 
 
     </div>
 
 
-
-
   </div>
+
+
+
+
+  <mat-card class="p-0 text-center">
+    <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
+      maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+  </mat-card>
 
 </div>

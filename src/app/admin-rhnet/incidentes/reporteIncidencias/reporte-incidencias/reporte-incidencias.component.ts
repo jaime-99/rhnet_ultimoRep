@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
 
 @Component({
@@ -6,32 +6,60 @@ import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
   templateUrl: './reporte-incidencias.component.html',
   styleUrls: ['./reporte-incidencias.component.scss']
 })
-export class ReporteIncidenciasComponent implements OnInit {
+export class ReporteIncidenciasComponent implements AfterViewInit  {
+
+  @ViewChild('fechaInicioInput') fechaInicioInput!: ElementRef;
+  @ViewChild('fechaFinInput') fechaFinInput!: ElementRef;
 
  public incidenciasEmpleado: any
  page = 1; // Página actual
  count:any
  public counts = [12, 24, 36];
  incidenciasEncontradas:any[] = []
-
+ fechaActual: Date = new Date();
   itemsPerPage = 10; // C
   filtroTexto: any;
   texto: any;
   alerta: boolean;
   constructor(private rhService: RhnetService) { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    this.fechaDeHoy();
     this.count = this.counts[0];
 
-    this.obtenerIncidenciasEmpleados();
+    const fechaInicioValue = this.fechaInicioInput.nativeElement.value;
+    const fechaFinValue = this.fechaFinInput.nativeElement.value;
+
+
+    this.obtenerIncidenciasEmpleados(fechaInicioValue, fechaFinValue);
+
+
+    // this.obtenerIncidenciasEmpleados();
   }
 
+// es para que automaticamente se coloquen los de hoy
+  obtenerIncidenciasEmpleados(fechaInicio: string, fechaFin: string){
 
-  obtenerIncidenciasEmpleados(){
-   this.rhService.getIncidenciasEmpleados().subscribe((res)=>{
+    const fechaInicioValue = this.fechaInicioInput.nativeElement.value;
+    const fechaFinValue = this.fechaFinInput.nativeElement.value;
+
+   this.rhService.getIncidenciasEmpleados(fechaInicio,fechaFin).subscribe((res)=>{
     this.incidenciasEmpleado = res
     this.buscarIncidencias();
    })
+
+}
+
+obtenerPorFecha(){
+  const fechaInicioValue = this.fechaInicioInput.nativeElement.value;
+    const fechaFinValue = this.fechaFinInput.nativeElement.value;
+
+   this.rhService.getIncidenciasEmpleados(fechaInicioValue,fechaFinValue).subscribe((res)=>{
+    this.incidenciasEmpleado = res
+    this.buscarIncidencias();
+   })
+
+
 
 }
 
@@ -44,7 +72,7 @@ public onPageChanged(event){
 buscarIncidencias(){
   if(this.filtroTexto){
     this.incidenciasEncontradas = this.incidenciasEmpleado.filter((empleado) =>
-    empleado.NOMBRE.toLowerCase().includes(this.filtroTexto.toLowerCase())
+    empleado.nombre.toLowerCase().includes(this.filtroTexto.toLowerCase())
     );
     this.texto = this.filtroTexto
 
@@ -58,6 +86,13 @@ buscarIncidencias(){
     this.incidenciasEncontradas = this.incidenciasEmpleado
 
   }
+
+}
+
+fechaDeHoy(){
+
+  this.fechaActual = new Date();
+  console.log('Fecha actual:', this.fechaActual);
 
 }
 

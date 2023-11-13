@@ -152,8 +152,8 @@ export class RhnetService {
 
 
     // para obtener la tabla de incidencias_empleados
-    getIncidenciasEmpleados():any{
-      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getIncidenciasEmpleados.php`;
+    getIncidenciasEmpleados(fechaInicio,fechaFin):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getIncidenciasEmpleados.php?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`;
       return this.http.get(url);
     }
 
