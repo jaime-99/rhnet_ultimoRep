@@ -77,8 +77,8 @@
         </thead>
         <tbody>
           <tr *ngFor="let ch of asistenciasRango ">
-            <th scope="row" > {{ch.NUMERO_EMPLEADO}}</th>
-            <th>{{ch.TuNombre}} </th>
+            <td scope="row" > {{ch.NUMERO_EMPLEADO}}</td>
+            <td>{{ch.TuNombre}} </td>
             <td>{{ ch.Fecha | date:'d/MM/y' }}</td>
             <td>{{ch.FechaEntrada | date:'h:mm a'}} </td>
             <td>{{ch.FechaSalida | date:'h:mm a'}} </td>
@@ -122,18 +122,18 @@
         </thead>
         <tbody>
           <tr  *ngFor="let colaborador of AsistenciaColaborador">
-            <th scope="row">11</th>
-            <th> {{colaborador?.TuNombre}} </th>
-            <td>{{colaborador.Fecha | date:'d/MM/y'}} </td>
-            <td> {{colaborador.FechaEntrada}} </td>
-            <td> {{colaborador.FechaSalida}} </td>
-            <td> {{colaborador.MinutosTarde}} </td>
-            <td> {{colaborador.EstatusAsitencia}} </td>
+            <td scope="row"> {{colaborador?.NUMERO_EMPLEADO}} </td>
+            <td>{{colaborador.TuNombre}} </td>
+              <td>{{colaborador.Fecha | date:'d/MM/y'}} </td>
+              <td> {{colaborador.FechaEntrada}} </td>
+              <td> {{colaborador.FechaSalida}} </td>
+              <td> {{colaborador.MinutosTarde}} </td>
+              <td> {{colaborador.EstatusAsitencia}} </td>
             <td>
 
               <div class="btn-group">
 
-                <button type="button" class="btn btn-success btn-sm">Justificar</button>
+                <button type="button" class="btn btn-success btn-sm" (click)="openDialog(colaborador.NUMERO_EMPLEADO,colaborador.TuNombre,colaborador.FechaEntrada,colaborador.FechaSalida,colaborador.EstatusAsitencia)" >Justificar</button>
                 <button type="button" class="btn btn-danger btn-sm">No justificar</button>
 
               </div>

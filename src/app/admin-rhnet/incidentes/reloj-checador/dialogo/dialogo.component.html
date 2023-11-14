@@ -1,1 +1,58 @@
-<p>dialogo works!</p>
+<h1 mat-dialog-title>Justificar Incidencia </h1>
+<hr>
+<form>
+
+  <div class="container-fluid">
+
+    <div class="row">
+
+      <div class="mb-3 col-auto">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control"  disabled  [value]="data.nombre" >
+      </div>
+
+      <div class="mb-3 col-auto">
+        <label class="form-label">Empresa</label>
+        <input type="text" class="form-control" disabled value="pendiente">
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="mb-3 col-auto">
+        <label class="form-label">Hora Entrada</label>
+        <input type="text" class="form-control" disabled [value]="data.entrada" >
+      </div>
+
+      <div class="mb-3 col-auto">
+        <label class="form-label">Hora Salida</label>
+        <input type="text" class="form-control"  [value]="data.salida" disabled>
+      </div>
+
+    </div>
+
+    <div class="row">
+
+      <div class="mb-3 col-auto">
+        <label class="form-label">Estatus</label>
+        <input type="text" class="form-control" disabled [value]="data.estatus" >
+      </div>
+
+      <div class="mb-3 col-auto">
+        <label class="form-label">Observaciones</label>
+        <textarea class="form-control"  rows="3"></textarea>
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+
+  <div mat-dialog-actions>
+  <button class="btn btn-primary mr-1"  >Justificar </button>
+  <button class="btn btn-secondary" [mat-dialog-close]="" cdkFocusInitial>Cerrar</button>
+</div>
+
+</form>
