@@ -6,6 +6,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { DialogoComponent } from './dialogo/dialogo.component';
+import { DialogoAvisoComponent } from './dialogo-aviso/dialogo-aviso.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogActions, MatDialogClose, MatDialogContent, MatDialogTitle } from '@angular/material/dialog';
 
 
 
@@ -15,14 +18,15 @@ export const routes: Routes = [
 
 
 @NgModule({
-  declarations: [RelojChecadorComponent, DialogoComponent],
+  declarations: [RelojChecadorComponent, DialogoComponent, DialogoAvisoComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
     SharedModule,
     ReactiveFormsModule,
     FormsModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatButtonModule
 
   ]
 })

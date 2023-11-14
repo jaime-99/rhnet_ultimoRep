@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Asistencia } from '../../interfaces/personRHnet.component';
 import { DialogoComponent } from './dialogo/dialogo.component';
 import { MatDialog } from '@angular/material/dialog';
+import { DialogoAvisoComponent } from './dialogo-aviso/dialogo-aviso.component';;
+
+
 @Component({
   selector: 'app-reloj-checador',
   templateUrl: './reloj-checador.component.html',
@@ -158,11 +161,9 @@ export class RelojChecadorComponent implements OnInit  {
 
   }
 
-
+  //abrir el dialogo para justificar
   openDialog(num,nombre,entrada,salida,estatus){
     // es para abrir el openDialog
-
-
     const dialogRef = this.dialog.open(DialogoComponent, {
       data: {num,nombre,entrada,salida,estatus},
     });
@@ -171,12 +172,20 @@ export class RelojChecadorComponent implements OnInit  {
       console.log('el dialogo se ha cerrado');
       // const resultado = result;
       // console.log(resultado)
-
-
-
     });
 
 
+  }
+
+
+
+
+  openDialog2(enterAnimationDuration: string, exitAnimationDuration: string): void {
+    this.dialog.open(DialogoAvisoComponent, {
+      width: '250px',
+      enterAnimationDuration,
+      exitAnimationDuration,
+    });
   }
 
 }

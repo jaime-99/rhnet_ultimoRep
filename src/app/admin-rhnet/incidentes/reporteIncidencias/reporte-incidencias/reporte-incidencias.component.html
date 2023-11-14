@@ -15,24 +15,28 @@
       <div class="col-md-2 mb-2 ">
         <button class="btn btn-primary btn-sm" (click)="buscarIncidencias()">Buscar por nombre</button>
       </div>
-      <div class="col-md-2 ">
-        <button type="button" class="btn btn-success" (click)="exportarAExcel()">Exportar a excel</button>
+      <div class="col-md-2 mb-2 ">
+        <button type="button" class="btn btn-success btn-sm" (click)="exportarAExcel()">Exportar a excel</button>
       </div>
 
     </div>
 
-   <div class="row">
-    <div class="input-group mb-3 col-md-10" >
-      <span class="input-group-text">Inicio</span>
-      <input #fechaInicioInput type="date" class="form-control" [value]="fechaActual.toISOString().split('T')[0]" aria-label="Fecha de Inicio">
-      <span class="input-group-text">Fin</span>
-      <input #fechaFinInput type="date" class="form-control" [value]="fechaActual.toISOString().split('T')[0]" placeholder="Server">
-    </div>
-    <div class="col-md-2">
-      <button class="btn btn-primary btn-sm" (click)="obtenerPorFecha()">buscar por fecha</button>
+    <div class="row">
+      <div class="input-group mb-3 col-md-7">
+        <span class="input-group-text">Inicio</span>
+        <input #fechaInicioInput type="date" class="form-control" [value]="fechaActual.toISOString().split('T')[0]" aria-label="Fecha de Inicio">
+      </div>
 
+      <div class="input-group mb-3 col-md-7">
+        <span class="input-group-text">Fin</span>
+        <input #fechaFinInput type="date" class="form-control" [value]="fechaActual.toISOString().split('T')[0]" placeholder="Server">
+      </div>
+
+      <div class="col-md-2">
+        <button class="btn btn-primary btn-sm" (click)="obtenerPorFecha()">buscar por fecha</button>
+      </div>
     </div>
-    </div>
+
     </div>
 
     <div class="card-body">
