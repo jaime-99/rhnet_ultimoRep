@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { DialogoComponent } from './dialogo/dialogo.component';
 
 
 
@@ -14,7 +15,7 @@ export const routes: Routes = [
 
 
 @NgModule({
-  declarations: [RelojChecadorComponent],
+  declarations: [RelojChecadorComponent, DialogoComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

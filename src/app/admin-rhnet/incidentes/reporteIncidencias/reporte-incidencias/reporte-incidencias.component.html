@@ -16,7 +16,7 @@
         <button class="btn btn-primary btn-sm" (click)="buscarIncidencias()">Buscar por nombre</button>
       </div>
       <div class="col-md-2 ">
-        <button type="button" class="btn btn-success">Exportar a excel</button>
+        <button type="button" class="btn btn-success" (click)="exportarAExcel()">Exportar a excel</button>
       </div>
 
     </div>
@@ -38,7 +38,7 @@
     <div class="card-body">
 
       <div class="table-responsive">
-        <table class="table">
+        <table #tabla class="table">
           <thead>
             <tr>
               <th scope="col">#Empleado</th>

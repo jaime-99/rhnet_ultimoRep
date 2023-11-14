@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Asistencia } from './interfaces/personRHnet.component';
 
 @Injectable({
   providedIn: 'root'
@@ -215,6 +216,21 @@ export class RhnetService {
       const url=`https://www.dikeninternational.com/angular_service/api/Vacaciones/getSolicitudesAceptadas.php`;
       return this.http.get(url);
     }
+
+    // es para ver las asistencias del empleado con el rango de las fechas
+    getAsistnciasPorFecha(id,fechaInicio,fechaFin):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getChecadasFecha.php?id=${id}&fechainicio=${fechaInicio}&fechaFin=${fechaFin}`;
+      return this.http.get<Asistencia>(url);
+    }
+    // y esto es para ver las asistencias de colaborador del empleado
+    getAsistenciaColaborado(id,fechaInicio,fechaFin):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/getRelojChecadorColaborador.php?id=${id}&fechaInicio=${fechaInicio}&fechaFin=${fechaFin}`;
+      return this.http.get<Asistencia>(url);
+    }
+
+
+
+
 
 
 

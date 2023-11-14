@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-reporte-incidencias',
@@ -11,6 +13,9 @@ export class ReporteIncidenciasComponent implements AfterViewInit  {
   @ViewChild('fechaInicioInput') fechaInicioInput!: ElementRef;
   @ViewChild('fechaFinInput') fechaFinInput!: ElementRef;
 
+  @ViewChild('tabla') tabla: ElementRef; // Asegúrate de tener una referencia a tu tabla en el HTML
+
+
  public incidenciasEmpleado: any
  page = 1; // Página actual
  count:any
@@ -21,7 +26,7 @@ export class ReporteIncidenciasComponent implements AfterViewInit  {
   filtroTexto: any;
   texto: any;
   alerta: boolean;
-  constructor(private rhService: RhnetService) { }
+  constructor(private rhService: RhnetService, private mat:MatSnackBar) { }
 
   ngAfterViewInit(): void {
     this.fechaDeHoy();
@@ -92,7 +97,17 @@ buscarIncidencias(){
 fechaDeHoy(){
 
   this.fechaActual = new Date();
-  console.log('Fecha actual:', this.fechaActual);
+}
+
+exportarAExcel(): void {
+  const content: HTMLElement = this.tabla.nativeElement;
+  const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(content);
+  const wb: XLSX.WorkBook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+
+  XLSX.writeFile(wb, 'tabla.xlsx');
+
+  this.mat.open('SE DESCARGO EN EXCEL', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
 }
 

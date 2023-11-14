@@ -1,33 +1,60 @@
 
 <div class="container-fliud">
+  <form [formGroup]="FechaIF">
   <div class="card">
     <div class="card-header card-header-azure">
 
-      <div class="row">
+      <div class="row ">
         <div class="col-auto">
       <h4 class="card-title">Mis Registros del Reloj Checador</h4>
       </div>
-      <div class="col-auto">
+      <!-- <div class="col-auto">
 
-        <button mat-raised-button color="primary" (click)="obtenerChecadaDeHoy()">Hoy</button>
+        <button class="btn btn-primary btn-sm " (click)="obtenerChecadaDeHoy()">Hoy</button>
+      </div> -->
+
+      <div class="mb-3 col-auto">
+        <label for="exampleFormControlInput1" class="form-label">Fecha inicio</label>
+        <input type="date" class="form-control" id="fecha1" formControlName="fechaInicio"  >
       </div>
+      <div class="mb-3 col-auto">
+        <label for="exampleFormControlTextarea1" class="form-label">Fecha fin</label>
+        <input type="date" class="form-control" id="fecha2" formControlName="fechaFin"  >
       </div>
-      <div class="row g-3 align-items-center">
+
+      <div class=" mb-3 col-auto mt-3  align-self-center ">
+        <!-- <hr> -->
+        <button type="button" class="btn btn-primary btn-sm" (click)="busquedaPorRangos(FechaIF.value)">Busqueda por rango</button>
+      </div>
+
+
+
+
+
+      </div>
+      <!-- <div class="row g-3 align-items-center">
 
         <div class="col-auto">
           <label for="exampleFormControlInput1" class="col-form-label">Busqueda por dia</label>
         </div>
 
+
         <div class="col-auto">
           <input type="date" class="form-control"  [(ngModel)]="filtroTexto" id="exampleFormControlInput1" placeholder="06/11/2023">
+          <input type="date" class="form-control" formControlName="filtroFecha" [value]="fechaFormato">
+
+        </div>
+
+        <div class="col-auto">
+          <button class="btn btn-primary btn-sm"  (click)="buscarPorFecha2()" >Buscar Por Dia</button>
         </div>
         <div class="col-auto">
-
-          <button mat-raised-button color="primary"  (click)="buscarPorFecha()" >Buscar</button>
-
+          <button class="btn btn-primary btn-sm " (click)="obtenerChecadaDeHoy()">Hoy</button>
         </div>
 
-      </div>
+
+
+      </div> -->
 
 
     </div>
@@ -49,15 +76,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let ch of checadasEncontradas ">
-            <th scope="row" > {{ch.Numero_empleado}}</th>
-            <th>jose</th>
+          <tr *ngFor="let ch of asistenciasRango ">
+            <th scope="row" > {{ch.NUMERO_EMPLEADO}}</th>
+            <th>{{ch.TuNombre}} </th>
             <td>{{ ch.Fecha | date:'d/MM/y' }}</td>
-            <td>{{ch.Entrada | date:'h:mm a'}} </td>
-            <td>{{ch.Salida | date:'h:mm a'}} </td>
+            <td>{{ch.FechaEntrada | date:'h:mm a'}} </td>
+            <td>{{ch.FechaSalida | date:'h:mm a'}} </td>
+            <td> {{ch.MinutosTarde}} </td>
+            <td> {{ch.EstatusAsitencia}} </td>
 
-            <td> {{ch.minutos_tarde}} </td>
-            <td> {{ch.Estatus}} </td>
           </tr>
         </tbody>
       </table>
@@ -66,6 +93,7 @@
     </div>
 
   </div>
+  </form>
 
 
   <hr>
@@ -76,6 +104,7 @@
 
       <h4 class="card-title"> Incidencias Colaboradores   (incompleto) </h4>
 
+      <form [formGroup]='FechaColaborador'>
       <div class="table-responsive">
       <table class="table">
         <thead>
@@ -92,20 +121,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr  *ngFor="let colaborador of AsistenciaColaborador">
             <th scope="row">11</th>
-            <th>Jaime</th>
-            <td>17/12/1999</td>
-            <td>10:12</td>
-            <td>10:12</td>
-            <td>222</td>
-            <td>222</td>
+            <th> {{colaborador?.TuNombre}} </th>
+            <td>{{colaborador.Fecha | date:'d/MM/y'}} </td>
+            <td> {{colaborador.FechaEntrada}} </td>
+            <td> {{colaborador.FechaSalida}} </td>
+            <td> {{colaborador.MinutosTarde}} </td>
+            <td> {{colaborador.EstatusAsitencia}} </td>
             <td>
 
               <div class="btn-group">
 
-                <button type="button" class="btn btn-primary btn-sm">Aceptar</button>
-                <button type="button" class="btn btn-danger btn-sm">Rechazar</button>
+                <button type="button" class="btn btn-success btn-sm">Justificar</button>
+                <button type="button" class="btn btn-danger btn-sm">No justificar</button>
 
               </div>
 
@@ -116,13 +145,8 @@
         </tbody>
       </table>
       </div>
-
-
-
-
-
-
-
+    </form>
+      </div>
 
   </div>
 

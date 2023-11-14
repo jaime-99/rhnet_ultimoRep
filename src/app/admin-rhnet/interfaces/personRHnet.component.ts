@@ -15,3 +15,16 @@ export interface PersonRh {
 
   // Agrega otras propiedades aquí
 }
+
+
+export interface Asistencia {
+  TuNombre:         string;
+  NombreDelJefe:    string;
+  NUMERO_EMPLEADO:  string;
+  FechaEntrada:     null;
+  FechaSalida:      null;
+  Fecha:            Date;
+  EstatusAsitencia: string;
+  Empresa:          string;
+  MinutosTarde:     null;
+}
