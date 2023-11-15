@@ -10,10 +10,11 @@
       <!-- <p class="card-category">Mi Informacion</p> -->
 
       <div class="col-md-3 mb-2">
-      <input class="form-control" [(ngModel)]="filtroTexto"   placeholder="Nombre"/>
+      <input class="form-control"    placeholder="Nombre"  (input)="buscarIncidencias2()"#input/>
       </div>
       <div class="col-md-2 mb-2 ">
-        <button class="btn btn-primary btn-sm" (click)="buscarIncidencias()">Buscar por nombre</button>
+        <button class="btn btn-primary btn-sm">Buscar por nombre </button>
+        <!-- <button class="btn btn-primary btn-sm" (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input> </button> -->
       </div>
       <div class="col-md-2 mb-2 ">
         <button type="button" class="btn btn-success btn-sm" (click)="exportarAExcel()">Exportar a excel</button>
@@ -79,6 +80,13 @@
           </tbody>
         </table>
       </div>
+
+
+      <div *ngIf="alerta" class="container alert alert-danger" role="alert">
+
+        <h4>no hay muestras para {{input.value}} </h4>
+
+      </div>
       <div>
       </div>
       <!-- <mat-card class="p-0 text-center">
@@ -94,10 +102,14 @@
 
 
 
+ <br>
 
   <mat-card class="p-0 text-center">
     <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
       maxSize="5" (pageChange)="onPageChanged($event)"></pagination-controls>
+
+
+
   </mat-card>
 
 </div>

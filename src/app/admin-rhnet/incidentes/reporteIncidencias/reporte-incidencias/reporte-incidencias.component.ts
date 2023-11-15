@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
 import * as XLSX from 'xlsx';
@@ -14,6 +15,7 @@ export class ReporteIncidenciasComponent implements AfterViewInit  {
   @ViewChild('fechaFinInput') fechaFinInput!: ElementRef;
 
   @ViewChild('tabla') tabla: ElementRef; // Asegúrate de tener una referencia a tu tabla en el HTML
+  @ViewChild('input') input: any;
 
 
  public incidenciasEmpleado: any
@@ -25,8 +27,8 @@ export class ReporteIncidenciasComponent implements AfterViewInit  {
   itemsPerPage = 10; // C
   filtroTexto: any;
   texto: any;
-  alerta: boolean;
-  constructor(private rhService: RhnetService, private mat:MatSnackBar) { }
+  alerta: boolean = false;
+  constructor(private rhService: RhnetService, private mat:MatSnackBar,  private cdr: ChangeDetectorRef) { }
 
   ngAfterViewInit(): void {
     this.fechaDeHoy();
@@ -37,6 +39,11 @@ export class ReporteIncidenciasComponent implements AfterViewInit  {
 
 
     this.obtenerIncidenciasEmpleados(fechaInicioValue, fechaFinValue);
+
+
+    this.cdr.detectChanges();
+
+
 
 
     // this.obtenerIncidenciasEmpleados();
@@ -112,5 +119,21 @@ exportarAExcel(): void {
 }
 
 
+buscarIncidencias2() {
+  const filtroTexto = this.input.nativeElement.value.toLowerCase();
+
+  if (filtroTexto) {
+    this.incidenciasEncontradas = this.incidenciasEmpleado.filter((empleado) =>
+      empleado.nombre.toLowerCase().includes(filtroTexto)
+    );
+    this.texto = filtroTexto;
+  } else {
+    this.incidenciasEncontradas = this.incidenciasEmpleado;
+
+  }
+
+  this.alerta = this.incidenciasEncontradas.length === 0;
+
+}
 
 }
