@@ -171,7 +171,6 @@ export class RelojChecadorComponent implements OnInit  {
       console.log('el dialogo se ha cerrado');
 
 
-
       // const resultado = result;
       // console.log(resultado)
     });
@@ -182,11 +181,12 @@ export class RelojChecadorComponent implements OnInit  {
 
 
 
-  openDialog2(enterAnimationDuration: string, exitAnimationDuration: string): void {
+  openDialog2(enterAnimationDuration: string, exitAnimationDuration: string,id): void {
     this.dialog.open(DialogoAvisoComponent, {
       width: '250px',
       enterAnimationDuration,
       exitAnimationDuration,
+      data: {id}
     });
   }
 

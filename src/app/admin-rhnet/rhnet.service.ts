@@ -236,6 +236,12 @@ export class RhnetService {
       return this.http.put<any>( url, body );
     }
 
+    updatenoJustificado(id){
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/updateNoJustificar.php`;
+      const body={id}
+      return this.http.put<any>( url, body );
+    }
+
 
 
 

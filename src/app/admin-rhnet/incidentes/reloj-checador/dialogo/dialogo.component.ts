@@ -46,15 +46,12 @@ export class DialogoComponent implements OnInit {
 
       this.snackBar.open('has justificado la falta', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
-
     } else {
 
       this.snackBar.open('te falta llenar las observaciones', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
 
     }
   }
-
-
   }
 
 
