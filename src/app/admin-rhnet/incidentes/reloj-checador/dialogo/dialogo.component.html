@@ -1,6 +1,6 @@
 <h1 mat-dialog-title>Justificar Incidencia </h1>
 <hr>
-<form>
+<form [formGroup]="formulario">
 
   <div class="container-fluid">
 
@@ -38,9 +38,12 @@
         <input type="text" class="form-control" disabled [value]="data.estatus" >
       </div>
 
-      <div class="mb-3 col-auto">
+      <div class="mb-3 col-auto" >
         <label class="form-label">Observaciones</label>
-        <textarea class="form-control"  rows="3"></textarea>
+        <textarea class="form-control"  rows="3" formControlName="observaciones"></textarea>
+        <div *ngIf="formulario.get('observaciones').hasError('required') && formulario.get('observaciones').touched" class="text-danger">
+          Observaciones son requeridas.
+        </div>
       </div>
 
 
@@ -51,8 +54,8 @@
   </div>
 
   <div mat-dialog-actions>
-  <button class="btn btn-primary mr-1"  >Justificar </button>
-  <button class="btn btn-secondary" [mat-dialog-close]="" cdkFocusInitial>Cerrar</button>
+  <button class="btn btn-primary mr-1"  (click)="justificar(data.id)">Justificar </button>
+  <button class="btn btn-secondary" [mat-dialog-close]="">Cerrar</button>
 </div>
 
 </form>

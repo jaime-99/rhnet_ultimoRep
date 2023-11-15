@@ -229,6 +229,13 @@ export class RhnetService {
     }
 
 
+    //es para actualizar la tabla en "justificado" en asistencia
+    updateJustificado(id,observaciones){
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/updateJustificar.php`;
+      const body={id,observaciones}
+      return this.http.put<any>( url, body );
+    }
+
 
 
 

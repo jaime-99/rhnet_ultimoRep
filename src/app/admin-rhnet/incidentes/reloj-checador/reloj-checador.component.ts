@@ -29,7 +29,6 @@ export class RelojChecadorComponent implements OnInit  {
 
 
 
-
   constructor(private rhService:RhnetService, private fb:FormBuilder, public dialog: MatDialog) {
 
    }
@@ -162,14 +161,17 @@ export class RelojChecadorComponent implements OnInit  {
   }
 
   //abrir el dialogo para justificar
-  openDialog(num,nombre,entrada,salida,estatus){
+  openDialog(num,nombre,entrada,salida,estatus,id){
     // es para abrir el openDialog
     const dialogRef = this.dialog.open(DialogoComponent, {
-      data: {num,nombre,entrada,salida,estatus},
+      data: {num,nombre,entrada,salida,estatus,id},
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('el dialogo se ha cerrado');
+
+
+
       // const resultado = result;
       // console.log(resultado)
     });
