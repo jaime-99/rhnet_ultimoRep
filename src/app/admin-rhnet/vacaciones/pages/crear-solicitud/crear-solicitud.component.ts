@@ -51,10 +51,10 @@ export class CrearSolicitudComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       const fechaInicio = result.Fecha_inicio;
       const fechaFin = result.FechaFin
-      console.log("resultado al cerrar openDialog",fechaInicio)
+      // console.log("resultado al cerrar openDialog",fechaInicio)
 
       this.fechas = {fechaInicio,fechaFin}
-      console.log(this.fechas)
+      // console.log(this.fechas)
 
 
 
@@ -64,7 +64,7 @@ export class CrearSolicitudComponent implements OnInit {
   obtenerDatosSolicitud(){
     this.rhService.getSolicitudes(this.numEmpleado).subscribe((res)=>{
       this.Solicitudes= res
-      // console.log(res)
+      console.log(res)
     })
   }
 
