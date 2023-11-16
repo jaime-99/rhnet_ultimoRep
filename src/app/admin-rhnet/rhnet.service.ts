@@ -242,6 +242,13 @@ export class RhnetService {
       return this.http.put<any>( url, body );
     }
 
+    getAsistenciaPerfecta(fechaInicio,fechaFin,fechaInicio2,fechaFin2):any{
+      const url=`https://www.dikeninternational.com/angular_service/api/usuario/asistenciaPerfecta.php?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}&fechaInicio2=${fechaInicio2}&fechaFin2=${fechaFin2}`;
+      return this.http.get<any>(url);
+    }
+
+
+
 
 
 

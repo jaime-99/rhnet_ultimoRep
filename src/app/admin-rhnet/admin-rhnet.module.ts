@@ -27,6 +27,7 @@ import { CrearSolicitudComponent } from './vacaciones/pages/crear-solicitud/crea
 import { ReporteIncidenciasComponent } from './incidentes/reporteIncidencias/reporte-incidencias/reporte-incidencias.component';
 import { RelojChecadorComponent } from './incidentes/reloj-checador/reloj-checador.component';
 import { SolicitudesComponent } from './vacaciones/pages/VerSolicitudes/solicitudes/solicitudes.component';
+import { AsistenciaPerfectaComponent } from './incidentes/asistencia-perfecta/asistencia-perfecta.component';
 
 export const routes = [
   {
@@ -46,6 +47,7 @@ export const routes = [
       { path:'REPORTE_INCIDENCIAS',loadChildren:()=>import('./incidentes/reporteIncidencias/reporte-incidencias/reporte-incidencias.module').then(m=>m.ReporteIncidenciasModule),data: { breadcrumb: 'REPORTE INCIDENCIAS' }},
       { path:'RELOJ_CHECADOR',loadChildren:()=>import('./incidentes/reloj-checador/reloj-checador.module').then(m=>m.RelojChecadorModule),data: { breadcrumb: 'RELOJ CHECADOR' }},
       { path:'SOLICITUDES_VACACIONES',loadChildren:()=>import('./vacaciones/pages/VerSolicitudes/ver-solicitudes.module').then(m=>m.VerSolicitudesModule),data: { breadcrumb: 'SOLICITUDES VACACIONES ' }},
+      { path:'ASISTENCIA PERFECTA',loadChildren:()=>import('./incidentes/asistencia-perfecta/asistencia-perfecta.module').then(m=>m.AsistenciaPerfectaModule),data: { breadcrumb: 'ASISTENCIA PERFECTA ' }},
 
     ],
 
@@ -64,7 +66,7 @@ export const routes = [
     MessagesComponent,
     MensajesComponent,
     PasesAutorizadosComponent,
-    TodoLosPasesComponent,
+    TodoLosPasesComponent
   ],
   imports: [
     CommonModule,

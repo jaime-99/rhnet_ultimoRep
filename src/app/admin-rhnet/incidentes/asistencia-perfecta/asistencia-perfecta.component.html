@@ -1,0 +1,80 @@
+<div class="container-fluid">
+
+
+
+  <div class="card">
+
+    <div class="card-header card-header-azure">
+
+      <div class="row ">
+        <div class="col-auto">
+          <h4 class="card-title">Reporte De Asistencia Perfecta</h4>
+        </div>
+      </div>
+      <form [formGroup]="fechas">
+
+
+      <div class="row">
+
+        <div class="col-md-3 mb-3">
+
+          <label class="form-label">Fecha Inicio </label>
+          <input type="date" class="form-control"  formControlName="fechaInicio">
+
+        </div>
+        <div class="col-md-3 mb-3">
+
+          <label class="form-label">Fecha Termino </label>
+          <input type="date" class="form-control"  formControlName="fechaFin">
+
+        </div>
+
+        <div class="col-md-3">
+          <br>
+          <button class="btn btn-primary  mt-1" (click)="asistenciaPerfecta(fechas.value)" >Buscar</button>
+        </div>
+        <div class="col-md-3">
+          <br>
+          <button class="btn btn-success  mt-1" (click)="exportarAExcel()" >Exportar a Excel</button>
+        </div>
+
+      </div>
+
+
+
+
+
+
+</form>
+    </div>
+
+
+    <div class="card-body">
+
+      <div class="table-responsive">
+      <table class="table" #tabla>
+        <thead>
+          <tr>
+            <th scope="col"># Empleado</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Departamento</th>
+            <th scope="col"># Asistencias</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of asistencia" >
+            <th scope="row">{{a.Numero_empleado}} </th>
+            <td> {{a.Nombre}} </td>
+            <td>  {{a.Empresa}} </td>
+            <td> {{a.AREA}} </td>
+            <td>{{a.Asistencias}} </td>
+          </tr>
+          </tbody>
+          </table>
+          </div>
+
+    </div>
+
+
+  </div>
