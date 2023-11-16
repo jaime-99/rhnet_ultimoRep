@@ -9,7 +9,7 @@
   <div class="card-body bg-light">
     <!-- Contenido del nuevo card -->
 
-    <div class="table-responsive-md">
+    <div *ngIf="pasesAutorizados.length>0" class="table-responsive-md">
     <table class="table table-striped">
       <thead>
         <tr>
@@ -45,6 +45,9 @@
 
       </tbody>
     </table>
+    </div>
+    <div *ngIf="alerta" class="alert alert-info" role="alert">
+      Aun no hay pases Autorizados
     </div>
 
   </div>

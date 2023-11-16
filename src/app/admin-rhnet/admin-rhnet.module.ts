@@ -37,7 +37,7 @@ export const routes = [
       { path:'',loadChildren:()=>import('./incidentes/pase-digital/pase-digital.module').then(m=>m.PaseDigitalModule)},
 
 
-      { path:'PERFIL',loadChildren:()=>import('./inicio/inicio.module').then(m=>m.InicioModule),data: { breadcrumb: 'INICIO' }, canActivate: [AccesoGuard] },
+      { path:'PERFIL',loadChildren:()=>import('./inicio/inicio.module').then(m=>m.InicioModule),data: { breadcrumb: 'INICIO' } },
       { path:'PASE',loadChildren:()=>import('./incidentes/pase-digital/pase-digital.module').then(m=>m.PaseDigitalModule),data: { breadcrumb: 'PASE' }},
       { path:'MENSAJES',loadChildren:()=>import('./mensajes/mensajes.module').then(m=>m.MensajesModule),data: { breadcrumb: 'MENSAJES' }},
       { path:'PASES_AUTORIZADOS',loadChildren:()=>import('./pases-autorizados/pases-autorizados.module').then(m=>m.PasesAutorizadosModule),data: { breadcrumb: 'PASES AUTORIZADOS' },

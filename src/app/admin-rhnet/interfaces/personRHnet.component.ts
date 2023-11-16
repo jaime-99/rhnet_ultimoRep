@@ -16,6 +16,23 @@ export interface PersonRh {
   // Agrega otras propiedades aquí
 }
 
+export interface Empleado {
+  nombre:               string;
+  NUMERO_EMPLEADO:      string;
+  NUMERO_EMPLEADO_JEFE: string;
+  FECHA_ALTA:           Date;
+  id:                   number;
+  EMAIL:                string;
+  TuNombre:             string;
+  EMPRESA:              string;
+  PUESTO:               string;
+  NombreDelJefe:        string;
+  correoDelJefe:        string;
+  AniosCumplidos:       number;
+  nombre_imagen:string;
+}
+
+
 
 export interface Asistencia {
   TuNombre:         string;

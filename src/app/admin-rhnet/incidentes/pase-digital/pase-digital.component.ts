@@ -56,6 +56,7 @@ export class PaseDigitalComponent implements OnInit {
   numeroDelEmpleado2: any;
   botonesAutorizados: boolean = false;
   correoDelEmpelado: any;
+  alerta: boolean = false;
 
 
   constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService,
@@ -166,6 +167,10 @@ export class PaseDigitalComponent implements OnInit {
     this.rhService.getPasesJefe(this.numUsuario).subscribe((res)=>{
       this.pasesJefe = res
 
+      if(this.pasesJefe.length===0){
+        this.alerta = true
+      }
+
 
     this.pasesJefe.forEach(mensaje => {
       this.idDelEmpleadoDelJefe = mensaje.NumeroEmpleado,
@@ -180,6 +185,7 @@ export class PaseDigitalComponent implements OnInit {
 
       });
     })
+
 
 
     this.pasesJefe$ = this.rhService.getPasesJefe(this.numUsuario);

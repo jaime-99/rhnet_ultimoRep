@@ -13,16 +13,16 @@
                   <div class="card-body">
                       <form>
                           <div class="row">
-                              <div class="col-md-5">
+                              <div class="col-md-3">
                                 <div class="form-group">
                                   <label>Usuario </label>
                                   <input class="form-control" type="text" value="{{usuario}}"  disabled readonly>
                                 </div>
                               </div>
-                              <div class="col-md-3">
+                              <div class="col-md-5">
                                 <div class="form-group">
                                   <label >Nombre</label>
-                                  <input  value="{{usuario}}" class="form-control" disabled readonly>
+                                  <input  value="{{empleados.nombre}}" class="form-control" disabled readonly>
                                 </div>
                               </div>
                               <div class="col-md-4">
@@ -64,8 +64,8 @@
                               </div>
                               <div class="col-md-4">
                                 <div class="form-group">
-                                  <label>Antiguiedad</label>
-                                  <input  value="{{empresa}}" class="form-control" disabled readonly>
+                                  <label>años en la empresa</label>
+                                  <input  value="{{empleados.AniosCumplidos}} año" class="form-control" disabled readonly>
                                 </div>
                               </div>
                           </div>
@@ -92,20 +92,18 @@
               </form>
           </div>
           <div class="col-md-4">
-              <div class="card card-profile">
-                  <div class="card-avatar">
-                      <a href="javascript:void(0)">
-                          <!-- <img class="img" src="{{nombreImagen}}" /> -->
-                      </a>
-                  </div>
-                  <div class="card-body">
-                      <h6 class="card-category text-gray">Puesto / PRACTICANTE</h6>
-                      <h4 class="card-title">{{usuario}} </h4>
-                      <p class="card-description">
-                        Bienvenido {{usuario}} a nuestra plataforma
-                      </p>
-                      <!-- <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a> -->
-                  </div>
+              <div class="card  ">
+                <div class="card-body">
+                    <h6 class="card-category text-gray">Puesto / {{empleados.PUESTO}} </h6>
+                    <h4 class="card-title">{{usuario}} </h4>
+                    <p class="card-description">
+                      Bienvenido {{usuario}} a nuestra plataforma
+                    </p>
+                </div>
+                  <div  class="card mx-auto bg-primary " style="width: 12.0rem;">
+                          <img class="img-fluid rounded mx-auto d-block p-1" [src]="imagenUsuario" />
+                          <button class="btn btn-info mx-1">Cambiar Imagen</button>
+                        </div>
               </div>
           </div>
       </div>

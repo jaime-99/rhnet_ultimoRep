@@ -10,6 +10,7 @@ import { RhnetService } from '../rhnet.service';
 export class PasesAutorizadosComponent implements OnInit {
 
   pasesAutorizados = []
+  alerta:boolean = false;
 
   constructor(private rhnetService: RhnetService ) { }
 
@@ -25,6 +26,12 @@ export class PasesAutorizadosComponent implements OnInit {
     this.rhnetService.getPasesAutorizados().subscribe((res => {
       this.pasesAutorizados = res;
 
+
+    if(this.pasesAutorizados.length ===0){
+      this.alerta = true
+      return;
+    }
+
       const fechaHoy = new Date(); // Obtener la fecha actual en JavaScript
       const fechaHoyFormatted = fechaHoy.toISOString().slice(0, 10); // Formatear la fecha actual como "YYYY-MM-DD"
 
@@ -34,6 +41,7 @@ export class PasesAutorizadosComponent implements OnInit {
       });
       // Ahora this.pasesAutorizados contiene solo los pases con la fecha de hoy
     }));
+
 
 
   }
