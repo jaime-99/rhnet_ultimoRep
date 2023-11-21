@@ -22,7 +22,9 @@
   </a>
 
   <div *ngIf="menu.hasSubMenu" class="sub-menu" [id]="'sub-menu-'+menu.id">
-      <app-ma-menu [menuItems]="menuItems" [menuParentId]="menu.id"></app-ma-menu>
+      <!-- <app-ma-menu [menuItems]="menuItems" [menuParentId]="menu.id"></app-ma-menu> -->
+      <app-menu [menuItems]="menuItems" [menuParentId]="menu.id"></app-menu>
+
   </div>
 </div>
 

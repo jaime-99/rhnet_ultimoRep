@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { MensajesComponent } from './mensajes.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AddComponent } from './add/add.component';
 
 
 
 export const routes: Routes = [
-  { path: '', component: MensajesComponent, pathMatch: 'full' }
+  { path: '', component: AddComponent, pathMatch: 'full' }
 ];
 
 
 @NgModule({
-  declarations: [],
+  declarations: [AddComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -22,4 +22,4 @@ export const routes: Routes = [
 
   ]
 })
-export class MensajesModule { }
+export class solicitarVecario { }
