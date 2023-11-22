@@ -242,9 +242,32 @@ export class RhnetService {
       return this.http.put<any>( url, body );
     }
 
+    // es para ver la asistencia de los empleados
     getAsistenciaPerfecta(fechaInicio,fechaFin,fechaInicio2,fechaFin2):any{
       const url=`https://www.dikeninternational.com/angular_service/api/usuario/asistenciaPerfecta.php?fechaInicio=${fechaInicio}&fechaFin=${fechaFin}&fechaInicio2=${fechaInicio2}&fechaFin2=${fechaFin2}`;
       return this.http.get<any>(url);
+    }
+
+
+
+
+    //todo empieza servicios de becarios
+    //ver las areas de becarios
+    getArea():any{
+      const url = 'https://www.dikeninternational.com/angular_service/api/Becario/getAreas.php'
+      return this.http.get<any>(url);
+    }
+
+    getAprobadores():any{
+      const url = 'https://www.dikeninternational.com/angular_service/api/Becario/getAprobadores.php'
+      return this.http.get<any>(url);
+    }
+
+    // es para insertar una solicitud para Becario
+    insertBecario(usuario,area,actividades,metas,procesos,aprobador,profesion){
+      const url=`${ this.baseUrl }/Becario/api/addBecario.php`;
+      const body={usuario,area,actividades,metas,procesos,aprobador,profesion}
+      return this.http.post<any>( url, body );
     }
 
 

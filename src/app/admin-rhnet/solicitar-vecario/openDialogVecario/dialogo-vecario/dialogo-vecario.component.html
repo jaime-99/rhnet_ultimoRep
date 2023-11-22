@@ -1,0 +1,87 @@
+
+<div class="conainer-fluid">
+<form [formGroup]="formulario">
+
+  <div class="row">
+
+
+  <div class="mb-2 col-md-6" >
+    <label class="form-label">Area</label>
+
+    <mat-form-field>
+      <mat-label> Elige una opcion  </mat-label>
+      <mat-select  formControlName="area">
+        <mat-option [value]="area" *ngFor="let area of areas  ">{{ area }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="formulario.get('area').hasError('required') && formulario.get('area').touched" class="text-danger">
+      el area es requerida
+</div>
+
+
+  </div>
+  <div class="mb-3 col-md-6">
+    <label class="form-label">Nombre Del Proyecto</label>
+    <input type="text" class="form-control">
+
+
+  </div>
+  </div>
+  <div class="row">
+  <div class="mb-3 col-md-12">
+    <label class="form-label">Actividades A Realizar (minimo 5)</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  formControlName="actividades" ></textarea>
+    <div *ngIf="formulario.get('actividades').hasError('required') && formulario.get('actividades').touched" class="text-danger">
+    Las actividades son requeridas
+    </div>
+
+  </div>
+  </div>
+  <div class="row">
+  <div class="mb-3 col-md-12">
+    <label class="form-label">Metas o indicadores a Evaluar</label>
+    <textarea class="form-control" rows="3" formControlName="metas"></textarea>
+    <div *ngIf="formulario.get('metas').hasError('required') && formulario.get('metas').touched" class="text-danger">
+      las metas son requeridas
+    </div>
+</div>
+</div>
+  <div class="row">
+  <div class="mb-3 col-md-6">
+    <label class="form-label">Carrera Requerida (minimo 2)</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="profesion" ></textarea>
+    <div *ngIf="formulario.get('profesion').hasError('required') && formulario.get('profesion').touched" class="text-danger">
+      La profesion es requerida
+</div>
+
+  </div>
+  <div class="mb-3 col-md-6">
+    <!-- <label class="form-label">Aprobador</label> -->
+    <mat-form-field>
+      <mat-label>Aprobador</mat-label>
+      <mat-select  [(value)]="numero_empleado" formControlName="aprobador" >
+        <mat-option  *ngFor="let a of aprobadores" [value]="a.numero_empleado">  {{a.nombre}} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div *ngIf="formulario.get('aprobador').hasError('required') && formulario.get('aprobador').touched" class="text-danger">
+      el aprobador es requerido
+    </div>
+
+  </div>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-auto">
+
+      <button type="button" class="btn btn-primary" (click)="guardarDatos(formulario.value)" >Guardar</button>
+
+
+    </div>
+
+
+  </div>
+
+</form>
+
