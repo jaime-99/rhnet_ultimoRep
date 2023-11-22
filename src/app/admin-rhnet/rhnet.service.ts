@@ -264,9 +264,9 @@ export class RhnetService {
     }
 
     // es para insertar una solicitud para Becario
-    insertBecario(usuario,area,actividades,metas,procesos,aprobador,profesion){
-      const url=`${ this.baseUrl }/Becario/api/addBecario.php`;
-      const body={usuario,area,actividades,metas,procesos,aprobador,profesion}
+    insertBecario(usuario,Area,Actividades,Metas,Procesos,Aprobador,profesion,Fecha){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/addBecario.php`;
+      const body={usuario,Area,Actividades,Metas,Procesos,Aprobador,profesion,Fecha}
       return this.http.post<any>( url, body );
     }
 

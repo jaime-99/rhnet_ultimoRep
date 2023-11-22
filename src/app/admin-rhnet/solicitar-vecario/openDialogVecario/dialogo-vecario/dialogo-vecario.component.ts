@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 import { aC } from '@fullcalendar/core/internal-common';
 import { clearScreenDown } from 'readline';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
@@ -18,19 +19,20 @@ export class DialogoVecarioComponent implements OnInit {
   areas: any;
   aprobadores: any;
   numero_empleado:number
+  fecha: string;
 
-  constructor( private rhnetService:RhnetService ) {}
+  constructor( private rhnetService:RhnetService, public dialogRef: MatDialogRef<DialogoVecarioComponent> ) {}
 
   ngOnInit(): void {
     this.getAreas();
 
 
     this.formulario = new FormGroup({
-      usuario: new FormControl(222, [Validators.required]),
+      usuario: new FormControl('', [Validators.required]),
       area: new FormControl('', [Validators.required]),
       actividades: new FormControl('', [Validators.required]),
       metas: new FormControl('', [Validators.required]),
-      proceso: new FormControl('sss', [Validators.required]),
+      proceso: new FormControl('', [Validators.required]),
       aprobador: new FormControl('', [Validators.required]),
       profesion: new FormControl('', [Validators.required]),
       fecha: new FormControl('2023/10/20', [Validators.required]),
@@ -45,6 +47,7 @@ export class DialogoVecarioComponent implements OnInit {
     this.rhnetService.getArea().subscribe((res)=>{
       this.areas = res.map((area) => area.AREA);
       this.getAprobadores()
+      this.obtenerFechaActualEnFormato()
 
     })
   }
@@ -60,18 +63,17 @@ export class DialogoVecarioComponent implements OnInit {
 
   guardarDatos(value:object){
 
-    const {usuario,area,actividades,meta,proceso,profesion,aprobador} = this.formulario.value
+    const {usuario,area,actividades,metas,proceso,profesion,aprobador,fecha} = this.formulario.value
+
 
     if(this.formulario.valid){
-
-      this.rhnetService.insertBecario(usuario,area,actividades,meta,proceso,aprobador,profesion).subscribe((res)=>{
+      this.rhnetService.insertBecario(usuario,area,actividades,metas,proceso,profesion,aprobador,fecha).subscribe((res)=>{
         console.log(res)
-
       })
-
-
-
     }else{
+
+      return;
+
 
 
     }
@@ -79,13 +81,27 @@ export class DialogoVecarioComponent implements OnInit {
 
   }
 
+  Salir(): void {
+    this.dialogRef.close();
+  }
 
-  fecha(){
+
+
+   obtenerFechaActualEnFormato() {
+    const fechaActual = new Date();
+    const año = fechaActual.getFullYear();
+    const mes = ('0' + (fechaActual.getMonth() + 1)).slice(-2); // Agrega un cero al principio si es necesario
+    const dia = ('0' + fechaActual.getDate()).slice(-2); // Agrega un cero al principio si es necesario
+
+    const fechaFormateada = `${año}-${mes}-${dia}`;
+
+    this.fecha= fechaFormateada
+
+    this.formulario.get('fecha').setValue(this.fecha);
 
 
 
   }
-
 
 
 

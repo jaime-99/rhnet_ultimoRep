@@ -1,5 +1,9 @@
 
+
+
 <div class="conainer-fluid">
+  <!-- <h1 mat-dialog-title>Captura los Datos</h1> -->
+
 <form [formGroup]="formulario">
 
   <div class="row">
@@ -16,7 +20,7 @@
     </mat-form-field>
     <div *ngIf="formulario.get('area').hasError('required') && formulario.get('area').touched" class="text-danger">
       el area es requerida
-</div>
+    </div>
 
 
   </div>
@@ -30,7 +34,7 @@
   <div class="row">
   <div class="mb-3 col-md-12">
     <label class="form-label">Actividades A Realizar (minimo 5)</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"  formControlName="actividades" ></textarea>
+    <textarea class="form-control"  rows="3"  formControlName="actividades" ></textarea>
     <div *ngIf="formulario.get('actividades').hasError('required') && formulario.get('actividades').touched" class="text-danger">
     Las actividades son requeridas
     </div>
@@ -41,10 +45,11 @@
   <div class="mb-3 col-md-12">
     <label class="form-label">Metas o indicadores a Evaluar</label>
     <textarea class="form-control" rows="3" formControlName="metas"></textarea>
-    <div *ngIf="formulario.get('metas').hasError('required') && formulario.get('metas').touched" class="text-danger">
-      las metas son requeridas
-    </div>
-</div>
+  </div>
+  <div *ngIf="formulario.get('metas').hasError('required') && formulario.get('metas').touched" class="text-danger">
+    las metas son requeridas.
+  </div>
+
 </div>
   <div class="row">
   <div class="mb-3 col-md-6">
@@ -80,6 +85,9 @@
 
     </div>
 
+    <div class="col-auto">
+    <button type="button" class="btn btn-danger" (click)="Salir()" >Salir</button>
+    </div>
 
   </div>
 
