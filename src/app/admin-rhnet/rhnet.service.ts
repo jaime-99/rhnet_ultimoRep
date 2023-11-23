@@ -270,7 +270,18 @@ export class RhnetService {
       return this.http.post<any>( url, body );
     }
 
+    // Es para ver mis solicitudes de becarios
 
+    getMisSolicitudesBecarios(num):any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/getMiBecariosSolicitud.php?num=${num}`
+      return this.http.get<any>(url)
+    }
+
+    // es para poder ver aprobar las solicitudes de mis empleados
+    getSolicitudesAprobar(num):any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/porAprobarJefe.php?num=${num}`
+      return this.http.get<any>(url)
+    }
 
 
 

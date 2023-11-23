@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { aC } from '@fullcalendar/core/internal-common';
@@ -21,14 +21,14 @@ export class DialogoVecarioComponent implements OnInit {
   numero_empleado:number
   fecha: string;
 
-  constructor( private rhnetService:RhnetService, public dialogRef: MatDialogRef<DialogoVecarioComponent> ) {}
+  constructor( private cdRef: ChangeDetectorRef, private rhnetService:RhnetService, public dialogRef: MatDialogRef<DialogoVecarioComponent> ) {}
 
   ngOnInit(): void {
     this.getAreas();
 
 
     this.formulario = new FormGroup({
-      usuario: new FormControl('', [Validators.required]),
+      usuario: new FormControl('222', [Validators.required]),
       area: new FormControl('', [Validators.required]),
       actividades: new FormControl('', [Validators.required]),
       metas: new FormControl('', [Validators.required]),
@@ -67,25 +67,19 @@ export class DialogoVecarioComponent implements OnInit {
 
 
     if(this.formulario.valid){
-      this.rhnetService.insertBecario(usuario,area,actividades,metas,proceso,profesion,aprobador,fecha).subscribe((res)=>{
-        console.log(res)
+      this.rhnetService.insertBecario(usuario,area,actividades,metas,proceso,aprobador,profesion,fecha).subscribe((res)=>{
+        // console.log(res)
+        this.dialogRef.close();
       })
     }else{
 
       return;
-
-
-
     }
-
-
   }
 
   Salir(): void {
     this.dialogRef.close();
   }
-
-
 
    obtenerFechaActualEnFormato() {
     const fechaActual = new Date();
@@ -99,9 +93,8 @@ export class DialogoVecarioComponent implements OnInit {
 
     this.formulario.get('fecha').setValue(this.fecha);
 
-
-
   }
+
 
 
 

@@ -18,15 +18,18 @@
         <mat-option [value]="area" *ngFor="let area of areas  ">{{ area }}</mat-option>
       </mat-select>
     </mat-form-field>
-    <div *ngIf="formulario.get('area').hasError('required') && formulario.get('area').touched" class="text-danger">
+    <!-- <div *ngIf="formulario.get('area').hasError('required') && formulario.get('area').touched" class="text-danger">
       el area es requerida
-    </div>
+    </div> -->
 
 
   </div>
   <div class="mb-3 col-md-6">
     <label class="form-label">Nombre Del Proyecto</label>
-    <input type="text" class="form-control">
+    <input type="text" class="form-control" formControlName="proceso">
+    <div *ngIf="formulario.get('proceso').hasError('required') && formulario.get('proceso').touched" class="text-danger">
+      Las actividades son requeridas
+      </div>
 
 
   </div>

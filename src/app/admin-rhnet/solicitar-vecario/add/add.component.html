@@ -14,7 +14,7 @@
     <div class="card-header card-header-azure mt-2">
       <div class="row">
         <div class="col-8">
-        <h4 class=" card-title">Semillero de talento</h4>
+        <h4 class=" card-title">Mis Solicitudes</h4>
         </div>
 
 
@@ -25,7 +25,85 @@
     </div>
 
     <div class="card-body">
-      <table class="table table-striped"></table>
+      <table class="table table-striped">
+        <thead class="table-primary">
+          <tr>
+            <!-- <th scope="col">Solicitado por</th> -->
+            <th scope="col">Area</th>
+            <th scope="col">Actividades</th>
+            <th scope="col">Carreras</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Estatus</th>
+            <th scope="col">Comentarios</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let s of misSolicitudes">
+            <th scope="row"> {{s.Area}} </th>
+            <td>  {{s.Actividades}} </td>
+            <td>  {{s.profesion}} </td>
+            <td> {{s.Fecha}} </td>
+            <td>  {{s.Estatus}} </td>
+            <td> {{s.Comentarios}} </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </div>
+
+  <!-- todo es la otra parte, para aprobar de parte del jefe -->
+
+    <div class="card mt-2">
+
+
+      <div class="card-header card-header-azure mt-2">
+        <div class="row">
+          <div class="col-8">
+          <h4 class=" card-title">Por Aprobar</h4>
+          </div>
+          </div>
+
+      </div>
+
+      <div class="card-body">
+
+
+        <table class="table table-striped">
+          <thead class="table-primary">
+            <tr>
+              <!-- <th scope="col">Solicitado por</th> -->
+              <th scope="col">Solicitado Por</th>
+              <th scope="col">Area</th>
+              <th scope="col">Actividades</th>
+              <th scope="col">Carreras</th>
+              <th scope="col">Fecha</th>
+              <th scope="col">Estatus</th>
+              <th scope="col">Comentarios</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">  </th>
+              <td>   </td>
+              <td>   </td>
+              <td>  </td>
+              <td>  </td>
+              <td>  </td>
+              <td>  </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+
+      </div>
+
+
+
+
+
+
+
 </div>
+
