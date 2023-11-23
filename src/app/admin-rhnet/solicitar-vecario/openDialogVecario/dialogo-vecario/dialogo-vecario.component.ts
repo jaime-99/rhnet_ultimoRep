@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { aC } from '@fullcalendar/core/internal-common';
 import { clearScreenDown } from 'readline';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
@@ -21,14 +21,14 @@ export class DialogoVecarioComponent implements OnInit {
   numero_empleado:number
   fecha: string;
 
-  constructor( private cdRef: ChangeDetectorRef, private rhnetService:RhnetService, public dialogRef: MatDialogRef<DialogoVecarioComponent> ) {}
+  constructor( private cdRef: ChangeDetectorRef, private rhnetService:RhnetService,
+    public dialogRef: MatDialogRef<DialogoVecarioComponent> , @Inject(MAT_DIALOG_DATA) public data) {}
 
   ngOnInit(): void {
     this.getAreas();
 
-
     this.formulario = new FormGroup({
-      usuario: new FormControl('222', [Validators.required]),
+      usuario: new FormControl(this.data.numUsuario, [Validators.required]),
       area: new FormControl('', [Validators.required]),
       actividades: new FormControl('', [Validators.required]),
       metas: new FormControl('', [Validators.required]),

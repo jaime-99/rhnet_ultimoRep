@@ -67,7 +67,7 @@
 
       <div class="card-body">
 
-
+        <div class="table-responsive">
         <table class="table table-striped">
           <thead class="table-primary">
             <tr>
@@ -79,20 +79,33 @@
               <th scope="col">Fecha</th>
               <th scope="col">Estatus</th>
               <th scope="col">Comentarios</th>
+              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">  </th>
-              <td>   </td>
-              <td>   </td>
-              <td>  </td>
-              <td>  </td>
-              <td>  </td>
-              <td>  </td>
+            <tr *ngFor="let aprobar of porAprobar">
+              <th scope="row"> pendiente </th>
+              <td> {{aprobar.Area}}  </td>
+              <td> {{aprobar.Actividades}}  </td>
+              <td> {{aprobar.profesion}} </td>
+              <td> {{aprobar.Fecha}} </td>
+              <td> {{aprobar.Estatus}}  </td>
+              <td> {{aprobar.Comentarios}} </td>
+
+              <td>
+
+                <div class="btn-group" role="group" >
+                  <button type="button" class="btn btn-danger">Denegar</button>
+                  <button type="button" class="btn btn-warning" (click)="irDetalles()">Info</button>
+                  <button type="button" class="btn btn-success">Aceptar</button>
+                </div>
+
+
+              </td>
             </tr>
           </tbody>
         </table>
+        </div>
       </div>
 
 

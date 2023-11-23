@@ -7,16 +7,19 @@ import { DialogoVecarioComponent } from './openDialogVecario/dialogo-vecario/dia
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { DetalleSolicitudComponent } from './detalleSolicitud/detalleSolicitud.component';
 
 
 
 export const routes: Routes = [
-  { path: '', component: AddComponent, pathMatch: 'full' }
+  { path: '', component: AddComponent, pathMatch: 'full' },
+  {path: 'detalle-solicitud', component: DetalleSolicitudComponent }
+
 ];
 
 
 @NgModule({
-  declarations: [AddComponent,DialogoVecarioComponent],
+  declarations: [AddComponent,DialogoVecarioComponent,DetalleSolicitudComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

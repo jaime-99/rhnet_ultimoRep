@@ -278,8 +278,8 @@ export class RhnetService {
     }
 
     // es para poder ver aprobar las solicitudes de mis empleados
-    getSolicitudesAprobar(num):any{
-      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/porAprobarJefe.php?num=${num}`
+    getSolicitudesAprobar(id):any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/porAprobarJefe.php?id=${id}`
       return this.http.get<any>(url)
     }
 
