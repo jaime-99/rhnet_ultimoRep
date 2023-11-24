@@ -40,8 +40,8 @@ export class AddComponent implements OnInit {
     });
 }
 
-getMisSolicitudes(){// aqui se coloca el numero de usuario
-  this.rhnetService.getMisSolicitudesBecarios('471').subscribe((res)=>{
+getMisSolicitudes(){// aqui se coloca el numero de usuario || es el de ariel 471
+  this.rhnetService.getMisSolicitudesBecarios(this.numUsuario).subscribe((res)=>{
     // console.log("mis solicitudes becarios",res)
     this.misSolicitudes = res
     this.getSolicitar();
@@ -50,15 +50,15 @@ getMisSolicitudes(){// aqui se coloca el numero de usuario
 
 // para ver las solicitudes que tengo por aprobar
 getSolicitar(){
-// aqui se coloca el num de empleado
-  this.rhnetService.getSolicitudesAprobar('277').subscribe((res)=>{
+// aqui se coloca el num de empleado de martin 277
+  this.rhnetService.getSolicitudesAprobar(this.numEmpleado).subscribe((res)=>{
     this.porAprobar = res
     // console.log(res)
   })
 }
 
-datosCompletos(){
-  this.rhnetService.getAllInfoEmpleados('1514').subscribe((res)=>{
+datosCompletos(){ // numero de empleado de ariel
+  this.rhnetService.getAllInfoEmpleados(this.numEmpleado).subscribe((res)=>{
     this.datosPersona = res
     const id = this.datosPersona.idUsuario
     this.numUsuario= id

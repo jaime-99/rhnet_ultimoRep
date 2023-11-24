@@ -47,7 +47,7 @@
             <td>  {{s.profesion}} </td>
             <td> {{s.Fecha | date:'dd/MM/yyyy'}} </td>
             <td>  {{s.estatus}} </td>
-            <td>  <button type="button" (click)="verComentariosDialog(s.Comentarios,s.Comentarios_humano)" class="btn btn-warning">Ver</button> </td>
+            <td>  <button type="button" (click)="verComentariosDialog(s.Comentarios,s.Comentarios_humano)" class="btn btn-primary">Ver</button> </td>
           </tr>
         </tbody>
       </table>
@@ -87,10 +87,17 @@
             <tr *ngFor="let aprobar of porAprobar">
               <th scope="row"> {{aprobar.nombre_empleado}} </th>
               <td> {{aprobar.Area}}  </td>
-              <td> {{aprobar.Actividades}}  </td>
+              <td>    {{ aprobar.Actividades.length > 60 ? (aprobar.Actividades | slice:0:60) + '... ' : aprobar.Actividades }}
+                <a *ngIf="aprobar.Actividades.length > 60" style="cursor: pointer; text-decoration: underline; color: blue;" (click)="verMas(aprobar.Actividades)">Ver más</a>
+
+              </td>
               <td> {{aprobar.profesion}} </td>
               <td> {{aprobar.Fecha | date:'dd/MM/yyyy'}} </td>
-              <td>              <button type="button" class="btn btn-warning" (click)="irDetalles(aprobar.id)"> {{aprobar.Estatus}} </button>
+              <td>              <button type="button" class="btn" [ngClass]="{
+                'btn-danger': aprobar.Estatus === 1,
+                'btn-warning': aprobar.Estatus === 2,
+                'btn-success': aprobar.Estatus === 5
+              }" (click)="irDetalles(aprobar.id)"> {{aprobar.estatus}} </button>
               </td>
               <!-- <td> -->
 

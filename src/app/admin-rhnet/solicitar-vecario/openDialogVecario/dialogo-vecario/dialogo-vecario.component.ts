@@ -41,7 +41,7 @@ export class DialogoVecarioComponent implements OnInit {
       actividades: new FormControl('', [Validators.required]),
       metas: new FormControl('', [Validators.required]),
       proceso: new FormControl('', [Validators.required]),
-      aprobador: new FormControl(this.idJefe, [Validators.required]),
+      aprobador: new FormControl(this.idJefe, [Validators.required]), // todo cambiarlo al nombre
       profesion: new FormControl('', [Validators.required]),
       fecha: new FormControl('2023/10/20', [Validators.required]),
 
@@ -106,7 +106,7 @@ export class DialogoVecarioComponent implements OnInit {
 
 
   obtenerIdJefe(){
-    this.rhnetService.getAllInfoEmpleados('1514').subscribe((res)=>{
+    this.rhnetService.getAllInfoEmpleados(this.numUsuario).subscribe((res)=>{
       this.idJefe = res.NUMERO_EMPLEADO_JEFE
       console.log("id del jefe",this.idJefe)
       this.misDatos = res

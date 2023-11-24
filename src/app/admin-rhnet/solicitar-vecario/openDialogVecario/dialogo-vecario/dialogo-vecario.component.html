@@ -37,16 +37,17 @@
   <div class="row">
   <div class="mb-3 col-md-12">
     <label class="form-label">Actividades A Realizar (minimo 5)</label>
-    <textarea class="form-control"  rows="3"  formControlName="actividades" ></textarea>
+    <textarea class="form-control" rows="5"formControlName="actividades" >
+    </textarea>
     <div *ngIf="formulario.get('actividades').hasError('required') && formulario.get('actividades').touched" class="text-danger">
     Las actividades son requeridas
     </div>
-
   </div>
   </div>
   <div class="row">
   <div class="mb-3 col-md-12">
     <label class="form-label">Metas o indicadores a Evaluar</label>
+
     <textarea class="form-control" rows="3" formControlName="metas"></textarea>
   </div>
   <div *ngIf="formulario.get('metas').hasError('required') && formulario.get('metas').touched" class="text-danger">
