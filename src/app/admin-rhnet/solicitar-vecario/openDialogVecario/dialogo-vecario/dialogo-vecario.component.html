@@ -65,12 +65,15 @@
   </div>
   <div class="mb-3 col-md-6">
     <!-- <label class="form-label">Aprobador</label> -->
-    <mat-form-field>
+    <!-- <mat-form-field>
       <mat-label>Aprobador</mat-label>
       <mat-select  [(value)]="numero_empleado" formControlName="aprobador" >
         <mat-option  *ngFor="let a of aprobadores" [value]="a.numero_empleado">  {{a.nombre}} </mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
+    <label  class="form-label">Aprobador</label>
+    <input type="email" class="form-control" formControlName="aprobador" placeholder={{misDatos?.NombreDelJefe}} disabled>
+
     <div *ngIf="formulario.get('aprobador').hasError('required') && formulario.get('aprobador').touched" class="text-danger">
       el aprobador es requerido
     </div>

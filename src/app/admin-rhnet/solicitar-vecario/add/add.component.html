@@ -44,7 +44,7 @@
             <td>  {{s.profesion}} </td>
             <td> {{s.Fecha}} </td>
             <td>  {{s.Estatus}} </td>
-            <td> {{s.Comentarios}} </td>
+            <td>  <button type="button" (click)="verComentariosDialog(s.Comentarios,s.Comentarios_humano)" class="btn btn-warning">Ver</button> </td>
           </tr>
         </tbody>
       </table>
@@ -78,30 +78,27 @@
               <th scope="col">Carreras</th>
               <th scope="col">Fecha</th>
               <th scope="col">Estatus</th>
-              <th scope="col">Comentarios</th>
-              <th scope="col">Acciones</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let aprobar of porAprobar">
-              <th scope="row"> pendiente </th>
+              <th scope="row"> {{aprobar.nombre_empleado}} </th>
               <td> {{aprobar.Area}}  </td>
               <td> {{aprobar.Actividades}}  </td>
               <td> {{aprobar.profesion}} </td>
               <td> {{aprobar.Fecha}} </td>
-              <td> {{aprobar.Estatus}}  </td>
-              <td> {{aprobar.Comentarios}} </td>
-
-              <td>
-
-                <div class="btn-group" role="group" >
-                  <button type="button" class="btn btn-danger">Denegar</button>
-                  <button type="button" class="btn btn-warning" (click)="irDetalles()">Info</button>
-                  <button type="button" class="btn btn-success">Aceptar</button>
-                </div>
-
-
+              <td>              <button type="button" class="btn btn-warning" (click)="irDetalles(aprobar.id)"> {{aprobar.Estatus}} </button>
               </td>
+              <!-- <td> -->
+
+                <!-- <div class="btn-group" role="group" > -->
+                  <!-- <button type="button" class="btn btn-danger">Denegar</button> -->
+                  <!-- <button type="button" class="btn btn-warning" (click)="irDetalles(aprobar.id)">Ver</button> -->
+                  <!-- <button type="button" class="btn btn-success">Aceptar</button> -->
+                <!-- </div> -->
+
+
+              <!-- </td> -->
             </tr>
           </tbody>
         </table>

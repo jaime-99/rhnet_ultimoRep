@@ -4,7 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogoVecarioComponent } from '../openDialogVecario/dialogo-vecario/dialogo-vecario.component';
 import { RhnetService } from '../../rhnet.service';
 import { Router } from '@angular/router';
-
+import { ComentariosDialogComponent } from '../comentariosDialog/comentariosDialog.component';
 
 @Component({
   selector: 'app-add',
@@ -15,7 +15,7 @@ export class AddComponent implements OnInit {
   numEmpleado: any;
   misSolicitudes: any;
   numUsuario: any;
-  porAprobar: any;
+  porAprobar:[]=[];
   datosPersona: any;
 
   constructor(public dialog: MatDialog, private rhnetService:RhnetService, private router:Router){}
@@ -35,6 +35,8 @@ export class AddComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      this.getMisSolicitudes();
+      this.getMisSolicitudes();
     });
 }
 
@@ -51,21 +53,8 @@ getSolicitar(){
 // aqui se coloca el num de empleado
   this.rhnetService.getSolicitudesAprobar('277').subscribe((res)=>{
     this.porAprobar = res
-    this.getnombreCompleto();
     // console.log(res)
   })
-}
-//pendiente
-getnombreCompleto(){
-  const id:any = this.porAprobar.map(aprobar => aprobar.usuario);
-  // console.log(id)
-
-  this.rhnetService.getAllInfoEmpleados(id).subscribe((res)=>{
-    const ejemplo  = res
-    const nombre = ejemplo.nombre
-    // console.log("el id de usuario es "+nombre)
-  })
-
 }
 
 datosCompletos(){
@@ -78,12 +67,24 @@ datosCompletos(){
 }
 
 
-irDetalles(){
+irDetalles(id){
   // es para ir a detalles de cada solicitud por aprobar y colocar los comentarios
-  this.router.navigate(['rhnet/Solicitar_Becario/detalle-solicitud']);
 
+ this.router.navigate(['rhnet/Solicitar_Becario/detalle-solicitud'], {
+    queryParams: { id: id }
+  });
 }
 
+
+verComentariosDialog(uno,dos): void {
+  const dialogRef = this.dialog.open(ComentariosDialogComponent, {
+    data: {comentarios1:uno, comentarios2:dos},
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+    // al cerrar
+  });
+}
 
 
 

@@ -1,1 +1,43 @@
-<p>detalleSolicitud works!</p>
+
+<form [formGroup]="miFormulario" (ngSubmit)="onSubmit()">
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Fecha</label>
+  <input type="email" class="form-control" placeholder={{detalle?.Fecha}} disabled>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Area</label>
+  <textarea class="form-control" placeholder={{detalle?.Area}} rows="1" disabled></textarea>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Carreras</label>
+  <textarea class="form-control" placeholder={{detalle?.profesion}} rows="2" disabled></textarea>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Actividades</label>
+  <textarea class="form-control" placeholder={{detalle?.Actividades}} rows="4" disabled></textarea>
+</div>
+<div class="mb-3">
+  <label  class="form-label">Metas</label>
+  <textarea class="form-control" placeholder={{detalle?.Metas}} rows="4" disabled></textarea>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Comentarios</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="comentarios" required></textarea>
+  <div *ngIf="submited && miFormulario.get('comentarios').hasError('required')" class="text-danger">Los comentarios son requeridos</div>
+</div>
+
+<div class="row">
+  <div class="col-auto">
+  <button type="submit" class="btn btn-success">Aceptar</button>
+  </div>
+  <div class="col-auto">
+  <button type="submit" class="btn btn-danger">Denegar</button>
+  </div>
+
+  <div class="col-auto">
+    <button  class="btn btn-primary" (click)="regresar()">Atras</button>
+    </div>
+</div>
+
+</form>

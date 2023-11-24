@@ -283,6 +283,18 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
+    getDetalleID(id):any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/getDetalles.php?id=${id}`
+      return this.http.get<any>(url)
+    }
+
+
+    addComentarioJefe(come,ide){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/addComentario.php`;
+      const body={come,ide}
+      return this.http.put<any>( url, body );
+    }
+
 
 
 
