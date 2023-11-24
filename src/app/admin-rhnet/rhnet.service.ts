@@ -288,10 +288,16 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
-
+    // es para colocar el comentario de parte del jefe y se cambia el estatus a 2
     addComentarioJefe(come,ide){
       const url=`https://www.dikeninternational.com/angular_service/api/Becario/addComentario.php`;
       const body={come,ide}
+      return this.http.put<any>( url, body );
+    }
+      // se cambia el estatus a dos
+    updateEstatus(est,ide){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/updateEstatus.php`;
+      const body={est,ide}
       return this.http.put<any>( url, body );
     }
 

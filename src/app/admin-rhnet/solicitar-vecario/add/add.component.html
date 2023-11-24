@@ -40,10 +40,13 @@
         <tbody>
           <tr *ngFor="let s of misSolicitudes">
             <th scope="row"> {{s.Area}} </th>
-            <td>  {{s.Actividades}} </td>
+            <td>    {{ s.Actividades.length > 60 ? (s.Actividades | slice:0:60) + '... ' : s.Actividades }}
+              <a *ngIf="s.Actividades.length > 60" style="cursor: pointer; text-decoration: underline; color: blue;" (click)="verMas(s.Actividades)">Ver más</a>
+
+            </td>
             <td>  {{s.profesion}} </td>
-            <td> {{s.Fecha}} </td>
-            <td>  {{s.Estatus}} </td>
+            <td> {{s.Fecha | date:'dd/MM/yyyy'}} </td>
+            <td>  {{s.estatus}} </td>
             <td>  <button type="button" (click)="verComentariosDialog(s.Comentarios,s.Comentarios_humano)" class="btn btn-warning">Ver</button> </td>
           </tr>
         </tbody>
@@ -86,7 +89,7 @@
               <td> {{aprobar.Area}}  </td>
               <td> {{aprobar.Actividades}}  </td>
               <td> {{aprobar.profesion}} </td>
-              <td> {{aprobar.Fecha}} </td>
+              <td> {{aprobar.Fecha | date:'dd/MM/yyyy'}} </td>
               <td>              <button type="button" class="btn btn-warning" (click)="irDetalles(aprobar.id)"> {{aprobar.Estatus}} </button>
               </td>
               <!-- <td> -->

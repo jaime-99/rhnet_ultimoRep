@@ -17,6 +17,7 @@ export class DetalleSolicitudComponent implements OnInit {
   miFormulario: FormGroup;
   submited = false
   idDetalle: any;
+  verTerminado: boolean = false; // es para ver una pantalla de que se termino el formulario de solicitud a jefe
 
   constructor (private fb: FormBuilder,private route: ActivatedRoute, private rhService:RhnetService, private location:Location,
     private mat:MatSnackBar){
@@ -63,17 +64,16 @@ export class DetalleSolicitudComponent implements OnInit {
       this.rhService.addComentarioJefe(valor,this.idDetalle).subscribe((res)=>{
         // console.log(res)
 
-        this.mat.open('COMPLETADO', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+        this.mat.open('Has aceptado la solicitud', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+        this.rhService.updateEstatus('2',this.idDetalle).subscribe(()=>{
+          this.verTerminado = true;
+        })
+
 
       })
 
-
-
-
     }else{
       this.submited= true
-
-
     }
   }
 

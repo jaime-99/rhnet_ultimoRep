@@ -1,6 +1,7 @@
 
 <form [formGroup]="miFormulario" (ngSubmit)="onSubmit()">
 
+  <div *ngIf="!verTerminado" class="container-fluid">
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Fecha</label>
   <input type="email" class="form-control" placeholder={{detalle?.Fecha}} disabled>
@@ -39,5 +40,12 @@
     <button  class="btn btn-primary" (click)="regresar()">Atras</button>
     </div>
 </div>
-
+</div>
 </form>
+
+
+<div *ngIf="verTerminado" class="alert alert-dark" role="alert">
+  has Terminado La Solicitud!
+
+  <button class="btn btn-primary"> Regresar al Inicio</button>
+</div>

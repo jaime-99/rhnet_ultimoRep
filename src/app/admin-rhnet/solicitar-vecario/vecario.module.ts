@@ -12,18 +12,20 @@ import { ComentariosDialogComponent } from './comentariosDialog/comentariosDialo
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
+import { VerMasComponent } from './verMas../verMas...component';
 
 
 
 export const routes: Routes = [
   { path: '', component: AddComponent, pathMatch: 'full' },
-  {path: 'detalle-solicitud', component: DetalleSolicitudComponent,data: { breadcrumb: 'Detalle Solicitud ' } }
+  {path: 'detalle-solicitud', component: DetalleSolicitudComponent,data: { breadcrumb: 'Detalle Solicitud ' } },
+  {path: 'Ver-mas', component: VerMasComponent,data: { breadcrumb: 'VerMas ' } }
 
 ];
 
 
 @NgModule({
-  declarations: [AddComponent,DialogoVecarioComponent,DetalleSolicitudComponent,ComentariosDialogComponent],
+  declarations: [AddComponent,DialogoVecarioComponent,DetalleSolicitudComponent,ComentariosDialogComponent,VerMasComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

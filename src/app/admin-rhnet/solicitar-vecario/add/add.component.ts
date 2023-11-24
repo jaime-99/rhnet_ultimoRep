@@ -5,7 +5,7 @@ import { DialogoVecarioComponent } from '../openDialogVecario/dialogo-vecario/di
 import { RhnetService } from '../../rhnet.service';
 import { Router } from '@angular/router';
 import { ComentariosDialogComponent } from '../comentariosDialog/comentariosDialog.component';
-
+import { VerMasComponent } from '../verMas../verMas...component';
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -87,6 +87,21 @@ verComentariosDialog(uno,dos): void {
 }
 
 
+verMas(actividades)
+{
+
+  const dialogRef = this.dialog.open(VerMasComponent, {
+    data: {actividades:actividades},
+  });
+
+  dialogRef.afterClosed().subscribe(result => {
+
+  });
+
+
+
+
+}
 
 
 
