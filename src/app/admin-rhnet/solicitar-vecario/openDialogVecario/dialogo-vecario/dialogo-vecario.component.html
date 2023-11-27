@@ -38,6 +38,8 @@
   <div class="mb-3 col-md-12">
     <label class="form-label">Actividades A Realizar (minimo 5)</label>
     <textarea class="form-control" rows="5"formControlName="actividades" >
+      {{ formulario.get('actividades').value }}
+
     </textarea>
     <div *ngIf="formulario.get('actividades').hasError('required') && formulario.get('actividades').touched" class="text-danger">
     Las actividades son requeridas
@@ -85,15 +87,14 @@
 
   <div class="row">
 
+
     <div class="col-auto">
-
-      <button type="button" class="btn btn-primary" (click)="guardarDatos(formulario.value)" >Guardar</button>
-
-
+      <button type="button" class="btn btn-primary"  (click)="guardarDatos(formulario.value)" >Guardar</button>
     </div>
 
+
     <div class="col-auto">
-    <button type="button" class="btn btn-danger" (click)="Salir()" >Salir</button>
+    <button type="button" class="btn btn-danger" [mat-dialog-close]="44" >Salir</button>
     </div>
 
   </div>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { aC } from '@fullcalendar/core/internal-common';
@@ -30,15 +30,21 @@ export class DialogoVecarioComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.obtenerIdJefe();
-    this.getAreas();
+
+
+
+
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
     this.numUsuario = usuarioAuth.data.Numero_Empleado,
+
+    // console.log(this.data.numUsuario)
+    this.obtenerIdJefe();
+    this.getAreas();
 
     this.formulario = new FormGroup({
       usuario: new FormControl(this.data.numUsuario, [Validators.required]),
       area: new FormControl('', [Validators.required]),
-      actividades: new FormControl('', [Validators.required]),
+      actividades: new FormControl(this.generarListaInicial(), [Validators.required,this.validarActividades], ),
       metas: new FormControl('', [Validators.required]),
       proceso: new FormControl('', [Validators.required]),
       aprobador: new FormControl(this.idJefe, [Validators.required]), // todo cambiarlo al nombre
@@ -49,6 +55,45 @@ export class DialogoVecarioComponent implements OnInit {
 
   }
 
+  generarListaInicial(): string {
+    // Genera una lista inicial de 5 puntos, uno en cada línea.
+    // return Array(5).fill('').map(() => '- ').join('\n');
+    return Array(5).fill(0).map((_, index) => (index + 1).toString() + '. ').join('\n');
+  }
+  // esto es para que no se puedan borrar los numeros del textArea
+  @HostListener('keydown', ['$event'])
+  onKeyDown(event: KeyboardEvent): void {
+    // Evita que se borren los números
+    const textarea = event.target as HTMLTextAreaElement;
+    const caretPosition = textarea.selectionStart;
+    const value = textarea.value;
+
+    if (event.key === 'Backspace' && caretPosition > 0) {
+      const charBeforeCaret = value.charAt(caretPosition - 1);
+
+      if (charBeforeCaret === ' ') {
+        event.preventDefault();
+      }
+    }
+    // Evita que se sobrescriba el número con un espacio al presionar Enter
+    if (event.key === 'Enter') {
+      event.preventDefault();
+
+    }
+
+    }
+    // validar que si se llenen los 5 puntos con minimo 5 letras
+    validarActividades(control: FormControl): { [s: string]: boolean } | null {
+      const actividades = control.value;
+      const puntos = actividades.split('\n').map(linea => linea.trim());
+
+      // Verifica que haya exactamente 5 líneas y que cada línea tenga al menos 5 letras
+      if (puntos.some(linea =>(linea.length < 5))) {
+        return { 'formatoInvalido': true };
+      }
+
+      return null;
+    }
 
 
   getAreas(){
@@ -70,6 +115,7 @@ export class DialogoVecarioComponent implements OnInit {
 
 
   guardarDatos(value:object){
+    console.log(this.formulario.value)
 
     const {usuario,area,actividades,metas,proceso,profesion,aprobador,fecha} = this.formulario.value
 
@@ -77,7 +123,7 @@ export class DialogoVecarioComponent implements OnInit {
     if(this.formulario.valid){
       this.rhnetService.insertBecario(usuario,area,actividades,metas,proceso,aprobador,profesion,fecha).subscribe((res)=>{
         // console.log(res)
-        this.dialogRef.close();
+        this.dialogRef.close(this.data.numUsuario);
 
       })
     }else{

@@ -12,9 +12,9 @@ import { VerMasComponent } from '../verMas../verMas...component';
   styleUrls: ['./add.component.scss'],
 })
 export class AddComponent implements OnInit {
-  numEmpleado: any;
+  numEmpleado: any; //  numero de empelado
   misSolicitudes: any;
-  numUsuario: any;
+  numUsuario: any; // aqui es el numero de usuaroo
   porAprobar:[]=[];
   datosPersona: any;
 
@@ -23,26 +23,28 @@ export class AddComponent implements OnInit {
   ngOnInit(): void {
 
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
-    this.datosCompletos();
-    console.log(usuarioAuth)
     this.numEmpleado = usuarioAuth.data.Numero_Empleado,
-    this.getMisSolicitudes();
+    // console.log(usuarioAuth)
+    this.datosCompletos();
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogoVecarioComponent, {
       data: {numUsuario:this.numUsuario},
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      this.getMisSolicitudes();
-      this.getMisSolicitudes();
+      this.getMisSolicitudes(result);
+      // console.log(result)
+
     });
 }
 
-getMisSolicitudes(){// aqui se coloca el numero de usuario || es el de ariel 471
-  this.rhnetService.getMisSolicitudesBecarios(this.numUsuario).subscribe((res)=>{
+getMisSolicitudes(id){// aqui se coloca el numero de usuario || es el de ariel 471
+  this.rhnetService.getMisSolicitudesBecarios(id).subscribe((res)=>{
     // console.log("mis solicitudes becarios",res)
+    // console.log("mi usuario",this.numUsuario)
     this.misSolicitudes = res
     this.getSolicitar();
   })
@@ -62,7 +64,8 @@ datosCompletos(){ // numero de empleado de ariel
     this.datosPersona = res
     const id = this.datosPersona.idUsuario
     this.numUsuario= id
-    // console.log("el id de usuario es "+id)
+    console.log("el id de usuario es "+id)
+    this.getMisSolicitudes(id)
   })
 }
 
