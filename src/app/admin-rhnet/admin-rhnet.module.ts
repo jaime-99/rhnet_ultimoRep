@@ -50,6 +50,7 @@ export const routes = [
       { path:'SOLICITUDES_VACACIONES',loadChildren:()=>import('./vacaciones/pages/VerSolicitudes/ver-solicitudes.module').then(m=>m.VerSolicitudesModule),data: { breadcrumb: 'SOLICITUDES VACACIONES ' }},
       { path:'ASISTENCIA PERFECTA',loadChildren:()=>import('./incidentes/asistencia-perfecta/asistencia-perfecta.module').then(m=>m.AsistenciaPerfectaModule),data: { breadcrumb: 'ASISTENCIA PERFECTA ' }},
       { path:'Solicitar_Becario',loadChildren:()=>import('./solicitar-vecario/vecario.module').then(m=>m.solicitarVecario),data: { breadcrumb: 'Solicitar Becario ' }},
+      { path:'Aprobar_Becario',loadChildren:()=>import('./aprobarBecarioRH/aprobar-becario-rhmodule.module').then(m=>m.AprobarBecarioRHModuleModule),data: { breadcrumb: 'Aprobar Becario ' }},
       // { path: 'detalle-solicitud', component: DetalleSolicitudComponent }
 
     ],

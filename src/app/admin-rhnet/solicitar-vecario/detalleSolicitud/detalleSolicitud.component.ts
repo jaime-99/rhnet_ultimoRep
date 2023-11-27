@@ -43,14 +43,11 @@ export class DetalleSolicitudComponent implements OnInit {
 
     this.rhService.getDetalleID(id).subscribe((res)=>{
       this.detalle = res
-
         })
-
   }
 
   regresar(){
     this.location.back();
-
   }
 
   onSubmit(){

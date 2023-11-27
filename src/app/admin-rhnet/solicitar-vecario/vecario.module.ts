@@ -12,8 +12,7 @@ import { ComentariosDialogComponent } from './comentariosDialog/comentariosDialo
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
-import { VerMasComponent } from './verMas../verMas...component';
-
+import { VerMasComponent } from './verMas/verMas.component';
 
 
 export const routes: Routes = [
@@ -25,7 +24,11 @@ export const routes: Routes = [
 
 
 @NgModule({
-  declarations: [AddComponent,DialogoVecarioComponent,DetalleSolicitudComponent,ComentariosDialogComponent,VerMasComponent],
+  declarations: [AddComponent
+    ,DialogoVecarioComponent
+    ,DetalleSolicitudComponent
+    ,ComentariosDialogComponent
+    ,VerMasComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

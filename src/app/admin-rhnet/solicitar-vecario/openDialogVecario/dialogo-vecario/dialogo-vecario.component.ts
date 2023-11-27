@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { aC } from '@fullcalendar/core/internal-common';
 import { clearScreenDown } from 'readline';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
@@ -27,7 +28,7 @@ export class DialogoVecarioComponent implements OnInit {
   numEmpleadoJefe: any;
 
   constructor( private cdRef: ChangeDetectorRef, private rhnetService:RhnetService,
-    public dialogRef: MatDialogRef<DialogoVecarioComponent> , @Inject(MAT_DIALOG_DATA) public data) {
+    public dialogRef: MatDialogRef<DialogoVecarioComponent> , @Inject(MAT_DIALOG_DATA) public data, public snackBar: MatSnackBar) {
 
     }
 
@@ -117,7 +118,7 @@ export class DialogoVecarioComponent implements OnInit {
 
 
   guardarDatos(value:object){
-    console.log(this.formulario.value)
+    // console.log(this.formulario.value)
 
     const {usuario,area,actividades,metas,proceso,profesion,aprobador,fecha} = this.formulario.value
 
@@ -128,9 +129,13 @@ export class DialogoVecarioComponent implements OnInit {
         this.dialogRef.close(this.data.numUsuario);
         this.enviarEmail();
 
+        this.snackBar.open('se ha enviado la solicitud a tu jefe', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+
+
       })
     }else{
 
+      this.snackBar.open('te falta llenar campos', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
       return;
 
     }

@@ -20,7 +20,13 @@ new RhMenu (38,'Crear Solicitud', "/rhnet/CREAR_SOLICITUD", null, 'note_add', nu
   new RhMenu (39, 'Lista De Solicitudes', "/rhnet/SOLICITUDES_VACACIONES", null, 'notes', null, false, 36),
 
 
-  new RhMenu (50, 'Solicitar Vecario', "/rhnet/Solicitar_Becario", null, 'notes', null, false, 0),
+  new RhMenu (50, 'Solicitar Becario', "/rhnet/Solicitar_Becario", null, 'notes', null, false, 0),
+
+  new RhMenu (52, 'Becarios', null, null, 'school', null, true, 0),
+  new RhMenu (53, 'Aprobar Becarios', '/rhnet/Aprobar_Becario', null, 'check_box', null, false, 52),
+
+
+
 
 
 
