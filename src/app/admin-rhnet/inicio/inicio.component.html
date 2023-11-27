@@ -92,7 +92,7 @@
               </form>
           </div>
           <div class="col-md-4">
-              <div class="card  ">
+              <!-- <div class="card  ">
                 <div class="card-body">
                     <h6 class="card-category text-gray">Puesto / {{empleados.PUESTO}} </h6>
                     <h4 class="card-title">{{usuario}} </h4>
@@ -103,8 +103,16 @@
                   <div  class="card mx-auto bg-primary " style="width: 12.0rem;">
                           <img class="img-fluid rounded mx-auto d-block p-1" [src]="imagenUsuario" />
                           <button class="btn btn-info mx-1">Cambiar Imagen</button>
-                        </div>
-              </div>
+                  </div>
+              </div> -->
+              <div class="card">
+                <img class="card-img-top mx-auto mt-1" [src]="imagenUsuario" alt="Card image" style="width:50%">
+                <div class="card-body">
+                  <h4 class="card-title"> {{usuario}} </h4>
+                  <p class="card-text">Bienvenido a nuestra pltataform RHnet {{usuario}} </p>
+                  <!-- <a butt class="btn btn-primary">Cambiar Imagen</a> -->
+                  <button class="btn btn-primary"> Cambiar Imagen</button>
+                </div>
           </div>
       </div>
   </div>
