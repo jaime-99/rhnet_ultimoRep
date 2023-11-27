@@ -39,12 +39,11 @@ export class DetalleSolicitudComponent implements OnInit {
     });
   }
 
-
-
   getDetalles(id){
 
     this.rhService.getDetalleID(id).subscribe((res)=>{
       this.detalle = res
+
         })
 
   }

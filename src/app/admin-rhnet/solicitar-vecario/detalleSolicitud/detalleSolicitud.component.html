@@ -28,6 +28,7 @@
   <div *ngIf="submited && miFormulario.get('comentarios').hasError('required')" class="text-danger">Los comentarios son requeridos</div>
 </div>
 
+
 <div class="row">
   <div class="col-auto">
   <button type="submit" class="btn btn-success">Aceptar</button>
@@ -47,5 +48,5 @@
 <div *ngIf="verTerminado" class="alert alert-dark" role="alert">
   has Terminado La Solicitud!
 
-  <button class="btn btn-primary"> Regresar al Inicio</button>
+  <button class="btn btn-primary" routerLink="/rhnet/Solititar_Becario">  Regresar al Inicio</button>
 </div>

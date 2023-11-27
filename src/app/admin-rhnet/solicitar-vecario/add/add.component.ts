@@ -35,8 +35,14 @@ export class AddComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+
+      if(result ===undefined){
+        return;
+
+      }else{
       this.getMisSolicitudes(result);
-      // console.log(result)
+      console.log(result)
+      }
 
     });
 }

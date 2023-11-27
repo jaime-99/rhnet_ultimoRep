@@ -46,7 +46,7 @@
             </td>
             <td>  {{s.profesion}} </td>
             <td> {{s.Fecha | date:'dd/MM/yyyy'}} </td>
-            <td>  {{s.estatus}} </td>
+            <td> <strong>  {{s.estatus}} </strong> </td>
             <td>  <button type="button" (click)="verComentariosDialog(s.Comentarios,s.Comentarios_humano)" class="btn btn-primary">Ver</button> </td>
           </tr>
         </tbody>

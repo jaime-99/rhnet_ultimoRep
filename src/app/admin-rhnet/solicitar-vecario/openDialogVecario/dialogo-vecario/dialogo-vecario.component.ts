@@ -23,6 +23,8 @@ export class DialogoVecarioComponent implements OnInit {
   numUsuario: any;
   idJefe: any;
   misDatos: any;
+  email: any;
+  numEmpleadoJefe: any;
 
   constructor( private cdRef: ChangeDetectorRef, private rhnetService:RhnetService,
     public dialogRef: MatDialogRef<DialogoVecarioComponent> , @Inject(MAT_DIALOG_DATA) public data) {
@@ -124,11 +126,13 @@ export class DialogoVecarioComponent implements OnInit {
       this.rhnetService.insertBecario(usuario,area,actividades,metas,proceso,aprobador,profesion,fecha).subscribe((res)=>{
         // console.log(res)
         this.dialogRef.close(this.data.numUsuario);
+        this.enviarEmail();
 
       })
     }else{
 
       return;
+
     }
   }
 
@@ -156,9 +160,44 @@ export class DialogoVecarioComponent implements OnInit {
       this.idJefe = res.NUMERO_EMPLEADO_JEFE
       console.log("id del jefe",this.idJefe)
       this.misDatos = res
+      this.email = res.correoDelJefe
+      this.numEmpleadoJefe = res.NUMERO_EMPLEADO_JEFE
 
       this.formulario.get('aprobador').setValue(this.idJefe);
     })
+  }
+
+
+  //esto enviara el correo al jefe para que pueda ver la solicitud
+  enviarEmail(){
+
+    const envio = {
+      destinatario:this.email  ,
+      mensaje:'tiene una solicitud pendiente de Becario' ,
+      subtitulo: 'Becario',
+      titulo1: 'solicitud Becario'
+    }
+
+    this.rhnetService.mensajeDinamico(envio.destinatario,envio.mensaje,envio.subtitulo,envio.titulo1).subscribe((res)=>{
+      this.enviarNotificacion();
+
+    })
+  }
+
+
+  enviarNotificacion(){
+
+    const notifi = {
+      usuario:this.numEmpleadoJefe,
+      mensaje : 'Se le ha enviado un Becario para Autorizar',
+      tipo: 'Becario'
+    }
+
+
+    this.rhnetService.insertarNotificacion(notifi.usuario,notifi.mensaje,notifi.tipo).subscribe(()=>{
+
+    })
+
   }
 
 
