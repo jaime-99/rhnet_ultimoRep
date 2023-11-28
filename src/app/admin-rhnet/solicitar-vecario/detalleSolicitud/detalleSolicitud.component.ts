@@ -35,14 +35,16 @@ export class DetalleSolicitudComponent implements OnInit {
       this.idDetalle = id
       this.getDetalles(id)
 
-
     });
   }
+
+
 
   getDetalles(id){
 
     this.rhService.getDetalleID(id).subscribe((res)=>{
       this.detalle = res
+      console.log( "estos son mis detalles ",this.detalle)
         })
   }
 
@@ -73,7 +75,34 @@ export class DetalleSolicitudComponent implements OnInit {
     }
   }
 
+  cancelarSolicitud(){
+
+    const valor = this.miFormulario.get('comentarios').value;
+
+    if(this.miFormulario.valid){
+
+    this.rhService.addComentarioJefe(valor,this.idDetalle).subscribe((res)=>{
+      // console.log(res)
+
+      this.mat.open('Has aceptado la solicitud', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.rhService.updateEstatus('3',this.idDetalle).subscribe(()=>{
+        this.verTerminado = true;
+      })
+
+
+    })
+
+  }else{
+    this.submited= true
+
+
+
+
+
+  }
+}
 
 
 
 }
+

@@ -4,7 +4,7 @@
   <div *ngIf="!verTerminado" class="container-fluid">
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">Fecha</label>
-  <input type="email" class="form-control" placeholder={{detalle?.Fecha}} disabled>
+  <input type="text" class="form-control" placeholder={{detalle?.Fecha}} disabled>
 </div>
 <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">Area</label>
@@ -34,7 +34,7 @@
   <button type="submit" class="btn btn-success">Aceptar</button>
   </div>
   <div class="col-auto">
-  <button type="submit" class="btn btn-danger">Denegar</button>
+  <button type="button" class="btn btn-danger" (click)="cancelarSolicitud()">  Denegar</button>
   </div>
 
   <div class="col-auto">
@@ -43,7 +43,6 @@
 </div>
 </div>
 </form>
-
 
 <div *ngIf="verTerminado" class="alert alert-dark" role="alert">
   has Terminado La Solicitud!

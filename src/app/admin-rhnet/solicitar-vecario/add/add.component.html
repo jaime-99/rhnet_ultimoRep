@@ -94,9 +94,9 @@
               <td> {{aprobar.profesion}} </td>
               <td> {{aprobar.Fecha | date:'dd/MM/yyyy'}} </td>
               <td>              <button type="button" class="btn" [ngClass]="{
-                'btn-danger': aprobar.Estatus === 1,
-                'btn-warning': aprobar.Estatus === 2,
-                'btn-success': aprobar.Estatus === 5
+                'btn-danger ': aprobar.Estatus === 1,
+                'btn-warning ': aprobar.Estatus === 2,
+                'btn-success ': aprobar.Estatus === 5
               }" (click)="irDetalles(aprobar.id)"> {{aprobar.estatus}} </button>
               </td>
               <!-- <td> -->
