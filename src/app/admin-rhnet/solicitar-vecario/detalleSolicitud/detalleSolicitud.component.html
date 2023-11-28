@@ -22,19 +22,24 @@
   <label  class="form-label">Metas</label>
   <textarea class="form-control" placeholder={{detalle?.Metas}} rows="4" disabled></textarea>
 </div>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Comentarios</label>
-  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="comentarios" required></textarea>
+
+<div *ngIf="detalle?.Comentarios==null" class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Comentarios Por Parte jefe directo</label>
+  <textarea class="form-control"  rows="3" formControlName="comentarios" required></textarea>
   <div *ngIf="submited && miFormulario.get('comentarios').hasError('required')" class="text-danger">Los comentarios son requeridos</div>
+</div>
+<div *ngIf="detalle?.Comentarios!=null" class="mb-3">
+  <label  class="form-label">Comentarios Por Parte jefe directo</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" [placeholder]="detalle?.Comentarios" disabled></textarea>
 </div>
 
 
 <div class="row">
   <div class="col-auto">
-  <button type="submit" class="btn btn-success">Aceptar</button>
+  <button type="submit" class="btn btn-success" [disabled]="detalle?.Comentarios">Aceptar</button>
   </div>
   <div class="col-auto">
-  <button type="button" class="btn btn-danger" (click)="cancelarSolicitud()">  Denegar</button>
+  <button type="button" class="btn btn-danger" [disabled]="detalle?.Comentarios" (click)="cancelarSolicitud()">  Denegar</button>
   </div>
 
   <div class="col-auto">

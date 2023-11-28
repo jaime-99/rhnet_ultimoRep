@@ -84,7 +84,7 @@ export class DetalleSolicitudComponent implements OnInit {
     this.rhService.addComentarioJefe(valor,this.idDetalle).subscribe((res)=>{
       // console.log(res)
 
-      this.mat.open('Has aceptado la solicitud', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+      this.mat.open('Has rechazado la solicitud de becario', '×', { panelClass: 'error', verticalPosition: 'top', duration: 3000 });
       this.rhService.updateEstatus('3',this.idDetalle).subscribe(()=>{
         this.verTerminado = true;
       })

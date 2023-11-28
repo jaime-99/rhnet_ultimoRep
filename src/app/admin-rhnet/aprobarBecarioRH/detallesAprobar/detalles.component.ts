@@ -77,8 +77,8 @@ export class detallesComponent implements OnInit {
   }
 
   changeEstatus(){
-    // cambiar estatus a 3 de aceptado por RH
-    this.rhnet.updateEstatus(3,this.idParam).subscribe((res)=>{
+    // cambiar estatus a 4 de aceptado por RH
+    this.rhnet.updateEstatus(4,this.idParam).subscribe((res)=>{
       console.log(res)
     })
 
@@ -89,15 +89,19 @@ export class detallesComponent implements OnInit {
   }
 
   cancelarSol(){
-    // cambiar el estatus a 4
+    // cambiar el estatus a 5
 
     if(this.miFormulario.valid){
     const valorComentarios = this.miFormulario.get('comentarios').value;
 
 
-    this.rhnet.updateEstatus(4,this.idParam).subscribe(()=>{
+    this.rhnet.updateEstatus(5,this.idParam).subscribe(()=>{
 
       this.rhnet.addComentarioRH(valorComentarios,this.idParam).subscribe(()=>{
+
+        this.snackBar.open('Has Cancelado la solicitud de becario', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
+        this.pantalla=true
+
 
       })
 
