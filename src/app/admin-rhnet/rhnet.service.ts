@@ -312,6 +312,11 @@ export class RhnetService {
       const body={come,ide}
       return this.http.put<any>( url, body );
     }
+    // estan los aceptados por jefe y aceptados por RH, ya son los que se dan de alta
+    getAceptados():any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/aceptados.php`;
+      return this.http.get<any>(url)
+    }
 
 
 
