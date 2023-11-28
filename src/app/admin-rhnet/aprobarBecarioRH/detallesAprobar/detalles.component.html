@@ -1,0 +1,62 @@
+<form [formGroup]="miFormulario" (ngSubmit)="onSubmit()">
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Fecha</label>
+  <input type="email" class="form-control" [placeholder]="detalle?.Fecha" disabled >
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Solicitado por</label>
+  <input type="email" class="form-control"  [placeholder]="detalle?.nombre_empleado" disabled>
+</div>
+<div class="mb-3">
+  <label  class="form-label">Actividades</label>
+  <textarea class="form-control"  [placeholder]="detalle?.Actividades"  rows="5" disabled></textarea>
+</div>
+<div class="mb-3">
+  <label  class="form-label">Carreras</label>
+  <textarea class="form-control" [placeholder]="detalle?.profesion" disabled  rows="2"></textarea>
+</div>
+<div class="mb-3">
+  <label  class="form-label">Comentarios por Jefe Directo</label>
+  <textarea class="form-control" [placeholder]="detalle?.Comentarios" disabled  rows="2"></textarea>
+</div>
+
+
+<div *ngIf="detalle?.Comentarios_humano ==null" class="mb-3">
+  <label  class="form-label">Comentarios por parte de Desarrollo Humano</label>
+  <textarea class="form-control"rows="2" formControlName="comentarios" required ></textarea>
+  <div *ngIf="submited && miFormulario.get('comentarios').hasError('required')" class="text-danger">Los comentarios son requeridos</div>
+</div>
+<!-- este div es para cuando ya comento, que se vea su comentario -->
+<div *ngIf="detalle?.Comentarios_humano!==null" class="mb-3">
+  <label  class="form-label">Comentarios Por Parte de Desarrollo Humano</label>
+  <textarea   class="form-control"rows="2" [placeholder]="detalle?.Comentarios_humano " disabled ></textarea >
+</div>
+
+
+
+<div class="row">
+
+  <div class="col-1">
+    <button type="submit" [disabled]="detalle?.Comentarios_humano" class="btn btn-success">Aceptar</button>
+
+  </div>
+  <div class="col-2">
+    <button type="button" class="btn btn-danger" (click)="cancelarSol()" [disabled]="detalle?.Comentarios_humano">NO Aceptar</button>
+  </div>
+  <div class="col-1">
+    <button type="button" class="btn btn-primary " (click)="regresar()">Regresar</button>
+  </div>
+
+  <!-- es para que vean otra pantalla cuando ya se completo el formulario -->
+  <div *ngIf="pantalla"  class="confirmation-message">
+    <i class="fas fa-check-circle check-icon"></i>
+    <p>Has aceptado la solicitud</p>
+    <a routerLink="/rhnet/Aprobar_Becario">Ir a Inicio</a>
+  </div>
+
+
+
+</div>
+
+</form>

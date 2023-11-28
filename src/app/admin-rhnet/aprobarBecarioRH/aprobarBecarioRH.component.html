@@ -20,6 +20,7 @@
       <thead>
         <tr>
           <th scope="col">Solicitado Por</th>
+          <th scope="col">Fecha</th>
           <th scope="col">Area</th>
           <th scope="col">Actividades</th>
           <th scope="col">Carrera</th>
@@ -27,12 +28,13 @@
         </tr>
       </thead>
       <tbody>
-       <tr>
-          <th scope="row">Pendiente</th>
-          <td>Pendiente</td>
-          <td>Pendiente</td>
-          <td>Pendiente</td>
-          <td>Pendiente</td>
+       <tr *ngFor="let aceptado of aceptadosRH">
+          <th scope="row"> {{aceptado.nombre_empleado}} </th>
+          <td> {{aceptado.Fecha | date:'dd/MM/yyyy'}} </td>
+          <td> {{aceptado.Area}} </td>
+          <td> {{ aceptado.Actividades.length > 30 ? (aceptado.Actividades | slice:0:30) + '... ' : aceptado.Actividades}} </td>
+          <td> {{aceptado.profesion}} </td>
+          <td> <button class="btn btn-primary btn-sm" (click)="irDetalles(aceptado.id)" >{{aceptado.estatus}} </button> </td>
         </tr>
       </tbody>
     </table>

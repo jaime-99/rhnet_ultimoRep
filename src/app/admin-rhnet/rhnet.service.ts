@@ -301,6 +301,19 @@ export class RhnetService {
       return this.http.put<any>( url, body );
     }
 
+    // los que estan en estatus dos por aceptar de RH
+    getPorAceptar():any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/getPorAceptarRH.php`;
+      return this.http.get<any>(url)
+    }
+    //agregar comentario por parte de RH
+    addComentarioRH(come,ide){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/addComentarioRH.php`;
+      const body={come,ide}
+      return this.http.put<any>( url, body );
+    }
+
+
 
 
 
