@@ -1,21 +1,83 @@
+<form [formGroup]="miFormulario" (ngSubmit)="submitForm()">
 
 <div class="mb-3">
   <label  class="form-label">Nombre</label>
-  <input type="text" class="form-control">
+  <input type="text" class="form-control" required formControlName="nombre">
+  <div *ngIf="(miFormulario.get('nombre').hasError('required')) && miFormulario.get('nombre').touched && error " class="text-danger">
+    La universidad es obligatoria y debe ser completa.
+  </div>
 </div>
 
 <div class="mb-3">
-  <label  class="form-label">Universidad</label>
-  <input type="text" class="form-control">
+  <label class="form-label">Universidad</label>
+  <select class="form-select form-select-sm" formControlName="universidad">
+    <option selected disabled>Selecciona una universidad</option>
+    <option *ngFor="let u of listaUniversidades" [value]="u.id">{{ u.nombre }}</option>
+  </select>
+  <div *ngIf="miFormulario.get('universidad').hasError('required') && miFormulario.get('universidad').touched" class="text-danger">
+    La universidad es obligatiorio.
+  </div>
 </div>
+
 
 <div class="mb-3">
   <label  class="form-label">Carrera</label>
-  <select class="form-select form-select-sm">
-    <option selected>Open this select menu</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+  <select class="form-select form-select-sm" formControlName="carrera">
+    <option selected disabled>Selecciona una Carrera</option>
+    <option *ngFor="let c of listaCarreras" [value]="c.id"  > {{c.nombre}}</option>
   </select>
+  <div *ngIf="miFormulario.get('carrera').hasError('required') && miFormulario.get('carrera').touched" class="text-danger">
+    La carrera es obligatorio.
+  </div>
 </div>
+
+<div class="mb-3">
+  <label  class="form-label">Area</label>
+  <select class="form-select form-select-sm" formControlName="area">
+    <option selected disabled>Selecciona una Area</option>
+    <option *ngFor="let a of listaAreas " [values]="a.id"> {{a.nombre}} </option>
+  </select>
+  <div *ngIf="miFormulario.get('area').hasError('required') && miFormulario.get('area').touched" class="text-danger">
+    El area es obligatorio.
+  </div>
+</div>
+
+<div class="mb-3">
+  <label  class="form-label">Correo</label>
+  <input type="email" class="form-control" formControlName="correo">
+  <div *ngIf="miFormulario.get('correo').hasError('email') && miFormulario.get('correo').touched" class="text-danger">
+    El formato debe ser correcto.
+  </div>
+</div>
+<div class="mb-3">
+  <label  class="form-label">Fecha de Ingreso</label>
+  <input type="date" class="form-control " formControlName="fecha_ingreso">
+  <div *ngIf="miFormulario.get('fecha_ingreso').hasError('required') && miFormulario.get('fecha_ingreso').touched" class="text-danger">
+    La fecha es obligatorio.
+  </div>
+</div>
+
+<div class="mb-3">
+  <label  class="form-label">Solicitante </label>
+  <input type="text" class="form-control" disabled formControlName="solicitante">
+</div>
+
+
+<div class="row">
+
+
+  <div class="col-2">
+  <button type="submit" class=" btn btn-primary">Guardar Datos</button>
+  </div>
+  <div class="col-2">
+  <button class=" btn btn-danger"(click)="back()" >Atras</button>
+  </div>
+
+
+
+
+</div>
+
+</form>
+
 

@@ -318,6 +318,15 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
+    // es para insertar el becario ya completo
+    insertarBecarioCompleto(){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/addBecarioAceptado.php`;
+      const body={}
+      return this.http.post<any>( url, body );
+    }
+
+
+
 
 
 
