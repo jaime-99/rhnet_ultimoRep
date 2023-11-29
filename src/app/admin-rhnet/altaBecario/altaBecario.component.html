@@ -1,2 +1,28 @@
 <h4>Becarios Aceptados por Desarrollo Humano y jefe directo</h4>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Solicitado por</th>
+      <th scope="col">Fecha</th>
+      <th scope="col">Area</th>
+      <th scope="col">Acciones</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let area of aceptados">
+      <th scope="row"> {{area.nombre_empleado}} </th>
+      <td>{{area.Fecha | date:'dd/MM/yyyy'}} </td>
+      <td> {{area.Area}}</td>
+      <td>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn btn-primary">Ver Solicitud</button>
+          <button type="button" class="btn btn-success" routerLink="./Alta_practicante" >Dar Alta</button>
+        </div>
+
+
+      </td>
+    </tr>
+  </tbody>
+</table>

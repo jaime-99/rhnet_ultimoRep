@@ -5,10 +5,12 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { AltaBecarioComponent } from './altaBecario.component';
+import { Alta } from './alta/alta.component';
 
 
 export const routes: Routes = [
-  { path: '', component: AltaBecarioComponent, pathMatch: 'full' }
+  { path: '', component: AltaBecarioComponent, pathMatch: 'full' },
+  { path: 'Alta_practicante', component: Alta, pathMatch: 'full' ,data: { breadcrumb: 'Alta Practicante' }}
 ];
 
 @NgModule({

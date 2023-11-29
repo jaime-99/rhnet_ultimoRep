@@ -6,5 +6,6 @@ export class RhMenu {
                 public icon: string,
                 public target: string,
                 public hasSubMenu: boolean,
-                public parentId: number) { }
+                public parentId: number,
+                public notificacion:boolean) { }
 }

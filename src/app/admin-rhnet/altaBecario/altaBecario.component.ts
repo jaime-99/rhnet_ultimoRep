@@ -14,12 +14,8 @@ export class AltaBecarioComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.aceptados()
 
-
-
-
-
+    this.getAceptados()
   }
 
   getAceptados(){
