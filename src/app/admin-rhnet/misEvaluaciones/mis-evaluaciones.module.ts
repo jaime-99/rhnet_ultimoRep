@@ -4,16 +4,18 @@ import { RouterModule, Routes } from '@angular/router';
 import { MisEvaluacionesComponent } from './misEvaluaciones.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EvaluarComponent } from './evaluar/evaluar.component';
+import { EvaluacionFechaComponent } from './evaluacionFecha/evaluacionFecha.component';
 
 export const routes: Routes = [
   { path: '', component: MisEvaluacionesComponent, pathMatch: 'full' },
-  { path: 'EvaluarBecario', component: EvaluarComponent, pathMatch: 'full' }
+  { path: 'EvaluarBecario', component: EvaluarComponent, pathMatch: 'full' },
+  { path: 'EvaluacionFecha', component: EvaluacionFechaComponent, pathMatch: 'full' }
 ];
 
 
 
 @NgModule({
-  declarations: [MisEvaluacionesComponent,EvaluarComponent],
+  declarations: [MisEvaluacionesComponent,EvaluarComponent,EvaluacionFechaComponent],
   imports: [
     CommonModule,
     SharedModule,

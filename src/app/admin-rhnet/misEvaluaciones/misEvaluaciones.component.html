@@ -1,8 +1,5 @@
-
+<!--
 <div class="h3">Evaluaciones</div>
-
-
-
 
 <div class="list-group">
   <button type="button" (click)="irEvaluar()" class="list-group-item list-group-item-action">1. Evaluacion
@@ -26,6 +23,51 @@
     <span class="fecha">  {{Misbecarios?.eval_fecha5| date:'dd/MM/yyyy'}} </span>
  </button>
 </div>
+ -->
+
+
+ <div class="container-fluid">
+
+
+  <div class="card">
+
+    <div class="card-header card-header-azure">
+      <h4 class="card-title">Mis Becarios</h4>
+    </div>
+
+
+    <div class="card-body">
+
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr >
+              <th scope="col">Nombre</th>
+              <th scope="col">Fecha Ingreso</th>
+              <th scope="col">Carrera</th>
+              <th scope="col">Evaluaciones</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of Misbecarios" >
+              <th scope="row">  {{m.nombre}}  </th>
+              <td> 17/12/99 </td>
+              <td>Sistemas </td>
+              <td>
+                <div class="row">
+                  <div class="col-md-12">
+                    <button class="btn btn-primary btn-sm my-2" (click)="irEvaluar(m.id)"  >Evaluar</button>
+                    <!-- <button class="btn btn-info btn-sm my-2 " (click)="mensajeAutorizado(solicitud.Fecha_inicio,solicitud.FechaFin)">Aprobar</button> -->
+                  </div>
+                  </div>
+
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
 
 
@@ -34,6 +76,13 @@
 
 
 
+    </div>
 
 
 
+
+  </div>
+
+
+
+ </div>

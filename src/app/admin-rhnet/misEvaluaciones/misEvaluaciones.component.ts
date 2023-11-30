@@ -43,16 +43,18 @@ export class MisEvaluacionesComponent implements OnInit {
   getBecarios(){
 
     this.rhnetService.getBecarios(this.numUsuario).subscribe((res)=>{
-      console.log("mmis becarios",res)
+      console.log("mis becarios",res)
       this.Misbecarios = res
     })
   }
 
 
-  irEvaluar(){
+  irEvaluar(id){
     // es para ir a la evaluacion y obtener el num de evaluacion , para posterior insertar le idEval
 
-    this.router.navigate(['./rhnet/mis_Evaluaciones/EvaluarBecario']);
+    this.router.navigate(['./rhnet/mis_Evaluaciones/EvaluacionFecha', {id:id}]);
+
+
 
 
   }
