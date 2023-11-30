@@ -37,11 +37,11 @@ getAceptados(){
 
 }
 
-irAlta(id,solicitante){
+irAlta(id,solicitante,usuario){
   // se redirecciona a la pestaña de alta
 
   this.router.navigate(['/rhnet/Alta_Becario/Alta_practicante'], {
-    queryParams: {id: id , solicitante:solicitante}
+    queryParams: {id: id , solicitante:solicitante,usuario:usuario}
   });
 }
 

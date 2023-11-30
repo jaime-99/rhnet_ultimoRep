@@ -319,11 +319,23 @@ export class RhnetService {
     }
 
     // es para insertar el becario ya completo
-    insertarBecarioCompleto(){
+    insertarBecarioCompleto(idsol,nombre,universidad,carrera,fec_ingreso,area,usuario,correo,
+      solicitante,entero,tipoeval,activo,eval_fecha1,ideval1,eval_fecha2,ideval2,
+    eval_fecha3,ideval3,eval_fecha4,ideval4,eval_fecha5,ideval5,evaluacion){
       const url=`https://www.dikeninternational.com/angular_service/api/Becario/addBecarioAceptado.php`;
-      const body={}
+      const body={idsol,nombre,universidad,carrera,fec_ingreso,area,usuario,correo,solicitante,entero,tipoeval,activo,eval_fecha1,
+      ideval1,eval_fecha2,ideval2,eval_fecha3,ideval3,eval_fecha4,ideval4,eval_fecha5,ideval5,evaluacion}
       return this.http.post<any>( url, body );
     }
+
+
+    // para obtener los becarios que tiene cada usuaro con su id
+    getBecarios(id):any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/Evaluaciones.php?id=${id}`
+      return this.http.get<any>(url)
+    }
+
+
 
 
 

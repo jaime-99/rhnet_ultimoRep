@@ -34,7 +34,7 @@
           <td> {{aceptado.Area}} </td>
           <td> {{ aceptado.Actividades.length > 30 ? (aceptado.Actividades | slice:0:30) + '... ' : aceptado.Actividades}} </td>
           <td> {{aceptado.profesion}} </td>
-          <td> <button class="btn btn-primary btn-sm" (click)="irDetalles(aceptado.id)" >{{aceptado.estatus}} </button> </td>
+          <td> <button class="btn btn-success btn-sm" (click)="irDetalles(aceptado.id)" >{{aceptado.estatus}} </button> </td>
         </tr>
       </tbody>
     </table>
@@ -42,3 +42,4 @@
   </div>
 
 </div>
+

@@ -1,10 +1,11 @@
+<div *ngIf="!pantalla" class="container-fluid">
 <form [formGroup]="miFormulario" (ngSubmit)="submitForm()">
 
 <div class="mb-3">
   <label  class="form-label">Nombre</label>
-  <input type="text" class="form-control" required formControlName="nombre">
-  <div *ngIf="(miFormulario.get('nombre').hasError('required')) && miFormulario.get('nombre').touched && error " class="text-danger">
-    La universidad es obligatoria y debe ser completa.
+  <input type="text" class="form-control"  formControlName="nombre">
+  <div *ngIf="(miFormulario.get('nombre').hasError('required')) && miFormulario.get('nombre').touched " class="text-danger">
+    El nombre es obligatiorio.
   </div>
 </div>
 
@@ -12,7 +13,7 @@
   <label class="form-label">Universidad</label>
   <select class="form-select form-select-sm" formControlName="universidad">
     <option selected disabled>Selecciona una universidad</option>
-    <option *ngFor="let u of listaUniversidades" [value]="u.id">{{ u.nombre }}</option>
+    <option *ngFor="let u of listaUniversidades" [value]="u.nombre">{{ u.nombre }}</option>
   </select>
   <div *ngIf="miFormulario.get('universidad').hasError('required') && miFormulario.get('universidad').touched" class="text-danger">
     La universidad es obligatiorio.
@@ -24,7 +25,7 @@
   <label  class="form-label">Carrera</label>
   <select class="form-select form-select-sm" formControlName="carrera">
     <option selected disabled>Selecciona una Carrera</option>
-    <option *ngFor="let c of listaCarreras" [value]="c.id"  > {{c.nombre}}</option>
+    <option *ngFor="let c of listaCarreras" [value]="c.nombre"  > {{c.nombre}}</option>
   </select>
   <div *ngIf="miFormulario.get('carrera').hasError('required') && miFormulario.get('carrera').touched" class="text-danger">
     La carrera es obligatorio.
@@ -35,7 +36,7 @@
   <label  class="form-label">Area</label>
   <select class="form-select form-select-sm" formControlName="area">
     <option selected disabled>Selecciona una Area</option>
-    <option *ngFor="let a of listaAreas " [values]="a.id"> {{a.nombre}} </option>
+    <option *ngFor="let a of listaAreas " [values]="a.nombre"> {{a.nombre}} </option>
   </select>
   <div *ngIf="miFormulario.get('area').hasError('required') && miFormulario.get('area').touched" class="text-danger">
     El area es obligatorio.
@@ -59,25 +60,30 @@
 
 <div class="mb-3">
   <label  class="form-label">Solicitante </label>
-  <input type="text" class="form-control" disabled formControlName="solicitante">
+  <input type="text" class="form-control" disabled  formControlName="solicitante">
 </div>
+
+
 
 
 <div class="row">
 
-
   <div class="col-2">
-  <button type="submit" class=" btn btn-primary">Guardar Datos</button>
-  </div>
-  <div class="col-2">
-  <button class=" btn btn-danger"(click)="back()" >Atras</button>
+    <button type="submit" class=" btn btn-primary">Guardar Datos</button>
   </div>
 
-
-
-
+  <div class="col-2">
+    <button type="button" class="btn btn-danger"(click)="back()" >Atras</button>
+  </div>
 </div>
 
 </form>
+</div>
+
+<div *ngIf="pantalla"  class="confirmation-message">
+  <i class="fas fa-check-circle check-icon"></i>
+  <p>Has dado de alta al becario</p>
+  <a routerLink="/rhnet/Aprobar_Becario">Ir a ver Becarios</a>
+</div>
 
 

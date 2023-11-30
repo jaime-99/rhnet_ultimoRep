@@ -19,6 +19,7 @@ export const RHmenuItems = [
 
 
   new RhMenu (50, 'Solicitar Becario', "/rhnet/Solicitar_Becario", null, 'notes', null, false, 0,false),
+  new RhMenu (55, 'Mis Evaluaciones', "/rhnet/mis_Evaluaciones", null, 'notes', null, false, 0,false),
 
   new RhMenu (52, 'Becarios', null, null, 'school', null, true, 0,false),
   new RhMenu (53, 'Aprobar Becarios', '/rhnet/Aprobar_Becario', null, 'check_box', null, false, 52,false),
