@@ -52,6 +52,8 @@ export class MisEvaluacionesComponent implements OnInit {
   irEvaluar(){
     // es para ir a la evaluacion y obtener el num de evaluacion , para posterior insertar le idEval
 
+    this.router.navigate(['./rhnet/mis_Evaluaciones/EvaluarBecario']);
+
 
   }
 

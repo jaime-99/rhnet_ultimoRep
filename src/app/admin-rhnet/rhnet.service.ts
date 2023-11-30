@@ -335,6 +335,11 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
+    getCompetencias():any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/Competencias.php`
+      return this.http.get<any>(url)
+    }
+
 
 
 

@@ -7,7 +7,7 @@ import { EvaluarComponent } from './evaluar/evaluar.component';
 
 export const routes: Routes = [
   { path: '', component: MisEvaluacionesComponent, pathMatch: 'full' },
-  { path: '', component: EvaluarComponent, pathMatch: 'full' }
+  { path: 'EvaluarBecario', component: EvaluarComponent, pathMatch: 'full' }
 ];
 
 
