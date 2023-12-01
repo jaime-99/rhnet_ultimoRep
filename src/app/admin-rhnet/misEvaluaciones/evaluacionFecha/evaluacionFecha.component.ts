@@ -43,7 +43,7 @@ export class EvaluacionFechaComponent  implements OnInit {
 
   irEvaluar(evaluacion){
 
-    this.router.navigate(['./rhnet/mis_Evaluaciones/EvaluarBecario', {evaluacion:evaluacion}]);
+    this.router.navigate(['./rhnet/mis_Evaluaciones/EvaluarBecario', {evaluacion:evaluacion,idBecario:this.becarioId}]);
 
 
   }

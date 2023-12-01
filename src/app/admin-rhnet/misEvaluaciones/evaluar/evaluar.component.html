@@ -1,11 +1,46 @@
 
-<div class="h4">Evaluacion # {{numEvaluacion}} </div>
+<div class="h4 text-center">Evaluacion # {{numEvaluacion}} </div>
 
-<form>
+<p class="text-secondary">Se evaluaran las Habilidades del becario</p>
+
+
+<!-- <form> -->
   <div class="container mt-3">
     <div >
       <h4 class="text-center"></h4>
-      <div *ngFor="let habilidad of elementos">
+      <div *ngFor="let habilidad of habilidades1">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="habilidad-{{ habilidad.id }}"
+            [id]="'habilidad-' + habilidad.id"
+            [(ngModel)]="checkboxesEstado[habilidad.id]"
+
+          />
+          <label class="form-check-label" for="{{ 'habilidad-' + habilidad.id }}">
+            {{ habilidad.elemento }}
+          </label>
+        </div>
+      </div>
+      <p class="text-secondary mt-1">se evaluara las Aptitudes del becario </p>
+      <div *ngFor="let habilidad of habilidades2">
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            name="habilidad-{{ habilidad.id }}"
+            [id]="'habilidad-' + habilidad.id"
+            [(ngModel)]="checkboxesEstado[habilidad.id]"
+
+          />
+          <label class="form-check-label" for="{{ 'habilidad-' + habilidad.id }}">
+            {{ habilidad.elemento }}
+          </label>
+        </div>
+      </div>
+      <p class="text-secondary mt-1">se evaluara las Actitudes del becario </p>
+      <div *ngFor="let habilidad of habilidades3">
         <div class="form-check">
           <input
             class="form-check-input"
@@ -23,16 +58,24 @@
     </div>
   </div>
 
+
+
+  <div class="mb-3">
+    <label  class="form-label">Comentarios</label>
+    <textarea class="form-control" rows="3" [(ngModel)]="comentario"></textarea>
+    <div *ngIf="advertencia" class="text-danger">Debes llena los comentarios obligatorio</div>
+
+  </div>
+
   <div class="row mt-2">
 
     <div class="col-2">
       <button type="button" class="btn btn-primary"(click)="agregarEvaluacion()" >Enviar Datos</button>
     </div>
     <div class="col-2">
-      <button class="btn btn-danger">Atras</button>
+      <button type="button" class="btn btn-danger" (click)="atras()"  >Atras</button>
     </div>
 
   </div>
 
-
-</form>
+<!-- </form> -->
