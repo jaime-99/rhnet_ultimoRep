@@ -10,8 +10,8 @@ import { FormsModule } from '@angular/forms';
 
 export const routes: Routes = [
   { path: '', component: MisEvaluacionesComponent, pathMatch: 'full' },
-  { path: 'EvaluarBecario', component: EvaluarComponent, pathMatch: 'full' },
-  { path: 'EvaluacionFecha', component: EvaluacionFechaComponent, pathMatch: 'full' }
+  { path: 'EvaluarBecario', component: EvaluarComponent, pathMatch: 'full' ,data: { breadcrumb: 'Evaluar' } },
+  { path: 'EvaluacionFecha', component: EvaluacionFechaComponent, pathMatch: 'full',data: { breadcrumb: 'Evaluaciones' } }
 ];
 
 

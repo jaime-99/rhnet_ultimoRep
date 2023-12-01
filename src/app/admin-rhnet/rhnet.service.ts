@@ -346,12 +346,20 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
-
+    // es para insertar la evaluacion de los practicantes, las 5 evaluaciones
     insertarEvaluacion(id_becario:number,observacion:string,elementosSeleccionados:number[]){
       const url=`https://www.dikeninternational.com/angular_service/api/Becario/insertarEvaluacion.php`;
       const body={id_becario,observacion,elementosSeleccionados}
       return this.http.post<any>( url, body );
     }
+
+    actualizarFechasEv(ideval1,fecha_de_eval1,idBecario){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarFechas.php`;
+      const body={ideval1,fecha_de_eval1,idBecario}
+      return this.http.put<any>( url, body );
+    }
+
+
 
 
 

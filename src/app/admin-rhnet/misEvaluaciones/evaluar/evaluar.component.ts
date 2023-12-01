@@ -84,6 +84,7 @@ export class EvaluarComponent implements OnInit {
 
           // Además, puedes manejar el mensaje como lo necesites
           console.log("Mensaje:", response.mensaje);
+        this.actualizarFechasEv(id_evaluacion);
       });
 
 }
@@ -102,6 +103,18 @@ competencias(){
 
 
     // Ahora puedes hacer algo con las habilidades, por ejemplo, imprimir en la consola
+  }
+
+  actualizarFechasEv(idEvaluacion){
+    // es para actualizar las fechas de evaluacion
+    const idEvaluaciob= idEvaluacion
+    const idBecario = this.idBecario
+    const fechaEvaluacion = '' // falta conseguir la fecha de ev con select en tabla evaluaciones
+
+
+
+
+
   }
 
   atras(){
