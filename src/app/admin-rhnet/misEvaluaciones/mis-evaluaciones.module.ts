@@ -5,6 +5,8 @@ import { MisEvaluacionesComponent } from './misEvaluaciones.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EvaluarComponent } from './evaluar/evaluar.component';
 import { EvaluacionFechaComponent } from './evaluacionFecha/evaluacionFecha.component';
+import { FormsModule } from '@angular/forms';
+
 
 export const routes: Routes = [
   { path: '', component: MisEvaluacionesComponent, pathMatch: 'full' },
@@ -20,6 +22,7 @@ export const routes: Routes = [
     CommonModule,
     SharedModule,
     RouterModule.forChild(routes),
+    FormsModule
 
   ]
 })

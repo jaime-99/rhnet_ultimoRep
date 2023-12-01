@@ -347,6 +347,12 @@ export class RhnetService {
     }
 
 
+    insertarEvaluacion(id_becario:number,observacion:string,elementosSeleccionados:number[]){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/insertarEvaluacion.php`;
+      const body={id_becario,observacion,elementosSeleccionados}
+      return this.http.post<any>( url, body );
+    }
+
 
 
 
