@@ -1,0 +1,59 @@
+
+
+<div class="container-fluid">
+
+  <div class="mb-3">
+    <button class="btn btn-primary" (click)="regresar()" >Regresar</button>
+  </div>
+<div class="card">
+
+
+  <div class="card-body">
+
+    <div class="card-title">
+      <!-- Soliditud -->
+    </div>
+
+    <div class="mb-3">
+      <label  class="form-label">Solicitado por </label>
+      <input type="text" class="form-control" disabled [placeholder]="soli?.nombre_empleado">
+    </div>
+    <div class="mb-3">
+      <label  class="form-label">Fecha</label>
+      <input type="text" class="form-control" [placeholder]="soli?.Fecha" disabled>
+    </div>
+
+
+    <div class="mb-3">
+      <label  class="form-label">Area</label>
+      <input type="text" class="form-control" [placeholder]="soli?.Area" disabled>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Actividades</label>
+      <textarea class="form-control" rows="4" [placeholder]="soli?.Actividades" disabled></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Metas</label>
+      <textarea class="form-control" rows="3" [placeholder]="soli?.Metas" disabled></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Comentarios Desarrollo humano </label>
+      <textarea class="form-control" rows="3" [placeholder]="soli?.Comentarios_humano" disabled></textarea>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Comentarios de jefe Directo </label>
+      <textarea class="form-control" rows="3" [placeholder]="soli?.Comentarios" disabled></textarea>
+    </div>
+
+
+
+
+
+
+  </div>
+
+</div>
+
+
+
+</div>

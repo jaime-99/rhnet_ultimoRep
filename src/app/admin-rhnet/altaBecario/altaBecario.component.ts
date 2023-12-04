@@ -45,6 +45,13 @@ irAlta(id,solicitante,usuario){
   });
 }
 
+irSolicitud(id){
+  this.router.navigate(['/rhnet/Alta_Becario/ver_Solicitud'], {
+    queryParams: {id:id}
+  });
+
+}
+
 
 
 

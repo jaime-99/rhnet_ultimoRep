@@ -283,6 +283,7 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
+    //son los detalles de la tabla de solbecarios
     getDetalleID(id):any{
       const url =  `https://www.dikeninternational.com/angular_service/api/Becario/getDetalles.php?id=${id}`
       return this.http.get<any>(url)

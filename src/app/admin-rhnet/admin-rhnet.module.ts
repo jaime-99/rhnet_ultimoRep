@@ -53,6 +53,7 @@ export const routes = [
       { path:'Aprobar_Becario',loadChildren:()=>import('./aprobarBecarioRH/aprobar-becario-rhmodule.module').then(m=>m.AprobarBecarioRHModuleModule),data: { breadcrumb: 'Aprobar Becario ' }},
       { path:'Alta_Becario',loadChildren:()=>import('./altaBecario/altaBecario.module').then(m=>m.altaBecarioModule),data: { breadcrumb: 'Alta Becario ' }},
       { path:'mis_Evaluaciones',loadChildren:()=>import('./misEvaluaciones/mis-evaluaciones.module').then(m=>m.MisEvaluacionesModule),data: { breadcrumb: 'Mis Evaluaciones ' }},
+      { path:'becarios_activos',loadChildren:()=>import('./becarios-activos/becarios-activos.module').then(m=>m.becariosActivoModule),data: { breadcrumb: 'Becarios Activos ' }},
       // { path: 'detalle-solicitud', component: DetalleSolicitudComponent }
 
     ],
