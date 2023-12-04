@@ -27,6 +27,7 @@ export class EvaluarComponent implements OnInit {
   habilidades3: any;
   advertencia: boolean = false;
   idBecario: any;
+  fechasEvaluaciones: any;
 
 
   constructor (private rhnetService:RhnetService, public route:ActivatedRoute,private location:Location) {}
@@ -105,16 +106,40 @@ competencias(){
     // Ahora puedes hacer algo con las habilidades, por ejemplo, imprimir en la consola
   }
 
-  actualizarFechasEv(idEvaluacion){
+  actualizarFechasEv(idEvaluacion,fecha?:string){
     // es para actualizar las fechas de evaluacion
     const idEvaluaciob= idEvaluacion
     const idBecario = this.idBecario
-    const fechaEvaluacion = '' // falta conseguir la fecha de ev con select en tabla evaluaciones
+    const fechaDefault = '12/12/2000' // falta conseguir la fecha de ev con select en tabla evaluaciones
+
+
+    this.rhnetService.actualizarFechasEv(idEvaluaciob, fecha ||fechaDefault,idBecario,).subscribe((res)=>{
+      console.log(res)
+
+      if(fecha === undefined){
+        this.getEvaluaciones(idEvaluaciob)
+      }else{
+        return;
+      }
+
+      // aqui se tiene que llamar una fucnion para que actualize la evaluacion a 2
 
 
 
+    })
 
+  }
+  getEvaluaciones(idEvaluaciob){
+    this.rhnetService.getEvaluaciones(this.idBecario).subscribe((res)=>{
+      console.log("mis evaluaciones",res)
+      this.fechasEvaluaciones = res
+      const fechas = this.fechasEvaluaciones.map(f => f.fecha);
+      console.log(fechas)
 
+      console.log(fechas[0])
+      this.actualizarFechasEv(idEvaluaciob,fechas[1])
+
+    })
   }
 
   atras(){

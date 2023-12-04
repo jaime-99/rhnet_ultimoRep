@@ -353,10 +353,17 @@ export class RhnetService {
       return this.http.post<any>( url, body );
     }
 
+    //es el primero para actualizar fechas , se haran 5 iguales
     actualizarFechasEv(ideval1,fecha_de_eval1,idBecario){
       const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarFechas.php`;
       const body={ideval1,fecha_de_eval1,idBecario}
       return this.http.put<any>( url, body );
+    }
+
+    // es para obtener los datos de la tabla d eevaluaciones
+    getEvaluaciones(id):any{
+      const url =  `https://www.dikeninternational.com/angular_service/api/Becario/getEvaluaciones.php?id=${id}`
+      return this.http.get<any>(url)
     }
 
 
