@@ -42,7 +42,8 @@ export class EvaluarComponent implements OnInit {
       this.idBecario = idBecario
       // console.log('Evaluacion:', evaluacion);
       console.log( "id de becario", idBecario)
-      this.numEvaluacion = evaluacion
+      this.numEvaluacion = 2
+
 
       // Realiza las acciones necesarias con el parámetro
     });
@@ -62,6 +63,7 @@ export class EvaluarComponent implements OnInit {
 
   // agregar evaluacion
   agregarEvaluacion() {
+
     const id_becario = 1001; // Reemplaza con el valor correcto
     const observacion = 'Observación de prueba'; // Reemplaza con el valor correcto
 
@@ -85,7 +87,25 @@ export class EvaluarComponent implements OnInit {
 
           // Además, puedes manejar el mensaje como lo necesites
           console.log("Mensaje:", response.mensaje);
+
+          if(this.numEvaluacion==1){
+            console.log("el num de evaluacion es uno")
         this.actualizarFechasEv(id_evaluacion);
+          }
+          else if(this.numEvaluacion==2){
+            //llamar a funcion para que se evalue la 2
+            this.actualizarFechasE2(id_evaluacion)
+
+          }
+          else if(this.numEvaluacion===3){
+
+          }
+          else if(this.numEvaluacion==4){
+
+          }
+          else if(this.numEvaluacion==5){
+
+          }
       });
 
 }
@@ -112,7 +132,6 @@ competencias(){
     const idBecario = this.idBecario
     const fechaDefault = '12/12/2000' // falta conseguir la fecha de ev con select en tabla evaluaciones
 
-
     this.rhnetService.actualizarFechasEv(idEvaluaciob, fecha ||fechaDefault,idBecario,).subscribe((res)=>{
       console.log(res)
 
@@ -129,15 +148,43 @@ competencias(){
     })
 
   }
+  actualizarFechasE2(idEvaluacion,fecha?:string){
+    // es para actualizar las fechas de evaluacion
+    const idEvaluaciob= idEvaluacion
+    const idBecario = this.idBecario
+    const fechaDefault = '12/12/2000' // falta conseguir la fecha de ev con select en tabla evaluaciones
+
+    this.rhnetService.actualizarFechasEv2(idEvaluaciob, fecha ||fechaDefault,idBecario,).subscribe((res)=>{
+      console.log(res)
+
+      if(fecha === undefined){
+        this.getEvaluaciones(idEvaluaciob)
+      }else{
+        return;
+      }
+    })
+
+  }
   getEvaluaciones(idEvaluaciob){
     this.rhnetService.getEvaluaciones(this.idBecario).subscribe((res)=>{
       console.log("mis evaluaciones",res)
       this.fechasEvaluaciones = res
       const fechas = this.fechasEvaluaciones.map(f => f.fecha);
       console.log(fechas)
+      if(this.numEvaluacion == 1){
+        this.actualizarFechasEv(idEvaluaciob,fechas[0])
+        console.log( "fecha uno",fechas[0])
 
-      console.log(fechas[0])
-      this.actualizarFechasEv(idEvaluaciob,fechas[1])
+      }
+      else if(this.numEvaluacion==2){
+        this.actualizarFechasE2(idEvaluaciob,fechas[1])
+      }
+      else if(this.numEvaluacion==3){
+      }
+      else if(this.numEvaluacion==4){
+      }
+      else if(this.numEvaluacion==5){
+      }
 
     })
   }

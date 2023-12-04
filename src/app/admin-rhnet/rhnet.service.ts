@@ -365,6 +365,12 @@ export class RhnetService {
       const url =  `https://www.dikeninternational.com/angular_service/api/Becario/getEvaluaciones.php?id=${id}`
       return this.http.get<any>(url)
     }
+      //actualizar las fecha de evaluacion 2
+    actualizarFechasEv2(ideval2,fecha_de_eval2,idBecario){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarFechas2.php`;
+      const body={ideval2,fecha_de_eval2,idBecario}
+      return this.http.put<any>( url, body );
+    }
 
 
 
