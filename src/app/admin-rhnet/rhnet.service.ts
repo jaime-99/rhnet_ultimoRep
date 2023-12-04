@@ -347,9 +347,9 @@ export class RhnetService {
     }
 
     // es para insertar la evaluacion de los practicantes, las 5 evaluaciones
-    insertarEvaluacion(id_becario:number,observacion:string,elementosSeleccionados:number[]){
+    insertarEvaluacion(id_becario:number,observacion:string,elementosSeleccionados:number[],valores:number[]){
       const url=`https://www.dikeninternational.com/angular_service/api/Becario/insertarEvaluacion.php`;
-      const body={id_becario,observacion,elementosSeleccionados}
+      const body={id_becario,observacion,elementosSeleccionados,valores}
       return this.http.post<any>( url, body );
     }
 
@@ -366,11 +366,28 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
       //actualizar las fecha de evaluacion 2
-    actualizarFechasEv2(ideval2,fecha_de_eval2,idBecario){
-      const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarFechas2.php`;
-      const body={ideval2,fecha_de_eval2,idBecario}
+      actualizarFechasEv2(ideval2,fecha_de_eval2,idBecario){
+        const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarFechas2.php`;
+        const body={ideval2,fecha_de_eval2,idBecario}
+        return this.http.put<any>( url, body );
+      }
+    actualizarFechasEv3(ideval3,fecha_de_eval3,idBecario){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarFechas3.php`;
+      const body={ideval3,fecha_de_eval3,idBecario}
       return this.http.put<any>( url, body );
     }
+    actualizarFechasEv4(ideval4,fecha_de_eval4,idBecario){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarFechas4.php`;
+      const body={ideval4,fecha_de_eval4,idBecario}
+      return this.http.put<any>( url, body );
+    }
+    actualizarFechasEv5(ideval5,fecha_de_eval5,idBecario){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarFechas5.php`;
+      const body={ideval5,fecha_de_eval5,idBecario}
+      return this.http.put<any>( url, body );
+    }
+    //todo* se termina las fechas
+
 
 
 
