@@ -44,7 +44,7 @@ export class EvaluarComponent implements OnInit {
       this.idBecario = idBecario
       // console.log('Evaluacion:', evaluacion);
       console.log( "id de becario", idBecario)
-      this.numEvaluacion = 4
+      this.numEvaluacion = evaluacion
 
 
       // Realiza las acciones necesarias con el parámetro
