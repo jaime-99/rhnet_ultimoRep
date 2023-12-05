@@ -389,6 +389,11 @@ export class RhnetService {
     }
     //todo* se termina las fechas
 
+    getBecariosActivos():any{
+      const url = `https://www.dikeninternational.com/angular_service/api/Becario/getBecariosAct.php`
+      return this.http.get<any>(url)
+    }
+
 
 
 
