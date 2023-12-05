@@ -9,6 +9,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./detalles-becario.component.scss'],
 })
 export class DetallesBecarioComponent implements OnInit {
+  info: any;
+  comentariosE: any;
 
   constructor (private rhnetService:RhnetService, @Inject(MAT_DIALOG_DATA) public data,
    public dialogRef: MatDialogRef<DetallesBecarioComponent> ) {
@@ -18,14 +20,20 @@ export class DetallesBecarioComponent implements OnInit {
   ngOnInit(): void {
 
     this.datosUsuario()
-
-
   }
 
 
   datosUsuario(){
-    this.rhnetService.getDetalleID(this.data.id).subscribe((res)=>{
-      console.log(res)
+    this.rhnetService.getBecariosPorId(this.data.id).subscribe((res)=>{
+      this.info = res
+      this.observaciones()
+    })
+  }
+
+  observaciones(){
+    this.rhnetService.getObservaciones(this.data.id).subscribe((res)=>{
+      this.comentariosE = res
+      console.log("observaciones",res)
     })
   }
 

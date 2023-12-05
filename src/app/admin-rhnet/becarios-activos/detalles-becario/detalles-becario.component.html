@@ -1,7 +1,7 @@
 
 
 
-<h1 mat-dialog-title>Favorite Animal</h1>
+<h1 mat-dialog-title> {{info?.nombre}} </h1>
 <div mat-dialog-content>
 
   <mat-tab-group>
@@ -11,15 +11,15 @@
 
       <div class="mb-3">
         <label class="form-label">Solicitante</label>
-        <input type="text" class="form-control"  placeholder="pendiente">
+        <input type="text" class="form-control"  [placeholder]="info?.solicitante" disabled>
       </div>
       <div class="mb-3">
         <label class="form-label">Fecha de ingreso</label>
-        <input type="text" class="form-control"  placeholder="pendiente">
+        <input type="text" class="form-control"  [placeholder]="info?.fec_ingreso | date:'dd-MM-yyyy'  " disabled>
       </div>
       <div class="mb-3">
         <label class="form-label">Carrera</label>
-        <input type="text" class="form-control"  placeholder="pendiente">
+        <input type="text" class="form-control" [placeholder]="info?.carrera"  disabled >
       </div>
 
 
@@ -35,7 +35,16 @@
 
     </mat-tab>
     <mat-tab label="Calificaciones"> Calificaciones </mat-tab>
-    <mat-tab label="Comentarios">  </mat-tab>
+    <mat-tab label="Comentarios">
+
+      <div *ngFor="let c of comentariosE"  class="mb-3">
+       <p> <label  class="form-label">Comentario   </label>  <span>  Fecha: {{c.fecha | date:'dd/MM/yyyy'}}   </span>  </p>
+
+        <textarea class="form-control"  rows="3" disabled [value]="c.observa" > </textarea>
+      </div>
+
+
+    </mat-tab>
   </mat-tab-group>
 
 
