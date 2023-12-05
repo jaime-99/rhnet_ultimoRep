@@ -2,7 +2,7 @@
 
 <div class="container-fluid">
 <div *ngFor="let a of competencias" class="form-check">
-  <input class="form-check-input" type="checkbox" [value]="a.id" id="flexCheckChecked" checked>
+  <input class="form-check-input" type="checkbox" [value]="a.id" [checked]="elementosSeleccionados.includes(a.id)" disabled>
   <label class="form-check-label">
     {{a.elemento}}
   </label>
