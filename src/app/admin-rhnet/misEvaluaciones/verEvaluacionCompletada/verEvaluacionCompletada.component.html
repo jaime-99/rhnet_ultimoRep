@@ -1,11 +1,52 @@
 
 
 <div class="container-fluid">
-<div *ngFor="let a of competencias" class="form-check">
-  <input class="form-check-input" type="checkbox" [value]="a.id" [checked]="elementosSeleccionados.includes(a.id)" disabled>
-  <label class="form-check-label">
-    {{a.elemento}}
-  </label>
-</div>
+
+  <div class="card">
+    <div class="card-body">
+      Evaluacion de: <strong>  {{misDatos?.nombre}} </strong>
+
+      <div class="row">
+        <div class="col">
+          Fecha de Evaluacion: {{misDatos?.fecha_de_eval1 | date:'dd/MM/yyyy' }}
+        </div>
+        <div class="col">
+          <button class="btn btn-primary btn-sm">Descargar PDF</button>
+        </div>
+        <div class="col">
+          <button class="btn btn-success btn-sm">Descargar Excel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row mt-2">
+    <div *ngFor="let a of competencias" class="col-md-4 form-check">
+      <label class="form-check-label">
+        <span *ngIf="!elementosSeleccionados.includes(a.id)" class="unchecked-checkbox">
+          <i class="fas fa-times"></i>
+        </span>
+        <span *ngIf="elementosSeleccionados.includes(a.id)" class="checked">
+          <i class="fas fa-check"></i>
+        </span>
+        {{a.elemento}}
+      </label>
+    </div>
+  </div>
+
+
+  <div class="card mt-1">
+    <div class="card-body">
+      <h5 class="card-title">Sugerenicas u Observaciones: </h5>
+
+      Comentarios
+    </div>
+  </div>
+
+
+
+
+
 
 </div>

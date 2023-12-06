@@ -1,3 +1,34 @@
-:host {
-  display: block;
+
+
+/* Estilos para checkboxes deshabilitados sin que se vean borrosos */
+.form-check-input[disabled] {
+  opacity: 1; /* Hace que el checkbox deshabilitado no se vea borroso */
+  cursor: not-allowed; /* Cambia el cursor cuando está deshabilitado */
 }
+.form-check-label{
+  opacity:1
+}
+
+form-check-input:disabled~.form-check-label, .form-check-input[disabled]~.form-check-label {
+  cursor: default;
+  opacity: 1 !important;
+}
+
+/* Estilos para el icono de tacha */
+.unchecked-checkbox {
+  color: red; /* Cambia el color del icono de tacha */
+  margin-right: 5px; /* Ajusta el espacio entre el icono y el texto (opcional) */
+}
+.checked{
+  color:green;
+  margin-right:5px;
+}
+
+/* Estilos adicionales para el texto de la etiqueta */
+.form-check-label {
+  color: black; /* Cambia el color del texto cuando el checkbox está marcado */
+  display: flex; /* Permite alinear el icono y el texto en la misma línea */
+  align-items: center; /* Alinea verticalmente el icono y el texto */
+}
+
+

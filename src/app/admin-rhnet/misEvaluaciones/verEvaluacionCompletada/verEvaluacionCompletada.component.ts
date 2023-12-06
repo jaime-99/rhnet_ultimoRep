@@ -15,6 +15,7 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   ideval1: number; // es el ideval1 de la tabla becarios
   checks: any; // seran los cheks
   elementosSeleccionados: number[] = []; // son los cheks que se seleccionan
+  observaciones:[];
 
   constructor (private rhService:RhnetService,  public route:ActivatedRoute) {}
 
@@ -36,7 +37,7 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   getCompetencias(){
     this.rhService.getCompetencias().subscribe((res)=>{
       this.competencias = res
-      console.log(res)
+      console.log( "competencias",res)
 
 
     })
@@ -61,11 +62,18 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
       this.misDatos = res
       this.ideval1 = this.misDatos.ideval1
       this.getChecks()
-
-
-
     })
   }
+
+  getSugerencias(){
+    this.rhService.getObservaciones(this.idBecario).subscribe((res)=>{
+      console.log("ob",res)
+      this.observaciones = res
+      // crear un nueva api que solo obtenga una observacion
+    })
+  }
+
+
 
 
 
