@@ -16,19 +16,38 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   checks: any; // seran los cheks
   elementosSeleccionados: number[] = []; // son los cheks que se seleccionan
   observaciones:[];
-
+  numEvaluacion: number; // contendra el numero de evaluacion para saber que idval colocarle
+  ideval2: number;
+  tipo: String; // es el numero que le doy cuando, es para saber que evaluacion estoy dando click
+  ideval3: number;
+  ideval4: number;
+  ideval5: number;
+  becarioData: any;
+  fechaEvaluacion:string;
+  datosEvaluacion:any; // son los datos de cada evaluacion
+  observacion: any;
   constructor (private rhService:RhnetService,  public route:ActivatedRoute) {}
-
+  idEvaluacion:any;
 
   ngOnInit(): void {
 
     this.route.params.subscribe(params => {
       const idBecario = params['id'];
+      const evaluacion = params['evaluacion'];
+      const tipo = params['tipo'];
+      this.becarioData = params['becarios']; //todo checar por que esta en [object Object]
+      // console.log(tipo)
+      // console.log( "ev",evaluacion)
       // console.log( "id de becario", idBecario)
       this.idBecario = idBecario
+      this.numEvaluacion = evaluacion
+      this.tipo = tipo
+
+
+
+      this.getBecario(tipo)
     });
     this.getCompetencias()
-    this.getBecario()
 
   }
 
@@ -46,7 +65,31 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   getChecks(){
     //obtener el id del check
     this.rhService.getChecks(this.ideval1).subscribe((res)=>{
-      // console.log(res)
+      this.checks = res
+
+      const elementosSeleccionados = this.checks
+      .map(habilidad => habilidad.id_elem);
+
+      this.elementosSeleccionados = elementosSeleccionados
+      this.fechaEvaluacion = this.misDatos.fecha_de_eval1
+    })
+
+  }
+  getChecks2(){
+    //obtener el id del check
+    this.rhService.getChecks(this.ideval2).subscribe((res)=>{
+      this.checks = res
+
+      const elementosSeleccionados = this.checks
+      .map(habilidad => habilidad.id_elem);
+
+      this.elementosSeleccionados = elementosSeleccionados
+      this.fechaEvaluacion = this.misDatos.fecha_de_eval2
+    })
+  }
+  getChecks3(){
+    //obtener el id del check
+    this.rhService.getChecks(this.ideval1).subscribe((res)=>{
       this.checks = res
 
       const elementosSeleccionados = this.checks
@@ -57,11 +100,25 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
 
   }
 
-  getBecario(){
+  getBecario(tipo){
     this.rhService.getBecariosPorId(this.idBecario).subscribe((res)=>{
       this.misDatos = res
-      this.ideval1 = this.misDatos.ideval1
+      this.ideval1 = this.misDatos.ideval1 //todo conseguir el ideval 2
+      this.ideval2 = this.misDatos.ideval2
+      this.ideval3 = this.misDatos.ideval3
+      this.ideval4 = this.misDatos.ideval4
+      this.ideval5 = this.misDatos.ideval5
+      if(tipo === '1'){
       this.getChecks()
+      }
+      else if(tipo ==='2'){
+        this.getChecks2();
+      }else if(tipo === '3'){
+        this.getChecks3();
+      }
+
+      this.getComentarios()
+
     })
   }
 
@@ -71,6 +128,16 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
       this.observaciones = res
       // crear un nueva api que solo obtenga una observacion
     })
+  }
+
+  getComentarios(){
+
+    this.rhService.getEvaluacionId(this.ideval1).subscribe((res)=>{
+      console.log(res)
+      this.datosEvaluacion = res
+      this.observacion = this.datosEvaluacion.observa
+    })
+
   }
 
 

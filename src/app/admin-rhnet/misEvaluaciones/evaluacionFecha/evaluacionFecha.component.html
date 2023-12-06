@@ -14,24 +14,36 @@
         <button type="button"  (click)="irEvaluar(becarios?.evaluacion)" class="btn btn-primary btn-sm" [disabled]="becarios?.ideval1"  >Evaluar</button>
         </div>
         <div class="col">
-        <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion()">Ver </button>
+        <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion(becarios?.evaluacion, 1)">Ver </button>
         </div>
       </div>
     </div>
   </li>
 
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li class="list-group-item d-flex justify-content-between">
     <span>2. Evaluación</span>
     <div>
-      <button type="button" class="btn btn-primary btn-sm">Evaluar  </button>
-      <span class="fecha">{{becarios?.eval_fecha2 | date:'dd/MM/yyyy'}}</span>
-    </div>
+      <div class="row">
+        <div class="col">
+          <span class="fecha">{{becarios?.eval_fecha2 | date:'dd/MM/yyyy'}}</span>
+          </div>
+          <div class="col">
+            <button type="button" (click)="irEvaluar(becarios?.evaluacion)" class="btn btn-primary btn-sm" [disabled]="becarios?.ideval2" class="btn btn-primary btn-sm">Evaluar  </button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion(becarios?.evaluacion,2)">Ver </button>
+          </div>
+        </div>
+
+
+  </div>
+
   </li>
 
-  <li class="list-group-item d-flex justify-content-between align-items-center">
+  <li class="list-group-item d-flex justify-content-between">
     <span>3. Evaluación</span>
     <div>
-      <button type="button" class="btn btn-primary btn-sm">Evaluar</button>
+      <button type="button" class="btn btn-primary btn-sm" (click)="irEvaluar(becarios?.evaluacion)" class="btn btn-primary btn-sm" [disabled]="becarios?.ideval3" >Evaluar</button>
       <span class="fecha">{{becarios?.eval_fecha3 | date:'dd/MM/yyyy'}}</span>
     </div>
   </li>

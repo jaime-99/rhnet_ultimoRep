@@ -412,6 +412,12 @@ export class RhnetService {
       return this.http.put<any>( url, body );
     }
 
+    //obtener tabla de evaluacion con su id de eval1 , o ideval2
+    getEvaluacionId(id):any{ // obtiene los checks de la evaluacion
+      const url = `https://www.dikeninternational.com/angular_service/api/Becario/getEvaluacionId.php?id=${id}`
+      return this.http.get<any>(url)
+    }
+
 
 
 

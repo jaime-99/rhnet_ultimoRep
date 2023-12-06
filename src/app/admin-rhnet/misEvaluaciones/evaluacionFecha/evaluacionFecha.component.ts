@@ -46,9 +46,9 @@ export class EvaluacionFechaComponent  implements OnInit {
     this.router.navigate(['./rhnet/mis_Evaluaciones/EvaluarBecario', {evaluacion:evaluacion,idBecario:this.becarioId}]);
   }
 
-  irAVerEvaluacion(){
+  irAVerEvaluacion(evaluacion,tipo){
 
-    this.router.navigate(['./rhnet/mis_Evaluaciones/EvaluacionDetalle', {id:this.becarioId}]);
+    this.router.navigate(['./rhnet/mis_Evaluaciones/EvaluacionDetalle', {id:this.becarioId,evaluacion:evaluacion,tipo:tipo,becarios:this.becarios}]);
 
   }
 

@@ -179,9 +179,9 @@ competencias(){
       }else{
         return;
       }
-      this.rhnetService.actualizarEv(idBecario,3).subscribe(()=>{
+      // this.rhnetService.actualizarEv(idBecario,3).subscribe(()=>{
 
-      })
+      // })
     })
 
   }
@@ -199,9 +199,9 @@ competencias(){
       }else{
         return;
       }
-      this.rhnetService.actualizarEv(idBecario,4).subscribe(()=>{
+      // this.rhnetService.actualizarEv(idBecario,4).subscribe(()=>{
 
-      })
+      // })
     })
 
   }
@@ -219,9 +219,9 @@ competencias(){
       }else{
         return;
       }
-      this.rhnetService.actualizarEv(idBecario,5).subscribe(()=>{
+      // this.rhnetService.actualizarEv(idBecario,5).subscribe(()=>{
 
-      })
+      // })
     })
 
   }
@@ -239,9 +239,9 @@ competencias(){
       }else{
         return;
       }
-      this.rhnetService.actualizarEv(idBecario,6).subscribe(()=>{
+      // this.rhnetService.actualizarEv(idBecario,6).subscribe(()=>{
 
-      })
+      // })
     })
 
   }
