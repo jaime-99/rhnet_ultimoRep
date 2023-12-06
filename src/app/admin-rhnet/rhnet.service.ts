@@ -405,6 +405,17 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
+    //actualiza la evaluacion
+    actualizarEv(id,numero){
+      const url=`https://www.dikeninternational.com/angular_service/api/Becario/actualizarEvaluacion.php`;
+      const body={id,numero}
+      return this.http.put<any>( url, body );
+    }
+
+
+
+
+
 
 
 

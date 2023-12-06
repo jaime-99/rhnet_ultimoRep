@@ -11,7 +11,7 @@
         </div>
 
         <div class="col">
-        <button type="button"  (click)="irEvaluar(becarios?.evaluacion)" class="btn btn-primary btn-sm"  >Evaluar</button>
+        <button type="button"  (click)="irEvaluar(becarios?.evaluacion)" class="btn btn-primary btn-sm" [disabled]="becarios?.ideval1"  >Evaluar</button>
         </div>
         <div class="col">
         <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion()">Ver </button>

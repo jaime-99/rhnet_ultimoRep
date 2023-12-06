@@ -154,6 +154,10 @@ competencias(){
         return;
       }
 
+      this.rhnetService.actualizarEv(idBecario,2).subscribe(()=>{
+
+      })
+
       // aqui se tiene que llamar una fucnion para que actualize la evaluacion a 2
 
 
@@ -175,6 +179,9 @@ competencias(){
       }else{
         return;
       }
+      this.rhnetService.actualizarEv(idBecario,3).subscribe(()=>{
+
+      })
     })
 
   }
@@ -192,6 +199,9 @@ competencias(){
       }else{
         return;
       }
+      this.rhnetService.actualizarEv(idBecario,4).subscribe(()=>{
+
+      })
     })
 
   }
@@ -209,6 +219,9 @@ competencias(){
       }else{
         return;
       }
+      this.rhnetService.actualizarEv(idBecario,5).subscribe(()=>{
+
+      })
     })
 
   }
@@ -226,6 +239,9 @@ competencias(){
       }else{
         return;
       }
+      this.rhnetService.actualizarEv(idBecario,6).subscribe(()=>{
+
+      })
     })
 
   }
