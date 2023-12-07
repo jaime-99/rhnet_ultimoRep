@@ -11,7 +11,11 @@
         </div>
 
         <div class="col">
-        <button type="button"  (click)="irEvaluar(becarios?.evaluacion)" class="btn btn-primary btn-sm" [disabled]="becarios?.ideval1"  >Evaluar</button>
+        <button type="button"  (click)="irEvaluar(becarios?.evaluacion)"
+        class="btn btn-primary btn-sm"
+        [ngClass]="{'btn-primary': !becarios?.ideval1, 'btn-success': becarios?.ideval1}"
+         [disabled]="becarios?.ideval1">{{ becarios?.ideval1 ? 'Evaluado' : 'Evaluar' }}
+        </button>
         </div>
         <div class="col">
         <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion(becarios?.evaluacion, 1)">Ver </button>
@@ -20,46 +24,92 @@
   </li>
 
   <li class="list-group-item d-flex justify-content-between">
-    <span>2. Evaluación</span>
-    <div>
-      <div class="row">
+    <div class="row">
+      <div class="col">
+    <span>1.Evaluación</span>
+    </div>
         <div class="col">
-          <span class="fecha">{{becarios?.eval_fecha2 | date:'dd/MM/yyyy'}}</span>
-          </div>
-          <div class="col">
-            <button type="button" (click)="irEvaluar(becarios?.evaluacion)" class="btn btn-primary btn-sm" [disabled]="becarios?.ideval2" class="btn btn-primary btn-sm">Evaluar  </button>
-          </div>
-          <div class="col">
-            <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion(becarios?.evaluacion,2)">Ver </button>
-          </div>
+        <span class="fecha">{{becarios?.eval_fecha2 | date:'dd/MM/yyyy'}}</span>
         </div>
 
+        <div class="col">
+        <button type="button"  (click)="irEvaluar(becarios?.evaluacion)"
+         class="btn btn-primary btn-sm"
+         [ngClass]="{'btn-primary': !becarios?.ideval2, 'btn-success': becarios?.ideval2}"
 
-  </div>
-
+         [disabled]="becarios?.ideval2"  > {{becarios?.ideval2 ? 'Evaluado': 'Evaluar'}} </button>
+        </div>
+        <div class="col">
+        <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion(becarios?.evaluacion, 2)">Ver </button>
+        </div>
+      </div>
   </li>
 
   <li class="list-group-item d-flex justify-content-between">
-    <span>3. Evaluación</span>
-    <div>
-      <button type="button" class="btn btn-primary btn-sm" (click)="irEvaluar(becarios?.evaluacion)" class="btn btn-primary btn-sm" [disabled]="becarios?.ideval3" >Evaluar</button>
-      <span class="fecha">{{becarios?.eval_fecha3 | date:'dd/MM/yyyy'}}</span>
+    <div class="row">
+      <div class="col">
+    <span>1.Evaluación</span>
     </div>
+        <div class="col">
+        <span class="fecha">{{becarios?.eval_fecha3 | date:'dd/MM/yyyy'}}</span>
+        </div>
+
+        <div class="col">
+        <button type="button"  (click)="irEvaluar(becarios?.evaluacion)"
+         class="btn btn-primary btn-sm"
+         [ngClass]="{'btn-primary': !becarios?.ideval3, 'btn-success': becarios?.ideval3}"
+          [disabled]="becarios?.ideval3"  >  {{becarios?.ideval3 ? 'Evaluado': 'Evaluar'}}  </button>
+        </div>
+        <div class="col">
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="!becarios?.ideval3"
+         (click)="irAVerEvaluacion(becarios?.evaluacion, 3)">Ver </button>
+        </div>
+      </div>
   </li>
 
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    <span>4. Evaluación</span>
-    <div>
-      <button type="button" class="btn btn-primary btn-sm">Evaluar</button>
-      <span class="fecha">{{becarios?.eval_fecha4 | date:'dd/MM/yyyy'}}</span>
+  <li class="list-group-item d-flex justify-content-between">
+    <div class="row">
+      <div class="col">
+    <span>1.Evaluación</span>
     </div>
+        <div class="col">
+        <span class="fecha">{{becarios?.eval_fecha4 | date:'dd/MM/yyyy'}}</span>
+        </div>
+
+        <div class="col">
+        <button type="button"  (click)="irEvaluar(becarios?.evaluacion)"
+         class="btn btn-primary btn-sm"
+         [ngClass]="{'btn-primary': !becarios?.ideval4, 'btn-success': becarios?.ideval4}"
+
+         [disabled]="becarios?.ideval4">  {{becarios?.ideval4 ? 'Evaluado': 'Evaluar'}} </button>
+        </div>
+        <div class="col">
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="!becarios?.ideval4"
+         (click)="irAVerEvaluacion(becarios?.evaluacion, 4)">Ver </button>
+        </div>
+      </div>
   </li>
 
-  <li class="list-group-item d-flex justify-content-between align-items-center">
-    <span>5. Evaluación</span>
-    <div>
-      <button type="button" class="btn btn-primary btn-sm" disabled>Evaluar</button>
+  <li class="list-group-item d-flex justify-content-between">
+  <div class="row">
+    <div class="col">
+  <span>1.Evaluación</span>
+  </div>
+      <div class="col">
       <span class="fecha">{{becarios?.eval_fecha5 | date:'dd/MM/yyyy'}}</span>
+      </div>
+
+      <div class="col">
+      <button type="button"  (click)="irEvaluar(becarios?.evaluacion)"
+       class="btn btn-primary btn-sm"
+       [ngClass]="{'btn-primary': !becarios?.ideval5, 'btn-success': becarios?.ideval5}"
+
+        [disabled]="becarios?.ideval5"  >{{becarios?.ideval5 ? 'Evaluado': 'Evaluar' }} </button>
+      </div>
+      <div class="col">
+      <button type="button" class="btn btn-primary btn-sm" [disabled]="!becarios?.ideval5"
+       (click)="irAVerEvaluacion(becarios?.evaluacion, 5)">Ver </button>
+      </div>
     </div>
-  </li>
+</li>
 </ul>

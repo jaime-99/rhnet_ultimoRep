@@ -89,7 +89,31 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   }
   getChecks3(){
     //obtener el id del check
-    this.rhService.getChecks(this.ideval1).subscribe((res)=>{
+    this.rhService.getChecks(this.ideval3).subscribe((res)=>{
+      this.checks = res
+
+      const elementosSeleccionados = this.checks
+      .map(habilidad => habilidad.id_elem);
+
+      this.elementosSeleccionados = elementosSeleccionados
+    })
+
+  }
+  getChecks4(){
+    //obtener el id del check
+    this.rhService.getChecks(this.ideval4).subscribe((res)=>{
+      this.checks = res
+
+      const elementosSeleccionados = this.checks
+      .map(habilidad => habilidad.id_elem);
+
+      this.elementosSeleccionados = elementosSeleccionados
+    })
+
+  }
+  getChecks5(){
+    //obtener el id del check
+    this.rhService.getChecks(this.ideval5).subscribe((res)=>{
       this.checks = res
 
       const elementosSeleccionados = this.checks
@@ -115,6 +139,10 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
         this.getChecks2();
       }else if(tipo === '3'){
         this.getChecks3();
+      }else if(tipo ==='4'){
+        this.getChecks4()
+      }else if(tipo ==='5'){
+        this.getChecks5()
       }
 
       this.getComentarios()
@@ -132,11 +160,42 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
 
   getComentarios(){
 
-    this.rhService.getEvaluacionId(this.ideval1).subscribe((res)=>{
-      console.log(res)
-      this.datosEvaluacion = res
-      this.observacion = this.datosEvaluacion.observa
-    })
+    if(this.tipo==='1'){
+
+      this.rhService.getEvaluacionId(this.ideval1).subscribe((res)=>{
+        // console.log(res)
+        this.datosEvaluacion = res
+        this.observacion = this.datosEvaluacion.observa
+      })
+
+    }else if(this.tipo ==='2'){
+      this.rhService.getEvaluacionId(this.ideval2).subscribe((res)=>{
+        // console.log(res)
+        this.datosEvaluacion = res
+        this.observacion = this.datosEvaluacion.observa
+      })
+
+    }else if(this.tipo === '3'){
+      this.rhService.getEvaluacionId(this.ideval3).subscribe((res)=>{
+        // console.log(res)
+        this.datosEvaluacion = res
+        this.observacion = this.datosEvaluacion.observa
+      })
+    }else if(this.tipo === '4'){
+      this.rhService.getEvaluacionId(this.ideval4).subscribe((res)=>{
+        // console.log(res)
+        this.datosEvaluacion = res
+        this.observacion = this.datosEvaluacion.observa
+      })
+
+    }else if(this.tipo === '5'){
+      this.rhService.getEvaluacionId(this.ideval5).subscribe((res)=>{
+        // console.log(res)
+        this.datosEvaluacion = res
+        this.observacion = this.datosEvaluacion.observa
+      })
+    }
+
 
   }
 
