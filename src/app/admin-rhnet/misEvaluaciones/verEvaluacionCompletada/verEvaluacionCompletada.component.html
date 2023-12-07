@@ -4,7 +4,7 @@
   <button class="btn btn-primary btn-sm" *ngIf="!generadoPDF" (click)="back()" >
     <i class="fas fa-arrow-left"></i> Regresar
   </button>
-  <h1 class="display-6 text-center">Evaluacion # {{numEvaluacion}}</h1>
+  <h1 class="display-6 text-center">Evaluacion # {{tipo}}</h1>
 
 
 
@@ -28,7 +28,10 @@
 
 
   <div class="row mt-2">
-    <div *ngFor="let a of competencias" class="col-md-4 form-check">
+    <div class="col-md-4">
+      <small class="text-body-secondary">Habilidades</small>
+
+    <div *ngFor="let a of habilidades1">
       <label class="form-check-label">
         <span *ngIf="!elementosSeleccionados.includes(a.id)" class="unchecked-checkbox">
           <i class="fas fa-times"></i>
@@ -39,6 +42,37 @@
         {{a.elemento}}
       </label>
     </div>
+    </div>
+    <div class="col-md-4">
+      <small class="text-body-secondary">Aptitudes</small>
+
+    <div *ngFor="let a of habilidades2">
+      <label class="form-check-label">
+        <span *ngIf="!elementosSeleccionados.includes(a.id)" class="unchecked-checkbox">
+          <i class="fas fa-times"></i>
+        </span>
+        <span *ngIf="elementosSeleccionados.includes(a.id)" class="checked">
+          <i class="fas fa-check"></i>
+        </span>
+        {{a.elemento}}
+      </label>
+    </div>
+    </div>
+    <div class="col-md-4">
+      <small class="text-body-secondary">Actitudes</small>
+
+    <div *ngFor="let a of habilidades3">
+      <label class="form-check-label">
+        <span *ngIf="!elementosSeleccionados.includes(a.id)" class="unchecked-checkbox">
+          <i class="fas fa-times"></i>
+        </span>
+        <span *ngIf="elementosSeleccionados.includes(a.id)" class="checked">
+          <i class="fas fa-check"></i>
+        </span>
+        {{a.elemento}}
+      </label>
+    </div>
+    </div>
   </div>
 
 
@@ -46,8 +80,13 @@
     <div class="card-body">
       <h5 class="card-title">Sugerenicas u Observaciones: </h5>
 
-      {{this.observacion}}
+      <p>{{this.observacion}}</p>
     </div>
+  </div>
+
+  <div class="alert alert-secondary mt-1">
+    <h5>Calificacion : {{calificancion}}  </h5>
+
   </div>
 
 

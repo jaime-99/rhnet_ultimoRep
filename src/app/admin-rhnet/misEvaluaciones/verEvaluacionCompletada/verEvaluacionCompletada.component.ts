@@ -11,7 +11,7 @@ import * as html2pdf from 'html2pdf.js';
   styleUrls: ['./verEvaluacionCompletada.component.scss'],
 })
 export class VerEvaluacionCompletadaComponent implements OnInit  {
-  competencias: []; // son las competencias del check
+  competencias: any; // son las competencias del check
   idBecario: number; // es el id de becario de la tabla becarios
   misDatos: any; // son mis datos de la tabla becario
   ideval1: number; // es el ideval1 de la tabla becarios
@@ -28,6 +28,10 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   fechaEvaluacion:string;
   datosEvaluacion:any; // son los datos de cada evaluacion
   observacion: any;
+  habilidades1: never[];
+  habilidades2: never[];
+  habilidades3: never[];
+  calificancion: string;
   constructor (private rhService:RhnetService,  public route:ActivatedRoute, public location:Location ) {}
   idEvaluacion:any;
   generadoPDF= false
@@ -60,9 +64,44 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
     this.rhService.getCompetencias().subscribe((res)=>{
       this.competencias = res
       console.log( "competencias",res)
-
-
+      this.filtradoCompetencias();
     })
+
+
+  }
+  filtradoCompetencias(){ // filtrar las 3 competencias
+
+    // Filtras las habilidades por id_competencia
+    const habilidades1 = this.competencias.filter(h => h.id_competencia ===1);
+    const habilidades2 = this.competencias.filter(h => h.id_competencia ===2);
+    const habilidades3 = this.competencias.filter(h => h.id_competencia ===3);
+
+    this.habilidades1 = habilidades1
+    this.habilidades2 = habilidades2
+    this.habilidades3 = habilidades3
+    console.log("competencias 1 ", habilidades1)
+
+
+    // Ahora puedes hacer algo con las habilidades, por ejemplo, imprimir en la consola
+  }
+
+  calcularOperacion(){
+
+    // const elementosSeleccionados = this.checks.filter(item => this.competencias.includes(item.id_elem));
+
+    // console.log(elementosSeleccionados)
+
+    const calificacionTotal = this.checks.reduce((total, elemento) => {
+      return total + (elemento.valor * elemento.id_elem);
+    }, 0);
+
+    const calificacionFinal = Math.min(calificacionTotal, 100);
+
+// Formatear el resultado con dos decimales
+    const calificacionFormateada = calificacionFinal.toFixed(2);
+    this.calificancion = calificacionFormateada
+
+    // console.log('Calificación Total:', calificacionFormateada);
   }
 
   getChecks(){
@@ -75,6 +114,10 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
 
       this.elementosSeleccionados = elementosSeleccionados
       this.fechaEvaluacion = this.misDatos.fecha_de_eval1
+
+      console.log(this.checks)
+      console.log(this.competencias)
+      this.calcularOperacion()
     })
 
   }
@@ -88,6 +131,8 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
 
       this.elementosSeleccionados = elementosSeleccionados
       this.fechaEvaluacion = this.misDatos.fecha_de_eval2
+      this.calcularOperacion()
+
     })
   }
   getChecks3(){
@@ -99,6 +144,10 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
       .map(habilidad => habilidad.id_elem);
 
       this.elementosSeleccionados = elementosSeleccionados
+      this.fechaEvaluacion = this.misDatos.fecha_de_eval3
+
+      this.calcularOperacion()
+
     })
 
   }
@@ -111,6 +160,9 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
       .map(habilidad => habilidad.id_elem);
 
       this.elementosSeleccionados = elementosSeleccionados
+      this.fechaEvaluacion = this.misDatos.fecha_de_eval4
+      this.calcularOperacion()
+
     })
 
   }
@@ -123,6 +175,9 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
       .map(habilidad => habilidad.id_elem);
 
       this.elementosSeleccionados = elementosSeleccionados
+      this.fechaEvaluacion = this.misDatos.fecha_de_eval5
+      this.calcularOperacion()
+
     })
 
   }
@@ -212,7 +267,7 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
 
     const element = document.getElementById('contenido');
     const options = {
-      filename:   `Evaluacion # ${this.numEvaluacion}`,  // Cambia 'nombre_del_archivo' al nombre que desees
+      filename:   `Evaluacion # ${this.tipo}`,  // Cambia 'nombre_del_archivo' al nombre que desees
     };
 
 
