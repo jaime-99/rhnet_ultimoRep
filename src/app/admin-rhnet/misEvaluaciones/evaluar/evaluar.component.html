@@ -1,13 +1,15 @@
 
 <div class="h4 text-center">Evaluacion # {{numEvaluacion}} </div>
 
-<p class="text-secondary">Se evaluaran las Habilidades del becario</p>
 
 
 <!-- <form> -->
-  <div class="container mt-3">
-    <div >
-      <h4 class="text-center"></h4>
+  <div class="div" *ngFor="!pantalla">
+  <div class="container mt-3 alert alert-secondary">
+      <div class="row">
+        <div class="col-md-4">
+          <p class="text-secondary">Se evaluaran las Habilidades del becario</p>
+
       <div *ngFor="let habilidad of habilidades1">
         <div class="form-check">
           <input
@@ -23,7 +25,9 @@
           </label>
         </div>
       </div>
-      <p class="text-secondary mt-1">se evaluara las Aptitudes del becario </p>
+      </div>
+      <div class="col-md-4">
+      <p class="text-secondary ">se evaluara las Aptitudes del becario </p>
       <div *ngFor="let habilidad of habilidades2">
         <div class="form-check">
           <input
@@ -39,7 +43,9 @@
           </label>
         </div>
       </div>
-      <p class="text-secondary mt-1">se evaluara las Actitudes del becario </p>
+      </div>
+      <div class="col-md-4">
+      <p class="text-secondary">se evaluara las Actitudes del becario </p>
       <div *ngFor="let habilidad of habilidades3">
         <div class="form-check">
           <input
@@ -55,6 +61,7 @@
           </label>
         </div>
       </div>
+    </div>
     </div>
   </div>
 
@@ -76,6 +83,14 @@
       <button type="button" class="btn btn-danger" (click)="atras()"  >Atras</button>
     </div>
 
+  </div>
+  </div>
+
+
+  <div *ngIf="pantalla"  class="confirmation-message">
+    <i class="fas fa-check-circle check-icon"></i>
+    <p>Has Completado la Evaluacion de [pendiente]</p>
+    <a routerLink="/rhnet/mis_Evaluaciones">Ir a Mis Evaluaciones</a>
   </div>
 
 <!-- </form> -->

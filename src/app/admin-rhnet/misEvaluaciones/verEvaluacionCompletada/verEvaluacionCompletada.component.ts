@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { RhnetService } from '../../rhnet.service';
 import { ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
 
@@ -26,8 +28,9 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   fechaEvaluacion:string;
   datosEvaluacion:any; // son los datos de cada evaluacion
   observacion: any;
-  constructor (private rhService:RhnetService,  public route:ActivatedRoute) {}
+  constructor (private rhService:RhnetService,  public route:ActivatedRoute, public location:Location ) {}
   idEvaluacion:any;
+  generadoPDF= false
 
   ngOnInit(): void {
 
@@ -200,10 +203,28 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   }
 
 
+  back(){
+    this.location.back();
+  }
+
+  generarPDF() {
+    this.generadoPDF = true;
+
+    const element = document.getElementById('contenido');
+    const options = {
+      filename:   `Evaluacion # ${this.numEvaluacion}`,  // Cambia 'nombre_del_archivo' al nombre que desees
+    };
+
+
+    html2pdf(element,options).then(() => {
+      this.generadoPDF = false;
+    });
+  }
+
+  }
 
 
 
 
 
 
- }

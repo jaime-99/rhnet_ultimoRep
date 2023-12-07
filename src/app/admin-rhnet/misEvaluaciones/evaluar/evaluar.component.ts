@@ -13,6 +13,7 @@ export class EvaluarComponent implements OnInit {
   elementos: any; // esto son mis elementos
   checkboxesEstado: { [key: number]: boolean } = {}; // es para marcar los checkbox
   public comentario:string;
+  pantalla = false;
 
   Competencia = [
     { id: 1, competencia: 'Habilidades', descripcion:'se evaluara las Habilidades del becario' },
@@ -107,7 +108,7 @@ export class EvaluarComponent implements OnInit {
             this.actualizarFechasE2(id_evaluacion)
 
           }
-          else if(this.numEvaluacion===3){
+          else if(this.numEvaluacion==3){
             this.actualizarFechasE3(id_evaluacion)
 
           }
@@ -119,6 +120,8 @@ export class EvaluarComponent implements OnInit {
             this.actualizarFechasE5(id_evaluacion)
 
           }
+
+          this.pantalla = true;
       });
 
 }
@@ -179,9 +182,9 @@ competencias(){
       }else{
         return;
       }
-      // this.rhnetService.actualizarEv(idBecario,3).subscribe(()=>{
+      this.rhnetService.actualizarEv(idBecario,3).subscribe(()=>{
 
-      // })
+      })
     })
 
   }
@@ -199,9 +202,9 @@ competencias(){
       }else{
         return;
       }
-      // this.rhnetService.actualizarEv(idBecario,4).subscribe(()=>{
+      this.rhnetService.actualizarEv(idBecario,4).subscribe(()=>{
 
-      // })
+      })
     })
 
   }
@@ -219,9 +222,9 @@ competencias(){
       }else{
         return;
       }
-      // this.rhnetService.actualizarEv(idBecario,5).subscribe(()=>{
+      this.rhnetService.actualizarEv(idBecario,5).subscribe(()=>{
 
-      // })
+      })
     })
 
   }
@@ -239,9 +242,9 @@ competencias(){
       }else{
         return;
       }
-      // this.rhnetService.actualizarEv(idBecario,6).subscribe(()=>{
+      this.rhnetService.actualizarEv(idBecario,6).subscribe(()=>{
 
-      // })
+      })
     })
 
   }

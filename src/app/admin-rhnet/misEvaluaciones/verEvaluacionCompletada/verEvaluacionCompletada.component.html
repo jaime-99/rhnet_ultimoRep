@@ -1,8 +1,14 @@
 
 
-<div class="container-fluid">
+<div class="container-fluid" id="contenido">
+  <button class="btn btn-primary btn-sm" *ngIf="!generadoPDF" (click)="back()" >
+    <i class="fas fa-arrow-left"></i> Regresar
+  </button>
+  <h1 class="display-6 text-center">Evaluacion # {{numEvaluacion}}</h1>
 
-  <div class="card">
+
+
+  <div class="card mt-1">
     <div class="card-body">
       Evaluacion de: <strong>  {{misDatos?.nombre}} </strong>
 
@@ -11,10 +17,10 @@
           Fecha de Evaluacion: {{fechaEvaluacion | date:'dd/MM/yyyy' }}
         </div>
         <div class="col">
-          <button class="btn btn-primary btn-sm">Descargar PDF</button>
+          <button class="btn btn-primary btn-sm" *ngIf="!generadoPDF" (click)="generarPDF()" >Descargar PDF</button>
         </div>
         <div class="col">
-          <button class="btn btn-success btn-sm">Descargar Excel</button>
+          <button class="btn btn-success btn-sm" *ngIf="!generadoPDF" >Descargar Excel</button>
         </div>
       </div>
     </div>
@@ -43,10 +49,6 @@
       {{this.observacion}}
     </div>
   </div>
-
-
-
-
 
 
 </div>

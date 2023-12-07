@@ -36,7 +36,7 @@ export class EvaluacionFechaComponent  implements OnInit {
   getBecarios(){
     this.rhnetService.getBecariosPorId(this.becarioId).subscribe((res)=>{
       this.becarios = res
-      console.log(res)
+      // console.log(res)
     })
   }
 
