@@ -418,6 +418,13 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
+    getInfoExcel(id):any{ // es lo que exportaremos a excel, la tabla de solbecarios con becarios
+      const url = `https://www.dikeninternational.com/angular_service/api/Becario/getInfoExcel.php?id=${id}`
+      return this.http.get<any>(url)
+    }
+
+
+
 
 
 

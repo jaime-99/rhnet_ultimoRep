@@ -20,7 +20,7 @@
           <button class="btn btn-primary btn-sm" *ngIf="!generadoPDF" (click)="generarPDF()" >Descargar PDF</button>
         </div>
         <div class="col">
-          <button class="btn btn-success btn-sm" *ngIf="!generadoPDF" >Descargar Excel</button>
+          <button class="btn btn-success btn-sm" *ngIf="!generadoPDF" (click)="exportarExcel()" >Descargar Excel</button>
         </div>
       </div>
     </div>

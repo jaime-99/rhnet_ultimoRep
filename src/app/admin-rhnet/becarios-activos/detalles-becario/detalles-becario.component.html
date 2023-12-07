@@ -34,7 +34,91 @@
 
 
     </mat-tab>
-    <mat-tab label="Calificaciones"> Calificaciones </mat-tab>
+    //Aqui van las Evaluaciones
+    <mat-tab label="Evaluaciones">
+
+      <ul class="list-group">
+  <li class="list-group-item d-flex justify-content-between">
+    <div class="row">
+      <div class="col">
+    <span>1.Evaluación</span>
+    </div>
+        <div class="col">
+        <span class="fecha"> {{info?.eval_fecha1 |date: 'dd/MM/yyy'}} </span>
+        </div>
+
+        <div class="col">
+        <button type="button" class="btn btn-primary btn-sm" (click)="verEvaluaciones(1)"
+        [mat-dialog-close]>Ver </button>
+        </div>
+      </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <div class="row">
+      <div class="col">
+    <span>2.Evaluación</span>
+    </div>
+        <div class="col">
+        <span class="fecha"> {{info?.eval_fecha2 | date:'dd/MM/yyyy'}} </span>
+        </div>
+
+        <div class="col">
+        <button type="button" class="btn btn-primary btn-sm" (click)="verEvaluaciones(2)"
+        [mat-dialog-close]>Ver </button>
+        </div>
+      </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <div class="row">
+      <div class="col">
+    <span>3.Evaluación</span>
+    </div>
+        <div class="col">
+        <span class="fecha"> {{info?.eval_fecha3 | date:'dd/MM/yyyy'}} </span>
+        </div>
+
+        <div class="col">
+        <button type="button" class="btn btn-primary btn-sm" (click)="verEvaluaciones(3)"
+        [mat-dialog-close]>Ver </button>
+        </div>
+      </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <div class="row">
+      <div class="col">
+    <span>4.Evaluación</span>
+    </div>
+        <div class="col">
+        <span class="fecha"> {{info?.eval_fecha4 | date:'dd/MM/yyyy'}} </span>
+        </div>
+
+        <div class="col">
+        <button type="button" class="btn btn-primary btn-sm" (click)="verEvaluaciones(4)"
+        [mat-dialog-close]>Ver </button>
+        </div>
+      </div>
+  </li>
+  <li class="list-group-item d-flex justify-content-between">
+    <div class="row">
+      <div class="col">
+    <span>5.Evaluación</span>
+    </div>
+        <div class="col">
+        <span class="fecha"> {{info.eval_fecha5 | date:'dd/MM/yyyy' }} </span>
+        </div>
+
+        <div class="col">
+        <button type="button" class="btn btn-primary btn-sm" (click)="verEvaluaciones(5)"
+        [mat-dialog-close]>Ver </button>
+        </div>
+      </div>
+  </li>
+  </ul>
+
+
+
+
+    </mat-tab>
     <mat-tab label="Comentarios">
 
       <div *ngFor="let c of comentariosE"  class="mb-3">

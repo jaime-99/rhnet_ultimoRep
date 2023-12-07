@@ -4,6 +4,8 @@ import { RhnetService } from '../../rhnet.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import * as html2pdf from 'html2pdf.js';
+import * as XLSX from 'xlsx';
+
 
 @Component({
 
@@ -32,6 +34,7 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
   habilidades2: never[];
   habilidades3: never[];
   calificancion: string;
+  infoExcel: any;
   constructor (private rhService:RhnetService,  public route:ActivatedRoute, public location:Location ) {}
   idEvaluacion:any;
   generadoPDF= false
@@ -55,6 +58,7 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
       this.getBecario(tipo)
     });
     this.getCompetencias()
+    // this.exportarExcel()
 
   }
 
@@ -115,8 +119,8 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
       this.elementosSeleccionados = elementosSeleccionados
       this.fechaEvaluacion = this.misDatos.fecha_de_eval1
 
-      console.log(this.checks)
-      console.log(this.competencias)
+      // console.log(this.checks)
+      // console.log(this.competencias)
       this.calcularOperacion()
     })
 
@@ -276,7 +280,32 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
     });
   }
 
+
+
+  exportarExcel() {
+    this.rhService.getInfoExcel(this.idBecario).subscribe((res) => {
+      console.log("infoexcel", res);
+
+      // Convertir las propiedades del objeto a un array de arrays
+      const dataArray = [[res.Area, res.Actividades, res.Procesos, res.Comentarios, res.Fecha,res.nombre]];
+
+      // Crear una hoja de cálculo
+      const ws: XLSX.WorkSheet = XLSX.utils.aoa_to_sheet([['Area', 'Actividades', 'Procesos', 'Comentarios', 'Fecha'], ...dataArray]);
+
+      // Crear un libro de trabajo y agregar la hoja de cálculo
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Hoja1');
+
+      // Guardar el archivo Excel
+      XLSX.writeFile(wb, 'Becario.xlsx');
+    });
   }
+
+
+  }
+
+
+
 
 
 
