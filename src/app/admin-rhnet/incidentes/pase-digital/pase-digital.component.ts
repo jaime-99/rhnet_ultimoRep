@@ -58,6 +58,8 @@ export class PaseDigitalComponent implements OnInit {
   correoDelEmpelado: any;
   alerta: boolean = false;
 
+  pantalla = false;
+
 
   constructor(private fb:FormBuilder, public rhService:RhnetService,public dialog: MatDialog,private weService:ServicioCompartidoService,
     private mat:MatSnackBar) {
@@ -137,6 +139,7 @@ export class PaseDigitalComponent implements OnInit {
       if (result !== undefined && result !== null) {
         // Llamar a getPases solo si result es válido
         this.getPases();
+        this.pantalla = true;
       }
 
 

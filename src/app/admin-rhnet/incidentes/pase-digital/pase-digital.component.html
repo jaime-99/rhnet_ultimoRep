@@ -1,4 +1,4 @@
-<div class="main-content">
+<div class="main-content" *ngIf="!pantalla" >
   <div class="container-fluid">
     <div class="row">
       <div class="col-md-8">
@@ -87,7 +87,7 @@
             <th scope="row"> {{pase.PaseDigitalId}} </th>
             <td> {{NombreCompleto}} </td>
             <td>{{nombreJefe}} </td>
-            <td> {{pase.Fecha}} </td>
+            <td> {{pase.Fecha | date:'dd/MM/yyyy'}} </td>
             <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }} </td>
             <td> {{pase.tipo}} </td>
             <td> <strong> {{pase.estatus}} </strong> </td>
@@ -147,7 +147,7 @@
             <td> {{pase.TuNombre}} </td>
             <td> {{pase.NumeroEmpleado}} </td>
             <td> {{pase.NombreDelJefe}} </td>
-            <td> {{pase.Fecha}} </td>
+            <td> {{pase.Fecha | date:'mm/DD/yyyy' }} </td>
             <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }}</td>
             <td> {{pase.tipoDeEntrada}} </td>
             <td> {{ pase.Tipo === 2 ? pase.HoraEntrada : (pase.Tipo === 3 ? pase.HoraSalida : pase.HoraEntrada + ' - ' + pase.HoraSalida) }}</td>
@@ -172,5 +172,16 @@
     </div>
   </div>
 
+
+</div>
+
+
+
+<div *ngIf="pantalla"  class="confirmation-message">
+  <div *ngFor="let pase of pases$ | async">
+  <i class="fas fa-check-circle check-icon"></i>
+  <p>Has Solicitado tu Pase, Espera la Respuesta </p>
+  <button class="btn btn-primary" (click)="pantalla = false"> <a>Ir a Pase Digital</a></button>
+  </div>
 
 </div>

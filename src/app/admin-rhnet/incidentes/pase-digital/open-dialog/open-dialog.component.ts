@@ -14,8 +14,11 @@ export interface DialogData {
   horaSalida:string;
   observaciones:string;
   colaborador:number;
-
 }
+
+
+
+
 
 
 
@@ -45,8 +48,10 @@ export class OpenDialogComponent implements OnInit {
   correo: any;
   correoJefe: string;
   empleadosDelJefe: any;
-  numEmpleadoColaborador: any;
+  numEmpleadoColaborador: number;
   empresaColaborador: any;
+
+
 
   constructor(private fb:FormBuilder,public snackBar: MatSnackBar,
     private dialogRef: MatDialogRef<OpenDialogComponent>,
