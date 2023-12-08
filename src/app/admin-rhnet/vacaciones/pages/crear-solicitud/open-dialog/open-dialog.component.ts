@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject  } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { NumberCardModule } from '@swimlane/ngx-charts';
 import { RhnetService } from 'src/app/admin-rhnet/rhnet.service';
@@ -26,7 +26,7 @@ export class OpenDialogComponent implements OnInit {
 
 
   constructor(private fb:FormBuilder, private rhService:RhnetService, private mat:MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<OpenDialogComponent>) {
 
   }
 
@@ -80,7 +80,9 @@ export class OpenDialogComponent implements OnInit {
           Id_Jefe,Id_autorizoRH,IdEstatusSolicitudVaciones,Observaciones,Observaciones_jefe).subscribe((res)=>{
           // console.log(res)
           this.mat.open('COMPLETADO', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
-          this.enviarCorreo();
+          // this.enviarCorreo();
+          //todo cerrar dialogo y llamar funcion otra vez para que se vean los datos reflejados
+          this.dialogRef.close();
 
         })
     }else{

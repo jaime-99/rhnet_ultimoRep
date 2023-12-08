@@ -27,7 +27,7 @@
 </div>
 </div>
 <div class="row">
-<div class="mb-3 col-md-12 ">
+<div class="mb-3 col-md-12">
   <label for="" class="form-label">Observaciones</label>
   <input type="text" class="form-control" formControlName="Observaciones" name="Observaciones">
   <mat-error *ngIf="generacionVacaciones.controls.Periodo.errors?.required">Periodo requerido</mat-error>
@@ -41,7 +41,7 @@
 
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary" [mat-dialog-close]="this.generacionVacaciones.value"(click)="insertarSolicitud(generacionVacaciones.value)">Enviar Datos </button>
+  <button mat-raised-button color="primary" (click)="insertarSolicitud(generacionVacaciones.value)">Enviar Datos </button>
   <button mat-raised-button color="warn" [mat-dialog-close]="this.generacionVacaciones.value" cdkFocusInitial>Volver</button>
   <!-- <button mat-raised-button color="warn" (click)="volver()"> Volver</button> -->
 </div>
