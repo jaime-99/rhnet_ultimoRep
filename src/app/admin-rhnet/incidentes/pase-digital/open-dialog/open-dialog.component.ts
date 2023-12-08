@@ -70,6 +70,8 @@ export class OpenDialogComponent implements OnInit {
         // this.dialogRef.close();
         this.snackBar.open('has creado una generacion de pase', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
         // this.sendMailToBoss();
+
+
         this.insertarNotificacion();
         this.dialogRef.close(1);
 
@@ -137,10 +139,13 @@ export class OpenDialogComponent implements OnInit {
       // p_NumeroEmpleadoJefe: this.numeroEmpleadoJefe,
       p_Hora: [this.data.hora,],
       p_AutorizadoSalida: 0,
-      p_HoraEntrada: [ null],
+      p_HoraEntrada: [null],
       p_HoraSalida: [ null],
 
+
+
     });
+
 
     if (this.data.colaborador === 1) {
       this.generacionPase.addControl('p_NumeroEmpleado', new FormControl(this.numUsuario, Validators.required));
@@ -167,6 +172,8 @@ export class OpenDialogComponent implements OnInit {
     const empleadosConEmpresaA = this.empleadosDelJefe.filter(empleado => empleado.numEmpleado === this.numEmpleadoColaborador);
     // console.log(empleadosConEmpresaA)
     this.empresaColaborador = empleadosConEmpresaA.EMPRESA
+
+    // this.configurarValidadores(this.data.colaborador)
 
   });
 
@@ -285,6 +292,57 @@ export class OpenDialogComponent implements OnInit {
     })
 
   }
+
+
+
+
+  configurarValidadores(): void {
+    const horaEntradaControl = this.generacionPase.get('p_HoraEntrada');
+    const horaSalidaControl = this.generacionPase.get('p_HoraSalida');
+
+    // Restablece los validadores
+    // horaEntradaControl.clearValidators();
+    // horaEntradaControl.updateValueAndValidity();
+
+    // horaSalidaControl.clearValidators();
+    // horaSalidaControl.updateValueAndValidity();
+
+    // Configura los validadores según el tipo seleccionado
+    const tipo = this.generacionPase.get('p_Tipo').value;
+
+    if (tipo === 2 ) {
+      horaEntradaControl.setValidators([Validators.required]);
+      horaSalidaControl.clearValidators()
+      horaSalidaControl.updateValueAndValidity();
+
+    }
+
+    if (tipo === 3) {
+      horaSalidaControl.setValidators([Validators.required]);
+      horaEntradaControl.clearValidators()
+      horaEntradaControl.updateValueAndValidity();
+
+    }
+    else if(tipo === 1){
+      horaSalidaControl.setValidators([Validators.required]);
+      horaEntradaControl.setValidators([Validators.required]);
+      horaSalidaControl.updateValueAndValidity();
+      horaEntradaControl.updateValueAndValidity();
+
+
+
+
+    }
+
+
+    // Actualiza la validez de los controles
+    // horaEntradaControl.updateValueAndValidity();
+    // horaSalidaControl.updateValueAndValidity();
+    console.log(tipo)
+  }
+
+
+
 
 
 }

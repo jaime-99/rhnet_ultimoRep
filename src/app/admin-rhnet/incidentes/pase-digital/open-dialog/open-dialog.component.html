@@ -18,16 +18,18 @@
     </mat-radio-group>
     </div>
 
-  <!-- </div> -->
+  </div>
+  <div class="col">
   <mat-form-field class="custom-input">
     <mat-label>Tipo</mat-label>
     <mat-error *ngIf="generacionPase.controls.p_Tipo.errors?.required">el tipo de pase es requeirido</mat-error>
-    <mat-select [(ngModel)]="data.tipo" formControlName="p_Tipo" name="tipo"  >
-      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id"   >
+    <mat-select [(ngModel)]="data.tipo" formControlName="p_Tipo" name="tipo"  (ngModelChange)="configurarValidadores()" >
+      <mat-option *ngFor="let tipo of tipos" [value]="tipo.id">
         {{tipo.nombre}}
       </mat-option>
     </mat-select>
   </mat-form-field>
+
   </div>
   </div>
   <div class="row">
@@ -42,19 +44,23 @@
   <mat-form-field class="custom-input">
     <mat-label>Hora entrada</mat-label>
     <input matInput [(ngModel)]="data.horaEntrada" formControlName="p_HoraEntrada" [value]="this.data.horaEntrada" type="time">
+    <mat-error *ngIf="generacionPase.controls.p_HoraEntrada.errors?.required">la hora de entrada es requerida</mat-error>
+
   </mat-form-field>
   </div>
   <div *ngIf="data.tipo==3 || data.tipo ==1"  class="col">
   <mat-form-field class="custom-input">
     <mat-label>Hora Salida</mat-label>
     <input matInput [(ngModel)]="data.horaSalida" formControlName="p_HoraSalida" [value]="this.data.horaSalida" type="time">
+    <mat-error *ngIf="generacionPase.controls.p_HoraSalida.errors?.required">la hora de salida es requerida</mat-error>
+
   </mat-form-field>
   </div>
   </div>
   <mat-form-field class="custom-input">
     <mat-label>Observaciones || Motivo</mat-label>
     <textarea matInput [(ngModel)]="data.observaciones" formControlName="p_Motivo" ></textarea>
-    <mat-error *ngIf="generacionPase.controls.p_Motivo.errors?.required">El motivo es requerido</mat-error>
+    <!-- <mat-error *ngIf="generacionPase.controls.p_Motivo.errors?.required">El motivo es requerido</mat-error> -->
   </mat-form-field>
 
 
