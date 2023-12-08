@@ -1,6 +1,21 @@
 <div class="card mt-4">
   <div class="card-header card-header-azure">
-               <button (click)="recargar()"  mat-raised-button color="primary">Recargar</button>
+    <div class="row">
+          <div class="col-md-3">
+               <button (click)="recargar()"  mat-raised-button color="primary">Recargar
+                <mat-icon>refresh</mat-icon>
+              </button>
+            </div>
+            <div class="col-md-2">
+              <button class="btn btn-success btn-sm"(click)="descargarExcel()" >Descargar Excel</button>
+            </div>
+            <!-- <div class="col">
+              <button class="btn btn-primary btn-sm " (click)="descargarPDF()">Descargar PDF</button>
+            </div> -->
+    </div>
+
+
+
 
     <h4 class="card-title mt-4">Listado de pases autorizados</h4>
     <h6 class="card-subtitle mb-2 text-body-secondary">Pases Autorizados con la fecha de Hoy</h6>

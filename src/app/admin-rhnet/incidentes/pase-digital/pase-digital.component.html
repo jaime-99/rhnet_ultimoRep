@@ -147,7 +147,7 @@
             <td> {{pase.TuNombre}} </td>
             <td> {{pase.NumeroEmpleado}} </td>
             <td> {{pase.NombreDelJefe}} </td>
-            <td> {{pase.Fecha | date:'mm/DD/yyyy' }} </td>
+            <td> {{pase.Fecha | date:'dd/MM/yyyy' }} </td>
             <td>{{ pase.Autorizado === 1 ? 'Sí' : 'No' }}</td>
             <td> {{pase.tipoDeEntrada}} </td>
             <td> {{ pase.Tipo === 2 ? pase.HoraEntrada : (pase.Tipo === 3 ? pase.HoraSalida : pase.HoraEntrada + ' - ' + pase.HoraSalida) }}</td>
@@ -178,10 +178,14 @@
 
 
 <div *ngIf="pantalla"  class="confirmation-message">
-  <div *ngFor="let pase of pases$ | async">
   <i class="fas fa-check-circle check-icon"></i>
-  <p>Has Solicitado tu Pase, Espera la Respuesta </p>
+  <p>Has Solicitado tu Pase Digital con el dia: {{datosPantalla.p_Fecha | date:'dd/MM/yyyy'}} </p>
+  <p>tipo de pase: {{ datosPantalla.p_Tipo === 2 ? 'Entrada' : (datosPantalla.p_Tipo === 3 ? 'Salida' : 'Entrada y Salida') }}</p>
+  <p *ngIf="datosPantalla.p_Tipo ===2 || datosPantalla.p_Tipo===1">Hora de entrada: {{datosPantalla.p_HoraEntrada}} </p>
+  <p *ngIf="datosPantalla.p_Tipo ===3 || datosPantalla.p_Tipo===1" >Hora de salida: {{datosPantalla.p_HoraSalida}} </p>
+  <p>Espera la confirmacion</p>
+
+
   <button class="btn btn-primary" (click)="pantalla = false"> <a>Ir a Pase Digital</a></button>
   </div>
 
-</div>
