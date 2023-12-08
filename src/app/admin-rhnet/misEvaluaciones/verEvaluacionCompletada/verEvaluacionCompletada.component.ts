@@ -284,7 +284,7 @@ export class VerEvaluacionCompletadaComponent implements OnInit  {
 
   exportarExcel() {
     this.rhService.getInfoExcel(this.idBecario).subscribe((res) => {
-      console.log("infoexcel", res);
+      // console.log("infoexcel", res);
 
       // Convertir las propiedades del objeto a un array de arrays
       const dataArray = [[res.Area, res.Actividades, res.Procesos, res.Comentarios, res.Fecha,res.nombre]];

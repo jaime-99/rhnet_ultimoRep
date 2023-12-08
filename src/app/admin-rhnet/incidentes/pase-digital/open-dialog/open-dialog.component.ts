@@ -67,10 +67,12 @@ export class OpenDialogComponent implements OnInit {
         p_Hora,p_AutorizadoSalida,p_HoraEntrada,p_HoraSalida,p_estatus).subscribe((res)=>{
         })
 
-        this.dialogRef.close();
+        // this.dialogRef.close();
         this.snackBar.open('has creado una generacion de pase', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
-        this.sendMailToBoss();
+        // this.sendMailToBoss();
         this.insertarNotificacion();
+        this.dialogRef.close(1);
+
 
 
     }else{
