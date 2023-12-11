@@ -44,7 +44,7 @@ export class AltaComponent implements OnInit {
       const usuario = params['usuario']
       this.solicitante = solicitante
       this.idsol = id
-      console.log("este es el usuario de solbecarios",usuario)
+      // console.log("este es el usuario de solbecarios",usuario)
       this.usuario= usuario
     });
 

@@ -30,10 +30,10 @@ export class PasesAutorizadosComponent implements OnInit {
       this.pasesAutorizados = res;
 
 
-    if(this.pasesAutorizados.length ===0){
-      this.alerta = true
-      return;
-    }
+    // if(this.pasesAutorizados.length ===0){
+    //   this.alerta = true
+    //   return;
+    // }
 
       const fechaHoy = new Date(); // Obtener la fecha actual en JavaScript
       const fechaHoyFormatted = fechaHoy.toISOString().slice(0, 10); // Formatear la fecha actual como "YYYY-MM-DD"
@@ -42,6 +42,10 @@ export class PasesAutorizadosComponent implements OnInit {
       this.pasesAutorizados = this.pasesAutorizados.filter(pase => {
         return pase.Fecha === fechaHoyFormatted; // Supongo que la propiedad se llama "Fecha"
       });
+      if(this.pasesAutorizados.length ===0){
+        this.alerta = true
+        return;
+      }
       // Ahora this.pasesAutorizados contiene solo los pases con la fecha de hoy
 
     }));
@@ -55,6 +59,8 @@ export class PasesAutorizadosComponent implements OnInit {
   }
 
   descargarExcel(){
+
+    if(this.pasesAutorizados.length==0) return;
 
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.pasesAutorizados);
     const wb: XLSX.WorkBook = XLSX.utils.book_new();

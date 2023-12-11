@@ -24,8 +24,9 @@ export class DialogoVecarioComponent implements OnInit {
   numUsuario: any;
   idJefe: any;
   misDatos: any;
-  email: any;
+  email: string; // es el correo del jefe,
   numEmpleadoJefe: any;
+  emailUsu: any;
 
   constructor( private cdRef: ChangeDetectorRef, private rhnetService:RhnetService,
     public dialogRef: MatDialogRef<DialogoVecarioComponent> , @Inject(MAT_DIALOG_DATA) public data, public snackBar: MatSnackBar) {
@@ -39,6 +40,8 @@ export class DialogoVecarioComponent implements OnInit {
 
     let usuarioAuth=JSON.parse(localStorage.getItem('datalogin')!);
     this.numUsuario = usuarioAuth.data.Numero_Empleado,
+    this.emailUsu = usuarioAuth.data.Correo
+    // console.log(this.emailUsu)
 
     // console.log(this.data.numUsuario)
     this.obtenerIdJefe();
@@ -128,6 +131,7 @@ export class DialogoVecarioComponent implements OnInit {
         // console.log(res)
         this.dialogRef.close(this.data.numUsuario);
         this.enviarEmail();
+        this.sendYourself()
 
         this.snackBar.open('se ha enviado la solicitud a tu jefe', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
@@ -163,9 +167,9 @@ export class DialogoVecarioComponent implements OnInit {
   obtenerIdJefe(){
     this.rhnetService.getAllInfoEmpleados(this.numUsuario).subscribe((res)=>{
       this.idJefe = res.NUMERO_EMPLEADO_JEFE
-      console.log("id del jefe",this.idJefe)
+      // console.log("id del jefe",this.idJefe)
       this.misDatos = res
-      this.email = res.correoDelJefe
+      this.email = res.correoDelJefe // es el correo dle jefe
       this.numEmpleadoJefe = res.NUMERO_EMPLEADO_JEFE
 
       this.formulario.get('aprobador').setValue(this.idJefe);
@@ -202,6 +206,22 @@ export class DialogoVecarioComponent implements OnInit {
     this.rhnetService.insertarNotificacion(notifi.usuario,notifi.mensaje,notifi.tipo).subscribe(()=>{
 
     })
+
+  }
+
+  sendYourself(){
+    // para que se envie a ti mismo un mensaje
+    const datos = {
+      destinatario : this.emailUsu,
+      mensaje: 'Has enviado una solicitud de becario',
+      subtitulo: 'Solicitud de Becario ',
+      titulo1 : 'Solicitud de becario'
+    }
+
+    this.rhnetService.mensajeDinamico(datos.destinatario,datos.mensaje,datos.subtitulo,datos.titulo1).subscribe(()=>{
+
+    })
+
 
   }
 

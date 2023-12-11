@@ -1,5 +1,10 @@
-<div class="h3">Evaluaciones</div>
 
+<div class="container">
+
+<button class="btn btn-primary btn-sm" (click)="back()" >
+  <i class="fas fa-arrow-left"></i> Regresar
+</button>
+<div class="display-6 text-center p-1">Evaluaciones de <span> {{becarios?.nombre}} </span>   </div>
 <ul class="list-group">
   <li class="list-group-item d-flex justify-content-between">
     <div class="row">
@@ -14,11 +19,12 @@
         <button type="button"  (click)="irEvaluar(becarios?.evaluacion)"
         class="btn btn-primary btn-sm"
         [ngClass]="{'btn-primary': !becarios?.ideval1, 'btn-success': becarios?.ideval1}"
-         [disabled]="becarios?.ideval1">{{ becarios?.ideval1 ? 'Evaluado' : 'Evaluar' }}
+         [disabled]="becarios?.ideval1 || becarios?.evaluacion !=1">{{ becarios?.ideval1 ? 'Evaluado' : 'Evaluar' }}
         </button>
         </div>
         <div class="col">
-        <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion(becarios?.evaluacion, 1)">Ver </button>
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="!becarios?.ideval1"
+         (click)="irAVerEvaluacion(becarios?.evaluacion, 1)">Ver </button>
         </div>
       </div>
   </li>
@@ -37,10 +43,11 @@
          class="btn btn-primary btn-sm"
          [ngClass]="{'btn-primary': !becarios?.ideval2, 'btn-success': becarios?.ideval2}"
 
-         [disabled]="becarios?.ideval2"  > {{becarios?.ideval2 ? 'Evaluado': 'Evaluar'}} </button>
+         [disabled]="becarios?.ideval2 || becarios?.evaluacion !=2 "  > {{becarios?.ideval2 ? 'Evaluado': 'Evaluar'}} </button>
         </div>
         <div class="col">
-        <button type="button" class="btn btn-primary btn-sm" (click)="irAVerEvaluacion(becarios?.evaluacion, 2)">Ver </button>
+        <button type="button" class="btn btn-primary btn-sm" [disabled]="!becarios?.ideval2"
+         (click)="irAVerEvaluacion(becarios?.evaluacion, 2)">Ver </button>
         </div>
       </div>
   </li>
@@ -58,7 +65,7 @@
         <button type="button"  (click)="irEvaluar(becarios?.evaluacion)"
          class="btn btn-primary btn-sm"
          [ngClass]="{'btn-primary': !becarios?.ideval3, 'btn-success': becarios?.ideval3}"
-          [disabled]="becarios?.ideval3"  >  {{becarios?.ideval3 ? 'Evaluado': 'Evaluar'}}  </button>
+          [disabled]="becarios?.ideval3 || becarios?.evaluacion !=3"  >  {{becarios?.ideval3 ? 'Evaluado': 'Evaluar'}}  </button>
         </div>
         <div class="col">
         <button type="button" class="btn btn-primary btn-sm" [disabled]="!becarios?.ideval3"
@@ -81,7 +88,7 @@
          class="btn btn-primary btn-sm"
          [ngClass]="{'btn-primary': !becarios?.ideval4, 'btn-success': becarios?.ideval4}"
 
-         [disabled]="becarios?.ideval4">  {{becarios?.ideval4 ? 'Evaluado': 'Evaluar'}} </button>
+         [disabled]="becarios?.ideval4 ||becarios?.evaluacion !=4">  {{becarios?.ideval4 ? 'Evaluado': 'Evaluar'}} </button>
         </div>
         <div class="col">
         <button type="button" class="btn btn-primary btn-sm" [disabled]="!becarios?.ideval4"
@@ -104,7 +111,7 @@
        class="btn btn-primary btn-sm"
        [ngClass]="{'btn-primary': !becarios?.ideval5, 'btn-success': becarios?.ideval5}"
 
-        [disabled]="becarios?.ideval5"  >{{becarios?.ideval5 ? 'Evaluado': 'Evaluar' }} </button>
+        [disabled]="becarios?.ideval5 || becarios?.evaluacion !=5"  >{{becarios?.ideval5 ? 'Evaluado': 'Evaluar' }} </button>
       </div>
       <div class="col">
       <button type="button" class="btn btn-primary btn-sm" [disabled]="!becarios?.ideval5"
@@ -113,3 +120,4 @@
     </div>
 </li>
 </ul>
+</div>
