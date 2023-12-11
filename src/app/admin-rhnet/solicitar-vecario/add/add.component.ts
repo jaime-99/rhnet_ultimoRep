@@ -6,6 +6,8 @@ import { RhnetService } from '../../rhnet.service';
 import { Router } from '@angular/router';
 import { ComentariosDialogComponent } from '../comentariosDialog/comentariosDialog.component';
 import { VerMasComponent } from '../verMas/verMas.component';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
@@ -17,6 +19,12 @@ export class AddComponent implements OnInit {
   numUsuario: any; // aqui es el numero de usuaroo
   porAprobar:[]=[];
   datosPersona: any;
+
+  config: PerfectScrollbarConfigInterface = {
+    suppressScrollY: true, // Desactiva la barra de desplazamiento vertical
+    wheelSpeed: 2, // Configura la velocidad del scrollbar (color)
+    wheelPropagation: true, //
+  };
 
   constructor(public dialog: MatDialog, private rhnetService:RhnetService, private router:Router){}
 
