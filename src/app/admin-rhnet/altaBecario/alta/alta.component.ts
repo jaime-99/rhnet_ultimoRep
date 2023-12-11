@@ -93,7 +93,7 @@ export class AltaComponent implements OnInit {
 
 
   submitForm(){
-    console.log(this.miFormulario.value)
+    // console.log(this.miFormulario.value)
     if (
       this.miFormulario.get('nombre').valid &&
       this.miFormulario.get('idsol').valid && this.miFormulario.get('universidad').valid && this.miFormulario.get('carrera').valid
@@ -109,8 +109,8 @@ export class AltaComponent implements OnInit {
       this.rhnet.insertarBecarioCompleto(idsol,nombre,universidad,carrera,fecha_ingreso,area,usuario,correo,
         solicitante,entero,tipoeval,activo,eval_fecha1,ideval1,eval_fecha2,ideval2,eval_fecha3,ideval3,eval_fecha4,
         ideval4,eval_fecha5,ideval5,evaluacion).subscribe((res)=>{
-          console.log(res)
-
+          // console.log(res)
+          this.cambiarEstatus();
         })
         this.snackBar.open('Se ha dado de alta el becario', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
