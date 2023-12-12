@@ -23,9 +23,8 @@ export const routes: Routes = [
     ReactiveFormsModule,
     MatFormFieldModule,
     FormsModule,
-
-
-
+  ],
+  exports:[
 
   ]
 })

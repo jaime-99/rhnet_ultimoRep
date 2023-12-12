@@ -8,6 +8,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 
 
+
 export const routes: Routes = [
   { path: '', component: ReporteIncidenciasComponent, pathMatch: 'full' }
 ];
@@ -22,7 +23,8 @@ export const routes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
   ]
 })
 export class ReporteIncidenciasModule { }

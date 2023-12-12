@@ -19,7 +19,6 @@ export const routes: Routes = [
   { path: '', component: AddComponent, pathMatch: 'full' },
   {path: 'detalle-solicitud', component: DetalleSolicitudComponent,data: { breadcrumb: 'Detalle Solicitud ' } },
   {path: 'Ver-mas', component: VerMasComponent,data: { breadcrumb: 'VerMas ' } }
-
 ];
 
 
