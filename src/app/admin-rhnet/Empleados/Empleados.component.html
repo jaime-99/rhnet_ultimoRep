@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
 
 <h4>Lista de Empleados Activos</h4>
 
@@ -38,6 +38,7 @@
               <th scope="col">puesto</th>
               <th scope="col">departamento</th>
               <th scope="col">empresa</th>
+              <th scope="col">opciones</th>
             </tr>
           </thead>
           <tbody>
@@ -48,6 +49,15 @@
               <td>{{a.PUESTO}} </td>
               <td> {{a.AREA}} </td>
               <td> {{a.EMPRESA}} </td>
+              <td>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-primary btn-sm" (click)="irADetalle()" >Detalle</button>
+                  <!-- <button type="button" class="btn btn-primary btn-sm">Middle</button> -->
+                </div>
+
+
+
+              </td>
             </tr>
           </tbody>
         </table>
@@ -216,6 +226,75 @@
               <div class="col-md-9">
             <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
               maxSize="5" (pageChange)="onPageChanged($event)" id="mexico"></pagination-controls>
+              </div>
+
+            </div>
+
+        </mat-card>
+</div>
+</div>
+
+
+  </mat-tab>
+  <mat-tab label="Institucional">
+
+
+    <div class="card mt-2">
+
+      <div class="card-header">
+        <div class="row">
+          <div class="col-md-1">
+            <button class="btn btn-success btn-sm">Excel</button>
+          </div>
+          <div class="col-md-2">
+            <button class="btn btn-primary btn-sm">PDF</button>
+          </div>
+        <div class="col-md-9">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="filtroNombre" >
+          </div>
+        </div>
+      </div>
+
+
+
+      </div>
+
+      <div class="card-body">
+
+        <table #tabla3 class="table">
+          <thead class="table-secondary">
+            <tr>
+              <th scope="col">#Usuario</th>
+              <th scope="col">No.empleado</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">puesto</th>
+              <th scope="col">departamento</th>
+              <th scope="col">empresa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of institucional  | filter:filtroNombre | paginate: { itemsPerPage: count, currentPage: page,id:'institucional'}">
+              <th scope="row" > {{a.id}} </th>
+              <td>{{a.NUMERO_EMPLEADO}} </td>
+              <td> {{a.NOMBRE_COMPLETO}} </td>
+              <td>{{a.PUESTO}} </td>
+              <td> {{a.AREA}} </td>
+              <td> {{a.EMPRESA}} </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+        <mat-card class="p-0 text-center">
+
+          <div class="row">
+            <div class="col-md-3">
+              <p class="text-secondary">mostrando {{count}} regitros de {{totalIns}} </p>
+              </div>
+              <div class="col-md-9">
+            <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
+              maxSize="5" (pageChange)="onPageChanged($event)" id="institucional"></pagination-controls>
               </div>
 
             </div>

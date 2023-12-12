@@ -12,6 +12,7 @@ import { becariosActivoModule } from '../becarios-activos/becarios-activos.modul
 import { filtrado } from './pipes/filtrado.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DetalleComponent } from './detalle/detalle.component';
 
 export const routes: Routes = [
   {
@@ -23,12 +24,18 @@ export const routes: Routes = [
         pathMatch: 'full',
         data: { breadcrumb: 'Empleados' } // Especifica el breadcrumb solo para la ruta base 'empleados'
       },
+      {
+        path: 'detalle',
+        component: DetalleComponent,
+        pathMatch: 'full',
+        data: { breadcrumb: 'Detalle' } // Especifica el breadcrumb solo para la ruta base 'empleados'
+      },
     ]
   },
 ];
 
 @NgModule({
-  declarations: [EmpleadosComponent,filtrado],
+  declarations: [EmpleadosComponent,filtrado,DetalleComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),

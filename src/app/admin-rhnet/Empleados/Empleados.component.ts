@@ -3,6 +3,7 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
 import { RhnetService } from '../rhnet.service';
 import { MatPaginator, PageEvent  } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,6 +13,10 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./Empleados.component.scss'],
 })
 export class EmpleadosComponent implements OnInit {
+
+
+
+
   empleados = [];
   public filtroNombre = ''
   empleadosInternational = [];
@@ -23,9 +28,10 @@ export class EmpleadosComponent implements OnInit {
 
   public counts = [12, 24, 36];
   public page = 1;
-  count: number;
+  count: number; // pendiente , ver p
   itemsPerPageOptions = []
-  dikenMexico: any;
+  dikenMexico  = [];
+  institucional = [];
 
   get totalEmpleados(): number {
     return this.empleados.length;
@@ -40,10 +46,13 @@ export class EmpleadosComponent implements OnInit {
   get totalMexico(): number {
     return this.dikenMexico.length;
   }
+  get totalIns(): number {
+    return this.institucional.length;
+  }
 
 
 
-  constructor (private rhnet:RhnetService ) {}
+  constructor (private rhnet:RhnetService , private router:Router) {}
 
   ngOnInit(): void {
 
@@ -64,6 +73,7 @@ export class EmpleadosComponent implements OnInit {
       // console.log(this.empleados)
       this.getEmpleadosByEmpresa();
       this.getEmpleadosDiken();
+      this.getEmpleadosIns();
     })
 
   }
@@ -80,14 +90,21 @@ export class EmpleadosComponent implements OnInit {
     })
   }
 
+  getEmpleadosIns(){
+    this.rhnet.getEmpleadosByEmpresa('INSTITUCIONAL').subscribe((res)=>{
+      this.institucional = res
+    })
+  }
+
 
   public onPageChanged(event){
     this.page = event;
     // this.count+=12
-
     }
 
+    irADetalle(){
 
+      this.router.navigate(['rhnet/empleados/detalle'])
 
-
+    }
 }
