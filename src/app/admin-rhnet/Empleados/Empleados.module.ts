@@ -13,6 +13,7 @@ import { filtrado } from './pipes/filtrado.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DetalleComponent } from './detalle/detalle.component';
+import { DetalleUsuarioComponent } from './detalle/detalleUsuario/detalleUsuario.component';
 
 export const routes: Routes = [
   {
@@ -35,7 +36,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [EmpleadosComponent,filtrado,DetalleComponent],
+  declarations: [EmpleadosComponent,filtrado,DetalleComponent,DetalleUsuarioComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
