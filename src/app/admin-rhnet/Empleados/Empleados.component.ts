@@ -50,6 +50,14 @@ export class EmpleadosComponent implements OnInit {
     return this.institucional.length;
   }
 
+  get firstItem(): number {
+    return (this.page - 1) * this.count + 1;
+  }
+
+  get lastItem(): number {
+    return Math.min(this.page * this.count, this.totalEmpleados);
+  }
+
 
 
   constructor (private rhnet:RhnetService , private router:Router) {}

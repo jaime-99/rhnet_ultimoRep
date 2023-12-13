@@ -63,20 +63,30 @@
         </table>
 
 
-        <mat-card class="p-0 text-center">
 
+        <mat-card class="p-0 text-center">
           <div class="row">
             <div class="col-md-3">
-              <p class="text-secondary">mostrando {{count}} regitros de {{totalEmpleados}} </p>
-              </div>
-              <div class="col-md-9">
-            <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
-              maxSize="5" (pageChange)="onPageChanged($event)" id="todos"></pagination-controls>
-              </div>
-
+              <p class="text-secondary">
+                mostrando {{ firstItem }} - {{ lastItem }} de {{ totalEmpleados }}
+              </p>
             </div>
-
+            <div class="col-md-9">
+              <pagination-controls
+                class="product-pagination"
+                previousLabel="Anterior"
+                nextLabel="Siguiente"
+                autoHide="true"
+                maxSize="5"
+                (pageChange)="onPageChanged($event)"
+                id="todos"
+              ></pagination-controls>
+            </div>
+          </div>
         </mat-card>
+
+
+
 
 
       </div>
