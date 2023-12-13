@@ -7,35 +7,70 @@
   <div class="card">
 
     <div class="card-header">
-      nombre
+      {{infoEmpleado?.NOMBRE_COMPLETO}}
     </div>
 
     <div class="card-body">
   <div class="row align-items-center">
     <!-- Columna de la imagen -->
     <div class="col-md-3">
-      <img src="/assets/images/profile/michael.jpg" alt="Descripción de la imagen" class="rounded-circle" >
+      <img [src]="urlImage" alt="Descripción de la imagen" class="img-fluid" >
     </div>
 
     <!-- Columnas de texto -->
-    <div class="col-md-3">
-      <h5><i class="fas fa-briefcase"></i> Columna 1</h5>
-      <h5><i class="fa fa-building"></i>   Puesto</h5>
+    <div class="col-md-2">
+      <h6><i class="fas fa-briefcase"></i> {{infoEmpleado?.PUESTO}} </h6>
+      <h6><i class="fa fa-building"></i> {{infoEmpleado?.AREA}} </h6>
+      <h6><i class="fas fa-calendar-check "></i> {{infoEmpleado?.FECHA_ALTA  | date:'dd/MM/yyyy'}} </h6>
 
     </div>
 
-    <div class="col-md-3">
-      <h5> <i class="fa fa-envelope-open"></i> Correo</h5>
-      <p>Contenido de la columna 2...</p>
+    <div class="col-md-4">
+      <h6> <i class="fa fa-envelope-open"></i> {{infoEmpleado?.email}} </h6>
+      <h6><i class="fa fa-phone rotate-icon"></i> (844) 866-95-20 Extensión 1340 </h6>
+      <h6><i class="fa fa-calendar-times"></i> {{infoEmpleado?.FECHA_BAJA}} </h6>
     </div>
 
+
     <div class="col-md-3">
-      <h5><i class="fa fa-map-pin"></i></h5>
-      <h5>Estatus</h5>
+      <h6><i class="fa fa-map-pin"></i> {{infoEmpleado?.EMPRESA}} </h6>
+      <h6><i class="fa fa-id-badge"></i>  Estatus: {{infoEmpleado?.STATUS}}</h6>
     </div>
   </div>
   </div>
   </div>
+
+  <div class="card mt-2">
+
+    <div class="card-body">
+      <p class="h6">Detalle de Usuario ID: {{infoEmpleado?.usuarioId}} </p>
+
+      <div class="row">
+
+        <div class="col-md-3">
+          <p> <i class="fas fa-user"></i> {{infoEmpleado?.usuario}} </p>
+          <p><i class="fas fa-calendar"></i> {{infoEmpleado?.fecha_acceso}} </p>
+        </div>
+        <div class="col-md-4">
+          <p> <i class="fas fa-envelope-open"></i> {{infoEmpleado?.email}} </p>
+          <p> <i class="fas fa-sitemap"></i> empleado</p>
+        </div>
+        <div class="col-md-3">
+          <p> <i class="fas fa-calendar"></i> {{infoEmpleado?.fecha_alta}} </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="mt-1">
+  <button class="btn btn-danger btn-small">Exportar a PDF</button>
+    </div>
+
+
+
+
+
 </div>
 
-<!-- Enlace a Bootstrap JS y Popper.js -->

@@ -441,10 +441,17 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
-    getEmpleadosByEmpresa(empresa):any{
+    getEmpleadosByEmpresa(empresa):any{// son los empleados por empresa
       const url = `https://www.dikeninternational.com/angular_service/api/Empleados/getEmpleadosByEmp.php?empresa=${empresa}`
       return this.http.get<any>(url)
     }
+
+    getEmpleadosById(id):any{
+      const url = `https://www.dikeninternational.com/angular_service/api/Empleados/getEmpleadoById.php?id=${id}`
+      return this.http.get<any>(url)
+    }
+
+
 
 
 

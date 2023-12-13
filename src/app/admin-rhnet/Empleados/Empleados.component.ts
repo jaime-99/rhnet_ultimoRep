@@ -81,6 +81,7 @@ export class EmpleadosComponent implements OnInit {
   getEmpleadosByEmpresa(){
     this.rhnet.getEmpleadosByEmpresa('INTERNATIONAL').subscribe((res)=>{
       this.empleadosInternational = res
+      console.log(res)
 
     })
   }
@@ -103,6 +104,7 @@ export class EmpleadosComponent implements OnInit {
     }
 
     irADetalle(a){
+
 
       this.router.navigate(['rhnet/empleados/detalle', {id:a}])
 
