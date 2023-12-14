@@ -57,6 +57,7 @@ export const routes = [
       { path:'empleados',loadChildren:()=>import('./Empleados/Empleados.module').then(m=>m.EmpleadosModule),data: { breadcrumb: 'Empleados ' }},
       // { path: 'detalle-solicitud', component: DetalleSolicitudComponent }
 
+
     ],
 
   }

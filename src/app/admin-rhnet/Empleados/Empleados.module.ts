@@ -14,6 +14,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DetalleComponent } from './detalle/detalle.component';
 import { DetalleUsuarioComponent } from './detalle/detalleUsuario/detalleUsuario.component';
+import { BajasComponent } from './bajas/bajas.component';
 
 export const routes: Routes = [
   {
@@ -36,6 +37,12 @@ export const routes: Routes = [
         component: DetalleComponent,
         // pathMatch: 'full',
         data: { breadcrumb: 'Detalles de empleados' } // Especifica el breadcrumb solo para la ruta base 'empleados'
+      },
+      {
+        path: 'bajas',
+        component: BajasComponent,
+        // pathMatch: 'full',
+        data: { breadcrumb: 'bajas de empleados' } // Especifica el breadcrumb solo para la ruta base 'empleados'
       },
     ]
   },
