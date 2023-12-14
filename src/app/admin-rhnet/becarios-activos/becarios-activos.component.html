@@ -1,8 +1,21 @@
 
 <body>
 
-  <div class="container mt-4">
-    <h2 class="mb-3">Lista de Becarios</h2>
+  <div *ngIf="!pantalla" class="container mt-1" #content>
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="mb-4">Lista de Becarios</h2>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-success btn-sm" (click)="descargarExcel()">
+           <i class="fas fa-file-excel"></i> Descargar Excel</button>
+      </div>
+      <div class="col-md-3">
+        <button class="btn btn-primary btn-sm" (click)="descargarPDF()"
+         >  <i class="fas fa-file-pdf"></i>  Descargar PDF</button>
+      </div>
+
+    </div>
 
     <div class="mb-3">
       <input type="text" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="filtroNombre" >
@@ -38,3 +51,19 @@
   </div>
 
 </body>
+
+
+        <!-- Puedes agregar estilos y encabezados aquí -->
+
+        <!-- Contenido de tu documento HTML -->
+        <div id="contenido" *ngIf="pantalla" >
+        <h1>Becarios Activos</h1>
+        <div class="mt-1">
+
+        <ul *ngFor ="let a of becarios" class="list-group">
+            <li class="list-group-item"> {{a.nombre}}  </li>
+        </ul>
+      </div>
+      </div>
+
+

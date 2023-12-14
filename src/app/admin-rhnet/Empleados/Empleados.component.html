@@ -56,9 +56,9 @@
                 </div>
               </td>
 
-
-
             </tr>
+
+
           </tbody>
         </table>
 
@@ -153,18 +153,24 @@
         </table>
 
         <mat-card class="p-0 text-center">
-
           <div class="row">
             <div class="col-md-3">
-              <p class="text-secondary">mostrando {{count}} regitros de {{totalIntern}} </p>
-              </div>
-              <div class="col-md-9">
-            <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
-              maxSize="5" (pageChange)="onPageChanged($event)" id="international"></pagination-controls>
-              </div>
-
+              <p class="text-secondary">
+                mostrando {{ firstItem }} - {{ lastItem1 }} de {{ totalIntern }}
+              </p>
             </div>
-
+            <div class="col-md-9">
+              <pagination-controls
+                class="product-pagination"
+                previousLabel="Anterior"
+                nextLabel="Siguiente"
+                autoHide="true"
+                maxSize="5"
+                (pageChange)="onPageChanged($event)"
+                id="international"
+              ></pagination-controls>
+            </div>
+          </div>
         </mat-card>
 
       </div>
@@ -245,7 +251,8 @@
 
           <div class="row">
             <div class="col-md-3">
-              <p class="text-secondary">mostrando {{count}} regitros de {{totalMexico}} </p>
+              <p class="text-secondary">mostrando {{ firstItem }} - {{ lastItem2 }} de {{ totalMexico }}</p>
+
               </div>
               <div class="col-md-9">
             <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"
@@ -314,7 +321,7 @@
 
           <div class="row">
             <div class="col-md-3">
-              <p class="text-secondary">mostrando {{count}} regitros de {{totalIns}} </p>
+              <p class="text-secondary">mostrando {{firstItem}} - {{lastItem3}} de {{totalIns}} </p>
               </div>
               <div class="col-md-9">
             <pagination-controls class="product-pagination" previousLabel="Anterior" nextLabel="Siguiente" autoHide="true"

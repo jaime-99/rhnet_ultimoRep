@@ -1,0 +1,33 @@
+export interface Becarios {
+  id:             number;
+  idsol:          number;
+  nombre:         string;
+  universidad:    string;
+  carrera:        string;
+  fec_ingreso:    Date;
+  area:           string;
+  usuario:        number;
+  correo:         string;
+  solicitante:    string;
+  entero:         string;
+  tipoeval:       number | null;
+  fecha_create:   Date;
+  activo:         number;
+  eval_fecha1:    Date;
+  ideval1:        number;
+  eval_fecha2:    Date;
+  ideval2:        number;
+  eval_fecha3:    Date;
+  ideval3:        number;
+  eval_fecha4:    Date;
+  ideval4:        number;
+  eval_fecha5:    Date;
+  ideval5:        number;
+  evaluacion:     number;
+  fecha_termino:  null;
+  fecha_de_eval1: Date | null;
+  fecha_de_eval2: Date | null;
+  fecha_de_eval3: Date | null;
+  fecha_de_eval4: Date | null;
+  fecha_de_eval5: Date | null;
+}

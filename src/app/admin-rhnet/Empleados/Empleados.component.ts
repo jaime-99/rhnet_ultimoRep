@@ -50,6 +50,7 @@ export class EmpleadosComponent implements OnInit {
     return this.institucional.length;
   }
 
+  // obtener el listado de pagina de totalEmpleados
   get firstItem(): number {
     return (this.page - 1) * this.count + 1;
   }
@@ -57,6 +58,17 @@ export class EmpleadosComponent implements OnInit {
   get lastItem(): number {
     return Math.min(this.page * this.count, this.totalEmpleados);
   }
+  get lastItem1(): number {
+    return Math.min(this.page * this.count, this.totalIntern);
+  }
+  get lastItem2(): number {
+    return Math.min(this.page * this.count, this.totalMexico);
+  }
+  get lastItem3(): number {
+    return Math.min(this.page * this.count, this.totalIns);
+  }
+
+
 
 
 
@@ -89,7 +101,7 @@ export class EmpleadosComponent implements OnInit {
   getEmpleadosByEmpresa(){
     this.rhnet.getEmpleadosByEmpresa('INTERNATIONAL').subscribe((res)=>{
       this.empleadosInternational = res
-      console.log(res)
+      // console.log(res)
 
     })
   }
