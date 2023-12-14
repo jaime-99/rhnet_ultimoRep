@@ -18,18 +18,24 @@ import { DetalleUsuarioComponent } from './detalle/detalleUsuario/detalleUsuario
 export const routes: Routes = [
   {
     path: '',
+    redirectTo: 'empleados', // Redirecciona automáticamente a 'empleados' al acceder a la ruta base
+    pathMatch: 'full',
+  },
+  {
+    path: '',
     children: [
+
       {
-        path: '',
+        path: 'empleados',
         component: EmpleadosComponent,
         pathMatch: 'full',
-        data: { breadcrumb: 'Empleados' } // Especifica el breadcrumb solo para la ruta base 'empleados'
+        data: { breadcrumb: 'Lista' }, // Especifica el breadcrumb solo para la ruta base 'empleados'
       },
       {
         path: 'detalle',
         component: DetalleComponent,
-        pathMatch: 'full',
-        data: { breadcrumb: 'Detalle' } // Especifica el breadcrumb solo para la ruta base 'empleados'
+        // pathMatch: 'full',
+        data: { breadcrumb: 'Detalles de empleados' } // Especifica el breadcrumb solo para la ruta base 'empleados'
       },
     ]
   },

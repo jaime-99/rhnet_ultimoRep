@@ -125,7 +125,6 @@ export class EmpleadosComponent implements OnInit {
 
     irADetalle(a){
 
-
       this.router.navigate(['rhnet/empleados/detalle', {id:a}])
 
     }
