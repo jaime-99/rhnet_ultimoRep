@@ -16,6 +16,7 @@ import { DetalleComponent } from './detalle/detalle.component';
 import { DetalleUsuarioComponent } from './detalle/detalleUsuario/detalleUsuario.component';
 import { BajasComponent } from './bajas/bajas.component';
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -49,7 +50,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [EmpleadosComponent,filtrado,DetalleComponent,DetalleUsuarioComponent],
+  declarations: [EmpleadosComponent,filtrado,DetalleComponent,DetalleUsuarioComponent, BajasComponent],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
@@ -59,7 +60,8 @@ export const routes: Routes = [
     FormsModule,
     MatFormFieldModule,
     NgxPaginationModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+
   ]
 })
 

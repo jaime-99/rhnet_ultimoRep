@@ -450,6 +450,14 @@ export class RhnetService {
       const url = `https://www.dikeninternational.com/angular_service/api/Empleados/getEmpleadoById.php?id=${id}`
       return this.http.get<any>(url)
     }
+    getEmpleadosBaja(order):any{
+      const url = `https://www.dikeninternational.com/angular_service/api/Empleados/getEmpleadosBaja.php?order=${order}`
+      return this.http.get<any>(url)
+    }
+    getEmpleadosBajaDetalle(id):any{
+      const url = `https://www.dikeninternational.com/angular_service/api/Empleados/getEmpleadoBajaDetalle.php?id=${id}`
+      return this.http.get<any>(url)
+    }
 
 
 

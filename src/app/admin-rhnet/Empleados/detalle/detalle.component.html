@@ -26,7 +26,12 @@
     </div>
 
     <div class="col-md-4">
-      <h6> <i class="fa fa-envelope-open"></i> {{infoEmpleado?.email}} </h6>
+      <h6>
+        <i class="fa fa-envelope-open"></i>
+        {{infoEmpleado?.EMAIL?.slice(0, 30)}}
+        {{infoEmpleado?.EMAIL.length > 30 ? '...' : ''}}
+      </h6>
+
       <h6><i class="fa fa-phone rotate-icon"></i> (844) 866-95-20 Extensión 1340 </h6>
       <h6><i class="fa fa-calendar-times"></i> {{infoEmpleado?.FECHA_BAJA}} </h6>
     </div>
@@ -52,7 +57,7 @@
           <p><i class="fas fa-calendar"></i> {{infoEmpleado?.fecha_acceso}} </p>
         </div>
         <div class="col-md-4">
-          <p> <i class="fas fa-envelope-open"></i> {{infoEmpleado?.email}} </p>
+          <p> <i class="fas fa-envelope-open"></i> {{infoEmpleado?.EMAIL}} </p>
           <p> <i class="fas fa-sitemap"></i> empleado</p>
         </div>
         <div class="col-md-3">

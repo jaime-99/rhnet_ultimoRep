@@ -123,9 +123,9 @@ export class EmpleadosComponent implements OnInit {
     // this.count+=12
     }
 
-    irADetalle(a){
+    irADetalle(a,num:number = 1){
 
-      this.router.navigate(['rhnet/empleados/detalle', {id:a}])
+      this.router.navigate(['rhnet/empleados/detalle', {id:a, num:num}])
 
     }
 }

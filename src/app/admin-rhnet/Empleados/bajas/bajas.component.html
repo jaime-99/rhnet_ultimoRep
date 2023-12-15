@@ -1,1 +1,128 @@
-<p>bajas works!</p>,
+
+
+<div class="container-fluid">
+
+  <h5>Lista de empleados baja</h5>
+
+
+
+
+      <mat-tab-group animationDuration="0ms">
+        <mat-tab label="Todos">
+
+          <div class="card mt-1">
+
+            <div class="card-header">
+
+              <div class="row">
+
+                <div class="col-md-2">
+                  <button class="btn btn-primary btn-sm"> <i class="fas fa-download"></i>  PDF</button>
+                </div>
+
+                <div class="col-md-2">
+                 <button class="btn btn-success btn-sm"> <i class="fas fa-download"></i>  Excel</button>
+                </div>
+
+                <div class="col-md-5">
+                  <div class="mb-3">
+                    <input type="text" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="buscador" >
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div class="card-body">
+
+              <table class="table">
+                <thead class="table-secondary">
+                  <tr>
+                    <th scope="col">#Empleado</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Puesto</th>
+                    <th scope="col">Departamento</th>
+                    <th scope="col">Empresa</th>
+                    <th scope="col">Opciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let a of empleadosBaja | filter:buscador | paginate: { itemsPerPage: count, currentPage: page,id:'todos' }" >
+                    <th scope="row"> {{a.id}} </th>
+                    <td> {{a.NOMBRE}} </td>
+                    <td> {{a.PUESTO}} </td>
+                    <td> {{a.AREA}} </td>
+                    <td> {{a.EMPRESA}} </td>
+                    <td>
+                      <button class="btn btn-primary btn-sm" (click)="irDetalles(a.NUMERO_EMPLEADO)">Detalle</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <mat-card class="p-0 text-center">
+                <div class="row">
+                  <div class="col-md-3">
+                    <p class="text-secondary">
+                      mostrando {{ firstItem }} - {{ lastItem }} de {{ totalEmpleados }}
+                    </p>
+                  </div>
+                  <div class="col-md-9">
+                    <pagination-controls
+                      class="product-pagination"
+                      previousLabel="Anterior"
+                      nextLabel="Siguiente"
+                      autoHide="true"
+                      maxSize="5"
+                      (pageChange)="onPageChanged($event)"
+                      id="todos"
+                    ></pagination-controls>
+                  </div>
+                </div>
+              </mat-card>
+
+
+
+
+            </div>
+
+
+
+
+
+
+          </div>
+
+
+
+
+
+
+
+
+
+        </mat-tab>
+        <mat-tab label="Corporativo">Content 2</mat-tab>
+         <mat-tab label="Servicios">Content 3</mat-tab>
+      </mat-tab-group>
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+

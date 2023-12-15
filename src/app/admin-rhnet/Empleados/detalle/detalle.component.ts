@@ -15,6 +15,7 @@ export class DetalleComponent implements OnInit {
   urlImage = 'https://dikeninternational.com/rhnet/uploads/'
   public userImage = 'assets/images/others/admin.jpg';
   imagenUsu: string = '';
+  num: any; // para saber que empelado nos llega si uno de baja o uno actuivo
 
 
   constructor ( private rhnet:RhnetService, private route:ActivatedRoute,private location:Location) {}
@@ -22,9 +23,12 @@ export class DetalleComponent implements OnInit {
     this.route.params.subscribe(params => {
       const empleadoId = params['id'];
       this.empleadoId = empleadoId
+      const num = params['num'];
+      console.log(num)
+      this.num = num
       this.getEmpleado();
 
-      console.log(this.userImage)
+      // console.log(this.userImage)
 
       let userauth=JSON.parse(localStorage.getItem('datalogin')!);
       // this.userImage=userauth.Imagen;
@@ -37,14 +41,26 @@ export class DetalleComponent implements OnInit {
 
   getEmpleado(){
 
+    if(this.num==='1'){
+
     this.rhnet.getEmpleadosById(this.empleadoId).subscribe((res)=>{
       this.infoEmpleado = res
       this.imagenUsu = res.nombre_imagen
       this.urlImage = this.urlImage + this.imagenUsu;
-      console.log(this.urlImage)
+      console.log(res,1)
+      // console.log(this.urlImage)
+    })
+  }else {
+    this.rhnet.getEmpleadosBajaDetalle(this.empleadoId).subscribe((res)=>{
+      this.infoEmpleado = res
+      this.imagenUsu = res.nombre_imagen
+      this.urlImage = this.urlImage + this.imagenUsu
+      console.log(res, 2)
     })
 
   }
+  }
+
 
   regresar(){
     this.location.back()
