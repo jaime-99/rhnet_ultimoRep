@@ -31,6 +31,9 @@ export const RHmenuItems = [
   new RhMenu (100, 'Lista', '/rhnet/empleados', null, null, null, false, 58,false),
   new RhMenu (101, 'Bajas', '/rhnet/empleados/bajas', null, null, null, false, 58,false),
 
+  new RhMenu (200, 'Reservaciones', null, null, null, null, true, 0,false),
+  new RhMenu (220, 'lista de reservaciones', '/rhnet/reservaciones', null, null, null, false, 200,false),
+
 
 
 

@@ -1,0 +1,82 @@
+
+<div class="container-fluid">
+
+  <div class="row">
+    <div class="col-md-8">
+      <h4>Lista de reservaciones</h4>
+
+    </div>
+
+    <div class="col-md-4">
+      <button class="btn btn-primary btn-sm" routerLink="/rhnet/reservaciones/crear_reservacion" > <i class="fas fa-plus"></i>  Agregar Reservacion </button>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="card-header">
+
+      <div class="row">
+        <div class="col-md-1">
+          <button class="btn btn-primary btn-sm">PDF</button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-primary btn-sm">Excel</button>
+        </div>
+
+        <div class="col-5">
+        <div class=" mb-3">
+          <input type="email" class="form-control" placeholder="buscar">
+        </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+
+      <div class="table-container">
+      <table class="table">
+        <thead class="table-secondary">
+          <tr>
+            <th scope="col">Usuario</th>
+            <th scope="col">Motivo</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Sala</th>
+            <th scope="col">Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of reservaciones">
+            <th scope="row"> {{a.usuario}} </th>
+            <td> {{a.motivo}} </td>
+            <td> {{a.fecha }} </td>
+            <td> {{a.hora1 | formatarHora}} - {{a.hora2 | formatarHora}} </td>
+            <td>{{a.sala}} </td>
+            <td>
+              <button class="btn btn-danger btn-sm">Descargar</button>
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+
+
+
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+</div>

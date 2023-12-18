@@ -29,6 +29,8 @@ import { RelojChecadorComponent } from './incidentes/reloj-checador/reloj-checad
 import { SolicitudesComponent } from './vacaciones/pages/VerSolicitudes/solicitudes/solicitudes.component';
 import { AsistenciaPerfectaComponent } from './incidentes/asistencia-perfecta/asistencia-perfecta.component';
 import { DetalleSolicitudComponent } from './solicitar-vecario/detalleSolicitud/detalleSolicitud.component';
+import { ReservacionSalasModule } from './reservacionSalas/reservacion-salas.module';
+import { ReservacionSalasComponent } from './reservacionSalas/reservacionSalas.component';
 
 export const routes = [
   {
@@ -55,6 +57,7 @@ export const routes = [
       { path:'mis_Evaluaciones',loadChildren:()=>import('./misEvaluaciones/mis-evaluaciones.module').then(m=>m.MisEvaluacionesModule),data: { breadcrumb: 'Mis Evaluaciones ' }},
       { path:'becarios_activos',loadChildren:()=>import('./becarios-activos/becarios-activos.module').then(m=>m.becariosActivoModule),data: { breadcrumb: 'Becarios Activos ' }},
       { path:'empleados',loadChildren:()=>import('./Empleados/Empleados.module').then(m=>m.EmpleadosModule),data: { breadcrumb: 'Empleados ' }},
+      { path:'reservaciones',loadChildren:()=>import('./reservacionSalas/reservacion-salas.module').then(m=>m.ReservacionSalasModule),data: { breadcrumb: 'Reservaciones ' }},
       // { path: 'detalle-solicitud', component: DetalleSolicitudComponent }
 
 
@@ -75,7 +78,7 @@ export const routes = [
     MessagesComponent,
     MensajesComponent,
     PasesAutorizadosComponent,
-    TodoLosPasesComponent
+    TodoLosPasesComponent,
   ],
   imports: [
     CommonModule,
@@ -85,7 +88,8 @@ export const routes = [
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-    MatBadgeModule
+    MatBadgeModule,
+
 
 
   ]

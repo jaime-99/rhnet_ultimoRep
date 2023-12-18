@@ -459,6 +459,15 @@ export class RhnetService {
       return this.http.get<any>(url)
     }
 
+    //todo a partir de aqui se usa para Reservacion
+
+    getJuntas():any{
+      const url = `https://www.dikeninternational.com/angular_service/api/juntas/getJuntas.php`
+      return this.http.get<any>(url)
+    }
+
+
+
 
 
 
