@@ -47,7 +47,7 @@ export class DetalleComponent implements OnInit {
       this.infoEmpleado = res
       this.imagenUsu = res.nombre_imagen
       this.urlImage = this.urlImage + this.imagenUsu;
-      console.log(res,1)
+      // console.log(res,1)
       // console.log(this.urlImage)
     })
   }else {
@@ -55,14 +55,14 @@ export class DetalleComponent implements OnInit {
       this.infoEmpleado = res
       this.imagenUsu = res.nombre_imagen
       this.urlImage = this.urlImage + this.imagenUsu
-      console.log(res, 2)
+      // console.log(res, 2)
     })
 
   }
   }
 
 
-  regresar(){
+  back(){
     this.location.back()
   }
 

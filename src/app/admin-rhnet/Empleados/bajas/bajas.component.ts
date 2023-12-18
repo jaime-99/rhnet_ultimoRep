@@ -16,6 +16,8 @@ export class BajasComponent implements OnInit {
   count:number
   page:number = 1;
   counts =  [12,24]
+  currentSortColumn: string = 'id'; // Columna inicial para ordenar
+  isSortAsc: boolean = true;
   constructor (private rhnet:RhnetService, public location: Location, public router:Router ) {}
 
   ngOnInit(): void {
@@ -56,6 +58,42 @@ export class BajasComponent implements OnInit {
     this.router.navigate(['/rhnet/empleados/detalle', {id:id, num:num}])
   }
 
+  back(){
+    this.location.back()
+  }
+
+  sortColumn(column){
+
+    if (this.currentSortColumn === column) {
+      // Si ya estamos ordenando por esta columna, cambia el estado de orden
+      this.isSortAsc = !this.isSortAsc;
+    } else {
+      // Si es una nueva columna, establece la columna actual y el estado de orden ascendente
+      this.currentSortColumn = column;
+      this.isSortAsc = true;
+    }
+
+    // Lógica para ordenar el array empleadosBaja según la columna y el estado de orden
+    this.empleadosBaja.sort((a, b) => {
+      const aValue = a[column];
+      const bValue = b[column];
+
+      if (aValue < bValue) {
+        return this.isSortAsc ? -1 : 1;
+      } else if (aValue > bValue) {
+        return this.isSortAsc ? 1 : -1;
+      } else {
+        return 0;
+      }
+    });
+  }
 
 
- }
+
+
+
+
+  }
+
+
+

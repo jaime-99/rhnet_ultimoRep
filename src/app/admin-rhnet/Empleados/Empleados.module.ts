@@ -31,19 +31,20 @@ export const routes: Routes = [
         path: 'empleados',
         component: EmpleadosComponent,
         pathMatch: 'full',
-        data: { breadcrumb: 'Lista' }, // Especifica el breadcrumb solo para la ruta base 'empleados'
+        data: { breadcrumb: 'Lista' },
       },
       {
         path: 'detalle',
         component: DetalleComponent,
         // pathMatch: 'full',
-        data: { breadcrumb: 'Detalles de empleados' } // Especifica el breadcrumb solo para la ruta base 'empleados'
+        data: { breadcrumb: 'Detalles de empleados' }
       },
       {
         path: 'bajas',
         component: BajasComponent,
         // pathMatch: 'full',
-        data: { breadcrumb: 'bajas de empleados' } // Especifica el breadcrumb solo para la ruta base 'empleados'
+        data: { breadcrumb: 'bajas de empleados' }
+
       },
     ]
   },
