@@ -33,6 +33,7 @@ export const RHmenuItems = [
 
   new RhMenu (200, 'Reservaciones', null, null, null, null, true, 0,false),
   new RhMenu (220, 'lista de reservaciones', '/rhnet/reservaciones', null, null, null, false, 200,false),
+  new RhMenu (221, 'Crear Reservacion', '/rhnet/reservaciones/crear_reservacion', null, null, null, false, 200,false),
 
 
 

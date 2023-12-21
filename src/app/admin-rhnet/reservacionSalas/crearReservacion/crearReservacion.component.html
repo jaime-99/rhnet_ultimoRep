@@ -5,12 +5,12 @@
 <form [formGroup]="junta" (ngSubmit)="onSubmit()">
 
 <div  class="alert alert-secondary">
-<div class="mb-3">
+<div class="mb-2">
   <label  class="form-label">Solicitado por:</label>
   <input type="text" class="form-control" [value]="usuario" disabled>
 </div>
 
-<div class="mb-3">
+<div class="mb-2">
   <label class="form-label">Sala:</label>
 <select id="sala" class="form-select" formControlName="sala" aria-label="Default select example">
   <option selected> </option>
@@ -18,30 +18,50 @@
   <option value="planta 1 ">Sala planta 1 </option>
   <option value="planta 2">Sala planta 2</option>
 </select>
+<div
+*ngIf="junta.get('sala').invalid && (junta.dirty || junta.touched)"
+class="alert"
+>
+<div class="text-danger" *ngIf="junta.get('sala').errors?.['required']">La sala es requerida.</div>
 </div>
 
-<div class="mb-3">
+
+
+
+</div>
+
+<div class="mb-2">
   <label  class="form-label">Motivo: </label>
   <input type="text" class="form-control" formControlName="motivo">
+  <div *ngIf="junta.get('motivo').invalid && (junta.dirty || junta.touched)" class="text-danger">  el motivo es requerido</div>
 </div>
-<div class="mb-3">
+<div class="mb-2">
   <label  class="form-label">Descripcion: </label>
-  <input type="text" class="form-control" formControlName="descripcion">
-</div>
-<div class="mb-3">
-  <label  class="form-label">Fecha: </label>
-  <input type="date" class="form-control" formControlName="fecha">
-</div>
-<div class="mb-3">
-  <label  class="form-label">Hora Inicio: </label>
-  <input type="time" class="form-control" formControlName="hora1">
-</div>
-<div class="mb-3">
-  <label  class="form-label">Hora Final: </label>
-  <input type="time" class="form-control" formControlName="hora2">
+  <textarea class="form-control" id="descripcion" formControlName="descripcion" rows="3"></textarea>
+  <div *ngIf="junta.get('descripcion').invalid && (junta.dirty || junta.touched)" class="text-danger">La descripcion es requerida</div>
+
 </div>
 
-<div class="mb-3">
+<div class="mb-2">
+  <label  class="form-label">Fecha: </label>
+  <input type="date" class="form-control" formControlName="fecha">
+  <div *ngIf="junta.get('fecha').invalid && (junta.dirty || junta.touched)" class="text-danger">La fecha es requerida</div>
+
+</div>
+<div class="mb-2">
+  <label  class="form-label">Hora Inicio: </label>
+  <input type="time" class="form-control" formControlName="hora1">
+  <div *ngIf="junta.get('hora1').invalid && (junta.dirty || junta.touched)" class="text-danger">La hora de inicio es requerida</div>
+
+</div>
+<div class="mb-2">
+  <label  class="form-label">Hora Final: </label>
+  <input type="time" class="form-control" formControlName="hora2">
+  <div *ngIf="junta.get('hora2').invalid && (junta.dirty || junta.touched)" class="text-danger">La hora de termino es requerida</div>
+
+</div>
+
+<div class="mb-2">
   <p> <strong> Reglamento en el uso de la sala de capacitacion</strong> </p>
 <ol class="list-group list-group-numbered">
   <li class="list-group-item">Respetar el horario apartado</li>
