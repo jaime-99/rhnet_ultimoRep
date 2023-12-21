@@ -465,6 +465,12 @@ export class RhnetService {
       const url = `https://www.dikeninternational.com/angular_service/api/juntas/getJuntas.php`
       return this.http.get<any>(url)
     }
+    addJunta(id_usuario,motivo,descripcion,fecha,hora1,hora2,sala):any{
+      const url = `https://www.dikeninternational.com/angular_service/api/juntas/addReservacion.php`
+      const body = {id_usuario,motivo,descripcion,fecha,hora1,hora2,sala}
+      return this.http.post<any>(url,body)
+    }
+
 
 
 

@@ -1,16 +1,89 @@
+<div *ngIf="!pantalla">
 <h4>Agregar reservacion juntas</h4>
 <p>Id de reservacion : </p>
 
+<form [formGroup]="junta" (ngSubmit)="onSubmit()">
+
+<div  class="alert alert-secondary">
 <div class="mb-3">
   <label  class="form-label">Solicitado por:</label>
-  <input type="text" class="form-control">
+  <input type="text" class="form-control" [value]="usuario" disabled>
 </div>
 
-<select class="form-select" aria-label="Default select example">
-  <option selected>Sala</option>
-  <option value="1">One</option>
-  <option value="2">Two</option>
-  <option value="3">Three</option>
+<div class="mb-3">
+  <label class="form-label">Sala:</label>
+<select id="sala" class="form-select" formControlName="sala" aria-label="Default select example">
+  <option selected> </option>
+  <option value="Capacitacion">Sala de capacitacion </option>
+  <option value="planta 1 ">Sala planta 1 </option>
+  <option value="planta 2">Sala planta 2</option>
 </select>
+</div>
+
+<div class="mb-3">
+  <label  class="form-label">Motivo: </label>
+  <input type="text" class="form-control" formControlName="motivo">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Descripcion: </label>
+  <input type="text" class="form-control" formControlName="descripcion">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Fecha: </label>
+  <input type="date" class="form-control" formControlName="fecha">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Hora Inicio: </label>
+  <input type="time" class="form-control" formControlName="hora1">
+</div>
+<div class="mb-3">
+  <label  class="form-label">Hora Final: </label>
+  <input type="time" class="form-control" formControlName="hora2">
+</div>
+
+<div class="mb-3">
+  <p> <strong> Reglamento en el uso de la sala de capacitacion</strong> </p>
+<ol class="list-group list-group-numbered">
+  <li class="list-group-item">Respetar el horario apartado</li>
+  <li class="list-group-item">Apagar las luces al salir</li>
+  <li class="list-group-item">Apagar todos los equipos que se utilizaron</li>
+  <li class="list-group-item">Si se movió inmobiliario regresarlo a su lugar original</li>
+  <li class="list-group-item">Colocar la basura en el cesto</li>
+  <li class="list-group-item">Reportar cualquier percance que se haya suscitado
+  </li>
+</ol>
+
+<div class="form-check ms-2">
+  <input class="form-check-input" type="checkbox" value="" id="check">
+  <label class="form-check-label" for="check">
+    Aceptar y Continuar
+  </label>
+</div>
+
+
+</div>
+
+
+<button class="btn btn-primary" [disabled]="this.junta.invalid" type="submit">Enviar</button>
+
+</div>
+</form>
+</div>
+
+
+
+<div *ngIf="pantalla" class="alert alert-primary">
+<p>la reservacion se ha registrado con exito, el dia [dia]</p>
+<p>empieza a la hora [hora] y termina a las [] </p>
+
+<button class="btn btn-danger">Descargar en PDF</button>
+</div>
+
+
+
+
+
+
+
 
 

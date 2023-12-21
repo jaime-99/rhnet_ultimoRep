@@ -4,6 +4,7 @@ import { ReservacionSalasComponent } from './reservacionSalas.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CrearReservacionComponent } from './crearReservacion/crearReservacion.component';
 import { FormatarHoraPipe } from './pipes/horas.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 export const routes: Routes = [
   {
@@ -19,12 +20,14 @@ export const routes: Routes = [
   declarations: [
     CrearReservacionComponent,
     FormatarHoraPipe,
-    ReservacionSalasComponent
+    ReservacionSalasComponent,
+
 
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
+    ReactiveFormsModule
   ],
   exports: [
     FormatarHoraPipe
