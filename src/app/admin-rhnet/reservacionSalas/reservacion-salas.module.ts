@@ -5,6 +5,9 @@ import { RouterModule, Routes } from '@angular/router';
 import { CrearReservacionComponent } from './crearReservacion/crearReservacion.component';
 import { FormatarHoraPipe } from './pipes/horas.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 export const routes: Routes = [
   {
@@ -27,7 +30,10 @@ export const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule,
+    SharedModule
+
   ],
   exports: [
     FormatarHoraPipe

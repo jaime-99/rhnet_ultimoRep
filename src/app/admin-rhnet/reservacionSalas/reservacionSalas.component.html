@@ -4,8 +4,8 @@
   <div class="row">
     <div class="col-md-8">
       <h4>Lista de reservaciones</h4>
-
     </div>
+
 
     <div class="col-md-4">
       <button class="btn btn-primary btn-sm" routerLink="/rhnet/reservaciones/crear_reservacion" > <i class="fas fa-plus"></i>  Agregar Reservacion </button>
@@ -36,32 +36,51 @@
     <div class="card-body">
 
       <div class="table-container">
-      <table class="table">
+      <table class="table table-striped">
         <thead class="table-secondary">
           <tr>
             <th scope="col">Usuario</th>
             <th scope="col">Motivo</th>
-            <th scope="col">Fecha</th>
+            <th scope="col"(click)="sortColumn('fecha')" style="cursor: pointer;" >Fecha  <i class="fas" [ngClass]="{'fa-arrow-up': currentSortColumn === 'fecha' && isSortAsc, 'fa-arrow-down': currentSortColumn === 'fecha' && !isSortAsc}"></i></th>
             <th scope="col">Hora</th>
             <th scope="col">Sala</th>
             <th scope="col">Opciones</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let a of reservaciones">
+          <tr *ngFor="let a of reservaciones  | paginate: { itemsPerPage: count, currentPage: page}">
             <th scope="row"> {{a.usuario}} </th>
             <td> {{a.motivo}} </td>
-            <td> {{a.fecha }} </td>
+            <td> {{a.fecha | date:'dd/MM/yyyy' }} </td>
             <td> {{a.hora1 | formatarHora}} - {{a.hora2 | formatarHora}} </td>
             <td>{{a.sala}} </td>
             <td>
-              <button class="btn btn-danger btn-sm">Descargar</button>
+              <button class="btn btn-danger btn-sm" (click)="descargarPDF(a.motivo,a.fecha,a.hora1,a.hora2,a.sala)">Descargar</button>
 
             </td>
           </tr>
         </tbody>
       </table>
-      </div>
+    </div>
+      <mat-card class="p-0 text-center">
+        <div class="row">
+          <div class="col-md-3">
+            <p class="text-secondary">
+              mostrando {{ firstItem }} - {{ lastItem }} de {{ totalJuntas }}
+            </p>
+          </div>
+          <div class="col-md-9">
+            <pagination-controls
+              class="product-pagination"
+              previousLabel="Anterior"
+              nextLabel="Siguiente"
+              autoHide="true"
+              maxSize="5"
+              (pageChange)="onPageChanged($event)"
+            ></pagination-controls>
+          </div>
+        </div>
+      </mat-card>
 
 
 
