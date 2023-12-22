@@ -15,6 +15,7 @@ export class ReservacionSalasComponent implements OnInit {
   ngOnInit(): void {
 
     // this.getJuntas()
+    
   }
 
   getJuntas(){

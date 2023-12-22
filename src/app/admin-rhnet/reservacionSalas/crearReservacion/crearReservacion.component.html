@@ -46,8 +46,8 @@ class="alert"
   <label  class="form-label">Fecha: </label>
   <input type="date" class="form-control" formControlName="fecha">
   <div *ngIf="junta.get('fecha').invalid && (junta.dirty || junta.touched)" class="text-danger">La fecha es requerida</div>
-
 </div>
+
 <div class="mb-2">
   <label  class="form-label">Hora Inicio: </label>
   <input type="time" class="form-control" formControlName="hora1">
@@ -73,7 +73,7 @@ class="alert"
   </li>
 </ol>
 
-<div class="form-check ms-2">
+<div class="form-check ms-2 mt-1">
   <input class="form-check-input" type="checkbox" value="" id="check">
   <label class="form-check-label" for="check">
     Aceptar y Continuar
@@ -93,14 +93,14 @@ class="alert"
 
 
 <div *ngIf="pantalla" class="alert alert-primary">
-<p>la reservacion se ha registrado con exito, el dia [dia]</p>
-<p>empieza a la hora [hora] y termina a las [] </p>
+<p>la reservacion se ha registrado con exito, el dia {{this.junta.get('fecha').value}} en la sala  {{this.junta.get('sala').value}} </p>
+<p>empieza a la hora {{this.junta.get('hora1').value}} y termina a las {{this.junta.get('hora2').value}} </p>
 
-<button class="btn btn-danger">Descargar en PDF</button>
+<button class="btn btn-danger" (click)="descargarPDF()">Descargar en PDF</button>
 </div>
 
 
-
+<!-- ejemplo apra descargar est en template de pfd -->
 
 
 
