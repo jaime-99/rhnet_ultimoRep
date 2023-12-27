@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { RhnetService } from '../rhnet.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServicioCompartidoService } from '../components/servicio-compartido.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mensajes',
@@ -16,7 +17,7 @@ export class MensajesComponent implements OnInit {
   ejemplo: string = "hola";
 
 
-  constructor(private rhService:RhnetService, private mat:MatSnackBar, private servicio:ServicioCompartidoService) { }
+  constructor(private rhService:RhnetService, private mat:MatSnackBar, private servicio:ServicioCompartidoService, router:Router) { }
 
   ngOnInit(): void {
 
@@ -57,6 +58,10 @@ export class MensajesComponent implements OnInit {
 
 
     })
+  }
+
+  irMensaje(){
+    // es para ir al mensaje al darle click y ver
 
 
   }

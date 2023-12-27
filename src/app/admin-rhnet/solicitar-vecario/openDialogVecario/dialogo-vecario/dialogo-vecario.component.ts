@@ -130,7 +130,8 @@ export class DialogoVecarioComponent implements OnInit {
       this.rhnetService.insertBecario(usuario,area,actividades,metas,proceso,aprobador,profesion,fecha).subscribe((res)=>{
         // console.log(res)
         this.dialogRef.close(this.data.numUsuario);
-        this.enviarEmail();
+        // this.enviarEmail();
+        this.enviarNotificacion()
         this.sendYourself()
 
         this.snackBar.open('se ha enviado la solicitud a tu jefe', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
@@ -188,7 +189,7 @@ export class DialogoVecarioComponent implements OnInit {
     }
 
     this.rhnetService.mensajeDinamico(envio.destinatario,envio.mensaje,envio.subtitulo,envio.titulo1).subscribe((res)=>{
-      this.enviarNotificacion();
+      // this.enviarNotificacion();
 
     })
   }
@@ -199,7 +200,7 @@ export class DialogoVecarioComponent implements OnInit {
     const notifi = {
       usuario:this.numEmpleadoJefe,
       mensaje : 'Se le ha enviado un Becario para Autorizar',
-      tipo: 'Becario'
+      tipo: '2'
     }
 
 

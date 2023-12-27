@@ -29,7 +29,7 @@
     <div class="col-3">
       <button class="btn btn-primary" [disabled]="mensaje.leida===1" (click)="marcarMensajeLeido(mensaje.id)">Marcar como leído</button>
 
-      <!-- <button routerLink="" class="btn btn-primary" [disabled]="mensaje.leida===1" >Ir</button> -->
+      <button  class="btn btn-primary ms-1" [disabled]="mensaje.leida===1" (click)="irMensaje(mensaje.tipo)">Ir</button>
     </div>
 
 

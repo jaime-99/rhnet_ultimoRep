@@ -85,10 +85,6 @@ export class ReservacionSalasComponent implements OnInit {
     datos.push(motivo,fecha,hora1,hora2,sala);
 
 
-
-
-
-
   }
 
 
