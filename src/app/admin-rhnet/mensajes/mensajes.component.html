@@ -7,7 +7,7 @@
         <li class="list-group-item">
           <div class="row">
             <div class="col-6">
-              <h5 class="list-group-item-heading">Tipo de mensaje: {{mensaje.tipo}}</h5>
+              <h5 class="list-group-item-heading">Tipo de mensaje: {{mensaje.nombre}}</h5>
               <p class="list-group-item-text">Mensaje: {{mensaje.mensaje}}</p>
             </div>
             <div class="col-2">
@@ -29,7 +29,7 @@
     <div class="col-3">
       <button class="btn btn-primary" [disabled]="mensaje.leida===1" (click)="marcarMensajeLeido(mensaje.id)">Marcar como leído</button>
 
-      <button  class="btn btn-primary ms-1" [disabled]="mensaje.leida===1" (click)="irMensaje(mensaje.tipo)">Ir</button>
+      <button  class="btn btn-primary ms-1" [disabled]="mensaje.leida===1" (click)="irMensaje(mensaje.id_tipo)"> <i class="fa fa-eye"> Ir</i></button>
     </div>
 
 

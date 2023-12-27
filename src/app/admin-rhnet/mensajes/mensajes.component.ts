@@ -3,6 +3,7 @@ import { RhnetService } from '../rhnet.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ServicioCompartidoService } from '../components/servicio-compartido.service';
 import { Router } from '@angular/router';
+import { Notificaciones } from './interfaces/notificaciones';
 
 @Component({
   selector: 'app-mensajes',
@@ -17,7 +18,7 @@ export class MensajesComponent implements OnInit {
   ejemplo: string = "hola";
 
 
-  constructor(private rhService:RhnetService, private mat:MatSnackBar, private servicio:ServicioCompartidoService, router:Router) { }
+  constructor(private rhService:RhnetService, private mat:MatSnackBar, private servicio:ServicioCompartidoService, public router:Router) { }
 
   ngOnInit(): void {
 
@@ -56,13 +57,34 @@ export class MensajesComponent implements OnInit {
       this.getNotificaciones();
       this.mat.open('se ha eliminado el mensaje', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
 
-
     })
   }
 
-  irMensaje(){
+  irMensaje(id_tipo){
     // es para ir al mensaje al darle click y ver
 
+    // let day : number = 4;
+
+switch (id_tipo) {
+    case 1:
+        this.router.navigate(['rhnet/PASE'])
+        break;
+    case 2:
+        this.router.navigate(['rhnet/Solicitar_Becario'])
+
+        break;
+    case 3:
+      this.router.navigate(['/rhnet/CREAR_SOLICITUD'])
+        break;
+    case 4:
+        break;
+    case 5:
+        break;
+    case 6:
+        break;
+    default:
+        break;
+}
 
   }
 

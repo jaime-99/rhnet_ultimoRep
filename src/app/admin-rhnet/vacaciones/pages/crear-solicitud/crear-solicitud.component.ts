@@ -19,6 +19,7 @@ export class CrearSolicitudComponent implements OnInit {
   public año: any;
   anio: any
   correoJefe: any;
+  numEmpleadoJefe:any;
   informacionVacaciones:any
   diasUtilizados: number;
   fechas: { fechaInicio: any; fechaFin: any; };
@@ -45,18 +46,17 @@ export class CrearSolicitudComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(OpenDialogComponent, {
-      data: {correoJefe:this.correoJefe},
+      data: {correoJefe:this.correoJefe, numjefe:this.numEmpleadoJefe},
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      const fechaInicio = result.Fecha_inicio;
-      const fechaFin = result.FechaFin
+      // const fechaInicio = result.Fecha_inicio;
+      // const fechaFin = result.FechaFin
       // console.log("resultado al cerrar openDialog",fechaInicio)
 
-      this.fechas = {fechaInicio,fechaFin}
+      // this.fechas = {fechaInicio,fechaFin}
+      this.obtenerDatosSolicitud()
       // console.log(this.fechas)
-
-
 
     });
 }
@@ -64,7 +64,7 @@ export class CrearSolicitudComponent implements OnInit {
   obtenerDatosSolicitud(){
     this.rhService.getSolicitudes(this.numEmpleado).subscribe((res)=>{
       this.Solicitudes= res
-      console.log(res)
+      // console.log(res)
     })
   }
 
@@ -80,9 +80,13 @@ export class CrearSolicitudComponent implements OnInit {
 
   getDatosEmpleado (){
     this.rhService.getAllInfoEmpleados(this.numEmpleado).subscribe((res)=>{
+
       this.infoEmpleado = res
-      this.fechaAlta = this.infoEmpleado.FECHA_ALTA
-      this.correoJefe = this.infoEmpleado.correoDelJefe
+      this.fechaAlta = this.infoEmpleado.FECHA_ALTA;
+      this.correoJefe = this.infoEmpleado.correoDelJefe;
+      this.numEmpleadoJefe = this.infoEmpleado.NUMERO_EMPLEADO_JEFE;
+      console.log("iinfo",this.infoEmpleado)
+
       this.calcularAñosCumplidos()
       this.getInfoAdicional();
     })

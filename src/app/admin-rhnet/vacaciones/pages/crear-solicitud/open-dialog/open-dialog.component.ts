@@ -53,7 +53,7 @@ export class OpenDialogComponent implements OnInit {
       Numero_empleado: [this.numUsuario],
       Fecha_inicio: ['', Validators.compose([Validators.required])],
       FechaFin: ['', Validators.compose([Validators.required])],
-      DiasSolicitados: [this.diasDiferencia],
+      DiasSolicitados: [this.diasDiferencia, [Validators.required,Validators.min(1)]],
       Periodo: ['2023', Validators.compose([Validators.required])], // es el año
       Id_Jefe: [],
       Id_autorizoRH: [1],
@@ -81,7 +81,7 @@ export class OpenDialogComponent implements OnInit {
           // console.log(res)
           this.mat.open('COMPLETADO', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
           // this.enviarCorreo();
-          //todo cerrar dialogo y llamar funcion otra vez para que se vean los datos reflejados
+          this.sendNotificacion()
           this.dialogRef.close();
 
         })
@@ -114,23 +114,30 @@ export class OpenDialogComponent implements OnInit {
     const fechaFin = new Date(this.generacionVacaciones.value.FechaFin);
 
     this.fechaInicio = this.generacionVacaciones.value.Fecha_inicio;
-    this.fechaFin = this.generacionVacaciones.value.FechaFiin;
-    // Calculamos la diferencia en milisegundos y la convertimos a días
+    this.fechaFin = this.generacionVacaciones.value.FechaFin;
 
+    let diasDiferencia = 0;
+    const unDiaEnMilisegundos = 1000 * 60 * 60 * 24;
 
+    // Calculamos la diferencia en milisegundos
     const diferenciaEnTiempo = fechaFin.getTime() - fechaInicio.getTime();
-    const diasDiferencia = Math.ceil(diferenciaEnTiempo / (1000 * 3600 * 24));
 
-    // console.log(diasDiferencia)
+    // Calculamos los días hábiles
+    for (let i = 0; i <= diferenciaEnTiempo; i += unDiaEnMilisegundos) {
+      const fechaActual = new Date(fechaInicio.getTime() + i);
 
-    this.diasDiferencia = diasDiferencia
+      // Si el día actual no es sábado ni domingo, lo contamos
+      if (fechaActual.getDay() !== 5 && fechaActual.getDay() !== 6) {
+        diasDiferencia++;
+      }
+    }
 
     // Asignamos el valor calculado a DiasSolicitados
     this.generacionVacaciones.patchValue({
       DiasSolicitados: diasDiferencia
     });
-    // console.log(this.generacionVacaciones.value);
   }
+
 
   // es para enviar correo a tu jefe cuando envies la solicitud
   enviarCorreo(){
@@ -139,13 +146,13 @@ export class OpenDialogComponent implements OnInit {
     const fechaFin = this.generacionVacaciones.get('FechaFin').value;
     const dias = this.generacionVacaciones.get('DiasSolicitados').value;
 
-
+    //todo pendiente nombre y num_empleado
     const datosCorreo = {
       fecha: this.fechaHoy,
       fechaInicio:fechaInicio,
       fechaFin : fechaFin,
       dias :dias,
-      numeroEmpelado: '222',
+      numeroEmpelado: this.numUsuario /*2222 */ ,
       nombre: 'jaime',
       // correo:'practicante.sistemas@dikeninternational.com'
       correo:this.data.correoJefe
@@ -173,6 +180,16 @@ export class OpenDialogComponent implements OnInit {
   }
 
 
+
+  sendNotificacion(){
+    const data = {
+      p_usuarioId : this.data.numjefe,
+      p_mensaje : 'se le ha enviado vacaciones para autorizar',
+      p_tipo :3
+    }
+
+    this.rhService.insertarNotificacion(data.p_usuarioId,data.p_mensaje,data.p_tipo).subscribe()
+  }
 
 
 

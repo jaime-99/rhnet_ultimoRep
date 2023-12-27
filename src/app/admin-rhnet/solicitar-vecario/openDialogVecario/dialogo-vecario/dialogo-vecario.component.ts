@@ -130,7 +130,7 @@ export class DialogoVecarioComponent implements OnInit {
       this.rhnetService.insertBecario(usuario,area,actividades,metas,proceso,aprobador,profesion,fecha).subscribe((res)=>{
         // console.log(res)
         this.dialogRef.close(this.data.numUsuario);
-        // this.enviarEmail();
+        this.enviarEmail();
         this.enviarNotificacion()
         this.sendYourself()
 

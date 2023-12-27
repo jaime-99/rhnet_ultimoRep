@@ -49,7 +49,7 @@ export class AddComponent implements OnInit {
 
       }else{
       this.getMisSolicitudes(result);
-      console.log(result)
+      // console.log(result)
       }
 
     });
@@ -78,7 +78,7 @@ datosCompletos(){ // numero de empleado de ariel
     this.datosPersona = res
     const id = this.datosPersona.idUsuario
     this.numUsuario= id
-    console.log("el id de usuario es "+id)
+    // console.log("el id de usuario es "+id)
     this.getMisSolicitudes(id)
   })
 }

@@ -23,6 +23,8 @@
   <label for="DiasSolicitados" class="form-label">Dias Tomados</label>
   <input type="number" class="form-control" formControlName="DiasSolicitados" disabled>
   <mat-error *ngIf="generacionVacaciones.controls.DiasSolicitados.errors?.required">dias solicitados requerido</mat-error>
+  <mat-error *ngIf="generacionVacaciones.controls.DiasSolicitados.errors?.min">el numero de dias debe estar correcto</mat-error>
+
 
 </div>
 </div>
@@ -31,6 +33,7 @@
   <label for="" class="form-label">Observaciones</label>
   <input type="text" class="form-control" formControlName="Observaciones" name="Observaciones">
   <mat-error *ngIf="generacionVacaciones.controls.Periodo.errors?.required">Periodo requerido</mat-error>
+
 </div>
 </div>
 </div>
@@ -41,7 +44,7 @@
 
 
 <div mat-dialog-actions>
-  <button mat-raised-button color="primary" (click)="insertarSolicitud(generacionVacaciones.value)">Enviar Datos </button>
+  <button mat-raised-button color="primary" [disabled]="this.generacionVacaciones.invalid" (click)="insertarSolicitud(generacionVacaciones.value)">Enviar Datos </button>
   <button mat-raised-button color="warn" [mat-dialog-close]="this.generacionVacaciones.value" cdkFocusInitial>Volver</button>
   <!-- <button mat-raised-button color="warn" (click)="volver()"> Volver</button> -->
 </div>

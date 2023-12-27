@@ -260,7 +260,7 @@ export class OpenDialogComponent implements OnInit {
     const notificaciones={
       p_usuario_id:this.numeroEmpleadoJefe,
       p_mensaje:'se le ha enviado un pase para autorizar',
-      p_tipo:'Incidencias'
+      p_tipo:1
     }
 
     this.rhService.insertarNotificacion(notificaciones.p_usuario_id,notificaciones.p_mensaje,notificaciones.p_tipo).subscribe((res)=>{
