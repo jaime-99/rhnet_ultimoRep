@@ -23,7 +23,7 @@ export class AprobarBecarioRHComponent implements OnInit {
 
   this.RhnetService.getPorAceptar().subscribe((res)=>{
     this.aceptadosRH = res
-    console.log(res)
+    // console.log(res)
     })
 
   }

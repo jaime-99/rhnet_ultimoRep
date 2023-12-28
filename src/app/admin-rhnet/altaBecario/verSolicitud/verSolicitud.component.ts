@@ -20,7 +20,7 @@ export class VerSolicitudComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       // Aquí puedes trabajar con los parámetros recibidos
       const id = params['id'];
-      console.log(id)
+      // console.log(id)
       this.solicitud(id)
     });
 
@@ -31,7 +31,7 @@ export class VerSolicitudComponent implements OnInit {
 
   solicitud(id){
     this.rhnetService.getDetalleID(id).subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
       this.soli = res
     })
   }

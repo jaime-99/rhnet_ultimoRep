@@ -33,9 +33,9 @@ export class MisEvaluacionesComponent implements OnInit {
 
   obtenerIdUsuario(){
     this.rhnetService.getAllInfoEmpleados(this.numEmpleado).subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
       this.numUsuario = res.idUsuario
-      console.log("es mi num de usuario",this.numUsuario)
+      // console.log("es mi num de usuario",this.numUsuario)
       this.getBecarios();
     })
   }
@@ -43,7 +43,7 @@ export class MisEvaluacionesComponent implements OnInit {
   getBecarios(){
 
     this.rhnetService.getBecarios(this.numUsuario).subscribe((res)=>{
-      console.log("mis becarios",res)
+      // console.log("mis becarios",res)
       this.Misbecarios = res
     })
   }

@@ -135,7 +135,7 @@ export class PaseDigitalComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       // console.log('el dialogo se ha cerrado');
       const resultado = result;
-      console.log(resultado)
+      // console.log(resultado)
 
       if (result !== undefined && result !== null) {
         // Llamar a getPases solo si result es válido

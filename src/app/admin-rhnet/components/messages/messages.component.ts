@@ -70,7 +70,7 @@ export class MessagesComponent implements OnInit {
 
     this.messages.forEach(mensaje => {
       this.arrayMensaje = mensaje
-      console.log( "son todos los mensajes" , " " ,mensaje.mensaje)
+      // console.log( "son todos los mensajes" , " " ,mensaje.mensaje)
     });
 
     const mensajesLeidos = this.messages.filter((mensaje) => mensaje.leida==1);

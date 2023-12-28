@@ -67,7 +67,7 @@ export class RhMenuComponent implements OnInit {
 
 
       const perfilUsuarioIds = this.perfiles.map((perfil) => perfil.perfilUsuarioId);
-      console.log(perfilUsuarioIds)
+      // console.log(perfilUsuarioIds)
 
 
 
@@ -87,9 +87,9 @@ export class RhMenuComponent implements OnInit {
         // this.parentMenu.push(new RhMenu (33, 'PASES GENERADOS', '/rhnet/PASES_GENERADOS', null, 'receipt', null, false, 0)),
 
 
-        console.log("si se incluye")
+        // console.log("si se incluye")
       }else{
-        console.log("No se incluye el perfil de vigilante")
+        // console.log("No se incluye el perfil de vigilante")
           this.parentMenu = this.menuItems.filter(item => item.parentId == this.menuParentId);
 
         // console.log(this.usuarioId)

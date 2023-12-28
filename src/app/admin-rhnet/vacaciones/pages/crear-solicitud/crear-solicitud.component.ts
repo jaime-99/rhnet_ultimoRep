@@ -85,7 +85,7 @@ export class CrearSolicitudComponent implements OnInit {
       this.fechaAlta = this.infoEmpleado.FECHA_ALTA;
       this.correoJefe = this.infoEmpleado.correoDelJefe;
       this.numEmpleadoJefe = this.infoEmpleado.NUMERO_EMPLEADO_JEFE;
-      console.log("iinfo",this.infoEmpleado)
+      // console.log("iinfo",this.infoEmpleado)
 
       this.calcularAñosCumplidos()
       this.getInfoAdicional();

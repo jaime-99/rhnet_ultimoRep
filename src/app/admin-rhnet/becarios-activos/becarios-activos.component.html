@@ -2,11 +2,11 @@
 <body>
 
   <div *ngIf="!pantalla" class="container mt-1" #content>
-    <div class="row">
+    <div class="row ">
       <div class="col-md-4">
         <h2 class="mb-4">Lista de Becarios</h2>
       </div>
-      <div class="col-md-3">
+      <div class="mb-1 col-md-3">
         <button class="btn btn-success btn-sm" (click)="descargarExcel()">
            <i class="fas fa-file-excel"></i> Descargar Excel</button>
       </div>
@@ -17,7 +17,7 @@
 
     </div>
 
-    <div class="mb-3">
+    <div class="mb-3 p-1">
       <input type="text" class="form-control" placeholder="Buscar por nombre" [(ngModel)]="filtroNombre" >
     </div>
 
