@@ -44,19 +44,19 @@ class="alert"
 
 <div class="mb-2">
   <label  class="form-label">Fecha: </label>
-  <input type="date" class="form-control" formControlName="fecha">
+  <input type="date" class="form-control" formControlName="fecha" (change)="date()" [min]="currentDate" >
   <div *ngIf="junta.get('fecha').invalid && (junta.dirty || junta.touched)" class="text-danger">La fecha es requerida</div>
 </div>
 
 <div class="mb-2">
   <label  class="form-label">Hora Inicio: </label>
-  <input type="time" class="form-control" formControlName="hora1">
+  <input type="time" class="form-control" formControlName="hora1" (change)="date()">
   <div *ngIf="junta.get('hora1').invalid && (junta.dirty || junta.touched)" class="text-danger">La hora de inicio es requerida</div>
 
 </div>
 <div class="mb-2">
   <label  class="form-label">Hora Final: </label>
-  <input type="time" class="form-control" formControlName="hora2">
+  <input type="time" class="form-control" formControlName="hora2" (change)="date()">
   <div *ngIf="junta.get('hora2').invalid && (junta.dirty || junta.touched)" class="text-danger">La hora de termino es requerida</div>
 
 </div>

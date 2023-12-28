@@ -3,6 +3,9 @@ import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } fro
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RhnetService } from '../../rhnet.service';
 import * as html2pdf from 'html2pdf.js';
+import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 
 @Component({
@@ -11,6 +14,9 @@ import * as html2pdf from 'html2pdf.js';
   styleUrls: ['./crearReservacion.component.scss'],
 })
 export class CrearReservacionComponent implements OnInit {
+
+
+
   @ViewChild('miPlantilla') pdfContent: ElementRef;
 
   junta: FormGroup;
@@ -19,10 +25,18 @@ export class CrearReservacionComponent implements OnInit {
 
   pantalla = false;
   fechaActual: string;
+  currentDate: string;
+  reservaciones:any[]
+  fechas: any[];
+  hora1: any;
+  hora2: any;
 
 
 
-  constructor (private formBuilder: FormBuilder, private rhnet:RhnetService ) {}
+  constructor (private formBuilder: FormBuilder, private rhnet:RhnetService, public snackBar: MatSnackBar ) {
+    const today = new Date();
+    this.currentDate = today.toISOString().split('T')[0];
+  }
   ngOnInit(): void {
 
 
@@ -30,6 +44,7 @@ export class CrearReservacionComponent implements OnInit {
     this.UsuarioId = userauth.UsuarioId
     this.usuario = userauth.Nombre
     // console.log(userauth)
+    this.getJuntas()
 
     this.initializeForm();
   }
@@ -178,6 +193,68 @@ export class CrearReservacionComponent implements OnInit {
     const hora = fecha.getHours().toString().padStart(2, '0');
     const minutos = fecha.getMinutes().toString().padStart(2, '0');
     return `${hora}:${minutos}`;
+  }
+
+
+
+  getJuntas(){
+
+    this.rhnet.getJuntas().subscribe((res)=>{
+      this.reservaciones = res
+      // console.log(res)
+
+      this.fechas = res.map((item: any) => item.fecha);
+      this.hora1 = res.map((item:any) =>item.hora1);
+      this.hora2 = res.map((item:any) =>item.hora2);
+
+      // console.log(this.fechas) // año mes y dia
+
+
+
+
+    })
+  }
+
+  date(){
+
+    const fecha = this.junta.get('fecha').value;
+    const hora1 = this.junta.get('hora1').value;
+    const hora2 = this.junta.get('hora2').value;
+
+
+    if(this.fechas.includes(fecha)){
+
+      this.horas(hora1,hora2)
+    }else{
+      // console.log("esa fecha si se puede colocar")
+      return;
+    }
+  }
+
+  horas(hora1,hora2){
+
+    const hora1Formato = this.convertirAFormato24h(hora1);
+    const hora2Formato = this.convertirAFormato24h(hora2);
+
+    if(this.hora1.includes(hora1Formato) || this.hora2.includes(hora2Formato)){
+
+      this.snackBar.open("esa fecha y horas ya estan en uso", '×', { panelClass: "error", verticalPosition: 'top', duration: 3000 })
+
+      this.junta.patchValue({
+        hora1: '',
+        hora2:''
+      });
+
+
+    }
+
+
+  }
+
+  convertirAFormato24h(hora12h: string): string {
+    const fechaHora12h = new Date(`2000-01-01T${hora12h}`);
+    const formato24h = fechaHora12h.toLocaleTimeString('en-US', { hour12: false });
+    return formato24h;
   }
 
 

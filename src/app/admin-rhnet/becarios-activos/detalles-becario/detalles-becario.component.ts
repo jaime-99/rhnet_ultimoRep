@@ -30,7 +30,7 @@ export class DetallesBecarioComponent implements OnInit {
     this.rhnetService.getBecariosPorId(this.data.id).subscribe((res)=>{
       this.info = res
       this.observaciones()
-      console.log(this.info)
+      // console.log(this.info)
       this.idBecario = this.info.id
       // console.log(this.idBecario)
     })

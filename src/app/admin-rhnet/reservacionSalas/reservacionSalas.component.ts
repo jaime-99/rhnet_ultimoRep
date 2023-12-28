@@ -44,14 +44,14 @@ export class ReservacionSalasComponent implements OnInit {
 
     this.rhnet.getJuntas().subscribe((res)=>{
       this.reservaciones = res
-      // console.log(res)
+      console.log(res)
     })
   }
 
   onPageChanged(event){
-
     this.page = event
   }
+
 
   sortColumn(column){
 

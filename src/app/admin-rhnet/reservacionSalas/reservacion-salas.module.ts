@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ReservacionSalasComponent } from './reservacionSalas.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CrearReservacionComponent } from './crearReservacion/crearReservacion.component';
@@ -37,6 +37,8 @@ export const routes: Routes = [
   ],
   exports: [
     FormatarHoraPipe
-  ]
+  ],
+  providers: [DatePipe],
+
 })
 export class ReservacionSalasModule { }
