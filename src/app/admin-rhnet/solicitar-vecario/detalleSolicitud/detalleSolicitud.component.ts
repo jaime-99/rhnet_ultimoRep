@@ -34,7 +34,6 @@ export class DetalleSolicitudComponent implements OnInit {
       const id = params['id'];
       this.idDetalle = id
       this.getDetalles(id)
-
     });
   }
 
@@ -44,7 +43,7 @@ export class DetalleSolicitudComponent implements OnInit {
 
     this.rhService.getDetalleID(id).subscribe((res)=>{
       this.detalle = res
-      console.log( "estos son mis detalles ",this.detalle)
+      // console.log( "estos son mis detalles ",this.detalle)
         })
   }
 
@@ -60,11 +59,11 @@ export class DetalleSolicitudComponent implements OnInit {
       const valor = this.miFormulario.get('comentarios').value;
 
       this.rhService.addComentarioJefe(valor,this.idDetalle).subscribe((res)=>{
-        // console.log(res)
 
         this.mat.open('Has aceptado la solicitud', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
         this.rhService.updateEstatus('2',this.idDetalle).subscribe(()=>{
           this.verTerminado = true;
+          //todo aqui deberia ir el idEmpleado para poder mandar la notificacion (pendiente)
         })
 
 

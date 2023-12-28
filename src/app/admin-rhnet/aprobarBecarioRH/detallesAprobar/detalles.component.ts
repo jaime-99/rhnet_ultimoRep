@@ -53,7 +53,7 @@ export class detallesComponent implements OnInit {
 
     this.rhnet.getDetalleID(this.idParam).subscribe((res)=>{
       this.detalle = res
-      // console.log(res)
+      console.log(res)
 
     })
   }
@@ -67,6 +67,8 @@ export class detallesComponent implements OnInit {
         this.changeEstatus()
         this.snackBar.open('has aceptado la solicitud de becario', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
         this.pantalla=true
+        //enviar notificacion
+        this.sendNotificacion(1)
 
       })
     }else{
@@ -79,7 +81,7 @@ export class detallesComponent implements OnInit {
   changeEstatus(){
     // cambiar estatus a 4 de aceptado por RH
     this.rhnet.updateEstatus(4,this.idParam).subscribe((res)=>{
-      console.log(res)
+      // console.log(res)
     })
 
   }
@@ -101,6 +103,8 @@ export class detallesComponent implements OnInit {
 
         this.snackBar.open('Has Cancelado la solicitud de becario', '×', { panelClass: 'success', verticalPosition: 'top', duration: 3000 });
         this.pantalla=true
+        // enviar notificacion de cancelacion
+        this.sendNotificacion(2)
 
 
       })
@@ -112,6 +116,25 @@ export class detallesComponent implements OnInit {
 
   }
   }
+
+  sendNotificacion(num){
+
+    if(num ===1){
+      let data = {
+        p_usuarioId :this.detalle.Aprobador,
+        p_mensaje : 'se le ha autorizado su becario por parte de desarrollo humano',
+        p_tipo: 2
+      }
+      console.log({data})
+      // this.rhnet.insertarNotificacion(data.p_usuarioId,data.p_mensaje,data.p_tipo).subscribe();
+    }
+
+
+
+  else if(num ===2){
+
+  }
+}
 
 
 }

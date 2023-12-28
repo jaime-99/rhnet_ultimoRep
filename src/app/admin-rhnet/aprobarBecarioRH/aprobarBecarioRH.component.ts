@@ -23,6 +23,7 @@ export class AprobarBecarioRHComponent implements OnInit {
 
   this.RhnetService.getPorAceptar().subscribe((res)=>{
     this.aceptadosRH = res
+    console.log(res)
     })
 
   }
@@ -32,10 +33,9 @@ export class AprobarBecarioRHComponent implements OnInit {
     this.router.navigate(['rhnet/Aprobar_Becario/detalles'], {
       queryParams: { id: id }
     });
-
-
-
   }
+
+
 
 
 

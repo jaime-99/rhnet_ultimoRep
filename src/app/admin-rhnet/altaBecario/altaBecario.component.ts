@@ -32,7 +32,7 @@ getAceptados(){
 
   this.rhnet.getAceptados().subscribe((res)=>{
     this.aceptados=res;
-    console.log("aceptados",  res)
+    // console.log("aceptados",  res)
   })
 
 }

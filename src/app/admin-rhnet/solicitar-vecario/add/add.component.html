@@ -105,7 +105,7 @@
               <td> {{aprobar.Fecha | date:'dd/MM/yyyy'}} </td>
               <td>              <button type="button" class="btn" [ngClass]="{
                 'btn-warning btn-sm': aprobar.Estatus === 1,
-                'btn-success btn-sm ': aprobar.Estatus === 2 || aprobar.Estatus === 4,
+                'btn-success btn-sm ': aprobar.Estatus === 2 || aprobar.Estatus === 4 || aprobar.Estatus ===6,
                 'btn-danger btn-sm': aprobar.Estatus === 3 || aprobar.Estatus === 5
               }" (click)="irDetalles(aprobar.id)"> {{aprobar.estatus}} </button>
               </td>
