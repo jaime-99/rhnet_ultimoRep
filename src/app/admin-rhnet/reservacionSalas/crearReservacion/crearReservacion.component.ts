@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RhnetService } from '../../rhnet.service';
 import * as html2pdf from 'html2pdf.js';
 import { DatePipe } from '@angular/common';
@@ -18,6 +18,8 @@ export class CrearReservacionComponent implements OnInit {
 
 
   @ViewChild('miPlantilla') pdfContent: ElementRef;
+  @ViewChild('miCheckbox', { static: false }) miCheckbox: ElementRef;
+
 
   junta: FormGroup;
   UsuarioId: number;
@@ -30,6 +32,7 @@ export class CrearReservacionComponent implements OnInit {
   fechas: any[];
   hora1: any;
   hora2: any;
+  horaActual: string;
 
 
 
@@ -45,8 +48,8 @@ export class CrearReservacionComponent implements OnInit {
     this.usuario = userauth.Nombre
     // console.log(userauth)
     this.getJuntas()
-
     this.initializeForm();
+    // this.obtenerValorCheckbox()
   }
 
 
@@ -58,8 +61,10 @@ export class CrearReservacionComponent implements OnInit {
       motivo: ['', Validators.required,],
       descripcion: ['', Validators.required],
       fecha: [this.obtenerFechaActual(), Validators.required],
-      hora1: [this.obtenerHoraActual(), Validators.required],
-      hora2: [this.obtenerHoraActual(), Validators.required],
+      hora1: ['', [Validators.required, this.validarHoras.bind(this)]],
+      hora2: ['', [Validators.required, this.validarHoras.bind(this)]],
+
+
       sala: ['', Validators.required],
     });
   }
@@ -68,6 +73,11 @@ export class CrearReservacionComponent implements OnInit {
 
 
     if(this.junta.valid){
+      const valorCheckbox = this.miCheckbox.nativeElement.checked;
+      if(!valorCheckbox){
+        this.snackBar.open("debes aceptar las condiciones", '×', { panelClass: "error", verticalPosition: 'top', duration: 3000 })
+        return;
+      }
 
       const {id_usuario,motivo,descripcion,fecha,hora1,hora2,sala} = this.junta.value
       this.rhnet.addJunta(id_usuario,motivo,descripcion,fecha,hora1,hora2,sala).subscribe((res)=>{
@@ -192,6 +202,8 @@ export class CrearReservacionComponent implements OnInit {
     const fecha = new Date();
     const hora = fecha.getHours().toString().padStart(2, '0');
     const minutos = fecha.getMinutes().toString().padStart(2, '0');
+    this.horaActual = hora + ':'+ minutos
+    console.log(this.horaActual)
     return `${hora}:${minutos}`;
   }
 
@@ -208,10 +220,6 @@ export class CrearReservacionComponent implements OnInit {
       this.hora2 = res.map((item:any) =>item.hora2);
 
       // console.log(this.fechas) // año mes y dia
-
-
-
-
     })
   }
 
@@ -258,4 +266,24 @@ export class CrearReservacionComponent implements OnInit {
   }
 
 
+  obtenerValorCheckbox() {
+    const valorCheckbox = this.miCheckbox.nativeElement.checked;
+    if(!valorCheckbox){
+      return
+    }
+  }
+
+  validarHoras(control:AbstractControl) {
+    const value = control.value;
+    if (value) {
+      const horaPartes = value.split(':');
+      const minutos = parseInt(horaPartes[1]);
+
+      if (minutos !== 0 && minutos !== 30) {
+        return { invalidHora: true };
+      }
+    }
+
+    return null;
+  }
 }

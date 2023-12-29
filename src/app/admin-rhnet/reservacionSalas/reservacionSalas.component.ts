@@ -83,9 +83,9 @@ export class ReservacionSalasComponent implements OnInit {
 
     const datos = [];
     datos.push(motivo,fecha,hora1,hora2,sala);
-
-
   }
+
+
 
 
 }

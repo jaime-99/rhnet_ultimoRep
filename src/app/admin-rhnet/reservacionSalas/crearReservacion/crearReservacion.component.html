@@ -51,30 +51,34 @@ class="alert"
 <div class="mb-2">
   <label  class="form-label">Hora Inicio: </label>
   <input type="time" class="form-control" formControlName="hora1" (change)="date()">
-  <div *ngIf="junta.get('hora1').invalid && (junta.dirty || junta.touched)" class="text-danger">La hora de inicio es requerida</div>
+  <div *ngIf="junta.get('hora1').hasError('required') && (junta.get('hora1').dirty || junta.get('hora1').touched)" class="text-danger">La hora de inicio es requerida</div>
+  <div *ngIf="junta.get('hora1').hasError('invalidHora')" class="text-danger">La hora debe ser en incrementos de 30 minutos</div>
+
 
 </div>
 <div class="mb-2">
   <label  class="form-label">Hora Final: </label>
   <input type="time" class="form-control" formControlName="hora2" (change)="date()">
-  <div *ngIf="junta.get('hora2').invalid && (junta.dirty || junta.touched)" class="text-danger">La hora de termino es requerida</div>
+  <div *ngIf="junta.get('hora2').hasError('required') && (junta.get('hora2').dirty || junta.get('hora2').touched)" class="text-danger">La hora de termino es requerida</div>
+  <div *ngIf="junta.get('hora2').hasError('invalidHora')" class="text-danger">La hora debe ser en incrementos de 30 minutos</div>
 
 </div>
 
+
 <div class="mb-2">
   <p> <strong> Reglamento en el uso de la sala de capacitacion</strong> </p>
-<ol class="list-group list-group-numbered">
-  <li class="list-group-item">Respetar el horario apartado</li>
-  <li class="list-group-item">Apagar las luces al salir</li>
-  <li class="list-group-item">Apagar todos los equipos que se utilizaron</li>
-  <li class="list-group-item">Si se movió inmobiliario regresarlo a su lugar original</li>
-  <li class="list-group-item">Colocar la basura en el cesto</li>
-  <li class="list-group-item">Reportar cualquier percance que se haya suscitado
+<ol class="list-group list-group-numbered  ">
+  <li class="list-group-item list-group-item-danger ">Respetar el horario apartado</li>
+  <li class="list-group-item list-group-item-danger">Apagar las luces al salir</li>
+  <li class="list-group-item list-group-item-danger">Apagar todos los equipos que se utilizaron</li>
+  <li class="list-group-item list-group-item-danger">Si se movió inmobiliario regresarlo a su lugar original</li>
+  <li class="list-group-item list-group-item-danger">Colocar la basura en el cesto</li>
+  <li class="list-group-item list-group-item-danger">Reportar cualquier percance que se haya suscitado
   </li>
 </ol>
 
-<div class="form-check ms-2 mt-1">
-  <input class="form-check-input" type="checkbox" value="" id="check">
+<div class="form-check ms-2 mt-1 ">
+  <input class="form-check-input" type="checkbox" value="" id="check" #miCheckbox (click)="obtenerValorCheckbox()">
   <label class="form-check-label" for="check">
     Aceptar y Continuar
   </label>
