@@ -63,6 +63,9 @@ export const routes: Routes = [
     NgxPaginationModule,
     MatPaginatorModule,
 
+  ],
+  exports:[
+    filtrado
   ]
 })
 

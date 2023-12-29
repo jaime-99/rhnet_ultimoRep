@@ -19,15 +19,15 @@
 
       <div class="row">
         <div class="col-md-1">
-          <button class="btn btn-primary btn-sm">PDF</button>
+          <button class="btn btn-primary btn-sm" (click)="descargarAllPdf()">  <i class="fas fa-download"></i>  PDF</button>
         </div>
         <div class="col-md-6">
-          <button class="btn btn-primary btn-sm">Excel</button>
+          <button class="btn btn-success btn-sm" (click)="descargarExcel()">  <i class="fas fa-download"></i> Excel</button>
         </div>
 
         <div class="col-5">
         <div class=" mb-3">
-          <input type="email" class="form-control" placeholder="buscar">
+          <input type="email" class="form-control" placeholder="buscar por nombre" [(ngModel)]="filtroNombre">
         </div>
         </div>
       </div>
@@ -48,14 +48,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let a of reservaciones  | paginate: { itemsPerPage: count, currentPage: page}">
+          <tr *ngFor="let a of reservaciones |busqueda:filtroNombre| paginate: { itemsPerPage: count, currentPage: page}">
             <th scope="row"> {{a.usuario}} </th>
             <td> {{a.motivo}} </td>
             <td> {{a.fecha | date:'dd/MM/yyyy' }} </td>
             <td> {{a.hora1 | formatarHora}} - {{a.hora2 | formatarHora}} </td>
             <td>{{a.sala}} </td>
             <td>
-              <button class="btn btn-danger btn-sm" (click)="descargarPDF(a.motivo,a.fecha,a.hora1,a.hora2,a.sala)">Descargar</button>
+              <button class="btn btn-danger btn-sm" (click)="descargarPDF(a.usuario,a.motivo,a.fecha,a.hora1,a.hora2,a.sala,a.descripcion)">
+                <i class="fas fa-download"></i> Descargar</button>
 
             </td>
           </tr>

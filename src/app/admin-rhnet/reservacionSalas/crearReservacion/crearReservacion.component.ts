@@ -63,8 +63,6 @@ export class CrearReservacionComponent implements OnInit {
       fecha: [this.obtenerFechaActual(), Validators.required],
       hora1: ['', [Validators.required, this.validarHoras.bind(this)]],
       hora2: ['', [Validators.required, this.validarHoras.bind(this)]],
-
-
       sala: ['', Validators.required],
     });
   }
@@ -206,11 +204,7 @@ export class CrearReservacionComponent implements OnInit {
     console.log(this.horaActual)
     return `${hora}:${minutos}`;
   }
-
-
-
   getJuntas(){
-
     this.rhnet.getJuntas().subscribe((res)=>{
       this.reservaciones = res
       // console.log(res)
@@ -228,7 +222,6 @@ export class CrearReservacionComponent implements OnInit {
     const fecha = this.junta.get('fecha').value;
     const hora1 = this.junta.get('hora1').value;
     const hora2 = this.junta.get('hora2').value;
-
 
     if(this.fechas.includes(fecha)){
 
@@ -252,11 +245,7 @@ export class CrearReservacionComponent implements OnInit {
         hora1: '',
         hora2:''
       });
-
-
     }
-
-
   }
 
   convertirAFormato24h(hora12h: string): string {
